@@ -1,4 +1,4 @@
-package org.githubio.desktop_beleza;
+package org.githubio.desktop_beleza.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
