@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaDAO {
+    /*
+    Coloque as Classes AgendaDAO, Agenda no pacote Model
+    E a Classe AgendaController no pacote Controller
+
+    Não vou mesclar com a main pois preciso que esse código adaptado com a tela do pessoal do front-end
+     */
 
     // Método de Cadastrar
     public void cadastrarAgendamento(String data_procedimento, String tipo_servico, String tipo_Pratica, String cliente) {
