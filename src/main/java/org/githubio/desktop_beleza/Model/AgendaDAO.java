@@ -1,4 +1,4 @@
-package Model;
+package org.githubio.desktop_beleza.Model;
 
 import org.githubio.desktop_beleza.DatabaseConfig;
 
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class AgendaDAO {
     /*
-    Coloque as Classes AgendaDAO, Agenda no pacote Model
-    E a Classe AgendaController no pacote Controller
+    Coloque as Classes AgendaDAO, Agenda no pacote org.githubio.desktop_beleza.Model
+    E a Classe AgendaController no pacote org.githubio.desktop_beleza.Controller
 
     Não vou mesclar com a main pois preciso que esse código adaptado com a tela do pessoal do front-end
      */

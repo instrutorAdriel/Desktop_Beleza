@@ -1,7 +1,7 @@
-package Controller;
+package org.githubio.desktop_beleza.Controller;
 
-import Model.Agenda;
-import Model.AgendaDAO;
+import org.githubio.desktop_beleza.Model.Agenda;
+import org.githubio.desktop_beleza.Model.AgendaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -29,7 +29,7 @@ public class AgendaController {
         // 1. Configuração do ComboBox
         txtServico.getItems().addAll("Cabeleireiro", "Barbeiro", "Maquiador", "Design de Sobrancelhas");
 
-        // 2. Vincula os dados (Model) às colunas
+        // 2. Vincula os dados (org.githubio.desktop_beleza.Model) às colunas
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
         colPratica.setCellValueFactory(new PropertyValueFactory<>("pratica"));
