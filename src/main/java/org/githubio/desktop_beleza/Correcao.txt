@@ -1,0 +1,10 @@
+# Remova o diretorio example.demo.dao
+
+# Remova a classe "HelloController" do ServicosController
+
+# Organize as classes que possua o nome Controller no pacote Controller e as
+# classes Models dentro do pacote Model
+
+# Os arquivos .fxml devem ser sempre começar com a letra maiuscula: servicos.fxml -> Servicos.fxml
+
+# Pegue o código de conexão com o banco de dados presente na branch main
