@@ -1,4 +1,4 @@
-package org.githubio.desktop_beleza;
+package Model;
 
 public class Agenda {
     private int id;

@@ -8,4 +8,8 @@ module org.githubio.desktop_beleza {
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;
+    exports Model;
+    opens Model to javafx.fxml;
+    exports Controller;
+    opens Controller to javafx.fxml;
 }

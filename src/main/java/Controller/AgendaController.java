@@ -1,8 +1,9 @@
-package org.githubio.desktop_beleza;
+package Controller;
 
+import Model.Agenda;
+import Model.AgendaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
