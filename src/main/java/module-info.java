@@ -7,6 +7,6 @@ module org.githubio.desktop_beleza {
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;
-    exports org.githubio.desktop_beleza.config;
-    opens org.githubio.desktop_beleza.config to javafx.fxml;
+    exports org.githubio.desktop_beleza.Config;
+    opens org.githubio.desktop_beleza.Config to javafx.fxml;
 }
