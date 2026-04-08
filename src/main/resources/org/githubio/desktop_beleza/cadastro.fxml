@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="116.0" layoutX="12.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagem/mi.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="230.0" text="Cadastro" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="campoUsuario" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Usuário" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+               <VBox.margin>
+                  <Insets left="86.0" right="86.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="campoMatricula" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Matrícula" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" />
+               </VBox.margin></TextField>
+            <PasswordField fx:id="campoSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" />
+               </VBox.margin>
+            </PasswordField>
+            <PasswordField fx:id="campoConfirmarSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Confirmar senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="281.0" spacing="26.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onVoltarClick" style="-fx-background-color: #004587;" text="Voltar" textFill="#e4e4e4" />
+                  <Button mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="27.0" prefWidth="91.0" text="Cadastrar" />
+               </children>
+               <VBox.margin>
+                  <Insets top="6.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
