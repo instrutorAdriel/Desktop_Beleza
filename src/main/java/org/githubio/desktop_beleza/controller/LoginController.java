@@ -13,11 +13,11 @@ public class LoginController {
     @FXML
     private PasswordField Senha;
     @FXML
-    protected void botaoDeTroca()throws IOException {
+    public void botaoDeTroca()throws IOException {
         MainApplication.setRoot("cadastro");
     }
     @FXML
-    protected void onLoginButtonClick() throws IOException{
+    public void onLoginButtonClick() throws IOException{
         String nomeDigitado = Usuário.getText();
         String senhaDigitada = Senha.getText();
 

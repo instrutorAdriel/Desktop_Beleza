@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+   <children>
+      <Button layoutX="223.0" layoutY="150.0" mnemonicParsing="false" onAction="#botaoDeTroca" text="Button" />
+   </children>
+</AnchorPane>
