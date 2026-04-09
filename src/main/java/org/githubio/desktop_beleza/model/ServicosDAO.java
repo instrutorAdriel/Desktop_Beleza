@@ -29,7 +29,7 @@ public class ServicosDAO {
                         rs.getString("horario_inicio") + " - " +
                                 rs.getString("horario_fim")
                 );
-                s.setId(rs.getInt("id_servicos"));
+                s.setId(rs.getInt("id_servico"));
                 lista.add(s);
             }
 
