@@ -30,8 +30,14 @@
             </Label>
             <Label text="Nome da turma">
                <VBox.margin>
-                  <Insets bottom="-10.0" right="180.0" />
+                  <Insets bottom="-10.0" right="170.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </Label>
             <TextField maxHeight="50.0" maxWidth="250.0" promptText="Código - Nome do curso" style="-fx-background-color: #E1E3E2;">
                <VBox.margin>
@@ -40,15 +46,33 @@
                <tooltip>
                   <Tooltip text="Ex: 2025.08.133 - Técnico em Desenvolvimento de Sistemas" />
                </tooltip>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
             </TextField>
+            <Label prefHeight="15.0" prefWidth="217.0" text="Selecione aqui o instrutor da turma">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="-10.0" right="55.0" />
+               </VBox.margin>
+            </Label>
+            <ChoiceBox maxHeight="50.0" maxWidth="250.0" />
             <Label text="Turno">
                <VBox.margin>
-                  <Insets right="225.0" top="5.0" />
+                  <Insets right="235.0" top="-5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
             </Label>
             <HBox maxHeight="100.0" maxWidth="265.0" prefHeight="25.0" prefWidth="265.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #E1E3E2; -fx-border-color: #004587;" text="Manhã" />
+                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #E1E3E2; -fx-border-color: #004587;" text="Manhã">
+                     <font>
+                        <Font name="Verdana Bold" size="12.0" />
+                     </font></Button>
                   <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #E1E3E2; -fx-border-color: #004587;" text="Tarde">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -57,6 +81,9 @@
                         <String fx:value="out_lined" />
                         <String fx:value="accen_t" />
                      </styleClass>
+                     <font>
+                        <Font name="Verdana Bold" size="12.0" />
+                     </font>
                   </Button>
                   <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #E1E3E2; -fx-border-color: #004587;" text="Noite">
                      <HBox.margin>
@@ -66,16 +93,23 @@
                         <String fx:value="out_lined" />
                         <String fx:value="accen_t" />
                      </styleClass>
+                     <font>
+                        <Font name="Verdana Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
+               <BorderPane.margin>
+                  <Insets top="-5.0" />
+               </BorderPane.margin>
             </HBox>
-            <CheckBox mnemonicParsing="false" styleClass="inde" text="Clique aqui.">
-               <graphic>
-                  <Label text="Trabalha em mais de uma turma?" />
-               </graphic>
-            </CheckBox>
-            <Button mnemonicParsing="false" style="-fx-background-color: #004587;" styleClass="out_lined" text="Finalizar e sair" textFill="WHITE" />
-            <Button mnemonicParsing="false" styleClass="out_lined" text="Registrar outra tuma" textFill="#004587" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #004587;" styleClass="out_lined" text="Finalizar e sair" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" styleClass="out_lined" text="Registrar outra tuma" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font></Button>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -90,7 +124,7 @@
          <children>
             <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="21.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/Senac_logo.png" />
+                  <Image url="@imagens/Senac_logo.png" />
                </image></ImageView>
          </children></AnchorPane>
    </top>
