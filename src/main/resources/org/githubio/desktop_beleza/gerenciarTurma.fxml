@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="288.0" prefWidth="268.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label contentDisplay="CENTER" text="Gerenciamento de Turmas" textFill="#004587">
+               <font>
+                  <Font name="SansSerif Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="40.0" right="40.0" top="50.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="400.0" minHeight="-Infinity" prefHeight="28.0" prefWidth="228.0" promptText="Buscar">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></TextField>
+            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="480.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="262.0">
+              <columns>
+                <TableColumn fx:id="colTurma" maxWidth="250.0" minWidth="52.0" prefWidth="174.0" text="Nome/Codigo da turma" />
+                <TableColumn fx:id="colTurno" prefWidth="84.0" text="Turno" />
+                  <TableColumn fx:id="colInstrutor" prefWidth="136.0" text="Instrutores" />
+                  <TableColumn fx:id="colAcoes" prefWidth="113.0" text="Ações" />
+              </columns>
+            </TableView>
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin></VBox>
+   </center>
+   <left>
+      <VBox prefHeight="271.0" prefWidth="138.0" style="-fx-background-color: F0F0F2;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="74.0" prefWidth="600.0" style="-fx-background-color: F0F0F2;" />
+            <ImageView fitHeight="107.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@../../../imagem/senac-logo-png_seeklogo-242013.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buscarTurmas" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="accent" text="Página inicial">
+               <VBox.margin>
+                  <Insets left="10.0" top="30.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="accent" text="Clientes">
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="accent" text="Serviços">
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="accent" text="Turmas">
+               <VBox.margin>
+                  <Insets bottom="40.0" left="10.0" top="10.0" />
+               </VBox.margin></Button>
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin></VBox>
+   </left>
+   <bottom>
+      <VBox prefHeight="51.0" prefWidth="567.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: F0F0F2;">
+               <children>
+                  <Button layoutX="51.0" layoutY="13.0" mnemonicParsing="false" styleClass="danger" text="Sair" />
+               </children>
+            </Pane>
+            <Pane minHeight="74.0" prefWidth="600.0" style="-fx-background-color: F0F0F2;">
+               <VBox.margin>
+                  <Insets right="-10.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+         <BorderPane.margin>
+            <Insets right="11.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+   <right>
+      <VBox minHeight="10.0" minWidth="10.0" prefHeight="285.0" prefWidth="200.0" style="-fx-background-color: F0F0F2;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="-60.0" />
+         </BorderPane.margin></VBox>
+   </right>
+   <top>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="600.0" style="-fx-background-color: F0F0F2;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+</BorderPane>

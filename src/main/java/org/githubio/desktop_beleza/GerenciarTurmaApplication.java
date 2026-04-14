@@ -8,15 +8,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainApplication extends Application {
+public class GerenciarTurmaApplication extends Application {
     private static Scene scene;
-    private static final int MinWidth = 800;
-    private static final int MinHeight = 800;
+    private static final int MinWidth = 1280;
+    private static final int MinHeight = 720;
 
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("gerenciarTurma"), MinWidth, MinHeight);
-       // A primeira tela a ser exibida é a de Login
+        // A primeira tela a ser exibida é a de Login
 
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);
@@ -30,7 +30,7 @@ public class MainApplication extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GerenciarTurmaApplication.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 }
