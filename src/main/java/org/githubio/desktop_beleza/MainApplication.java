@@ -15,7 +15,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), MinWidth, MinHeight);
+        scene = new Scene(loadFXML("Login"), MinWidth, MinHeight);
        // A primeira tela a ser exibida é a de Login
 
         stage.setTitle("Desktop Beleza");
@@ -30,7 +30,7 @@ public class MainApplication extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Tela+agenda.fxml"));
         return fxmlLoader.load();
     }
 }
