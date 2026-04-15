@@ -3,7 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.LoginDAO;
+import org.githubio.desktop_beleza.model.CadastroDAO;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class LoginController {
         String nomeDigitado = Usuário.getText();
         String senhaDigitada = Senha.getText();
 
-        LoginDAO usuarioDao = new LoginDAO();
+        CadastroDAO usuarioDao = new CadastroDAO();
         boolean logado = usuarioDao.autenticarUsuario(nomeDigitado, senhaDigitada);
 
         if (logado==true) {
