@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?package org.githubio.desktop_beleza.controller?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -13,7 +12,7 @@
          <children>
             <ImageView fitHeight="65.0" fitWidth="116.0" layoutX="18.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Imagens/Senac_logo.png" />
+                  <Image url="@../../../image/mi.png" />
                </image>
             </ImageView>
          </children>
@@ -27,7 +26,7 @@
                   <Font name="Verdana Bold" size="28.0" />
                </font>
             </Label>
-            <TextField fx:id="Usuário" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Usuário" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -43,7 +42,7 @@
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
             </PasswordField>
-            <Hyperlink alignment="CENTER" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+            <Hyperlink alignment="CENTER" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
                <font>
                   <Font size="10.0" />
                </font>
@@ -55,7 +54,7 @@
                <padding>
                   <Insets bottom="1.6" left="25.0" right="25.0" top="1.6" />
                </padding></Button>
-            <Button mnemonicParsing="false" onAction="#botaoDeTroca" style="-fx-background-color: #004587;" text="Registre-se" textFill="#e4e4e4">
+            <Button mnemonicParsing="false" onAction="#irParaCadastro" style="-fx-background-color: #004587;" text="Registre-se" textFill="#e4e4e4">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

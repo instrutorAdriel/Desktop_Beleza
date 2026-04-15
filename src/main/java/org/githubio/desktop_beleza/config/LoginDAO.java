@@ -1,5 +1,6 @@
-package org.githubio.desktop_beleza.model;
+package org.githubio.desktop_beleza.config;
 
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginDAO {
     public List<String> lerUsuario(String user) {
@@ -43,7 +41,7 @@ public class LoginDAO {
         String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
         try (
                 // 1. Abre a conexão com o banco de dados
-                //    DatabaseConnection.getConnection() retorna um objeto Connection
+                //    DatabaseConfig.getConnection() retorna um objeto Connection
                 //    pronto para uso, usando as configurações já definidas na classe.
                 Connection conn = DatabaseConnection.getConnection();
 
@@ -141,5 +139,5 @@ public class LoginDAO {
             return false;
         }
     }
-}
+        }
 
