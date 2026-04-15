@@ -1,0 +1,13 @@
+/* Configurações Gerais e Fundo */
+.root {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f4f7f9; /* Cinza muito claro, quase branco */
+}
+
+/* Barra Lateral (Menu) */
+.sidebar {
+    -fx-background-color: #004587; /* Azul Senac */
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
