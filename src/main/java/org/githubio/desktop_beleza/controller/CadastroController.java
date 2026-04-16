@@ -27,6 +27,8 @@ public class CadastroController {
     }
 
     // Metodo chamado ao clicar em "Salvar" (exemplo)
+
+    // Correção: Metodos sem utilidade no código deve ser removido, qual a utilidade do onSalvarClick()?
     @FXML
     protected void onSalvarClick() throws IOException {
         // Faça o que precisar aqui antes de trocar a tela
@@ -35,11 +37,17 @@ public class CadastroController {
         // Após salvar, volta para a tela principal
         MainApplication.setRoot("login");
     }
+
     @FXML
     public void onCadastrarClick() {
 
-        // 1. Lê os valores digitados nos campos da tela
-        //    getText() retorna o conteúdo atual do campo como String
+
+        // Correção: A tela de cadastro só deve ter os campos: Email, Senha e Confirmar Senha
+        // Correção: Não tem uma verificação do campo email, se o usuário digitar um nome qualquer sem o "@" ou
+        // dominio do email será um dado incosistente no banco de dados.
+        // Correção: Remova esses comentários no código, isso deixa ele poluído e dificil de ler, apenas deixa comentários
+        // realmente necessários
+
         String usuario    = campoUsuario.getText();
         String matricula = campoMatricula.getText();
         String senha   = campoSenha.getText();

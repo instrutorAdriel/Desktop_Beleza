@@ -12,6 +12,8 @@ import org.githubio.desktop_beleza.config.DatabaseConnection;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginDAO {
+    // Correção: Metodo lerUsuário é inutil no sistema.
+
     public List<String> lerUsuario(String user) {
         String sql = "SELECT email_instrutor, senha FROM tb_instrutor WHERE nome_cliente = ?";
         List<String> usuarios = new ArrayList<>();
@@ -35,6 +37,7 @@ public class LoginDAO {
     }
 
     public void cadastrarUsuario(String nome_instrutor, String senha) {
+        // Correção: Remova os comentários desse código, é desnecessário e deixa ele poluído
 
         // Comando SQL de inserção.
         // Os três ? serão substituídos pelos valores reais logo abaixo.
