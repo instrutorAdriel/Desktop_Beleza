@@ -52,6 +52,8 @@ public class ServicosController implements Initializable {
         ButtonType btnAdicionar = new ButtonType("Adicionar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnAdicionar, ButtonType.CANCEL);
 
+        // Correção: No campo de escolher a hora, desenvolva um código que a pessoa selecione o horário separadamente
+        // um campo para a pessoa digitar o horário não é prático.
         TextField txtNome = new TextField();
         TextField txtDesc = new TextField();
         TextField txtHora = new TextField();
@@ -102,6 +104,8 @@ public class ServicosController implements Initializable {
         });
     }
 
+    // Correção: Metodo redundante, você criou o mesmo metodo do abrirDialogo. Crie o código que tenha apenas um metodo
+    // de abrir o dialogo
     private void abrirDialogoEdicao(Servico servico) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Editar Serviço");
