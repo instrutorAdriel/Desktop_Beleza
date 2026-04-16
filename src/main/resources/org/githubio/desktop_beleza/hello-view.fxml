@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="635.0" styleClass="root" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="707.0" styleClass="root" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox alignment="CENTER" prefHeight="288.0" prefWidth="268.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="292.0" prefWidth="677.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" text="Gerenciamento de Turmas" textFill="#004587">
+            <Label contentDisplay="CENTER" lineSpacing="10.0" text="Gerenciamento de Turmas" textFill="#004587">
                <font>
                   <Font name="Verdana Bold" size="28.0" />
                </font>
@@ -18,12 +18,8 @@
                   <Insets left="40.0" right="40.0" top="50.0" />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" maxWidth="450.0" spacing="5.0">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="0.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
-                     </children></StackPane>
                   <TextField maxHeight="-Infinity" minHeight="-Infinity" prefWidth="18.0" promptText="Buscar" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Verdana Bold" size="12.0" />
@@ -32,8 +28,7 @@
                         <Insets />
                      </HBox.margin>
                   </TextField>
-                  <StackPane prefHeight="23.0" prefWidth="19.0" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" text="Buscar" HBox.hgrow="ALWAYS">
+                  <Button mnemonicParsing="false" prefHeight="25.0" text="Buscar" textFill="#004587" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -41,7 +36,7 @@
                         <Font name="Verdana Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" text="Adicionar" HBox.hgrow="ALWAYS">
+                  <Button mnemonicParsing="false" prefHeight="25.0" text="Adicionar" textFill="#004587" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -51,15 +46,15 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" left="270.0" right="270.0" />
                </VBox.margin>
             </HBox>
             <TableView maxHeight="480.0" maxWidth="480.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="322.0">
               <columns>
-                <TableColumn maxWidth="250.0" minWidth="52.0" prefWidth="100.0" text="Nome/Codigo da turma" />
+                <TableColumn maxWidth="2850.0" minWidth="52.0" prefWidth="100.0" text="Nome/Codigo da turma" />
                 <TableColumn maxWidth="2850.0" minWidth="52.0" prefWidth="100.0" text="Turno" />
-                  <TableColumn maxWidth="250.0" minWidth="52.0" prefWidth="100.0" text="Instrutores" />
-                  <TableColumn maxWidth="250.0" minWidth="30.0" prefWidth="50.0" text="Ações" />
+                  <TableColumn maxWidth="2850.0" minWidth="52.0" prefWidth="100.0" text="Instrutores" />
+                  <TableColumn maxWidth="2850.0" minWidth="30.0" prefWidth="50.0" text="Ações" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -73,31 +68,30 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="74.0" prefWidth="600.0" style="-fx-background-color: #F9F8F6;" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Página inicial">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Página inicial" textFill="#004587">
                <VBox.margin>
-                  <Insets left="10.0" top="30.0" />
+                  <Insets top="80.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clientes">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clientes" textFill="#004587">
                <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Serviços">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Serviços" textFill="#004587">
                <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Turmas">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Turmas" textFill="#004587">
                <VBox.margin>
-                  <Insets bottom="100.0" left="10.0" top="10.0" />
+                  <Insets bottom="100.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
@@ -108,21 +102,21 @@
          </VBox.margin></VBox>
    </left>
    <bottom>
-      <VBox prefHeight="51.0" prefWidth="567.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="70.0" prefWidth="650.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER">
          <children>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" style="-fx-background-color: #F9F8F6;">
                <children>
-                  <Button layoutX="51.0" layoutY="13.0" mnemonicParsing="false" text="Sair">
+                  <Button layoutX="51.0" layoutY="13.0" mnemonicParsing="false" text="Sair" textFill="#004587">
                      <font>
                         <Font name="Verdana Bold" size="12.0" />
                      </font></Button>
                </children>
             </Pane>
-            <Pane minHeight="-Infinity" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #F9F8F6;">
+            <AnchorPane prefHeight="70.0" prefWidth="600.0">
                <VBox.margin>
                   <Insets right="-10.0" />
                </VBox.margin>
-            </Pane>
+            </AnchorPane>
          </children>
          <BorderPane.margin>
             <Insets right="11.0" />
@@ -130,26 +124,24 @@
       </VBox>
    </bottom>
    <right>
-      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="248.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="-60.0" />
-         </BorderPane.margin></VBox>
+            <Insets />
+         </BorderPane.margin>
+      </AnchorPane>
    </right>
    <top>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <children>
-            <ImageView cache="true" fitHeight="107.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
+            <ImageView cache="true" fitHeight="107.0" fitWidth="100.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Imagens/mi.png" />
                </image>
             </ImageView>
          </children>
-      </VBox>
+      </AnchorPane>
    </top>
 </BorderPane>
