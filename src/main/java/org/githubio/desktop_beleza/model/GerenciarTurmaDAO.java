@@ -15,13 +15,13 @@ import java.util.List;
 public class GerenciarTurmaDAO {
 
     public ObservableList<UsuarioDTO> lerUsuariosParaTabela() {
-        // Adicionei o t.id_turma no SELECT
+        // 1. Adicionei t.status_turma no SELECT
         String sql = """
-        SELECT t.id_turma, t.turma, t.turno, ti.nome_instrutor
-        FROM rl_instrutor_turmas i
-        INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
-        INNER JOIN tb_instrutor ti ON i.id_instrutor = ti.id_instrutor
-        """;
+    SELECT t.id_turma, t.turma, t.turno, t.status_turma, ti.nome_instrutor
+    FROM rl_instrutor_turmas i
+    INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
+    INNER JOIN tb_instrutor ti ON i.id_instrutor = ti.id_instrutor
+    """;
 
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
         try (Connection conn = DatabaseConfig.getConnection();
@@ -29,11 +29,13 @@ public class GerenciarTurmaDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
+                // 2. Agora passamos 5 parâmetros para o construtor, incluindo o status!
                 lista.add(new UsuarioDTO(
-                        rs.getInt("id_turma"), // PEGA O ID AQUI
+                        rs.getInt("id_turma"),
                         rs.getString("turma"),
                         rs.getString("turno"),
-                        rs.getString("nome_instrutor")
+                        rs.getString("nome_instrutor"),
+                        rs.getString("status_turma") // PEGA O STATUS AQUI
                 ));
             }
         } catch (SQLException e) { e.printStackTrace(); }
@@ -79,34 +81,26 @@ public class GerenciarTurmaDAO {
         }
     }
 
-    public void atualizarCompleto(int idTurma, String novoNome, String novoTurno, String novoInstrutor) {
-        String sqlTurma = "UPDATE tb_turmas SET turma = ?, turno = ? WHERE id_turma = ?";
-        String sqlRelacao = """
-        UPDATE rl_instrutor_turmas 
-        SET id_instrutor = (SELECT id_instrutor FROM tb_instrutor WHERE nome_instrutor = ? LIMIT 1)
-        WHERE id_turma = ?
-        """;
+    public void atualizarCompleto(int id, String nome, String turno, String instrutor, String status) {
+        // Aqui usamos o nome da coluna do banco: status_turma
+        String sql = "UPDATE tb_turmas SET turma = ?, turno = ?, status_turma = ? WHERE id_turma = ?";
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
-            conn.setAutoCommit(false);
-            try (PreparedStatement stmt1 = conn.prepareStatement(sqlTurma);
-                 PreparedStatement stmt2 = conn.prepareStatement(sqlRelacao)) {
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-                stmt1.setString(1, novoNome);
-                stmt1.setString(2, novoTurno);
-                stmt1.setInt(3, idTurma); // Atualiza pelo ID (Seguro!)
-                stmt1.executeUpdate();
+            stmt.setString(1, nome);
+            stmt.setString(2, turno);
+            stmt.setString(3, status);
+            stmt.setInt(4, id);
 
-                stmt2.setString(1, novoInstrutor);
-                stmt2.setInt(2, idTurma); // Vincula ao ID da turma
-                stmt2.executeUpdate();
+            stmt.executeUpdate();
 
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-                e.printStackTrace();
-            }
-        } catch (SQLException e) { e.printStackTrace(); }
+            // Se você tiver uma tabela de relação para o instrutor,
+            // precisará de outro UPDATE ou uma lógica para atualizar o instrutor também.
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<String> listarNomesInstrutores() {

@@ -18,16 +18,30 @@
                   <Insets left="40.0" right="40.0" top="50.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="400.0" minHeight="-Infinity" prefHeight="28.0" prefWidth="228.0" promptText="Buscar">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="400.0" promptText="Buscar">
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" text="Adicionar Turma">
+                     <HBox.margin>
+                        <Insets left="20.0" right="150.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin></TextField>
-            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="480.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="262.0">
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="580.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="600.0">
               <columns>
                 <TableColumn fx:id="colTurma" maxWidth="250.0" minWidth="52.0" prefWidth="174.0" text="Nome/Codigo da turma" />
                 <TableColumn fx:id="colTurno" prefWidth="84.0" text="Turno" />
                   <TableColumn fx:id="colInstrutor" prefWidth="136.0" text="Instrutores" />
-                  <TableColumn fx:id="colAcoes" prefWidth="113.0" text="Ações" />
+                  <TableColumn fx:id="colStatus" prefWidth="136.0" text="Status" />
+                  <TableColumn fx:id="colAcoes" minWidth="60.0" prefWidth="50.0" text="Ações" />
               </columns>
             </TableView>
          </children>

@@ -5,13 +5,15 @@ public class UsuarioDTO {
     private String turma;
     private String turno;
     private String nomeInstrutor;
+    private String statusTurma;
 
     // Atualize o construtor para receber o ID também
-    public UsuarioDTO(int idTurma, String turma, String turno, String nomeInstrutor) {
+    public UsuarioDTO(int idTurma, String turma, String turno, String nomeInstrutor, String statusTurma) {
         this.idTurma = idTurma;
         this.turma = turma;
         this.turno = turno;
         this.nomeInstrutor = nomeInstrutor;
+        this.statusTurma = statusTurma;
     }
 
     // Adicione o Getter e Setter para o idTurma
@@ -20,6 +22,7 @@ public class UsuarioDTO {
     public String getTurma() { return turma; }
     public String getTurno() { return turno; }
     public String getNomeInstrutor() { return nomeInstrutor; }
+    public String getStatusTurma() {return statusTurma;}
 
 
     public void setTurma(String turma) {
@@ -33,6 +36,8 @@ public class UsuarioDTO {
     public void setNomeInstrutor(String nomeInstrutor) {
         this.nomeInstrutor = nomeInstrutor;
     }
+
+    public void setStatusTurma(String statusTurma) {this.statusTurma = statusTurma;}
 
 
 

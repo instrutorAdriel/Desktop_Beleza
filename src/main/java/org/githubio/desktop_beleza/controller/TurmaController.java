@@ -80,10 +80,10 @@ public class TurmaController {
 
     @FXML
     void finalizarESair() {
-        if (camposValidos()) { // Só entra aqui se tudo estiver preenchido
-            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue());
+        if (camposValidos()) {
+            // Adicionamos o quarto parâmetro aqui:
+            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em andamento");
 
-            // Agora sim, fecha a tela
             Stage stage = (Stage) txtNomeTurma.getScene().getWindow();
             stage.close();
         }
@@ -92,7 +92,7 @@ public class TurmaController {
     @FXML
     void registrarOutra() {
         if (camposValidos()) { // Só entra aqui se tudo estiver preenchido
-            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue());
+            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em andamento");
             // Limpa a tela
             txtNomeTurma.clear();
             comboInstrutor.getSelectionModel().clearSelection();

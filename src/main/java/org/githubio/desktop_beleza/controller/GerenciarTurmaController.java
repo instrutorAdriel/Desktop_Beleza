@@ -1,44 +1,47 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.githubio.desktop_beleza.GerenciarTurmaApplication;
 import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
 
 import java.io.IOException;
-import java.util.List;
-
 
 public class GerenciarTurmaController {
-    @FXML
-    private TableView<UsuarioDTO> tabelaUsuarios;
-    @FXML
-    private TableColumn<UsuarioDTO, String> colTurma;
-    @FXML
-    private TableColumn<UsuarioDTO, String> colTurno;
-    @FXML
-    private TableColumn<UsuarioDTO, String> colInstrutor;
-    @FXML
-    private TableColumn<UsuarioDTO, Void> colAcoes;
-    @FXML
-    private TextField txtBusca;
+    @FXML private TableView<UsuarioDTO> tabelaUsuarios;
+    @FXML private TableColumn<UsuarioDTO, String> colTurma;
+    @FXML private TableColumn<UsuarioDTO, String> colTurno;
+    @FXML private TableColumn<UsuarioDTO, String> colInstrutor;
+    @FXML private TableColumn<UsuarioDTO, Void> colAcoes;
+    @FXML private TableColumn<UsuarioDTO, String> colStatus;
+    @FXML private TextField txtBusca;
 
+    // 1. Declaramos o DAO como atributo da CLASSE (Global)
+    private final GerenciarTurmaDAO dao = new GerenciarTurmaDAO();
+
+    // 2. A lista original que o filtro vai observar
     private final ObservableList<UsuarioDTO> listaOriginal = FXCollections.observableArrayList();
 
     public void initialize() {
-        // 1. Vincula as colunas (Seu código original)
+        // Vincula as colunas
         colTurma.setCellValueFactory(new PropertyValueFactory<>("turma"));
         colTurno.setCellValueFactory(new PropertyValueFactory<>("turno"));
         colInstrutor.setCellValueFactory(new PropertyValueFactory<>("nomeInstrutor"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("statusTurma"));
 
-        // 2. Configura a coluna de ações (Seu código original)
+        // Configura as ações (Editar/Excluir)
         colAcoes.setCellFactory(coluna -> new TableCell<>() {
             private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
             {
@@ -46,39 +49,20 @@ public class GerenciarTurmaController {
                 choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
                     if (novo == null) return;
                     UsuarioDTO usuario = getTableView().getItems().get(getIndex());
-                    GerenciarTurmaDAO dao = new GerenciarTurmaDAO();
 
                     if (novo.equals("Excluir")) {
                         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Excluir " + usuario.getTurma() + "?", ButtonType.YES, ButtonType.NO);
                         alerta.showAndWait().ifPresent(response -> {
                             if (response == ButtonType.YES) {
-                                // 1. Remove do Banco de Dados
                                 dao.excluirTurma(usuario.getTurma());
-
-                                System.out.println("ID selecionado para excluir: " + usuario.getIdTurma());
-                                System.out.println("IDs presentes na listaOriginal: ");
-                                listaOriginal.forEach(u -> System.out.print(u.getIdTurma() + " "));
-
-                                // 2. O PULO DO GATO: Remove da lista que a tabela está usando
-                                // Como a SortedList/FilteredList estão "escutando" a listaOriginal,
-                                // ao remover daqui, a tabela atualiza na hora!
-                                //listaOriginal.remove(usuario);
-                                IO.println(listaOriginal);
-
-                                // Caso ainda não suma, force o refresh (opcional)
-                                tabelaUsuarios.refresh();
-                                try {
-                                    GerenciarTurmaApplication.setRoot("gerenciarTurma");
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-
+                                // Atualiza a lista original para a tabela refletir a exclusão
+                                listaOriginal.remove(usuario);
                             }
                         });
                     } else if (novo.equals("Editar")) {
                         abrirJanelaEdicao(usuario);
                     }
-                    javafx.application.Platform.runLater(() -> choiceBox.getSelectionModel().clearSelection());
+                    Platform.runLater(() -> choiceBox.getSelectionModel().clearSelection());
                 });
             }
             @Override
@@ -88,95 +72,93 @@ public class GerenciarTurmaController {
             }
         });
 
-        // --- AQUI COMEÇA A PARTE DA BUSCA ---
+        // 3. Carrega os dados iniciais do banco para a lista global
+        atualizarTabela();
 
-        // 3. Carrega os dados do banco em uma lista observável
-        GerenciarTurmaDAO dao = new GerenciarTurmaDAO();
-        ObservableList<UsuarioDTO> listaOriginal = dao.lerUsuariosParaTabela();
-
-        // 4. Cria a FilteredList baseada na lista original
+        // 4. Configuração do Filtro (Busca)
         FilteredList<UsuarioDTO> listaFiltrada = new FilteredList<>(listaOriginal, p -> true);
-
-        // 5. Conecta o TextField à FilteredList
         txtBusca.textProperty().addListener((observable, oldValue, newValue) -> {
             listaFiltrada.setPredicate(usuario -> {
-                // Se o campo estiver vazio, mostra tudo
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
+                if (newValue == null || newValue.isEmpty()) return true;
                 String filtro = newValue.toLowerCase();
 
-                // Busca em todas as colunas
-                if (usuario.getTurma().toLowerCase().contains(filtro)) return true;
-                if (usuario.getTurno().toLowerCase().contains(filtro)) return true;
-                if (usuario.getNomeInstrutor().toLowerCase().contains(filtro)) return true;
-
-                return false; // Não combina
+                return usuario.getTurma().toLowerCase().contains(filtro) ||
+                        usuario.getTurno().toLowerCase().contains(filtro) ||
+                        usuario.getNomeInstrutor().toLowerCase().contains(filtro) ||
+                        usuario.getStatusTurma().toLowerCase().contains(filtro);
             });
         });
 
-        // 6. Envolve em uma SortedList para que a ordenação das colunas (A-Z) continue funcionando
         SortedList<UsuarioDTO> listaOrdenada = new SortedList<>(listaFiltrada);
         listaOrdenada.comparatorProperty().bind(tabelaUsuarios.comparatorProperty());
-
-        // 7. Seta os itens na tabela (Usando a lista que passou pelo filtro e pela ordenação)
         tabelaUsuarios.setItems(listaOrdenada);
+    }
 
-
+    // Criamos um método para facilitar a atualização em vários pontos
+    private void atualizarTabela() {
+        listaOriginal.setAll(dao.lerUsuariosParaTabela());
     }
 
     private void abrirJanelaEdicao(UsuarioDTO usuario) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Editar Turma Completa");
-        dialog.setHeaderText("Atualize os dados da " + usuario.getTurma());
+        dialog.setTitle("Editar Turma");
 
-        // 1. Campos de texto e Turno
         TextField txtTurma = new TextField(usuario.getTurma());
         ComboBox<String> cbTurno = new ComboBox<>();
         cbTurno.getItems().addAll("Matutino", "Vespertino", "Noturno");
         cbTurno.setValue(usuario.getTurno());
 
-        // 2. ComboBox de Instrutores (Carregando do banco)
+        ComboBox<String> cbStatus = new ComboBox<>();
+        cbStatus.getItems().addAll("Em andamento", "Finalizada");
+        cbStatus.setValue(usuario.getStatusTurma());
+
         ComboBox<String> cbInstrutor = new ComboBox<>();
-        GerenciarTurmaDAO dao = new GerenciarTurmaDAO();
-
-        // Busca a lista de nomes e adiciona no ComboBox
-        List<String> listaNomes = dao.listarNomesInstrutores();
-        cbInstrutor.getItems().addAll(listaNomes);
-
-        // Define o instrutor atual como selecionado
+        cbInstrutor.getItems().addAll(dao.listarNomesInstrutores());
         cbInstrutor.setValue(usuario.getNomeInstrutor());
 
-        // 3. Layout da Janela
-        VBox layout = new VBox(10,
-                new Label("Nome da Turma:"), txtTurma,
-                new Label("Turno:"), cbTurno,
-                new Label("Instrutor:"), cbInstrutor
-        );
+        VBox layout = new VBox(10, new Label("Turma:"), txtTurma, new Label("Turno:"), cbTurno,
+                new Label("Instrutor:"), cbInstrutor, new Label("Status:"), cbStatus);
         layout.setPadding(new javafx.geometry.Insets(20));
-
         dialog.getDialogPane().setContent(layout);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
         dialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                // 4. Salva no Banco usando o ID da Turma
-                dao.atualizarCompleto(
-                        usuario.getIdTurma(),
-                        txtTurma.getText(),
-                        cbTurno.getValue(),
-                        cbInstrutor.getValue() // Pega o nome selecionado no combo
-                );
+                dao.atualizarCompleto(usuario.getIdTurma(), txtTurma.getText(), cbTurno.getValue(),
+                        cbInstrutor.getValue(), cbStatus.getValue());
 
-                // 5. Atualiza o objeto na memória (UI)
+                // Atualiza o objeto na lista original para refletir na TableView
                 usuario.setTurma(txtTurma.getText());
                 usuario.setTurno(cbTurno.getValue());
                 usuario.setNomeInstrutor(cbInstrutor.getValue());
-
+                usuario.setStatusTurma(cbStatus.getValue());
                 tabelaUsuarios.refresh();
             }
         });
     }
 
+    @FXML
+    void abrirTelaCadastroPopUp() {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(GerenciarTurmaApplication.class.getResource("adicionarTurma.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setWidth(1280);
+            stage.setHeight(720);
+            stage.setTitle("Cadastrar Nova Turma");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+
+            // Quando o Pop-up fechar, recarregamos a lista original do banco
+            stage.setOnHiding(event -> atualizarTabela());
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
