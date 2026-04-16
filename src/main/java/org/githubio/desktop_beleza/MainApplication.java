@@ -10,12 +10,12 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
     private static Scene scene;
-    private static final int MinWidth = 800;
-    private static final int MinHeight = 800;
+    private static final int MinWidth = 1280;
+    private static final int MinHeight = 720;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("telamodelo"), MinWidth, MinHeight);
+        scene = new Scene(loadFXML("gerenciarmodelo"), MinWidth, MinHeight);
        // A primeira tela a ser exibida é a de Login
 
         stage.setTitle("Desktop Beleza");
