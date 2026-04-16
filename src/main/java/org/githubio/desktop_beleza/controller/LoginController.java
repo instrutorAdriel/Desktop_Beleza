@@ -18,6 +18,8 @@ public class LoginController {
     }
     @FXML
     public void onLoginButtonClick() throws IOException{
+        // Correção: corrigir o nome da variavel para emailDigitado
+        // Correção: Muda as variaveis de acordo com os campos da tela. Troque de usuário para email
         String nomeDigitado = Usuário.getText();
         String senhaDigitada = Senha.getText();
 

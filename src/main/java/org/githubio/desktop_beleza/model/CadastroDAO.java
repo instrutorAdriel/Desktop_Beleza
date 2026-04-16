@@ -11,6 +11,8 @@ import org.githubio.desktop_beleza.config.DatabaseConnection;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class CadastroDAO {
+
+    // Correção: Remova esse metodo, ele não tem utilidade no sistema
     public List<String> lerUsuario(String user) {
         String sql = "SELECT email_instrutor, senha FROM tb_instrutor WHERE nome_cliente = ?";
         List<String> usuarios = new ArrayList<>();
@@ -34,6 +36,8 @@ public class CadastroDAO {
     }
 
     public void cadastrarUsuario(String nome_instrutor, String senha) {
+
+        // Correção: Remova os comentário desse metodo, o código fica poluído e díficil de ler.
 
         // Comando SQL de inserção.
         // Os três ? serão substituídos pelos valores reais logo abaixo.
@@ -103,6 +107,7 @@ public class CadastroDAO {
         return false; // usuário não encontrado
     }
 
+    // Correção: Qual a utilidade desse metódo?
     public boolean instrutorExiste(String email) {
         // 1. A Query busca se existe um instrutor com esse e-mail
         String sql = "SELECT * FROM tb_instrutor WHERE email_instrutor = ?";
@@ -124,6 +129,7 @@ public class CadastroDAO {
 
     }
 
+    // Correção: Qual a utilidade desse metodo?
     public boolean updatePassword(String email, String senhaHash) {
         String sql = "UPDATE tb_instrutor SET senha = ? WHERE email_instrutor = ?";
 
