@@ -32,11 +32,8 @@ public class LoginController {
     }
     @FXML
     protected void onLoginButtonClick() throws IOException{
-        String emailDigitado = Email.getText(); // Correção: Trocar o nome da variável para emailDigitado
+        String emailDigitado = Email.getText();
         String senhaDigitada = Senha.getText();
-
-        // Correção: Não tem uma verificação do campo email, se o usuário digitar um nome qualquer sem o "@" ou
-        // dominio do email será um dado incosistente no banco de dados.
 
         LoginDAO usuarioDao = new LoginDAO();
         boolean logado = usuarioDao.autenticarUsuario(emailDigitado, senhaDigitada);
