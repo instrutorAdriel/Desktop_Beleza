@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaDAO {
+    private String servico;
     /*
     Coloque as Classes AgendaDAO, Agenda no pacote org.githubio.desktop_beleza.Model
     E a Classe AgendaController no pacote org.githubio.desktop_beleza.Controller
@@ -19,6 +20,11 @@ public class AgendaDAO {
 
     // Método de Cadastrar
     public void cadastrarAgendamento(String tipo_pratica, String data_aula, String horario_aula, String status_agenda, String id_cliente, String id_servico, String id_turma) {
+ 
+
+
+
+
         // ATENÇÃO: Verifique se o nome é 'agenda' ou 'agendamentos' para bater com o editar/excluir
         String sql = "INSERT INTO tb_agendas (tipo_pratica, data_aula, horario_aula, status_agenda, id_cliente, id_servico, id_turma) VALUES (?, ?, ?, ?,?,?,?)";
 
@@ -39,6 +45,9 @@ public class AgendaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
     }
 
     public List<org.githubio.desktop_beleza.model.Agenda> listarAgendamentos() {
