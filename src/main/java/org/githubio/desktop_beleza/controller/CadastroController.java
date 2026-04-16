@@ -18,7 +18,6 @@ public class CadastroController {
     @FXML
     private TextField campoConfirmarSenha;
 
-
     // Metodo chamado ao clicar no botão "Voltar" no cadastro.fxml
     @FXML
     protected void onVoltarClick() throws IOException {
@@ -72,7 +71,6 @@ public class CadastroController {
             return;
         }
 
-
         // 1. Get the text from YOUR specific field IDs
         String confirma = campoConfirmarSenha.getText();
 
@@ -88,13 +86,8 @@ public class CadastroController {
             // Sua lógica de banco de dados aqui
         }
 
-        // 3. Cria uma instância do LoginDAO
-        //    O DAO é quem sabe como falar com o banco de dados.
-        //    O Controller apenas coleta os dados da tela e os repassa.
         CadastroDAO dao = new CadastroDAO();
 
-        // 4. Chama o metodo de cadastro passando os três campos
-        //    A partir daqui, a responsabilidade passa para o LoginDAO
         dao.cadastrarUsuario(email, senha);
 
         // 5. Informa ao usuário que o cadastro foi realizado
@@ -112,11 +105,10 @@ public class CadastroController {
        MainApplication.setRoot("login");
     }
 
-    // Helper method to keep your code clean
     private void mostrarErro(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
-        alert.setHeaderText(null); // Keeps it simple
+        alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
