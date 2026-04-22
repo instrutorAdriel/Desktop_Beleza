@@ -42,7 +42,7 @@
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
             </PasswordField>
-            <Hyperlink alignment="CENTER" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+            <Hyperlink alignment="CENTER" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
                <font>
                   <Font size="10.0" />
                </font>
