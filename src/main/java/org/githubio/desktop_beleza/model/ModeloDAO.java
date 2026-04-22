@@ -2,17 +2,14 @@ package org.githubio.desktop_beleza.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 
 public class ModeloDAO {
     public void cadastrarModelo(String nome, String telefone, String email) {
 
-        String sql = "INSERT INTO tb_clientes (nome_cliente, email_cliente, telefone) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO tb_modelos (nome_modelo, email, telefone) VALUES (?, ?, ?)";
         try (
                 Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)
