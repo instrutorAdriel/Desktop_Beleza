@@ -44,9 +44,19 @@
                         <Font name="Verdana Bold" size="12.0" />
                      </font>
                   </Button>
+                  <ImageView fitHeight="17.0" fitWidth="19.0"  pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagens/Excluir.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagens/Editar.png" />
+                     </image>
+                  </ImageView>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" left="270.0" right="270.0" />
+                  <Insets bottom="5.0" left="200.0" right="220.0" />
                </VBox.margin>
             </HBox>
             <TableView maxHeight="480.0" maxWidth="480.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="322.0">
@@ -66,30 +76,30 @@
          </VBox.margin></VBox>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" styleClass="sidebar" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" styleClass="sidebar" stylesheets="@CSS/Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Página inicial" textFill="#004587">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #004587;" text="Início" textFill="WHITE">
                <VBox.margin>
                   <Insets top="80.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clientes" textFill="#004587">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Modelos" textFill="#004587">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Serviços" textFill="#004587">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #004587;" text="Serviços" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Turmas" textFill="#004587">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Agenda" textFill="#004587">
                <VBox.margin>
                   <Insets bottom="100.0" top="10.0" />
                </VBox.margin>
@@ -106,7 +116,7 @@
          <children>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" style="-fx-background-color: #F9F8F6;">
                <children>
-                  <Button layoutX="51.0" layoutY="13.0" mnemonicParsing="false" text="Sair" textFill="#004587">
+                  <Button layoutX="51.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: #004587;" text="Sair" textFill="WHITE">
                      <font>
                         <Font name="Verdana Bold" size="12.0" />
                      </font></Button>
