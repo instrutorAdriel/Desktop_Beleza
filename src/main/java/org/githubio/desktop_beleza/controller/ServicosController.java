@@ -1,6 +1,7 @@
 
 package org.githubio.desktop_beleza.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,20 +29,48 @@ public class ServicosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 1. Vincular colunas aos atributos do modelo
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
 
-        // 2. Configurar botões de ação (Editar/Excluir)
-        configurarColunaAcoes();
+        // 🔑 ESSENCIAL para a coluna de ações
+        colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
 
-        // 3. Carregar dados iniciais do banco
+        configurarColunaAcoes();
         atualizarTabela();
     }
 
     private void atualizarTabela() {
         tabelaServicos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
+    }
+
+    /* ==================================================
+       INPUT TIME COMPATÍVEL (Hora + Minuto)
+       ================================================== */
+    private HBox criarInputHora(int horaInicial, int minutoInicial) {
+
+        Spinner<Integer> spHora = new Spinner<>(0, 23, horaInicial);
+        Spinner<Integer> spMinuto = new Spinner<>(0, 59, minutoInicial);
+
+        spHora.setEditable(true);
+        spMinuto.setEditable(true);
+
+        spHora.setPrefWidth(70);
+        spMinuto.setPrefWidth(70);
+
+        Label separador = new Label(":");
+
+        return new HBox(5, spHora, separador, spMinuto);
+    }
+
+    private String obterHorario(HBox box) {
+        Spinner<Integer> spHora = (Spinner<Integer>) box.getChildren().get(0);
+        Spinner<Integer> spMinuto = (Spinner<Integer>) box.getChildren().get(2);
+
+        return String.format("%02d:%02d",
+                spHora.getValue(),
+                spMinuto.getValue()
+        );
     }
 
     @FXML
@@ -53,30 +82,42 @@ public class ServicosController implements Initializable {
         ButtonType btnAdicionar = new ButtonType("Adicionar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnAdicionar, ButtonType.CANCEL);
 
-        // Correção: No campo de escolher a hora, desenvolva um código que a pessoa selecione o horário separadamente
-        // um campo para a pessoa digitar o horário não é prático.
         TextField txtNome = new TextField();
         TextField txtDesc = new TextField();
-        TextField txtHora = new TextField();
-        txtHora.setPromptText("Ex: 08:00 - 12:00");
+
+        HBox inputHora = criarInputHora(8, 0);
 
         VBox layout = new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc,
-                new Label("Horário:"), txtHora
+                new Label("Horário:"), inputHora
         );
+
         dialog.getDialogPane().setContent(layout);
 
         dialog.showAndWait().ifPresent(response -> {
             if (response == btnAdicionar) {
-                Servico novo = new Servico(txtNome.getText(), txtDesc.getText(), txtHora.getText());
-                dao.inserir(novo); // Insere no banco
-                atualizarTabela(); // Atualiza a lista na tela
+
+                String horario = obterHorario(inputHora);
+
+                Servico novo = new Servico(
+                        txtNome.getText(),
+                        txtDesc.getText(),
+                        horario
+                );
+
+                dao.inserir(novo);
+                atualizarTabela();
             }
         });
     }
+
+    /* ==================================================
+       COLUNA DE AÇÕES
+       ================================================== */
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
+
             private final Button btnEditar = new Button("");
             private final Button btnExcluir = new Button("");
             private final HBox container = new HBox(10, btnEditar, btnExcluir);
@@ -97,7 +138,6 @@ public class ServicosController implements Initializable {
                 });
             }
 
-
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -106,32 +146,40 @@ public class ServicosController implements Initializable {
         });
     }
 
-    // Correção: Metodo redundante, você criou o mesmo metodo do abrirDialogo. Crie o código que tenha apenas um metodo
-    // de abrir o dialogo
     private void abrirDialogoEdicao(Servico servico) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Editar Serviço");
         dialog.setHeaderText("Altere as informações e clique em Salvar");
 
-        ButtonType btnSalvarTipo = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(btnSalvarTipo, ButtonType.CANCEL);
+        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
         TextField txtNome = new TextField(servico.getNome());
         TextField txtDesc = new TextField(servico.getDescricao());
-        TextField txtHora = new TextField(servico.getHorario());
+
+        String[] partes = servico.getHorario().split(":");
+        int hora = Integer.parseInt(partes[0]);
+        int minuto = Integer.parseInt(partes[1]);
+
+        HBox inputHora = criarInputHora(hora, minuto);
 
         VBox layout = new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc,
-                new Label("Horário:"), txtHora
+                new Label("Horário:"), inputHora
         );
+
         dialog.getDialogPane().setContent(layout);
 
         dialog.showAndWait().ifPresent(response -> {
-            if (response == btnSalvarTipo) {
+            if (response == btnSalvar) {
+
+                String horario = obterHorario(inputHora);
+
                 servico.setNome(txtNome.getText());
                 servico.setDescricao(txtDesc.getText());
-                servico.setHorario(txtHora.getText());
+                servico.setHorario(horario);
+
                 dao.atualizar(servico);
                 tabelaServicos.refresh();
             }
@@ -142,6 +190,7 @@ public class ServicosController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Excluir Serviço");
         alert.setHeaderText("Deseja excluir: " + servico.getNome() + "?");
+
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 dao.excluir(servico.getId());
@@ -153,6 +202,7 @@ public class ServicosController implements Initializable {
     @FXML
     void buscar() {
         String busca = txtBuscar.getText();
+
         if (busca == null || busca.isEmpty()) {
             atualizarTabela();
         } else {
@@ -164,5 +214,8 @@ public class ServicosController implements Initializable {
         }
     }
 
-    @FXML void salvar() { /* Método mantido para compatibilidade */ }
+    @FXML
+    void salvar() {
+        // Mantido para compatibilidade
+    }
 }
