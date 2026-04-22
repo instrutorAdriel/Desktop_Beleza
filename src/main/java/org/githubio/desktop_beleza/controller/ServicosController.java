@@ -4,6 +4,7 @@ package org.githubio.desktop_beleza.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -74,16 +75,16 @@ public class ServicosController implements Initializable {
             }
         });
     }
-
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
-            private final Button btnEditar = new Button("Editar");
-            private final Button btnExcluir = new Button("Excluir");
+            private final Button btnEditar = new Button("");
+            private final Button btnExcluir = new Button("");
             private final HBox container = new HBox(10, btnEditar, btnExcluir);
 
             {
-                btnEditar.setStyle("-fx-cursor: hand; -fx-background-color: #4CAF50; -fx-text-fill: white;");
-                btnExcluir.setStyle("-fx-cursor: hand; -fx-background-color: #f44336; -fx-text-fill: white;");
+                btnEditar.getStyleClass().add("editar");
+                btnExcluir.getStyleClass().add("excluir");
+                container.setAlignment(Pos.CENTER);
 
                 btnEditar.setOnAction(event -> {
                     Servico servico = getTableView().getItems().get(getIndex());
@@ -95,6 +96,7 @@ public class ServicosController implements Initializable {
                     confirmarExclusao(servico);
                 });
             }
+
 
             @Override
             protected void updateItem(Void item, boolean empty) {

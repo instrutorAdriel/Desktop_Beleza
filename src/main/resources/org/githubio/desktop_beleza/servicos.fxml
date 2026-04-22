@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+    <center>
+        <VBox spacing="10" stylesheets="@css/css.css">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
+                <children>
+                    <Label alignment="CENTER" text="Serviços" textFill="#004587">
+                        <font>
+                            <Font name="Verdana Bold" size="28.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
 
-    <HBox spacing="10">
-        <TextField fx:id="txtBuscar" promptText="Buscar serviço" />
-        <Button onAction="#buscar" text="Buscar" />
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" promptText="Buscar serviço" />
+                <Button onAction="#buscar" text="Buscar" />
 
-        <!-- Botão atualizado com a ação de clique -->
-        <Button onAction="#abrirDialogoAdicionar" text="Adicionar serviços" />
-    </HBox>
+                <!-- Botão atualizado com a ação de clique -->
+                <Button onAction="#abrirDialogoAdicionar" text="Adicionar serviços" />
+            </HBox>
 
-    <TableView fx:id="tabelaServicos" prefWidth="600.0" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="colNome" prefWidth="120.0" text="Nome" />
-            <TableColumn fx:id="colDescricao" prefWidth="150.0" text="Descrição" />
-            <TableColumn fx:id="colHorario" prefWidth="100.0" text="Horário" />
-            <!-- Coluna para os botões Editar e Excluir -->
-            <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
-        </columns>
-    </TableView>
+            <TableView fx:id="tabelaServicos" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNome" prefWidth="120.0" text="Nome" />
+                    <TableColumn fx:id="colDescricao" prefWidth="150.0" text="Descrição" />
+                    <TableColumn fx:id="colHorario" prefWidth="100.0" text="Horário" />
+                    <!-- Coluna para os botões Editar e Excluir -->
+                    <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
+                </columns>
+            </TableView>
 
-</VBox>
+        </VBox>
+    </center>
+    <left>
+        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <children>
+                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="29.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                    </image></ImageView>
+            </children>
+        </Pane>
+    </left>
+    <right>
+        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+    </right>
+    <bottom>
+        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
