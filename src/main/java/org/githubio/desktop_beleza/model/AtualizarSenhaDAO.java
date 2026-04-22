@@ -42,7 +42,6 @@ public class AtualizarSenhaDAO {
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
-
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar: " + e.getMessage());
             return false;

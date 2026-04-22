@@ -51,8 +51,14 @@ public class AtualizarSenhaController {
             IO.println(existe);
             if (existe){
                 String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
-                dao.atualizarSenha(campoEmail.getText(),senhaHash);
-                IO.println("Senha atualizada");
+                if (dao.atualizarSenha(campoEmail.getText(),senhaHash)){
+                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta.setTitle("Senha Atualizada");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Sua senha foi atualizada com sucesso! Retorne para tela de login e entre na sua conta com a nova senha.");
+                    alerta.showAndWait();
+                    limparCamposFormulario();
+                }
             }
         }
 
@@ -66,6 +72,11 @@ public class AtualizarSenhaController {
         alerta.showAndWait();
     }
 
+    private void limparCamposFormulario(){
+        campoEmail.clear();
+        campoNovaSenha.clear();
+        campoConfirmarSenha.clear();
+    }
 }
 
 
