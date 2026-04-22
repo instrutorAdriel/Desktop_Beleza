@@ -35,7 +35,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="580.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="600.0">
+            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="590.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="590.0">
               <columns>
                 <TableColumn fx:id="colTurma" maxWidth="250.0" minWidth="52.0" prefWidth="174.0" text="Nome/Codigo da turma" />
                 <TableColumn fx:id="colTurno" prefWidth="84.0" text="Turno" />

@@ -82,22 +82,42 @@ public class GerenciarTurmaDAO {
     }
 
     public void atualizarCompleto(int id, String nome, String turno, String instrutor, String status) {
-        // Aqui usamos o nome da coluna do banco: status_turma
-        String sql = "UPDATE tb_turmas SET turma = ?, turno = ?, status_turma = ? WHERE id_turma = ?";
+        // 1. SQL para atualizar os dados básicos da turma
+        String sqlTurma = "UPDATE tb_turmas SET turma = ?, turno = ?, status_turma = ? WHERE id_turma = ?";
 
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        // 2. SQL para atualizar o instrutor vinculado a essa turma
+        // Buscamos o ID do instrutor pelo nome e atualizamos na tabela de relação
+        String sqlVinculo = """
+        UPDATE rl_instrutor_turmas 
+        SET id_instrutor = (SELECT id_instrutor FROM tb_instrutor WHERE nome_instrutor = ?) 
+        WHERE id_turma = ?
+    """;
 
-            stmt.setString(1, nome);
-            stmt.setString(2, turno);
-            stmt.setString(3, status);
-            stmt.setInt(4, id);
+        try (Connection conn = DatabaseConfig.getConnection()) {
+            conn.setAutoCommit(false); // Iniciamos uma transação para garantir que ambos mudem
 
-            stmt.executeUpdate();
+            try (PreparedStatement stmtT = conn.prepareStatement(sqlTurma);
+                 PreparedStatement stmtV = conn.prepareStatement(sqlVinculo)) {
 
-            // Se você tiver uma tabela de relação para o instrutor,
-            // precisará de outro UPDATE ou uma lógica para atualizar o instrutor também.
+                // Executa a atualização da Turma
+                stmtT.setString(1, nome);
+                stmtT.setString(2, turno);
+                stmtT.setString(3, status);
+                stmtT.setInt(4, id);
+                stmtT.executeUpdate();
 
+                // Executa a atualização do Vínculo com o Instrutor
+                stmtV.setString(1, instrutor);
+                stmtV.setInt(2, id);
+                stmtV.executeUpdate();
+
+                conn.commit(); // Salva as duas alterações no banco
+                System.out.println("Turma e Instrutor atualizados com sucesso!");
+
+            } catch (SQLException e) {
+                conn.rollback(); // Se um falhar, desfaz o outro
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
