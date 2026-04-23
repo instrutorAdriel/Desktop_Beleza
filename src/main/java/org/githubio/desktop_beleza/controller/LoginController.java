@@ -1,35 +1,45 @@
 package org.githubio.desktop_beleza.controller;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import java.io.IOException;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.LoginDAO;
 
-import java.io.IOException;
-
 public class LoginController {
     @FXML
-    private TextField Usuário;
+    private TextField Email;
     @FXML
     private PasswordField Senha;
     @FXML
-    public void botaoDeTroca()throws IOException {
+    protected void irParaCadastro()throws IOException {
         MainApplication.setRoot("cadastro");
     }
     @FXML
-    public void onLoginButtonClick() throws IOException{
-        String nomeDigitado = Usuário.getText();
+    protected void onLoginButtonClick() throws IOException{
+        String emailDigitado = Email.getText();
         String senhaDigitada = Senha.getText();
 
         LoginDAO usuarioDao = new LoginDAO();
-        boolean logado = usuarioDao.autenticarUsuario(nomeDigitado, senhaDigitada);
+        boolean logado = usuarioDao.autenticarUsuario(emailDigitado, senhaDigitada);
 
         if (logado==true) {
             IO.println("Login realizado com sucesso!");
         }
         else {
-            IO.println("Senha inválida ou usuário.");
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Verifique as informações inseridas");
+            alerta.setHeaderText(null);
+            alerta.setContentText("E-mail ou senha incorreto.");
+            alerta.showAndWait();
         }
+    }
+
+    @FXML
+    protected void irParaAtualizarSenha() throws IOException {
+        MainApplication.setRoot("AtualizarSenha");
     }
 }
 
