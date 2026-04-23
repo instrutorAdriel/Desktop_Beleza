@@ -63,7 +63,7 @@ public class CadastroController {
         String confirma = campoConfirmarSenha.getText();
 
         // 2. The Logic
-        if (senha.isEmpty() || confirma.isEmpty()) {
+        if (confirma.isEmpty()) {
             mostrarErro("Campos Vazios", "Por favor, preencha todos os campos.");
             return;
         } else if (!senha.equals(confirma)) {

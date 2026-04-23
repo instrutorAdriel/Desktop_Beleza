@@ -1,31 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
-
-    <HBox spacing="10">
-        <TextField fx:id="txtBuscar" promptText="Buscar serviço" />
-        <Button onAction="#buscar" text="Buscar" />
-        <Button onAction="#salvar" text="Salvar" />
-        <Button onAction="#editar" text="Editar" />
-    </HBox>
-
-    <TableView fx:id="tabelaServicos" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="colNome" text="Nome" />
-            <TableColumn fx:id="colDescricao" text="Descrição" />
-            <TableColumn fx:id="colHorario" text="Horário" />
-        </columns>
-    </TableView>
-
-    <HBox spacing="10">
-        <TextField fx:id="txtNome" promptText="Nome" />
-        <TextField fx:id="txtDescricao" promptText="Descrição" />
-        <TextField fx:id="txtHorario" promptText="Horário" />
-    </HBox>
-
-    <HBox spacing="10" />
-
-</VBox>
+<BorderPane stylesheets="@Css/CSS.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+   <center>
+      <VBox spacing="10">
+      
+          <HBox spacing="10">
+              <TextField fx:id="txtBuscar" promptText="Buscar serviço" />
+              <Button onAction="#buscar" text="Buscar">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font></Button>
+              <Button onAction="#salvar" text="Salvar">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font></Button>
+          </HBox>
+      
+          <TableView fx:id="tabelaServicos" prefHeight="400.0" prefWidth="613.0" VBox.vgrow="ALWAYS">
+              <columns>
+                  <TableColumn fx:id="colNome" prefWidth="153.0" text="Nome" />
+                  <TableColumn fx:id="colDescricao" prefWidth="190.0" text="Descrição" />
+                  <TableColumn fx:id="colHorario" prefWidth="140.0" text="Horário" />
+               <TableColumn prefWidth="153.0" text="Ação" />
+              </columns>
+            <columnResizePolicy>
+               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+          </TableView>
+      
+          <HBox spacing="10">
+              <TextField fx:id="txtNome" promptText="Nome" />
+              <TextField fx:id="txtDescricao" promptText="Descrição" />
+              <TextField fx:id="txtHorario" promptText="Horário" />
+          </HBox>
+      
+          <HBox spacing="10" />
+      
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="79.0" prefWidth="893.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="107.0" fitWidth="100.0" layoutX="22.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagens/mi.png" />
+               </image></ImageView>
+         </children></AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #F9F8F6;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

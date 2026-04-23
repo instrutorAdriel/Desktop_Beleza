@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="15.0" stylesheets="@Css/CSS.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button mnemonicParsing="false" stylesheets="@Css/CSS.css" text="Início">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-azul" />
+         </styleClass></Button>
+      <Button lineSpacing="30.0" mnemonicParsing="false" stylesheets="@Css/CSS.css" text="Modelos">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-cinza" />
+         </styleClass></Button>
+      <Button mnemonicParsing="false" stylesheets="@Css/CSS.css" text="Agenda">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-azul" />
+         </styleClass></Button>
+      <Button mnemonicParsing="false" stylesheets="@Css/CSS.css" text="Serviços">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-cinza" />
+         </styleClass></Button>
+      <Button alignment="CENTER" mnemonicParsing="false" stylesheets="@Css/CSS.css" text="Sair" textAlignment="RIGHT">
+         <styleClass>
+            <String fx:value="btn-sair" />
+            <String fx:value="btn-azul" />
+         </styleClass></Button>
+   </children>
+   <styleClass>
+      <String fx:value="btn-cinza" />
+      <String fx:value="btn" />
+   </styleClass>
+</VBox>
