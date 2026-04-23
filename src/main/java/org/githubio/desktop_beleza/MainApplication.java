@@ -15,12 +15,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-<<<<<<< HEAD
         scene = new Scene(loadFXML("servicos"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
-=======
-        scene = new Scene(loadFXML("login"), MinWidth, MinHeight);
-       // A primeira tela a ser exibida é a de Login
->>>>>>> main
 
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);

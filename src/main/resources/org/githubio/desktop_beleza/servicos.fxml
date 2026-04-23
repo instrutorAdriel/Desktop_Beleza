@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
     <center>
-        <VBox spacing="10" stylesheets="@css/css.css">
+        <VBox spacing="10" stylesheets="@css/style.css">
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
                 <children>
                     <Label alignment="CENTER" text="Serviços" textFill="#004587">
