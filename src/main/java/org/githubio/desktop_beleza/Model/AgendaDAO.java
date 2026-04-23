@@ -1,125 +1,172 @@
 package org.githubio.desktop_beleza.model;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaDAO {
-    private String servico;
-    /*
-    Coloque as Classes AgendaDAO, Agenda no pacote org.githubio.desktop_beleza.Model
-    E a Classe AgendaController no pacote org.githubio.desktop_beleza.Controller
 
-    Não vou mesclar com a main pois preciso que esse código adaptado com a tela do pessoal do front-end
-     */
+    // BUSCA OU CADASTRA CLIENTE
+    public int cadastrarERetornarIdModelo(String nomeCliente) {
+        String sqlSelect = "SELECT id_modelos FROM tb_modelos WHERE nome_modelo = ?";
 
-    // Método de Cadastrar
-    public void cadastrarAgendamento(String tipo_pratica, String data_aula, String horario_aula, String status_agenda, String id_cliente, String id_servico, String id_turma) {
- 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlSelect)) {
 
+            stmt.setString(1, nomeCliente);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) return rs.getInt("id_modelos");
 
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar cliente: " + e.getMessage());
+        }
 
+        String sqlInsert = "INSERT INTO tb_modelos (nome_modelo) VALUES (?)";
 
-        // ATENÇÃO: Verifique se o nome é 'agenda' ou 'agendamentos' para bater com o editar/excluir
-        String sql = "INSERT INTO tb_agendas (tipo_pratica, data_aula, horario_aula, status_agenda, id_cliente, id_servico, id_turma) VALUES (?, ?, ?, ?,?,?,?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, nomeCliente);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) return rs.getInt(1);
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao cadastrar cliente: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
+    // BUSCA OU CADASTRA SERVIÇO
+    public int cadastrarERetornarIdServico(String nomeServico) {
+        String sqlSelect = "SELECT id_servico FROM tb_servicos WHERE nome_servico = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlSelect)) {
+
+            stmt.setString(1, nomeServico);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) return rs.getInt("id_servico");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar serviço: " + e.getMessage());
+        }
+
+        String sqlInsert = "INSERT INTO tb_servicos (nome_servico) VALUES (?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, nomeServico);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) return rs.getInt(1);
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao cadastrar serviço: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
+    // CADASTRAR AGENDAMENTO
+    public void cadastrarAgendamento(String data, String horario,
+                                     int idStatusAgenda, int idModelo,
+                                     int idServico, int idTurmasInstrutores) {
+
+        String sql = "INSERT INTO tb_agenda " +
+                "(data_agenda, horario_agenda, id_status_agenda, " +
+                "id_modelo, id_servico, id_turmas_instrutores) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, tipo_pratica);
-            stmt.setString(2, data_aula);
-            stmt.setString(3, horario_aula);
-            stmt.setString(4, status_agenda);
-            stmt.setString(5, id_cliente);
-            stmt.setString(6, id_servico);
-            stmt.setString(7, id_turma);
+            stmt.setString(1, data);
+            stmt.setString(2, horario);
+            stmt.setInt(3, idStatusAgenda);
+            stmt.setInt(4, idModelo);
+            stmt.setInt(5, idServico);
+            stmt.setInt(6, idTurmasInstrutores);
 
             stmt.executeUpdate();
-            IO.println("Agendamento cadastrado com sucesso!");
+            System.out.println("Agendamento cadastrado com sucesso!");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao cadastrar: " + e.getMessage());
         }
-
-
-
     }
 
-    public List<org.githubio.desktop_beleza.model.Agenda> listarAgendamentos() {
-        List<org.githubio.desktop_beleza.model.Agenda> lista = new ArrayList<>();
-        String sql = "SELECT * FROM tb_agendas";
+    // LISTAR
+    public List<Agenda> listarAgendamentos() {
+        List<Agenda> lista = new ArrayList<>();
+
+        String sql = "SELECT a.id_agenda, a.data_agenda, a.horario_agenda, " +
+                "s.nome_servico, m.nome_modelo, sa.status_agenda " +
+                "FROM tb_agenda a " +
+                "JOIN tb_servicos s ON a.id_servico = s.id_servico " +
+                "JOIN tb_modelos m ON a.id_modelo = m.id_modelos " +
+                "JOIN tb_status_agenda sa ON a.id_status_agenda = sa.id_status_agenda";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                int id = rs.getInt("id_agenda");
-                String pratica = rs.getString("tipo_pratica");
-                String data = rs.getString("data_aula");
-                String horario = rs.getString("horario_aula");
-                String status = rs.getString("status_agenda");
+                int id         = rs.getInt("id_agenda");
+                String data    = rs.getString("data_agenda");
+                String horario = rs.getString("horario_agenda");
+                String servico = rs.getString("nome_servico");
+                String cliente = rs.getString("nome_modelo");
+                String status  = rs.getString("status_agenda");
 
-                // Verifique se esses IDs não deveriam ser rs.getInt()
-                String cliente = rs.getString("id_cliente");
-                String servico = rs.getString("id_servico");
-
-                Agenda a = new Agenda(id, pratica, data, horario, status, cliente, servico);
-
+                Agenda a = new Agenda(id, data, horario, status, cliente, servico);
                 lista.add(a);
             }
+
         } catch (SQLException e) {
-            // Se a classe IO não existir, use System.err.println
             System.err.println("Erro ao listar: " + e.getMessage());
         }
         return lista;
     }
 
-    // Método de Excluir
+    // EXCLUIR
     public void excluirAgendamento(int id) {
-        String sql = "DELETE FROM tb_agendas WHERE id_agenda = ?";
+        String sql = "DELETE FROM tb_agenda WHERE id_agenda = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            IO.println("Excluído com sucesso no banco!");
+            System.out.println("Excluído com sucesso!");
+
         } catch (SQLException e) {
-            IO.println("Erro ao excluir: " + e.getMessage());
+            System.err.println("Erro ao excluir: " + e.getMessage());
         }
     }
 
-    // Método de Editar
+    // EDITAR
     public void editarAgendamento(Agenda agenda) {
-        // 1. Definição do SQL
-        String sql = "UPDATE tb_agendas SET tipo_pratica = ?, data_aula = ?, " +
-                "horario_aula = ?, id_cliente = ?, id_servico = ? WHERE id_agenda = ?";
+        String sql = "UPDATE tb_agenda SET data_agenda = ?, horario_agenda = ? " +
+                "WHERE id_agenda = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // 2. Preenchimento na ordem correta
-            stmt.setString(1, agenda.getPratica());  // 1º ? -> tipo_pratica
-            stmt.setString(2, agenda.getData());     // 2º ? -> data_aula
-            stmt.setString(3, agenda.getHorario());  // 3º ? -> horario_aula
-            stmt.setString(4, agenda.getCliente());  // 4º ? -> id_cliente
-            stmt.setString(5, agenda.getServico());  // 5º ? -> id_servico
-            stmt.setInt(6, agenda.getId());          // 6º ? -> id_agenda (O WHERE)
+            stmt.setString(1, agenda.getData());
+            stmt.setString(2, agenda.getHorario());
+            stmt.setInt(3, agenda.getId());
 
-            int linhasAfetadas = stmt.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                IO.println("Agendamento ID " + agenda.getId() + " atualizado com sucesso!");
+            int linhas = stmt.executeUpdate();
+            if (linhas > 0) {
+                System.out.println("Agendamento " + agenda.getId() + " atualizado!");
             }
 
         } catch (SQLException e) {
-            IO.println("Erro ao editar no banco: " + e.getMessage());
+            System.err.println("Erro ao editar: " + e.getMessage());
         }
     }
 }

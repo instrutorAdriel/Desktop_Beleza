@@ -7,18 +7,18 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class AgendaController {
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
-    @FXML private TextField txtPratica;
     @FXML private TextField txtCliente;
     @FXML private TextField txtHorario;
     @FXML private TableView<Agenda> tabelaAgenda;
     @FXML private TableColumn<Agenda, String> colData;
     @FXML private TableColumn<Agenda, String> colServico;
-    @FXML private TableColumn<Agenda, String> colPratica;
     @FXML private TableColumn<Agenda, String> colCliente;
     @FXML private TableColumn<Agenda, String> colHorario;
     @FXML private TableColumn<Agenda, String> colStatus;
@@ -28,18 +28,22 @@ public class AgendaController {
 
     @FXML
     public void initialize() {
-        // 1. Configuração do ComboBox
+        dpData.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisabled(empty || date.isBefore(LocalDate.now()));
+            }
+        });
+
         txtServico.getItems().addAll("Cabeleireiro", "Barbeiro", "Maquiador", "Design de Sobrancelhas");
 
-        // 2. Vincula os dados (org.githubio.desktop_beleza.Model) às colunas
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
-        colPratica.setCellValueFactory(new PropertyValueFactory<>("pratica"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // 3. Trava a ordem das colunas
         tabelaAgenda.getColumns().addListener(new ListChangeListener<TableColumn<Agenda, ?>>() {
             private boolean suspender = false;
             @Override
@@ -47,7 +51,7 @@ public class AgendaController {
                 while (c.next()) {
                     if (!suspender && (c.wasReplaced() || c.wasAdded() || c.wasRemoved())) {
                         suspender = true;
-                        tabelaAgenda.getColumns().setAll(colData, colServico, colPratica, colCliente,colHorario, colStatus, colAcao);
+                        tabelaAgenda.getColumns().setAll(colData, colServico, colCliente, colHorario, colStatus, colAcao);
                         suspender = false;
                     }
                 }
@@ -56,8 +60,6 @@ public class AgendaController {
 
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-
-        // 4. Configuração da Coluna de Ação (Editar/Excluir)
         colAcao.setCellFactory(parm -> new TableCell<>() {
             private final MenuButton mnuOpcoes = new MenuButton("...");
             private final MenuItem itemEdit = new MenuItem("Editar");
@@ -75,26 +77,21 @@ public class AgendaController {
                 } else {
                     Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
 
-                    // AÇÃO EXCLUIR
                     itemDel.setOnAction(e -> {
                         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                         alerta.setTitle("Excluir Agendamento");
-                        alerta.setHeaderText("Deseja excluir o cliente " + agendaDaLinha.getCliente() + "?");
+                        alerta.setHeaderText("Deseja excluir o agendamento de " + agendaDaLinha.getCliente() + "?");
                         if (alerta.showAndWait().get() == ButtonType.OK) {
                             new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
                             atualizarTabela();
                         }
                     });
 
-                    // AÇÃO EDITAR
                     itemEdit.setOnAction(e -> {
                         txtCliente.setText(agendaDaLinha.getCliente());
                         txtServico.setValue(agendaDaLinha.getServico());
-                        txtPratica.setText(agendaDaLinha.getPratica());
                         txtHorario.setText(agendaDaLinha.getHorario());
-
                         agendaSendoEditada = agendaDaLinha;
-                        IO.println("Editando ID: " + agendaSendoEditada.getId());
                     });
 
                     setGraphic(mnuOpcoes);
@@ -102,40 +99,31 @@ public class AgendaController {
             }
         });
 
-        // Carrega os dados assim que abre a tela
         atualizarTabela();
     }
+
     @FXML
     protected void onSalvarButtonClick() {
 
         if (txtServico.getValue() == null || dpData.getValue() == null ||
-                txtPratica.getText().isBlank() || txtCliente.getText().isBlank() ||
-                txtHorario.getText().isBlank()) {
-
+                txtCliente.getText().isBlank() || txtHorario.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Preencha todos os campos!");
             alert.show();
             return;
         }
 
-        // Coleta de dados
-        String data = String.valueOf(dpData.getValue());
-        String servico = txtServico.getValue();
-        String pratica = txtPratica.getText();
-        String cliente = txtCliente.getText();
+        String data    = String.valueOf(dpData.getValue());
         String horario = txtHorario.getText();
-
-        // ✅ STATUS CORRETO PARA O ENUM DO MYSQL
-        String status = "Compareceu";   // <<< AQUI RESOLVE
-        String turma = "1";
+        String cliente = txtCliente.getText();
+        String servico = txtServico.getValue();
 
         AgendaDAO dao = new AgendaDAO();
 
         if (agendaSendoEditada != null) {
-
+            // EDITAR
             agendaSendoEditada.setData(data);
             agendaSendoEditada.setServico(servico);
-            agendaSendoEditada.setPratica(pratica);
             agendaSendoEditada.setCliente(cliente);
             agendaSendoEditada.setHorario(horario);
 
@@ -143,16 +131,26 @@ public class AgendaController {
             agendaSendoEditada = null;
 
         } else {
+            // CADASTRAR
+            int idModelo = dao.cadastrarERetornarIdModelo(cliente);
 
-            dao.cadastrarAgendamento(
-                    pratica,
-                    data,
-                    horario,
-                    status,      // ✅ agora bate com o ENUM
-                    cliente,
-                    servico,
-                    turma
-            );
+            if (idModelo == -1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erro ao cadastrar cliente!");
+                alert.show();
+                return;
+            }
+
+            int idServico = dao.cadastrarERetornarIdServico(servico);
+
+            if (idServico == -1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Serviço não encontrado!");
+                alert.show();
+                return;
+            }
+
+            dao.cadastrarAgendamento(data, horario, 1, idModelo, idServico, 1);
         }
 
         limparCampos();
@@ -161,8 +159,7 @@ public class AgendaController {
 
     private void limparCampos() {
         txtCliente.clear();
-        txtPratica.clear();
-        txtHorario.clear(); // Não esqueça de limpar o horário
+        txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
     }
@@ -170,6 +167,5 @@ public class AgendaController {
     public void atualizarTabela() {
         List<Agenda> listaRecarregada = new AgendaDAO().listarAgendamentos();
         tabelaAgenda.setItems(FXCollections.observableArrayList(listaRecarregada));
-
     }
 }
