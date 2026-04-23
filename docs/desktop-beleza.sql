@@ -40,6 +40,14 @@ CREATE TABLE tb_turmas (
     FOREIGN KEY (id_status_turma) REFERENCES tb_status_turma(id_status_turma)
 );
 
+CREATE TABLE rl_turmas_instrutores (
+    id_turmas_instrutores INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_instrutor INTEGER,
+    id_turma INTEGER,
+    FOREIGN KEY (id_instrutor) REFERENCES tb_instrutores(id_instrutor),
+    FOREIGN KEY (id_turma) REFERENCES tb_turmas(id_turma)
+);
+
 CREATE TABLE tb_agenda (
 	id_agenda INTEGER PRIMARY KEY AUTO_INCREMENT,
     id_servico INTEGER,
@@ -52,14 +60,6 @@ CREATE TABLE tb_agenda (
     FOREIGN KEY (id_turmas_instrutores) REFERENCES rl_turmas_instrutores(id_turmas_instrutores),
     FOREIGN KEY (id_modelo) REFERENCES tb_modelos(id_modelo),
     FOREIGN KEY (id_status_agenda) REFERENCES tb_status_agenda(id_status_agenda)
-);
-
-CREATE TABLE rl_turmas_instrutores (
-	id_turmas_instrutores INTEGER PRIMARY KEY AUTO_INCREMENT,
-    id_instrutor INTEGER,
-    id_turma INTEGER,
-    FOREIGN KEY (id_instrutor) REFERENCES tb_instrutores(id_instrutor),
-    FOREIGN KEY (id_turma) REFERENCES tb_turmas(id_turma)
 );
 
 # Inserção dos dados
