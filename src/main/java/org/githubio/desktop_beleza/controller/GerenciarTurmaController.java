@@ -7,15 +7,18 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.githubio.desktop_beleza.GerenciarTurmaApplication;
 import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
+
 
 import java.io.IOException;
 
@@ -41,41 +44,13 @@ public class GerenciarTurmaController {
         colInstrutor.setCellValueFactory(new PropertyValueFactory<>("nomeInstrutor"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("statusTurma"));
 
-        // Configura as ações (Editar/Excluir)
-        colAcoes.setCellFactory(coluna -> new TableCell<>() {
-            private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
-            {
-                choiceBox.getItems().addAll("Editar", "Excluir");
-                choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
-                    if (novo == null) return;
-                    UsuarioDTO usuario = getTableView().getItems().get(getIndex());
+        // 1. CHAMA o método que configura as ações (Ele agora está fora deste método)
+        configurarColunaAcoes();
 
-                    if (novo.equals("Excluir")) {
-                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Excluir " + usuario.getTurma() + "?", ButtonType.YES, ButtonType.NO);
-                        alerta.showAndWait().ifPresent(response -> {
-                            if (response == ButtonType.YES) {
-                                dao.excluirTurma(usuario.getTurma());
-                                // Atualiza a lista original para a tabela refletir a exclusão
-                                listaOriginal.remove(usuario);
-                            }
-                        });
-                    } else if (novo.equals("Editar")) {
-                        abrirJanelaEdicao(usuario);
-                    }
-                    Platform.runLater(() -> choiceBox.getSelectionModel().clearSelection());
-                });
-            }
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : choiceBox);
-            }
-        });
-
-        // 3. Carrega os dados iniciais do banco para a lista global
+        // 2. Carrega os dados
         atualizarTabela();
 
-        // 4. Configuração do Filtro (Busca)
+        // 3. Configuração do Filtro (Busca)
         FilteredList<UsuarioDTO> listaFiltrada = new FilteredList<>(listaOriginal, p -> true);
         txtBusca.textProperty().addListener((observable, oldValue, newValue) -> {
             listaFiltrada.setPredicate(usuario -> {
@@ -92,6 +67,48 @@ public class GerenciarTurmaController {
         SortedList<UsuarioDTO> listaOrdenada = new SortedList<>(listaFiltrada);
         listaOrdenada.comparatorProperty().bind(tabelaUsuarios.comparatorProperty());
         tabelaUsuarios.setItems(listaOrdenada);
+
+        tabelaUsuarios.getSortOrder().add(colTurma); // Adiciona a coluna de Turma na fila de ordenação
+        colTurma.setSortType(TableColumn.SortType.ASCENDING); // Define que é de A a Z
+        tabelaUsuarios.sort(); // Aplica a ordenação agora
+    }
+
+    private void configurarColunaAcoes() {
+        colAcoes.setCellFactory(param -> new TableCell<>() {
+            private final Button btnEditar = new Button("Editar");
+            private final Button btnExcluir = new Button("Excluir");
+            private final HBox container = new HBox(10, btnEditar, btnExcluir);
+
+            {
+                btnEditar.getStyleClass().add("editar");
+                btnExcluir.getStyleClass().add("excluir");
+                container.setAlignment(Pos.CENTER);
+
+                btnEditar.setOnAction(event -> {
+                    UsuarioDTO usuario = getTableView().getItems().get(getIndex());
+                    abrirJanelaEdicao(usuario);
+                });
+
+                btnExcluir.setOnAction(event -> {
+                    UsuarioDTO usuario = getTableView().getItems().get(getIndex());
+                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Excluir a turma " + usuario.getTurma() + "?", ButtonType.YES, ButtonType.NO);
+                    alerta.setTitle("Confirmação de Exclusão");
+                    alerta.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.YES) {
+                            dao.excluirTurma(usuario.getTurma());
+                            listaOriginal.remove(usuario);
+                        }
+                    });
+                });
+                container.setAlignment(javafx.geometry.Pos.CENTER);
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : container);
+            }
+        });
     }
 
     // Criamos um método para facilitar a atualização em vários pontos

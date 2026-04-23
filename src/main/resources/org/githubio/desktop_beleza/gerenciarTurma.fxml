@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
    <center>
       <VBox alignment="CENTER" prefHeight="288.0" prefWidth="268.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -58,7 +58,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../../../imagem/senac-logo-png_seeklogo-242013.png" />
+                  <Image url="@Imagens/Senac_logo.png" />
                </image>
             </ImageView>
             <Button fx:id="buscarTurmas" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="accent" text="Página inicial">
