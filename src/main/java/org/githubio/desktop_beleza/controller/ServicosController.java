@@ -1,8 +1,8 @@
-
 package org.githubio.desktop_beleza.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -33,22 +33,21 @@ public class ServicosController implements Initializable {
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
 
-        // 🔑 ESSENCIAL para a coluna de ações
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
-
         configurarColunaAcoes();
         atualizarTabela();
     }
 
     private void atualizarTabela() {
-        tabelaServicos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
+        tabelaServicos.setItems(
+                FXCollections.observableArrayList(dao.lerTodos())
+        );
     }
 
-    /* ==================================================
-       INPUT TIME COMPATÍVEL (Hora + Minuto)
-       ================================================== */
+    /* =======================
+       INPUT HORA
+       ======================= */
     private HBox criarInputHora(int horaInicial, int minutoInicial) {
-
         Spinner<Integer> spHora = new Spinner<>(0, 23, horaInicial);
         Spinner<Integer> spMinuto = new Spinner<>(0, 59, minutoInicial);
 
@@ -58,9 +57,7 @@ public class ServicosController implements Initializable {
         spHora.setPrefWidth(70);
         spMinuto.setPrefWidth(70);
 
-        Label separador = new Label(":");
-
-        return new HBox(5, spHora, separador, spMinuto);
+        return new HBox(5, spHora, new Label(":"), spMinuto);
     }
 
     private String obterHorario(HBox box) {
@@ -73,14 +70,20 @@ public class ServicosController implements Initializable {
         );
     }
 
+    /* =======================
+       BOTÃO ADICIONAR ✅
+       ======================= */
     @FXML
-    void abrirDialogoAdicionar() {
+    private void abrirDialogoAdicionar(ActionEvent event) {
+
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Novo Serviço");
-        dialog.setHeaderText("Preencha os dados do novo serviço");
+        dialog.setHeaderText("Preencha os dados do serviço");
 
-        ButtonType btnAdicionar = new ButtonType("Adicionar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(btnAdicionar, ButtonType.CANCEL);
+        ButtonType btnSalvar =
+                new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes()
+                .addAll(btnSalvar, ButtonType.CANCEL);
 
         TextField txtNome = new TextField();
         TextField txtDesc = new TextField();
@@ -95,15 +98,12 @@ public class ServicosController implements Initializable {
 
         dialog.getDialogPane().setContent(layout);
 
-        dialog.showAndWait().ifPresent(response -> {
-            if (response == btnAdicionar) {
-
-                String horario = obterHorario(inputHora);
-
+        dialog.showAndWait().ifPresent(r -> {
+            if (r == btnSalvar) {
                 Servico novo = new Servico(
                         txtNome.getText(),
                         txtDesc.getText(),
-                        horario
+                        obterHorario(inputHora)
                 );
 
                 dao.inserir(novo);
@@ -112,9 +112,9 @@ public class ServicosController implements Initializable {
         });
     }
 
-    /* ==================================================
-       COLUNA DE AÇÕES
-       ================================================== */
+    /* =======================
+       COLUNA AÇÕES
+       ======================= */
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
 
@@ -127,14 +127,18 @@ public class ServicosController implements Initializable {
                 btnExcluir.getStyleClass().add("excluir");
                 container.setAlignment(Pos.CENTER);
 
-                btnEditar.setOnAction(event -> {
-                    Servico servico = getTableView().getItems().get(getIndex());
-                    abrirDialogoEdicao(servico);
+                btnEditar.setOnAction(e -> {
+                    Servico servico = getTableRow().getItem();
+                    if (servico != null) {
+                        abrirDialogoEdicao(servico);
+                    }
                 });
 
-                btnExcluir.setOnAction(event -> {
-                    Servico servico = getTableView().getItems().get(getIndex());
-                    confirmarExclusao(servico);
+                btnExcluir.setOnAction(e -> {
+                    Servico servico = getTableRow().getItem();
+                    if (servico != null) {
+                        confirmarExclusao(servico);
+                    }
                 });
             }
 
@@ -149,36 +153,33 @@ public class ServicosController implements Initializable {
     private void abrirDialogoEdicao(Servico servico) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Editar Serviço");
-        dialog.setHeaderText("Altere as informações e clique em Salvar");
 
-        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
+        ButtonType btnSalvar =
+                new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes()
+                .addAll(btnSalvar, ButtonType.CANCEL);
 
         TextField txtNome = new TextField(servico.getNome());
         TextField txtDesc = new TextField(servico.getDescricao());
 
         String[] partes = servico.getHorario().split(":");
-        int hora = Integer.parseInt(partes[0]);
-        int minuto = Integer.parseInt(partes[1]);
-
-        HBox inputHora = criarInputHora(hora, minuto);
-
-        VBox layout = new VBox(10,
-                new Label("Nome:"), txtNome,
-                new Label("Descrição:"), txtDesc,
-                new Label("Horário:"), inputHora
+        HBox inputHora = criarInputHora(
+                Integer.parseInt(partes[0]),
+                Integer.parseInt(partes[1])
         );
 
-        dialog.getDialogPane().setContent(layout);
+        dialog.getDialogPane().setContent(
+                new VBox(10,
+                        new Label("Nome:"), txtNome,
+                        new Label("Descrição:"), txtDesc,
+                        new Label("Horário:"), inputHora)
+        );
 
-        dialog.showAndWait().ifPresent(response -> {
-            if (response == btnSalvar) {
-
-                String horario = obterHorario(inputHora);
-
+        dialog.showAndWait().ifPresent(r -> {
+            if (r == btnSalvar) {
                 servico.setNome(txtNome.getText());
                 servico.setDescricao(txtDesc.getText());
-                servico.setHorario(horario);
+                servico.setHorario(obterHorario(inputHora));
 
                 dao.atualizar(servico);
                 tabelaServicos.refresh();
@@ -188,11 +189,10 @@ public class ServicosController implements Initializable {
 
     private void confirmarExclusao(Servico servico) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Excluir Serviço");
-        alert.setHeaderText("Deseja excluir: " + servico.getNome() + "?");
+        alert.setHeaderText("Excluir " + servico.getNome() + "?");
 
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
+        alert.showAndWait().ifPresent(r -> {
+            if (r == ButtonType.OK) {
                 dao.excluir(servico.getId());
                 tabelaServicos.getItems().remove(servico);
             }
@@ -200,22 +200,21 @@ public class ServicosController implements Initializable {
     }
 
     @FXML
-    void buscar() {
-        String busca = txtBuscar.getText();
+    private void buscar() {
+        String termo = txtBuscar.getText();
 
-        if (busca == null || busca.isEmpty()) {
+        if (termo == null || termo.isBlank()) {
             atualizarTabela();
-        } else {
-            tabelaServicos.setItems(FXCollections.observableArrayList(
-                    dao.lerTodos().stream()
-                            .filter(s -> s.getNome().toLowerCase().contains(busca.toLowerCase()))
-                            .toList()
-            ));
+            return;
         }
-    }
 
-    @FXML
-    void salvar() {
-        // Mantido para compatibilidade
+        tabelaServicos.setItems(
+                FXCollections.observableArrayList(
+                        dao.lerTodos().stream()
+                                .filter(s -> s.getNome().toLowerCase()
+                                        .contains(termo.toLowerCase()))
+                                .toList()
+                )
+        );
     }
 }
