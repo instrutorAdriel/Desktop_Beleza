@@ -10,13 +10,8 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
     private static Scene scene;
-<<<<<<< HEAD
-    private static final int MinWidth = 1280;
-    private static final int MinHeight = 720;
-=======
     private static final int MinWidth = 1366;
     private static final int MinHeight = 768;
->>>>>>> main
 
     @Override
     public void start(Stage stage) throws IOException {
