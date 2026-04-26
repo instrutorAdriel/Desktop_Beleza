@@ -107,7 +107,7 @@ public class AgendaDAO {
                 "s.nome_servico, m.nome_modelo, sa.status_agenda " +
                 "FROM tb_agenda a " +
                 "JOIN tb_servicos s ON a.id_servico = s.id_servico " +
-                "JOIN tb_modelos m ON a.id_modelo = m.id_modelos " +
+                "JOIN tb_modelos m ON a.id_modelo = m.id_modelo " +
                 "JOIN tb_status_agenda sa ON a.id_status_agenda = sa.id_status_agenda";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -167,6 +167,39 @@ public class AgendaDAO {
 
         } catch (SQLException e) {
             System.err.println("Erro ao editar: " + e.getMessage());
+        }
+    }
+    public void atualizarStatus(int idAgenda, String novoStatus) {
+        // Primeiro busca o id_status_agenda pelo nome
+        String sqlSelect = "SELECT id_status_agenda FROM tb_status_agenda WHERE status_agenda = ?";
+        int idStatus = -1;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlSelect)) {
+
+            stmt.setString(1, novoStatus);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) idStatus = rs.getInt("id_status_agenda");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar status: " + e.getMessage());
+        }
+
+        if (idStatus == -1) return;
+
+        // Depois atualiza a agenda
+        String sqlUpdate = "UPDATE tb_agenda SET id_status_agenda = ? WHERE id_agenda = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlUpdate)) {
+
+            stmt.setInt(1, idStatus);
+            stmt.setInt(2, idAgenda);
+            int linhas = stmt.executeUpdate();
+            if (linhas > 0) System.out.println("Status atualizado com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar status: " + e.getMessage());
         }
     }
 }

@@ -32,7 +32,11 @@ public class AgendaController {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                setDisabled(empty || date.isBefore(LocalDate.now()));
+
+                if (date.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #d3d3d3;");
+                }
             }
         });
 
@@ -60,6 +64,56 @@ public class AgendaController {
 
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+
+// 2. CellFactory — define a célula com o MenuButton customizado
+        colStatus.setCellFactory(col -> new TableCell<Agenda, String>() {
+
+            private final MenuItem itemPendente       = new MenuItem("Pendente");
+            private final MenuItem itemCompareceu     = new MenuItem("Compareceu");
+            private final MenuItem itemNaoCompareceu  = new MenuItem("Não Compareceu");
+            private final MenuButton mnuOpcoes        = new MenuButton("Status",
+                    null,
+                    itemPendente,
+                    itemCompareceu,
+                    itemNaoCompareceu);
+
+            {
+                // Ações de cada item
+                itemPendente.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Pendente");
+                    mnuOpcoes.setText("Pendente");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Pendente");
+
+                });
+
+                itemCompareceu.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Compareceu");
+                    mnuOpcoes.setText("Compareceu");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Compareceu");
+                });
+
+                itemNaoCompareceu.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Não Compareceu");
+                    mnuOpcoes.setText("Não Compareceu");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Não Compareceu");
+                });
+            }
+
+            @Override
+            protected void updateItem(String status, boolean empty) {
+                super.updateItem(status, empty);
+
+                if (empty || status == null) {
+                    setGraphic(null);
+                } else {
+                    mnuOpcoes.setText(status);
+                    setGraphic(mnuOpcoes);
+                }
+            }
+        });
         colAcao.setCellFactory(parm -> new TableCell<>() {
             private final MenuButton mnuOpcoes = new MenuButton("...");
             private final MenuItem itemEdit = new MenuItem("Editar");
