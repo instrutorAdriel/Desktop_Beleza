@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
    <top>
-      <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -38,14 +38,17 @@
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="Serviços" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="Serviços">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font></Button>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="Turmas">
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></Button>
                </children>
             </VBox>
-            <VBox VBox.vgrow="ALWAYS" />
+            <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
             <VBox alignment="CENTER" prefHeight="80.0">
                <children>
                   <Button minWidth="100.0" mnemonicParsing="false" styleClass="danger" text="Sair">
@@ -99,6 +102,6 @@
       <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
