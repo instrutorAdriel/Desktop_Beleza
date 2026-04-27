@@ -14,19 +14,27 @@ import java.util.List;
 
 public class GerenciarTurmaDAO {
 
-    public ObservableList<UsuarioDTO> lerUsuariosParaTabela() {
+    public ObservableList<UsuarioDTO> lerUsuariosParaTabela(String usuario) {
         // 1. Adicionei t.status_turma no SELECT
         String sql = """
     SELECT t.id_turma, t.turma, t.turno, t.status_turma, ti.nome_instrutor
     FROM rl_turmas_instrutores i
     INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
     INNER JOIN tb_instrutores ti ON i.id_instrutor = ti.id_instrutor
+    INNER JOIN tb_status_turma st ON t.idstatus_turma = st.id_status_turma where email_instrutor = ?
     """;
+
+        IO.println(usuario);
 
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
+             stmt.setString(1,usuario);
              ResultSet rs = stmt.executeQuery()) {
+
+
+
+
 
             while (rs.next()) {
                 // 2. Agora passamos 5 parâmetros para o construtor, incluindo o status!
@@ -39,6 +47,44 @@ public class GerenciarTurmaDAO {
                 ));
             }
         } catch (SQLException e) { e.printStackTrace(); }
+        return lista;
+    }
+
+    public ObservableList<UsuarioDTO> lerTurmasPorEmail(String emailLogado) {
+        ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
+
+        String sql = """
+        SELECT 
+            t.id_turma, 
+            t.turma, 
+            t.turno, 
+            ti.nome_instrutor, 
+            st.status_turma
+        FROM tb_turmas t
+        INNER JOIN rl_instrutor_turmas ri ON t.id_turma = ri.id_turma
+        INNER JOIN tb_instrutor ti ON ri.id_instrutor = ti.id_instrutor
+        INNER JOIN tb_status_turma st ON t.idstatus_turma = st.id_status_turma
+        WHERE ti.email_instrutor = ?
+    """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, emailLogado);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                lista.add(new UsuarioDTO(
+                        rs.getInt("id_turma"),
+                        rs.getString("turma"),
+                        rs.getString("turno"),
+                        rs.getString("nome_instrutor"),
+                        rs.getString("status_turma") // Pega o texto da tabela de status
+                ));
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao filtrar turmas por e-mail: " + e.getMessage());
+        }
         return lista;
     }
 
