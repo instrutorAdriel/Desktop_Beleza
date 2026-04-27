@@ -10,7 +10,7 @@ public class TurmaDAO {
 
     public List<String> listarNomesInstrutores() {
         List<String> nomes = new ArrayList<>();
-        String sql = "SELECT nome_instrutor FROM tb_instrutor";
+        String sql = "SELECT nome_instrutor FROM tb_instrutores";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -24,8 +24,8 @@ public class TurmaDAO {
         // 1. Atualizamos o SQL para incluir status_turma
         String sqlTurma = "INSERT INTO tb_turmas (turma, turno, status_turma) VALUES (?, ?, ?)";
 
-        String sqlVinculo = "INSERT INTO rl_instrutor_turmas (id_instrutor, id_turma) VALUES " +
-                "((SELECT id_instrutor FROM tb_instrutor WHERE nome_instrutor = ?), ?)";
+        String sqlVinculo = "INSERT INTO rl_turmas_instrutores (id_instrutor, id_turma) VALUES " +
+                "((SELECT id_instrutor FROM tb_instrutores WHERE nome_instrutor = ?), ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
