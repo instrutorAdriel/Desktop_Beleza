@@ -75,8 +75,8 @@ public class GerenciarTurmaController {
 
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
-            private final Button btnEditar = new Button("Editar");
-            private final Button btnExcluir = new Button("Excluir");
+            private final Button btnEditar = new Button();
+            private final Button btnExcluir = new Button();
             private final HBox container = new HBox(10, btnEditar, btnExcluir);
 
             {
