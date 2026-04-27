@@ -6,19 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="110.0" fitWidth="116.0" layoutX="12.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Imagens/Senac_logo.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
    <center>
-      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="230.0" text="Cadastro" textFill="#004587">
                <font>
@@ -42,8 +32,8 @@
             </PasswordField>
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onDragDetected="#onCadastrarClick" prefHeight="26.0" prefWidth="281.0" spacing="26.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onVoltarClick" style="-fx-background-color: #004587;" text="Voltar" textFill="#e4e4e4" />
-                  <Button mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="27.0" prefWidth="91.0" text="Cadastrar" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onVoltarClick" styleClass="btn-azul" text="Voltar" textFill="#e4e4e4" />
+                  <Button mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="27.0" prefWidth="91.0" styleClass="btn-cinza" text="Cadastrar" />
                </children>
                <VBox.margin>
                   <Insets top="6.0" />
@@ -56,12 +46,22 @@
       </VBox>
    </center>
    <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagens/Senac_logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
    </bottom>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
    </right>
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
