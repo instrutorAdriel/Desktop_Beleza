@@ -8,8 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class AgendaController {
     @FXML private ComboBox<String> txtServico;
@@ -23,8 +26,12 @@ public class AgendaController {
     @FXML private TableColumn<Agenda, String> colHorario;
     @FXML private TableColumn<Agenda, String> colStatus;
     @FXML private TableColumn<Agenda, String> colAcao;
+    @FXML private Label lblSemanaAtual;
+    @FXML private Button btnVerTodos;
 
     private Agenda agendaSendoEditada = null;
+    private LocalDate inicioSemanaAtual;
+    private boolean exibindoTodos = false;
 
     @FXML
     public void initialize() {
@@ -32,7 +39,6 @@ public class AgendaController {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-
                 if (date.isBefore(LocalDate.now())) {
                     setDisable(true);
                     setStyle("-fx-background-color: #d3d3d3;");
@@ -40,7 +46,17 @@ public class AgendaController {
             }
         });
 
-        txtServico.getItems().addAll("Cabeleireiro", "Barbeiro", "Maquiador", "Design de Sobrancelhas");
+        dpData.valueProperty().addListener((obs, dataAntiga, dataSelecionada) -> {
+            if (dataSelecionada != null) {
+                exibindoTodos = false;
+                btnVerTodos.setText("Ver todos");
+                inicioSemanaAtual = dataSelecionada.with(DayOfWeek.MONDAY);
+                atualizarTabela();
+            }
+        });
+
+        List<String> servicos = new AgendaDAO().listarServicos();
+        txtServico.getItems().addAll(servicos);
 
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
@@ -64,27 +80,19 @@ public class AgendaController {
 
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-
-// 2. CellFactory — define a célula com o MenuButton customizado
         colStatus.setCellFactory(col -> new TableCell<Agenda, String>() {
-
-            private final MenuItem itemPendente       = new MenuItem("Pendente");
-            private final MenuItem itemCompareceu     = new MenuItem("Compareceu");
-            private final MenuItem itemNaoCompareceu  = new MenuItem("Não Compareceu");
-            private final MenuButton mnuOpcoes        = new MenuButton("Status",
-                    null,
-                    itemPendente,
-                    itemCompareceu,
-                    itemNaoCompareceu);
+            private final MenuItem itemPendente      = new MenuItem("Pendente");
+            private final MenuItem itemCompareceu    = new MenuItem("Compareceu");
+            private final MenuItem itemNaoCompareceu = new MenuItem("Não Compareceu");
+            private final MenuButton mnuOpcoes       = new MenuButton("Status", null,
+                    itemPendente, itemCompareceu, itemNaoCompareceu);
 
             {
-                // Ações de cada item
                 itemPendente.setOnAction(e -> {
                     Agenda item = getTableView().getItems().get(getIndex());
                     item.setStatus("Pendente");
                     mnuOpcoes.setText("Pendente");
                     new AgendaDAO().atualizarStatus(item.getId(), "Pendente");
-
                 });
 
                 itemCompareceu.setOnAction(e -> {
@@ -105,7 +113,6 @@ public class AgendaController {
             @Override
             protected void updateItem(String status, boolean empty) {
                 super.updateItem(status, empty);
-
                 if (empty || status == null) {
                     setGraphic(null);
                 } else {
@@ -114,10 +121,11 @@ public class AgendaController {
                 }
             }
         });
+
         colAcao.setCellFactory(parm -> new TableCell<>() {
             private final MenuButton mnuOpcoes = new MenuButton("...");
-            private final MenuItem itemEdit = new MenuItem("Editar");
-            private final MenuItem itemDel = new MenuItem("Excluir");
+            private final MenuItem itemEdit    = new MenuItem("Editar");
+            private final MenuItem itemDel     = new MenuItem("Excluir");
 
             {
                 mnuOpcoes.getItems().addAll(itemEdit, itemDel);
@@ -153,12 +161,26 @@ public class AgendaController {
             }
         });
 
+        inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
         atualizarTabela();
     }
 
     @FXML
-    protected void onSalvarButtonClick() {
+    protected void onVerTodosClick() {
+        exibindoTodos = !exibindoTodos;
 
+        if (exibindoTodos) {
+            btnVerTodos.setText("Ver semana");
+            if (lblSemanaAtual != null) lblSemanaAtual.setText("Exibindo todos os agendamentos");
+            tabelaAgenda.setItems(FXCollections.observableArrayList(new AgendaDAO().listarAgendamentos()));
+        } else {
+            btnVerTodos.setText("Ver todos");
+            atualizarTabela();
+        }
+    }
+
+    @FXML
+    protected void onSalvarButtonClick() {
         if (txtServico.getValue() == null || dpData.getValue() == null ||
                 txtCliente.getText().isBlank() || txtHorario.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -175,19 +197,14 @@ public class AgendaController {
         AgendaDAO dao = new AgendaDAO();
 
         if (agendaSendoEditada != null) {
-            // EDITAR
             agendaSendoEditada.setData(data);
             agendaSendoEditada.setServico(servico);
             agendaSendoEditada.setCliente(cliente);
             agendaSendoEditada.setHorario(horario);
-
             dao.editarAgendamento(agendaSendoEditada);
             agendaSendoEditada = null;
-
         } else {
-            // CADASTRAR
             int idModelo = dao.cadastrarERetornarIdModelo(cliente);
-
             if (idModelo == -1) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Erro ao cadastrar cliente!");
@@ -196,7 +213,6 @@ public class AgendaController {
             }
 
             int idServico = dao.cadastrarERetornarIdServico(servico);
-
             if (idServico == -1) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Serviço não encontrado!");
@@ -219,7 +235,18 @@ public class AgendaController {
     }
 
     public void atualizarTabela() {
-        List<Agenda> listaRecarregada = new AgendaDAO().listarAgendamentos();
-        tabelaAgenda.setItems(FXCollections.observableArrayList(listaRecarregada));
+        LocalDate fimSemana = inicioSemanaAtual.plusDays(6);
+
+        if (lblSemanaAtual != null) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy", new Locale("pt", "BR"));
+            lblSemanaAtual.setText(
+                    "Início: " + inicioSemanaAtual.format(fmt) + "\n" +
+                            "Fim: "    + fimSemana.format(fmt)
+            );
+        }
+
+        List<Agenda> lista = new AgendaDAO()
+                .listarAgendamentosPorSemana(inicioSemanaAtual, fimSemana);
+        tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
     }
 }

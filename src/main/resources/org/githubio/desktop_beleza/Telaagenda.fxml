@@ -43,10 +43,31 @@
                         <Insets left="8.0" top="10.0" />
                     </VBox.margin>
                 </Label>
+
                 <DatePicker fx:id="dpData">
                     <VBox.margin>
                         <Insets left="2.0" right="2.0" />
-                    </VBox.margin></DatePicker>
+                    </VBox.margin>
+                </DatePicker>
+
+                <!-- Label que mostra o intervalo da semana -->
+                <Label fx:id="lblSemanaAtual" text="" textFill="#004587" wrapText="true">
+                    <font>
+                        <Font name="Verdana" size="10.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="4.0" right="4.0" bottom="4.0" />
+                    </VBox.margin>
+                </Label>
+
+                <!-- Botão Ver todos / Ver semana -->
+                <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick"
+                        text="Ver todos" textFill="#004587">
+                    <VBox.margin>
+                        <Insets left="3.6" bottom="6.0"/>
+                    </VBox.margin>
+                </Button>
+
                 <VBox prefHeight="200.0" prefWidth="148.0" spacing="10.0">
                     <children>
                         <Label prefHeight="50.0" prefWidth="190.0" text="Novo procedimento" textFill="#004587">
@@ -65,24 +86,29 @@
                         <TextField fx:id="txtCliente" prefHeight="20.0" prefWidth="120.0" promptText="Inserir Cliente">
                             <VBox.margin>
                                 <Insets left="3.6" right="3.6" />
-                            </VBox.margin></TextField>
+                            </VBox.margin>
+                        </TextField>
                         <ComboBox fx:id="txtServico" promptText="Tipo de Servico">
                             <VBox.margin>
                                 <Insets left="3.6" />
-                            </VBox.margin></ComboBox>
-                        <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefHeight="25.0" prefWidth="99.0" text="Salvar" textFill="#004587">
+                            </VBox.margin>
+                        </ComboBox>
+                        <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick"
+                                prefHeight="25.0" prefWidth="99.0" text="Salvar" textFill="#004587">
                             <VBox.margin>
                                 <Insets left="3.6" />
-                            </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="Pagina inicial" textFill="#004587">
-                     <VBox.margin>
-                        <Insets left="3.6" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #004587;" text="Sair" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="3.5" />
-                     </VBox.margin>
-                  </Button>
+                            </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Pagina inicial" textFill="#004587">
+                            <VBox.margin>
+                                <Insets left="3.6" />
+                            </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #004587;" text="Sair" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="3.5" />
+                            </VBox.margin>
+                        </Button>
                     </children>
                 </VBox>
             </children>
