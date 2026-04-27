@@ -40,12 +40,12 @@
         </VBox>
     </center>
     <left>
-        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
             <children>
-                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="29.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Imagens/Senac_logo.png" />
                     </image></ImageView>
@@ -53,9 +53,9 @@
         </Pane>
     </left>
     <right>
-        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </right>
     <bottom>
-        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
