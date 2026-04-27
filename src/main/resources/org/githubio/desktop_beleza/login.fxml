@@ -42,11 +42,11 @@
                   <Insets left="200.0" />
                </VBox.margin>
             </Hyperlink>
-            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" styleClass="btn-cinza" text="Login">
+            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="90.0" styleClass="btn-cinza" text="Login">
                <padding>
                   <Insets bottom="1.6" left="25.0" right="25.0" top="1.6" />
                </padding></Button>
-            <Button mnemonicParsing="false" onAction="#irParaCadastro" styleClass="btn-azul" text="Registre-se" textFill="#e4e4e4">
+            <Button mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="27.0" styleClass="btn-azul" text="Registre-se" textFill="#e4e4e4">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
