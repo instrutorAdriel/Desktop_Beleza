@@ -7,16 +7,6 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="110.0" fitWidth="116.0" layoutX="12.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Imagens/Senac_logo.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-   </left>
    <center>
       <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
          <children>
@@ -56,7 +46,14 @@
       </VBox>
    </center>
    <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagens/Senac_logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </top>
    <bottom>
       <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
@@ -64,4 +61,7 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
    </right>
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
