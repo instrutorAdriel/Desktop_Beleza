@@ -3,6 +3,7 @@ package org.githubio.desktop_beleza.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
 import org.mindrot.jbcrypt.BCrypt;
@@ -53,6 +54,19 @@ public class AtualizarSenhaController {
                 String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
                 dao.atualizarSenha(campoEmail.getText(),senhaHash);
                 IO.println("Senha atualizada");
+                try {
+                    // Load the login FXML
+                    MainApplication.setRoot("login");
+
+                    // Get the current stage from any existing component (like your email field)
+                    Stage stage = (Stage) campoEmail.getScene().getWindow();
+
+                    // Set the new scene
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    mostrarErro("Erro", "Não foi possível carregar a tela de login.");
+
+                }
             }
         }
 
