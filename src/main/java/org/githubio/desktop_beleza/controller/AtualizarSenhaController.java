@@ -64,7 +64,7 @@ public class AtualizarSenhaController {
                     // Set the new scene
                 } catch (IOException e) {
                     e.printStackTrace();
-                    mostrarErro("Erro", "Não foi possível carregar a tela de login.");
+                    mostrarErro("Erro", e.getMessage());
 
                 }
             }
