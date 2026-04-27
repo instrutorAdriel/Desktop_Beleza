@@ -3,6 +3,7 @@ package org.githubio.desktop_beleza.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
 import org.mindrot.jbcrypt.BCrypt;
@@ -50,14 +51,23 @@ public class AtualizarSenhaController {
             boolean existe = dao.instrutorExiste(campoEmail.getText());
             IO.println(existe);
             if (existe){
-                String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
-                if (dao.atualizarSenha(campoEmail.getText(),senhaHash)){
-                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                    alerta.setTitle("Senha Atualizada");
-                    alerta.setHeaderText(null);
-                    alerta.setContentText("Sua senha foi atualizada com sucesso! Retorne para tela de login e entre na sua conta com a nova senha.");
-                    alerta.showAndWait();
-                    limparCamposFormulario();
+                try {
+                    String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
+
+                    // Atualiza a senha
+                    if (dao.atualizarSenha(campoEmail.getText(),senhaHash)){
+                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                        alerta.setTitle("Senha Atualizada");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("A senha do email " + campoEmail.getText() + " foi atualizada com sucesso. Clique em OK para voltar para tela de login.");
+                        alerta.showAndWait();
+
+                        // Load the login FXML
+                        MainApplication.setRoot("login");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    mostrarErro("Erro", e.getMessage());
                 }
             }
         }
