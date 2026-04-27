@@ -21,6 +21,22 @@ public class LoginController {
     protected void onLoginButtonClick() throws IOException{
         String emailDigitado = Email.getText();
         String senhaDigitada = Senha.getText();
+        
+        // Alerta do tipo ERRO
+        Alert erro = new Alert(Alert.AlertType.ERROR);
+        if (emailDigitado.isEmpty()){
+            erro.setTitle("Campo e-mail está em branco");
+            erro.setHeaderText(null);
+            erro.setContentText("O campo e-mail está em branco. Por favor insira o seu e-mail.");
+            erro.showAndWait();
+            return; // Ele sai da função quando o usuário fechar a caixa de alerta
+        } else if (senhaDigitada.isEmpty()){
+            erro.setTitle("Campo senha está em branco");
+            erro.setHeaderText(null);
+            erro.setContentText("O campo senha está em branco. Por favor insira a sua senha.");
+            erro.showAndWait();
+            return; // Ele sai da função quando o usuário fechar a caixa de alerta
+        }
 
         LoginDAO usuarioDao = new LoginDAO();
         boolean logado = usuarioDao.autenticarUsuario(emailDigitado, senhaDigitada);
@@ -30,7 +46,7 @@ public class LoginController {
         }
         else {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Verifique as informações inseridas");
+            alerta.setTitle("As informações inseridas não está corretas");
             alerta.setHeaderText(null);
             alerta.setContentText("E-mail ou senha incorreto.");
             alerta.showAndWait();
