@@ -18,9 +18,9 @@ public class GerenciarTurmaDAO {
         // 1. Adicionei t.status_turma no SELECT
         String sql = """
     SELECT t.id_turma, t.turma, t.turno, t.status_turma, ti.nome_instrutor
-    FROM rl_instrutor_turmas i
+    FROM rl_turmas_instrutores i
     INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
-    INNER JOIN tb_instrutor ti ON i.id_instrutor = ti.id_instrutor
+    INNER JOIN tb_instrutores ti ON i.id_instrutor = ti.id_instrutor
     """;
 
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
@@ -42,12 +42,10 @@ public class GerenciarTurmaDAO {
         return lista;
     }
 
-
-
     public void excluirTurma(String nomeTurma) {
         // 1. SQL para apagar o vínculo na tabela de relação
         // Note que usamos um subquery para achar o ID da turma pelo nome
-        String sqlVinculo = "DELETE FROM rl_instrutor_turmas WHERE id_turma = (SELECT id_turma FROM tb_turmas WHERE turma = ?)";
+        String sqlVinculo = "DELETE FROM rl_turmas_instrutores WHERE id_turma = (SELECT id_turma FROM tb_turmas WHERE turma = ?)";
 
         // 2. SQL para apagar a turma de fato
         String sqlTurma = "DELETE FROM tb_turmas WHERE turma = ?";
@@ -88,8 +86,8 @@ public class GerenciarTurmaDAO {
         // 2. SQL para atualizar o instrutor vinculado a essa turma
         // Buscamos o ID do instrutor pelo nome e atualizamos na tabela de relação
         String sqlVinculo = """
-        UPDATE rl_instrutor_turmas 
-        SET id_instrutor = (SELECT id_instrutor FROM tb_instrutor WHERE nome_instrutor = ?) 
+        UPDATE rl_turmas_instrutores
+        SET id_instrutor = (SELECT id_instrutor FROM tb_instrutores WHERE nome_instrutor = ?) 
         WHERE id_turma = ?
     """;
 
@@ -125,7 +123,7 @@ public class GerenciarTurmaDAO {
 
     public List<String> listarNomesInstrutores() {
         List<String> nomes = new ArrayList<>();
-        String sql = "SELECT nome_instrutor FROM tb_instrutor ORDER BY nome_instrutor";
+        String sql = "SELECT nome_instrutor FROM tb_instrutores ORDER BY nome_instrutor";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -139,8 +137,4 @@ public class GerenciarTurmaDAO {
         }
         return nomes;
     }
-
-
-
-
 }
