@@ -10,13 +10,15 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
     private static Scene scene;
-    private static final int MinWidth = 800;
-    private static final int MinHeight = 800;
+    private static final int MinWidth = 1366;
+    private static final int MinHeight = 768;
+
+    // Usuario Logado
+    private static String usuario = "";
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"), MinWidth, MinHeight);
-       // A primeira tela a ser exibida é a de Login
+        scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);
@@ -30,7 +32,16 @@ public class MainApplication extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Telaagenda.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+    // Getters e Setters
+    public static String getUsuario() {
+        return usuario;
+    }
+
+    public static void setUsuario(String usuario) {
+        MainApplication.usuario = usuario;
     }
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="28.0" prefWidth="225.0" text="Atualizar Senha" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="campoEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="campoNovaSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="Nova Senha" style="-fx-background-color: tranparet; -fx-border-color: transparent transparent black transparent;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </PasswordField>
+            <PasswordField fx:id="campoConfirmarSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="Confimar Nova Senha" style="-fx-background-color: transparet; -fx-border-color: transparent transparent black transparent;">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="443.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onAlterarSenha" text="Alterar Senha" textFill="#004587">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#voltarParaLogin" style="-fx-background-color: #004587;" text="voltar" textFill="#f8f8f8">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children></VBox>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagens/Senac_logo.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
