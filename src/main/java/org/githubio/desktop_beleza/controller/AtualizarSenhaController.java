@@ -51,21 +51,23 @@ public class AtualizarSenhaController {
             boolean existe = dao.instrutorExiste(campoEmail.getText());
             IO.println(existe);
             if (existe){
-                String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
-                dao.atualizarSenha(campoEmail.getText(),senhaHash);
-                IO.println("Senha atualizada");
                 try {
-                    // Load the login FXML
-                    MainApplication.setRoot("login");
+                    String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
 
-                    // Get the current stage from any existing component (like your email field)
-                    Stage stage = (Stage) campoEmail.getScene().getWindow();
+                    // Atualiza a senha
+                    if (dao.atualizarSenha(campoEmail.getText(),senhaHash)){
+                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                        alerta.setTitle("Senha Atualizada");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("A senha do email " + campoEmail.getText() + " foi atualizada com sucesso. Clique em OK para voltar para tela de login.");
+                        alerta.showAndWait();
 
-                    // Set the new scene
+                        // Load the login FXML
+                        MainApplication.setRoot("login");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     mostrarErro("Erro", e.getMessage());
-
                 }
             }
         }
