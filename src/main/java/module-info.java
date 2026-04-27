@@ -12,5 +12,10 @@ module org.githubio.desktop_beleza {
     opens org.githubio.desktop_beleza.config to javafx.fxml;
     exports org.githubio.desktop_beleza.controller;
     opens org.githubio.desktop_beleza.controller to javafx.fxml;
+<<<<<<< HEAD
     opens org.githubio.desktop_beleza.model to javafx.base;
+=======
+    exports org.githubio.desktop_beleza.model;
+    opens org.githubio.desktop_beleza.model to javafx.fxml;
+>>>>>>> main
 }

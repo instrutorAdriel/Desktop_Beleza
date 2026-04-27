@@ -1,6 +1,5 @@
 package org.githubio.desktop_beleza.controller;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.githubio.desktop_beleza.GerenciarTurmaApplication;
+import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
 
@@ -158,7 +157,7 @@ public class GerenciarTurmaController {
     void abrirTelaCadastroPopUp() {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(GerenciarTurmaApplication.class.getResource("adicionarTurma.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("adicionarTurma.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();

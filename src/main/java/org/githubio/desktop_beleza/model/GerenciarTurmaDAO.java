@@ -2,7 +2,7 @@ package org.githubio.desktop_beleza.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.githubio.desktop_beleza.config.DatabaseConfig;
+import org.githubio.desktop_beleza.config.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class GerenciarTurmaDAO {
     """;
 
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -52,7 +52,7 @@ public class GerenciarTurmaDAO {
         // 2. SQL para apagar a turma de fato
         String sqlTurma = "DELETE FROM tb_turmas WHERE turma = ?";
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
             // Desativa o auto-save para controlar o processo manualmente
             conn.setAutoCommit(false);
 
@@ -93,7 +93,7 @@ public class GerenciarTurmaDAO {
         WHERE id_turma = ?
     """;
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false); // Iniciamos uma transação para garantir que ambos mudem
 
             try (PreparedStatement stmtT = conn.prepareStatement(sqlTurma);
@@ -127,7 +127,7 @@ public class GerenciarTurmaDAO {
         List<String> nomes = new ArrayList<>();
         String sql = "SELECT nome_instrutor FROM tb_instrutor ORDER BY nome_instrutor";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 

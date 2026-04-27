@@ -1,6 +1,7 @@
 package org.githubio.desktop_beleza.model;
 
-import org.githubio.desktop_beleza.config.DatabaseConfig;
+import org.githubio.desktop_beleza.config.DatabaseConnection;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class TurmaDAO {
     public List<String> listarNomesInstrutores() {
         List<String> nomes = new ArrayList<>();
         String sql = "SELECT nome_instrutor FROM tb_instrutor";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) nomes.add(rs.getString("nome_instrutor"));
@@ -26,7 +27,7 @@ public class TurmaDAO {
         String sqlVinculo = "INSERT INTO rl_instrutor_turmas (id_instrutor, id_turma) VALUES " +
                 "((SELECT id_instrutor FROM tb_instrutor WHERE nome_instrutor = ?), ?)";
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
 
             // 2. Preparamos o Insert da Turma com os 3 valores
