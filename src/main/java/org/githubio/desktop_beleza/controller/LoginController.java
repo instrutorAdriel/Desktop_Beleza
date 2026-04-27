@@ -42,7 +42,9 @@ public class LoginController {
         boolean logado = usuarioDao.autenticarUsuario(emailDigitado, senhaDigitada);
 
         if (logado==true) {
-            IO.println("Login realizado com sucesso!");
+            //IO.println("Login realizado com sucesso!");
+            MainApplication.setUsuario(emailDigitado);
+            MainApplication.setRoot("gerenciarTurma");
         }
         else {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
