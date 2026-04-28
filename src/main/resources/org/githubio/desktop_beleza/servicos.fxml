@@ -48,7 +48,7 @@
         </VBox>
     </center>
     <left>
-        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
@@ -61,9 +61,9 @@
         </Pane>
     </left>
     <right>
-        <Pane prefHeight="400.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </right>
     <bottom>
-        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
