@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
     <left>
         <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <children>
@@ -43,7 +43,7 @@
                            <font>
                               <Font name="Verdana" size="12.0" />
                            </font></Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #004587;" text="Adicionar" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#abrirTelaAdcionarPopUp" style="-fx-background-color: #004587;" text="Adicionar" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="12.0" />
                            </font>
