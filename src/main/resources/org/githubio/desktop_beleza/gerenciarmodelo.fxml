@@ -13,8 +13,10 @@
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Imagens/Senac_logo.png" />
-                    </image></ImageView>
-            </children></Pane>
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
     </left>
     <bottom>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
@@ -38,16 +40,17 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="713.0" spacing="10.0">
                             <children>
-                                <TextField prefHeight="25.0" prefWidth="287.0" promptText="Buscar" />
-                                <Button mnemonicParsing="false" text="Buscar">
-                           <font>
-                              <Font name="Verdana" size="12.0" />
-                           </font></Button>
-                        <Button mnemonicParsing="false" onAction="#abrirTelaAdcionarPopUp" style="-fx-background-color: #004587;" text="Adicionar" textFill="WHITE">
-                           <font>
-                              <Font name="Verdana" size="12.0" />
-                           </font>
-                        </Button>
+                                <TextField fx:id="txtBuscar" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="287.0" promptText="Buscar" />
+                                <Button mnemonicParsing="false" onAction="#buscar" text="Buscar">
+                                    <font>
+                                        <Font name="Verdana" size="12.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#abrirTelaAdcionarPopUp" style="-fx-background-color: #004587;" text="Adicionar" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="12.0" />
+                                    </font>
+                                </Button>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" />
@@ -56,11 +59,12 @@
                         <Insets left="10.0" right="10.0" />
                     </VBox.margin>
                 </HBox>
-                <TableView prefHeight="318.0" prefWidth="459.0">
+                <TableView fx:id="tabelaModelos" prefHeight="318.0" prefWidth="459.0">
                     <columns>
-                        <TableColumn prefWidth="150.0" text="NOME" />
-                        <TableColumn prefWidth="100.0" text="TELEFONE" />
-                        <TableColumn prefWidth="150.0" text="EMAIL" />
+                        <TableColumn fx:id="colNome" prefWidth="150.0" text="NOME" />
+                        <TableColumn fx:id="colTelefone" prefWidth="100.0" text="TELEFONE" />
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="EMAIL" />
+                        <TableColumn fx:id="colAcoes" prefWidth="150.0" text="AÇÕES" />
                     </columns>
                     <VBox.margin>
                         <Insets left="10.0" right="10.0" />
@@ -73,9 +77,9 @@
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
-         <padding>
-            <Insets top="25.0" />
-         </padding>
+            <padding>
+                <Insets top="25.0" />
+            </padding>
         </VBox>
     </center>
 </BorderPane>
