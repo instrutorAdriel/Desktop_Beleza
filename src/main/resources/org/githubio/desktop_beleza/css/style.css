@@ -28,3 +28,79 @@
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;}
 
+.nav-container {
+    -fx-padding: 20px;
+    -fx-alignment: center;
+    -fx-hgap: 15px;
+    -fx-vgap: 15px;
+}
+
+
+/* Estilo dos botões */
+.btn {
+    -fx-min-width: 150px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 12px;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
+}
+
+
+/* EStilo do botão de sair*/
+.btn-sair{
+    -fx-min-width:70px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 2px;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
+
+}
+
+
+/* Botões azuis */
+.btn-azul {
+    -fx-background-color: #004587;
+    -fx-text-fill: white;
+}
+
+/* Hover dos botões azuis */
+.btn-azul:hover {
+    -fx-background-color: #003466;
+    -fx-translate-y: -2px;
+}
+
+/* Botões cinzas */
+.btn-cinza {
+    -fx-background-color: #efefef;
+    -fx-text-fill: #004587;
+}
+
+/* Hover dos botões cinzas */
+.btn-cinza:hover{
+    -fx-background-color: #dddddd;
+    -fx-translate-y: -2px;
+}
+
+
+
+
