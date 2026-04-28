@@ -9,23 +9,23 @@ import java.util.List;
 public class TurmaDAO {
 
     public List<String> listarNomesInstrutores() {
-        List<String> nomes = new ArrayList<>();
-        String sql = "SELECT nome_instrutor FROM tb_instrutores";
+        List<String> email = new ArrayList<>();
+        String sql = "SELECT email_instrutor FROM tb_instrutores";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) nomes.add(rs.getString("nome_instrutor"));
+            while (rs.next()) email.add(rs.getString("email_instrutor"));
         } catch (SQLException e) { e.printStackTrace(); }
-        return nomes;
+        return email;
     }
 
     // Adicionamos o parâmetro statusTurma aqui
     public void salvarTurma(String nomeTurma, String turno, String nomeInstrutor, String statusTurma) {
         // 1. Atualizamos o SQL para incluir status_turma
-        String sqlTurma = "INSERT INTO tb_turmas (turma, turno, status_turma) VALUES (?, ?, ?)";
+        String sqlTurma = "INSERT INTO tb_turmas (turma, turno, id_status_turma) VALUES (?, ?, ?)";
 
         String sqlVinculo = "INSERT INTO rl_turmas_instrutores (id_instrutor, id_turma) VALUES " +
-                "((SELECT id_instrutor FROM tb_instrutores WHERE nome_instrutor = ?), ?)";
+                "((SELECT id_instrutor FROM tb_instrutores WHERE email_instrutor = ?), ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
@@ -34,7 +34,12 @@ public class TurmaDAO {
             PreparedStatement stmtT = conn.prepareStatement(sqlTurma, Statement.RETURN_GENERATED_KEYS);
             stmtT.setString(1, nomeTurma);
             stmtT.setString(2, turno);
-            stmtT.setString(3, statusTurma); // Novo campo!
+            if(statusTurma.equals("Em Andamento")){
+                stmtT.setInt(3, 1);
+            }
+            else {
+                stmtT.setInt(3, 2);
+            }
             stmtT.executeUpdate();
 
             ResultSet rs = stmtT.getGeneratedKeys();

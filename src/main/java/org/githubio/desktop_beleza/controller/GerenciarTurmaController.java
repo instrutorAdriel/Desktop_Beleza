@@ -20,6 +20,7 @@ import org.githubio.desktop_beleza.model.UsuarioDTO;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class GerenciarTurmaController {
     @FXML private TableView<UsuarioDTO> tabelaUsuarios;
@@ -36,7 +37,7 @@ public class GerenciarTurmaController {
     // 2. A lista original que o filtro vai observar
     private final ObservableList<UsuarioDTO> listaOriginal = FXCollections.observableArrayList();
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         // Vincula as colunas
         colTurma.setCellValueFactory(new PropertyValueFactory<>("turma"));
         colTurno.setCellValueFactory(new PropertyValueFactory<>("turno"));
@@ -86,6 +87,11 @@ public class GerenciarTurmaController {
                 btnEditar.setOnAction(event -> {
                     UsuarioDTO usuario = getTableView().getItems().get(getIndex());
                     abrirJanelaEdicao(usuario);
+                    try {
+                        atualizarTabela();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
 
                 btnExcluir.setOnAction(event -> {
@@ -111,8 +117,7 @@ public class GerenciarTurmaController {
     }
 
     // Criamos um método para facilitar a atualização em vários pontos
-    private void atualizarTabela() {
-
+    private void atualizarTabela() throws SQLException {
         listaOriginal.setAll(dao.lerUsuariosParaTabela(MainApplication.getUsuario()));
     }
 
@@ -144,7 +149,6 @@ public class GerenciarTurmaController {
                 dao.atualizarCompleto(usuario.getIdTurma(), txtTurma.getText(), cbTurno.getValue(),
                         cbInstrutor.getValue(), cbStatus.getValue());
 
-                // Atualiza o objeto na lista original para refletir na TableView
                 usuario.setTurma(txtTurma.getText());
                 usuario.setTurno(cbTurno.getValue());
                 usuario.setNomeInstrutor(cbInstrutor.getValue());
@@ -163,15 +167,21 @@ public class GerenciarTurmaController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setWidth(1280);
-            stage.setHeight(720);
+            stage.setWidth(800);
+            stage.setHeight(600);
             stage.setTitle("Cadastrar Nova Turma");
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
 
 
             // Quando o Pop-up fechar, recarregamos a lista original do banco
-            stage.setOnHiding(event -> atualizarTabela());
+            stage.setOnHiding(event -> {
+                try {
+                    atualizarTabela();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
             stage.show();
         } catch (IOException e) {
