@@ -34,13 +34,16 @@
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
             </PasswordField>
-            <Hyperlink alignment="CENTER" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
-               <font>
-                  <Font size="10.0" />
-               </font>
+            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
                <VBox.margin>
-                  <Insets left="200.0" />
+                  <Insets left="300.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Hyperlink>
             <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="90.0" styleClass="btn-cinza" text="Login">
                <padding>
