@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="950.0" styleClass="root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1035.0" styleClass="root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
    <center>
       <VBox alignment="CENTER" prefHeight="292.0" prefWidth="677.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -58,7 +58,7 @@
                   <Insets bottom="5.0" left="200.0" right="220.0" />
                </VBox.margin>
             </HBox>
-            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="480.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="322.0">
+            <TableView fx:id="tabelaUsuarios" maxHeight="480.0" maxWidth="717.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="717.0">
               <columns>
                 <TableColumn fx:id="colTurma" maxWidth="2850.0" minWidth="52.0" prefWidth="100.0" text="Nome/Código" />
                 <TableColumn fx:id="colTurno" maxWidth="2850.0" minWidth="52.0" prefWidth="100.0" text="Turno" />
