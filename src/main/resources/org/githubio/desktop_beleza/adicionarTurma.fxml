@@ -61,9 +61,9 @@
                         <Label text="Turno" textFill="#555555" />
                         <HBox fx:id="grupoTurno" spacing="10.0">
                             <children>
-                                <Button fx:id="btnManha" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selecionarManha" prefHeight="30.0" styleClass="btn-cinza" text="Manhã" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnTarde" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selecionarTarde" prefHeight="30.0" styleClass="btn-cinza" text="Tarde" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnNoite" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selecionarNoite" prefHeight="30.0" styleClass="btn-cinza" text="Noite" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnManha" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  prefHeight="30.0" styleClass="btn-cinza" text="Manhã" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnTarde" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-cinza" text="Tarde" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnNoite" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  prefHeight="30.0" styleClass="btn-cinza" text="Noite" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                     </children>
@@ -80,8 +80,8 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                     <children>
-                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false" onAction="#finalizarESair" prefHeight="40.0" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
-                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false" onAction="#registrarOutra" prefHeight="35.0" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
+                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false"  prefHeight="40.0" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
+                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false"  prefHeight="35.0" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
                     </children>
                 </VBox>
             </children>
