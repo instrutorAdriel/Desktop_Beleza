@@ -1,23 +1,39 @@
-/* Configurações Gerais e Fundo */
-.root {
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-background-color: #f4f7f9; /* Cinza muito claro, quase branco */
-}
 
-/* Barra Lateral (Menu) */
-.sidebar {
-    -fx-background-color: #004587; /* Azul Senac */
-    -fx-padding: 20;
-    -fx-spacing: 15;
+.editar{
+    -fx-background-image: url("../Imagens/editar.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;
 }
-/* Container de navegação (recomendado usar FlowPane ou HBox no FXML) */
+.editar:hover{
+    -fx-background-image: url("../Imagens/editar-blue.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;}
+
+
+.excluir{
+    -fx-background-image: url("../Imagens/lixo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;
+}
+.excluir:hover{
+    -fx-background-image: url("../Imagens/lixo-red.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;}
+
 .nav-container {
     -fx-padding: 20px;
     -fx-alignment: center;
     -fx-hgap: 15px;
     -fx-vgap: 15px;
 }
-
 
 
 /* Estilo dos botões */
@@ -39,10 +55,12 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
 }
 
+
+/* EStilo do botão de sair*/
 .btn-sair{
-    -fx-min-width:102px;
+    -fx-min-width:70px;
     -fx-min-height: 30px;
-    -fx-padding: 10px 25px;
+    -fx-padding: 5px 2px;
     -fx-font-family: "Verdana";
     -fx-font-weight: bold;
 
@@ -63,6 +81,7 @@
 .btn-azul {
     -fx-background-color: #004587;
     -fx-text-fill: white;
+    -fx-font-family: Verdana;
 }
 
 /* Hover dos botões azuis */
@@ -75,6 +94,7 @@
 .btn-cinza {
     -fx-background-color: #efefef;
     -fx-text-fill: #004587;
+    -fx-font-family: Verdana;
 }
 
 /* Hover dos botões cinzas */
@@ -82,5 +102,9 @@
     -fx-background-color: #dddddd;
     -fx-translate-y: -2px;
 }
+
+
+
+
 
 

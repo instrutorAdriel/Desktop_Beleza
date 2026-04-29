@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1035.0" styleClass="root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1035.0" styleClass="root" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
    <center>
       <VBox alignment="CENTER" prefHeight="292.0" prefWidth="677.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -76,9 +76,9 @@
          </VBox.margin></VBox>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" styleClass="sidebar" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #F9F8F6;" styleClass="sidebar" stylesheets="@CSS/Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="btn-azul" stylesheets="@css/style.css" text="Início" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" styleClass="btn-azul" stylesheets="@CSS/Style.css" text="Início" textFill="WHITE">
                <VBox.margin>
                   <Insets top="80.0" />
                </VBox.margin>

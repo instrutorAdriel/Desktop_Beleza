@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+<BorderPane stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
     <center>
-        <VBox spacing="10" stylesheets="@css/style.css">
+        <VBox spacing="10" stylesheets="@CSS/Style.css">
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
                 <children>
                     <Label alignment="CENTER" text="Serviços" textFill="#004587">
