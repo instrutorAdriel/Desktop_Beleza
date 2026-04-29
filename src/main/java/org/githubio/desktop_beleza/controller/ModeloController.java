@@ -50,13 +50,13 @@ public class ModeloController implements Initializable {
 
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
-            private final Button btnEdit = new Button("Editar");
-            private final Button btnDel = new Button("Excluir");
+            private final Button btnEdit = new Button("");
+            private final Button btnDel = new Button("");
             private final HBox container = new HBox(10, btnEdit, btnDel);
 
             {
-                btnEdit.setStyle("-fx-background-color: #004587; -fx-text-fill: white; -fx-cursor: hand;");
-                btnDel.setStyle("-fx-background-color: #d32f2f; -fx-text-fill: white; -fx-cursor: hand;");
+                btnEdit.getStyleClass().add("editar");
+                btnDel.getStyleClass().add("excluir");
                 container.setAlignment(Pos.CENTER);
 
                 btnEdit.setOnAction(e -> abrirDialogoEdicao(getTableRow().getItem()));
