@@ -1,16 +1,22 @@
 package org.githubio.desktop_beleza.model;
 
-
 public class Modelo {
     private int id;
     private String nome;
     private String telefone;
     private String email;
 
-    // Construtor vazio
+    // 1. Construtor vazio (Importante para o JavaFX e instâncias novas)
     public Modelo() {}
 
-    // Construtor completo
+    // 2. NOVO Construtor: Usado pela sua nova DAO (sem o ID no início)
+    public Modelo(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    // 3. Construtor completo: Útil se precisar criar um objeto com tudo de uma vez
     public Modelo(int id, String nome, String telefone, String email) {
         this.id = id;
         this.nome = nome;
@@ -18,7 +24,9 @@ public class Modelo {
         this.email = email;
     }
 
-    // Getters e Setters (Nomes devem bater com o PropertyValueFactory do Controller)
+    // --- Getters e Setters ---
+    // Importante: O PropertyValueFactory("nome") procura o método getNome()
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

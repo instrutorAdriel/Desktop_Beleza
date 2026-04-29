@@ -1,6 +1,5 @@
 package org.githubio.desktop_beleza.controller;
 
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -29,17 +28,24 @@ public class ModeloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Configura as colunas para lerem os atributos da classe Modelo
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        // Configura a coluna de ações (botões)
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
+
+        // Carrega os dados na inicialização
         atualizarTabela();
     }
 
+    // Método atualizado conforme sua solicitação
     private void atualizarTabela() {
-        tabelaModelos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
+        tabelaModelos.setItems(
+                FXCollections.observableArrayList(dao.lerTodos())
+        );
     }
 
     private void configurarColunaAcoes() {
@@ -47,25 +53,35 @@ public class ModeloController implements Initializable {
             private final Button btnEdit = new Button("Editar");
             private final Button btnDel = new Button("Excluir");
             private final HBox container = new HBox(10, btnEdit, btnDel);
+
             {
-                btnEdit.setStyle("-fx-background-color: #004587; -fx-text-fill: white;");
-                btnDel.setStyle("-fx-background-color: #d32f2f; -fx-text-fill: white;");
+                btnEdit.setStyle("-fx-background-color: #004587; -fx-text-fill: white; -fx-cursor: hand;");
+                btnDel.setStyle("-fx-background-color: #d32f2f; -fx-text-fill: white; -fx-cursor: hand;");
                 container.setAlignment(Pos.CENTER);
+
                 btnEdit.setOnAction(e -> abrirDialogoEdicao(getTableRow().getItem()));
                 btnDel.setOnAction(e -> confirmarExclusao(getTableRow().getItem()));
             }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                setGraphic(empty ? null : container);
+                if (empty || getTableRow().getItem() == null) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(container);
+                }
             }
         });
     }
 
     private void abrirDialogoEdicao(Modelo modelo) {
         if (modelo == null) return;
+
+        boolean isNovo = (modelo.getId() == 0);
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Editar Modelo");
+        dialog.setTitle(isNovo ? "Novo Modelo" : "Editar Modelo");
+
         ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
@@ -73,15 +89,23 @@ public class ModeloController implements Initializable {
         TextField txtTel = new TextField(modelo.getTelefone());
         TextField txtEmail = new TextField(modelo.getEmail());
 
-        dialog.getDialogPane().setContent(new VBox(10, new Label("Nome:"), txtNome, new Label("Tel:"), txtTel, new Label("Email:"), txtEmail));
+        dialog.getDialogPane().setContent(new VBox(10,
+                new Label("Nome:"), txtNome,
+                new Label("Tel:"), txtTel,
+                new Label("Email:"), txtEmail));
 
         dialog.showAndWait().ifPresent(r -> {
             if (r == btnSalvar) {
                 modelo.setNome(txtNome.getText());
                 modelo.setTelefone(txtTel.getText());
                 modelo.setEmail(txtEmail.getText());
-                dao.atualizar(modelo);
-                tabelaModelos.refresh();
+
+                if (isNovo) {
+                    dao.cadastrar(modelo);
+                } else {
+                    dao.atualizar(modelo);
+                }
+                atualizarTabela(); // Recarrega a tabela após salvar
             }
         });
     }
@@ -92,23 +116,28 @@ public class ModeloController implements Initializable {
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.YES) {
                 dao.excluir(modelo.getId());
-                tabelaModelos.getItems().remove(modelo);
+                atualizarTabela(); // Recarrega a tabela após excluir
             }
         });
     }
 
     @FXML
     private void abrirTelaAdcionarPopUp() {
-        // Exemplo rápido de cadastro direto
-        abrirDialogoEdicao(new Modelo()); // Use lógica similar para novo modelo
-        atualizarTabela();
+        abrirDialogoEdicao(new Modelo());
     }
 
     @FXML
     private void buscar() {
         String t = txtBuscar.getText().toLowerCase();
-        tabelaModelos.setItems(FXCollections.observableArrayList(
-                dao.lerTodos().stream().filter(m -> m.getNome().toLowerCase().contains(t)).toList()
-        ));
+        if (t.isEmpty()) {
+            atualizarTabela();
+        } else {
+            tabelaModelos.setItems(FXCollections.observableArrayList(
+                    dao.lerTodos().stream()
+                            .filter(m -> m.getNome().toLowerCase().contains(t) ||
+                                    m.getEmail().toLowerCase().contains(t))
+                            .toList()
+            ));
+        }
     }
 }
