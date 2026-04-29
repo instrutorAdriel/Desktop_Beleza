@@ -131,7 +131,7 @@ public class GerenciarTurmaController {
         cbTurno.setValue(usuario.getTurno());
 
         ComboBox<String> cbStatus = new ComboBox<>();
-        cbStatus.getItems().addAll("Em andamento", "Finalizada");
+        cbStatus.getItems().addAll("Em Andamento", "Finalizada");
         cbStatus.setValue(usuario.getStatusTurma());
 
         ComboBox<String> cbInstrutor = new ComboBox<>();

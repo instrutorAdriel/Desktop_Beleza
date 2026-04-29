@@ -112,7 +112,7 @@ public class GerenciarTurmaDAO {
                 // Executa a atualização da Turma
                 stmtT.setString(1, nome);
                 stmtT.setString(2, turno);
-                if(status.equals("Em andamento")){
+                if(status.equals("Em Andamento")){
                     stmtT.setInt(3, 1);
                 }
                 else {
