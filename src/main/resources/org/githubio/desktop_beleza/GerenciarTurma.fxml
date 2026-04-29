@@ -82,7 +82,10 @@
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></TextField>
-                        <Button minHeight="35.0" mnemonicParsing="false"  prefWidth="150.0" styleClass="btn-cinza" text="Adicionar Turma" />
+                        <Button minHeight="35.0" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-cinza" text="Adicionar Turma">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font></Button>
                     </children>
                 </HBox>
 

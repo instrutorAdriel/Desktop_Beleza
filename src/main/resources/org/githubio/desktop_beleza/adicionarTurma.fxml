@@ -11,7 +11,7 @@
     <top>
         <AnchorPane prefHeight="80.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="imgLogo" fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgLogo" fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Imagens/Senac_logo.png" />
                     </image>
@@ -37,7 +37,10 @@
 
                 <VBox maxWidth="300.0" spacing="5.0">
                     <children>
-                        <Label text="Nome da turma" textFill="#555555" />
+                        <Label text="Nome da turma" textFill="#555555">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font></Label>
                         <TextField fx:id="txtNomeTurma" prefHeight="35.0" promptText="Código - Nome do curso">
                             <tooltip>
                                 <Tooltip text="Ex: 2025.08.133 - Técnico em DS" />
@@ -51,37 +54,37 @@
 
                 <VBox maxWidth="300.0" spacing="5.0">
                     <children>
-                        <Label text="Instrutor responsável" textFill="#555555" />
+                        <Label text="Instrutor responsável" textFill="#555555">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font></Label>
                         <ChoiceBox fx:id="comboInstrutor" prefHeight="35.0" prefWidth="300.0" />
                     </children>
                 </VBox>
 
                 <VBox maxWidth="300.0" spacing="5.0">
                     <children>
-                        <Label text="Turno" textFill="#555555" />
+                        <Label text="Turno" textFill="#555555">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font></Label>
                         <HBox fx:id="grupoTurno" spacing="10.0">
                             <children>
-                                <Button fx:id="btnManha" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  prefHeight="30.0" styleClass="btn-cinza" text="Manhã" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnManha" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-cinza" text="Manhã" HBox.hgrow="ALWAYS" />
                                 <Button fx:id="btnTarde" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-cinza" text="Tarde" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnNoite" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  prefHeight="30.0" styleClass="btn-cinza" text="Noite" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnNoite" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-cinza" text="Noite" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                     </children>
                 </VBox>
-
-                <CheckBox mnemonicParsing="false" text="Trabalha em mais de uma turma?">
-                    <VBox.margin>
-                        <Insets top="5.0" />
-                    </VBox.margin>
-                </CheckBox>
 
                 <VBox alignment="CENTER" spacing="10.0">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <children>
-                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false"  prefHeight="40.0" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
-                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false"  prefHeight="35.0" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
+                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false" prefHeight="40.0" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
+                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false" prefHeight="35.0" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
                     </children>
                 </VBox>
             </children>
