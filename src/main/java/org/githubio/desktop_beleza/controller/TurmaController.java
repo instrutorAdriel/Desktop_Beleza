@@ -82,7 +82,7 @@ public class TurmaController {
     void finalizarESair() {
         if (camposValidos()) {
             // Adicionamos o quarto parâmetro aqui:
-            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em andamento");
+            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em Andamento");
 
             Stage stage = (Stage) txtNomeTurma.getScene().getWindow();
             stage.close();
@@ -92,7 +92,7 @@ public class TurmaController {
     @FXML
     void registrarOutra() {
         if (camposValidos()) { // Só entra aqui se tudo estiver preenchido
-            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em andamento");
+            dao.salvarTurma(txtNomeTurma.getText(), turnoSelecionado, comboInstrutor.getValue(), "Em Andamento");
             // Limpa a tela
             txtNomeTurma.clear();
             comboInstrutor.getSelectionModel().clearSelection();
