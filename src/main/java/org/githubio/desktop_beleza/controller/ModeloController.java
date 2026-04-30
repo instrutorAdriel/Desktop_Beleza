@@ -82,8 +82,8 @@ public class ModeloController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle(isNovo ? "Novo Modelo" : "Editar Modelo");
 
-        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
+        ButtonType btnSalvarType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnSalvarType, ButtonType.CANCEL);
 
         TextField txtNome = new TextField(modelo.getNome());
         TextField txtTel = new TextField(modelo.getTelefone());
@@ -91,23 +91,53 @@ public class ModeloController implements Initializable {
 
         dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
-                new Label("Tel:"), txtTel,
+                new Label("Telefone:"), txtTel,
                 new Label("Email:"), txtEmail));
 
-        dialog.showAndWait().ifPresent(r -> {
-            if (r == btnSalvar) {
-                modelo.setNome(txtNome.getText());
-                modelo.setTelefone(txtTel.getText());
-                modelo.setEmail(txtEmail.getText());
+        // Obtemos o botão real para aplicar a lógica de validação sem fechar o diálogo
+        final Button btnSalvar = (Button) dialog.getDialogPane().lookupButton(btnSalvarType);
 
-                if (isNovo) {
-                    dao.cadastrar(modelo);
-                } else {
-                    dao.atualizar(modelo);
-                }
-                atualizarTabela(); // Recarrega a tabela após salvar
+        btnSalvar.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
+            String telRaw = txtTel.getText().replaceAll("\\D", ""); // Remove tudo que não é número
+            String email = txtEmail.getText();
+
+            // 1. Validação do Telefone (Tamanho e Tipo)
+            if (telRaw.length() > 10) {
+                mostrarAlerta("Erro no Telefone", "O telefone não pode ter mais de 10 dígitos.");
+                event.consume(); // Impede o diálogo de fechar
+                return;
             }
+
+            // 2. Validação simples de Email
+            if (!email.contains("@") || !email.contains(".")) {
+                mostrarAlerta("Erro no Email", "Por favor, insira um e-mail válido.");
+                event.consume();
+                return;
+            }
+
+            // Se passar nas validações, atualiza o objeto
+            modelo.setNome(txtNome.getText());
+            modelo.setTelefone(telRaw);
+            modelo.setEmail(email);
+
+            if (isNovo) {
+                dao.cadastrar(modelo);
+            } else {
+                dao.atualizar(modelo);
+            }
+            atualizarTabela();
         });
+
+        dialog.showAndWait();
+    }
+
+    // Método auxiliar para mostrar os avisos
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
     private void confirmarExclusao(Modelo modelo) {
