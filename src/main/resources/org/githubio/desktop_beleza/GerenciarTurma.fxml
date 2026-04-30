@@ -83,13 +83,13 @@
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></TextField>
-                  <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" text="Buscar">
+                  <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#onBuscarTurma" text="Buscar">
                      <styleClass>
                         <String fx:value="btn-cinza" />
                         <String fx:value="btn-cinza" />
                      </styleClass>
                   </Button>
-                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma" />
+                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma" />
                     </children>
                 </HBox>
 
