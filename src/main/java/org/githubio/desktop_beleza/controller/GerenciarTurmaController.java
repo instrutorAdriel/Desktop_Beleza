@@ -197,4 +197,27 @@ public class GerenciarTurmaController {
             e.printStackTrace();
         }
     }
+
+    // Metodos para trocas de telas
+    @FXML
+    public void trocarTelaParaModelos() throws IOException {
+        MainApplication.setRoot("gerenciarmodelo");
+    }
+
+    @FXML
+    public void trocarTelaParaServicos() throws IOException {
+        MainApplication.setRoot("servicos");
+    }
+
+    @FXML
+    public void trocarTelaParaPaginaInicial() throws IOException{
+        MainApplication.setRoot("");
+    }
+
+    @FXML
+    public void sairDoSistema() throws IOException {
+        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
+        MainApplication.setUsuario("");
+        MainApplication.setRoot("login");
+    }
 }

@@ -53,11 +53,11 @@
                         <Insets left="15.0" right="15.0" />
                     </padding>
                     <children>
-                        <Button fx:id="buscarTurmas" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Página inicial">
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="btn-cinza" text="Página inicial">
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Modelos">
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>
@@ -65,7 +65,7 @@
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Turmas">
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>
@@ -74,7 +74,7 @@
                 <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
                 <VBox alignment="CENTER" prefHeight="80.0">
                     <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" styleClass="btn-azul" text="Sair">
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>

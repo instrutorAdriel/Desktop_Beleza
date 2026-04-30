@@ -9,9 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Modelo;
 import org.githubio.desktop_beleza.model.ModeloDAO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -169,5 +171,28 @@ public class ModeloController implements Initializable {
                             .toList()
             ));
         }
+    }
+
+    // Metodos para trocas de telas
+    @FXML
+    public void trocarTelaParaServicos() throws IOException {
+        MainApplication.setRoot("servicos");
+    }
+
+    @FXML
+    public void trocarTelaParaTurmas() throws IOException{
+        MainApplication.setRoot("GerenciarTurma");
+    }
+
+    @FXML
+    public void trocarTelaParaPaginaInicial() throws IOException{
+        MainApplication.setRoot("");
+    }
+
+    @FXML
+    public void sairDoSistema() throws IOException {
+        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
+        MainApplication.setUsuario("");
+        MainApplication.setRoot("login");
     }
 }
