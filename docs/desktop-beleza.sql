@@ -35,7 +35,7 @@ CREATE TABLE tb_status_agenda (
 
 CREATE TABLE tb_turmas (
 	id_turma INTEGER PRIMARY KEY AUTO_INCREMENT,
-    turma VARCHAR(32) UNIQUE NOT NULL,
+    turma VARCHAR(32) NOT NULL,
     turno ENUM("Matutino", "Vespertino", "Noturno"),
     id_status_turma INTEGER,
     FOREIGN KEY (id_status_turma) REFERENCES tb_status_turma(id_status_turma)
@@ -79,5 +79,7 @@ INSERT INTO tb_instrutores(id_instrutor, email_instrutor, senha) VALUES
 (1, "Admin@df.senac.br", "Admin123");
 
 # Serviços pré-definidos no banco de dados
-INSERT INTO tb_servicos(nome_servico) VALUES
-("Cabeleireiro"),("Barbeiro"),("Maquiador"),("Design de Sobrancelhas");
+INSERT INTO tb_servicos(nome_servico, horario_disponivel) VALUES
+("Cabeleireiro", "12:00"),("Barbeiro", "12:00"),("Maquiador", "12:00"),("Design de Sobrancelhas", "12:00");
+
+SELECT * FROM tb_servicos;
