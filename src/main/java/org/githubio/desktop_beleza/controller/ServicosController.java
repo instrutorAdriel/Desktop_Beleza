@@ -239,7 +239,20 @@ public class ServicosController implements Initializable {
     @FXML
     public void sairDoSistema() throws IOException {
         // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
-        MainApplication.setUsuario("");
-        MainApplication.setRoot("login");
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Sair do Sistema");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Você deseja do sair do sistema?");
+
+        // Botões de SIM e NÃO
+        ButtonType botaoSim = new ButtonType("SIM");
+        ButtonType botaoNao = new ButtonType("NÃO");
+
+        alerta.getButtonTypes().setAll(botaoSim, botaoNao);
+
+        if (alerta.showAndWait().get() == botaoSim) {
+            MainApplication.setUsuario("");
+            MainApplication.setRoot("login");
+        }
     }
 }
