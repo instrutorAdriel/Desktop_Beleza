@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <children>
@@ -44,14 +36,14 @@
                 </HBox>
                 <HBox prefHeight="55.0" prefWidth="459.0">
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="713.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" minHeight="35.0" minWidth="150.0" prefHeight="52.0" prefWidth="713.0" spacing="10.0">
                             <children>
-                                <TextField prefHeight="25.0" prefWidth="287.0" promptText="Buscar" />
-                                <Button mnemonicParsing="false" styleClass="btn-cinza" text="Buscar">
+                                <TextField minHeight="35.0" minWidth="263.0" prefHeight="25.0" prefWidth="0.0" promptText="Buscar" />
+                                <Button minHeight="35.0" minWidth="150.0" mnemonicParsing="false" styleClass="btn-cinza" text="Buscar">
                            <font>
                               <Font name="Verdana" size="12.0" />
                            </font></Button>
-                        <Button mnemonicParsing="false" styleClass="btn-azul" text="Adicionar" textFill="WHITE">
+                        <Button minHeight="35.0" minWidth="150.0" mnemonicParsing="false" styleClass="btn-azul" text="Adicionar" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="12.0" />
                            </font>

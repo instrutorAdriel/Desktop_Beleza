@@ -79,17 +79,17 @@
 
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
                     <children>
-                        <TextField fx:id="txtBusca" prefHeight="35.0" promptText="Buscar..." HBox.hgrow="ALWAYS">
+                        <TextField fx:id="txtBusca" prefHeight="35.0" prefWidth="125.0" promptText="Buscar..." HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></TextField>
-                  <Button minHeight="35.0" minWidth="150.0" mnemonicParsing="false" text="Buscar">
+                  <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" text="Buscar">
                      <styleClass>
                         <String fx:value="btn-cinza" />
                         <String fx:value="btn-cinza" />
                      </styleClass>
                   </Button>
-                        <Button minHeight="35.0" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-cinza" text="Adicionar Turma" />
+                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma" />
                     </children>
                 </HBox>
 
