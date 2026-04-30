@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -82,6 +83,12 @@
                      <font>
                         <Font name="Verdana" size="12.0" />
                      </font></TextField>
+                  <Button minHeight="35.0" minWidth="150.0" mnemonicParsing="false" text="Buscar">
+                     <styleClass>
+                        <String fx:value="btn-cinza" />
+                        <String fx:value="btn-cinza" />
+                     </styleClass>
+                  </Button>
                         <Button minHeight="35.0" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-cinza" text="Adicionar Turma" />
                     </children>
                 </HBox>
