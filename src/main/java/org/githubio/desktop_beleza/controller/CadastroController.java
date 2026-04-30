@@ -94,7 +94,7 @@ public class CadastroController {
         Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
         sucesso.setTitle("Cadastro realizado");
         sucesso.setHeaderText(null);
-        sucesso.setContentText("Usuário '"  + "' cadastrado com sucesso!");
+        sucesso.setContentText("Usuário cadastrado com sucesso!");
         sucesso.showAndWait();
 
         // 6. Limpa os campos após o cadastro (boa prática de UX)
