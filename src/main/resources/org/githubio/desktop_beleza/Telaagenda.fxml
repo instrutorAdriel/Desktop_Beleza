@@ -43,12 +43,12 @@
                   <Font name="Verdana" size="12.0" />
                </font>
                   </Button>
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Modelos">
+            <Button mnemonicParsing="false" onAction="#trocarTelaParaModelos" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Modelos">
                <VBox.margin>
                   <Insets left="3.6" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Serviços">
+            <Button mnemonicParsing="false" onAction="#trocarTelaParaServicos" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Serviços">
                <VBox.margin>
                   <Insets left="3.6" />
                </VBox.margin>
@@ -56,7 +56,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Turma">
+            <Button mnemonicParsing="false" onAction="#trocarTelaParaTurmas" prefHeight="23.0" prefWidth="149.0" styleClass="btn-cinza" text="Turma">
                <VBox.margin>
                   <Insets left="3.6" />
                </VBox.margin></Button>
@@ -141,7 +141,7 @@
     <bottom>
         <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
          <children>
-                  <Button layoutX="18.0" layoutY="-10.0" minWidth="100.0" mnemonicParsing="false" styleClass="btn-azul" text="Sair" textFill="WHITE" />
+                  <Button layoutX="18.0" layoutY="-10.0" minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair" textFill="WHITE" />
          </children></AnchorPane>
     </bottom>
 </BorderPane>

@@ -44,7 +44,7 @@ public class LoginController {
         if (logado==true) {
             //IO.println("Login realizado com sucesso!");
             MainApplication.setUsuario(emailDigitado);
-            MainApplication.setRoot("GerenciarTurma");
+            MainApplication.setRoot("Telaagenda");
         }
         else {
             Alert alerta = new Alert(Alert.AlertType.WARNING);

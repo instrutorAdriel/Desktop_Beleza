@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -336,5 +337,41 @@ public class AgendaController {
         List<Agenda> lista = new AgendaDAO()
                 .listarAgendamentosPorSemanaETurma(inicioSemanaAtual, fimSemana, email, idTurma);
         tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
+    }
+
+    // Metodos para trocas de telas
+    @FXML
+    public void trocarTelaParaModelos() throws IOException {
+        MainApplication.setRoot("gerenciarmodelo");
+    }
+
+    @FXML
+    public void trocarTelaParaTurmas() throws IOException {
+        MainApplication.setRoot("GerenciarTurma");
+    }
+
+    @FXML
+    public void trocarTelaParaServicos() throws IOException {
+        MainApplication.setRoot("servico");
+    }
+
+    @FXML
+    public void sairDoSistema() throws IOException {
+        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Sair do Sistema");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Você deseja do sair do sistema?");
+
+        // Botões de SIM e NÃO
+        ButtonType botaoSim = new ButtonType("SIM");
+        ButtonType botaoNao = new ButtonType("NÃO");
+
+        alerta.getButtonTypes().setAll(botaoSim, botaoNao);
+
+        if (alerta.showAndWait().get() == botaoSim) {
+            MainApplication.setUsuario("");
+            MainApplication.setRoot("login");
+        }
     }
 }
