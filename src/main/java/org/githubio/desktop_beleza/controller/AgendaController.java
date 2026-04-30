@@ -1,0 +1,340 @@
+package org.githubio.desktop_beleza.controller;
+
+import org.githubio.desktop_beleza.MainApplication;
+import org.githubio.desktop_beleza.model.Agenda;
+import org.githubio.desktop_beleza.model.AgendaDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public class AgendaController {
+
+    // ── Campos do formulário ──────────────────────────────────────────────────
+    @FXML private ComboBox<String> txtServico;
+    @FXML private DatePicker       dpData;
+    @FXML private TextField        txtCliente;
+    @FXML private TextField        txtHorario;
+
+    // ── ComboBox de turmas ────────────────────────────────────────────────────
+    @FXML private ComboBox<String> cbTurma;
+
+    // ── Tabela ────────────────────────────────────────────────────────────────
+    @FXML private TableView<Agenda>           tabelaAgenda;
+    @FXML private TableColumn<Agenda, String> colData;
+    @FXML private TableColumn<Agenda, String> colServico;
+    @FXML private TableColumn<Agenda, String> colCliente;
+    @FXML private TableColumn<Agenda, String> colHorario;
+    @FXML private TableColumn<Agenda, String> colStatus;
+    @FXML private TableColumn<Agenda, String> colAcao;
+
+    // ── Outros controles ──────────────────────────────────────────────────────
+    @FXML private Label  lblSemanaAtual;
+    @FXML private Button btnVerTodos;
+
+    // ── Estado interno ────────────────────────────────────────────────────────
+    private Agenda    agendaSendoEditada = null;
+    private LocalDate inicioSemanaAtual;
+    private boolean   exibindoTodos     = false;
+
+    // Mapa: label da ComboBox → id_turmas_instrutores real no banco
+    private final Map<String, Integer> mapaTurmas = new HashMap<>();
+
+    // ─────────────────────────────────────────────────────────────────────────
+    @FXML
+    public void initialize() {
+
+        // DatePicker: bloqueia datas passadas
+        dpData.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (date.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #d3d3d3;");
+                }
+            }
+        });
+
+        // Ao selecionar data, filtra semana correspondente
+        dpData.valueProperty().addListener((obs, dataAntiga, dataSelecionada) -> {
+            if (dataSelecionada != null) {
+                exibindoTodos = false;
+                btnVerTodos.setText("Ver todos");
+                inicioSemanaAtual = dataSelecionada.with(DayOfWeek.MONDAY);
+                atualizarTabela();
+            }
+        });
+
+        // Carrega serviços
+        List<String> servicos = new AgendaDAO().listarServicos();
+        txtServico.getItems().addAll(servicos);
+
+        // Carrega turmas do instrutor logado
+        carregarTurmas();
+
+        // Ao trocar de turma na ComboBox → recarrega a tabela automaticamente
+        cbTurma.valueProperty().addListener((obs, antiga, nova) -> {
+            if (nova != null) {
+                exibindoTodos = false;
+                btnVerTodos.setText("Ver todos");
+                atualizarTabela();
+            }
+        });
+
+        // Colunas da tabela
+        colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        // Impede reordenação de colunas
+        tabelaAgenda.getColumns().addListener(new ListChangeListener<TableColumn<Agenda, ?>>() {
+            private boolean suspender = false;
+            @Override
+            public void onChanged(Change<? extends TableColumn<Agenda, ?>> c) {
+                while (c.next()) {
+                    if (!suspender && (c.wasReplaced() || c.wasAdded() || c.wasRemoved())) {
+                        suspender = true;
+                        tabelaAgenda.getColumns().setAll(
+                                colData, colServico, colCliente, colHorario, colStatus, colAcao);
+                        suspender = false;
+                    }
+                }
+            }
+        });
+
+        tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Coluna Status com MenuButton
+        colStatus.setCellFactory(col -> new TableCell<Agenda, String>() {
+            private final MenuItem   itemPendente      = new MenuItem("Pendente");
+            private final MenuItem   itemCompareceu    = new MenuItem("Compareceu");
+            private final MenuItem   itemNaoCompareceu = new MenuItem("Não Compareceu");
+            private final MenuButton mnuOpcoes         = new MenuButton("Status", null,
+                    itemPendente, itemCompareceu, itemNaoCompareceu);
+
+            {
+                itemPendente.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Pendente");
+                    mnuOpcoes.setText("Pendente");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Pendente");
+                });
+                itemCompareceu.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Compareceu");
+                    mnuOpcoes.setText("Compareceu");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Compareceu");
+                });
+                itemNaoCompareceu.setOnAction(e -> {
+                    Agenda item = getTableView().getItems().get(getIndex());
+                    item.setStatus("Não Compareceu");
+                    mnuOpcoes.setText("Não Compareceu");
+                    new AgendaDAO().atualizarStatus(item.getId(), "Não Compareceu");
+                });
+            }
+
+            @Override
+            protected void updateItem(String status, boolean empty) {
+                super.updateItem(status, empty);
+                if (empty || status == null) {
+                    setGraphic(null);
+                } else {
+                    mnuOpcoes.setText(status);
+                    setGraphic(mnuOpcoes);
+                }
+            }
+        });
+
+        // Coluna Ação (Editar / Excluir)
+        colAcao.setCellFactory(parm -> new TableCell<>() {
+            private final MenuButton mnuOpcoes = new MenuButton("...");
+            private final MenuItem   itemEdit  = new MenuItem("Editar");
+            private final MenuItem   itemDel   = new MenuItem("Excluir");
+
+            {
+                mnuOpcoes.getItems().addAll(itemEdit, itemDel);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
+
+                    itemDel.setOnAction(e -> {
+                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                        alerta.setTitle("Excluir Agendamento");
+                        alerta.setHeaderText("Deseja excluir o agendamento de "
+                                + agendaDaLinha.getCliente() + "?");
+                        if (alerta.showAndWait().get() == ButtonType.OK) {
+                            new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
+                            atualizarTabela();
+                        }
+                    });
+
+                    itemEdit.setOnAction(e -> {
+                        txtCliente.setText(agendaDaLinha.getCliente());
+                        txtServico.setValue(agendaDaLinha.getServico());
+                        txtHorario.setText(agendaDaLinha.getHorario());
+                        agendaSendoEditada = agendaDaLinha;
+                    });
+
+                    setGraphic(mnuOpcoes);
+                }
+            }
+        });
+
+        inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
+        atualizarTabela();
+    }
+
+    // ── Carrega turmas do instrutor na cbTurma ────────────────────────────────
+    private void carregarTurmas() {
+        String email = MainApplication.getUsuario();
+        List<String[]> turmas = new AgendaDAO().listarTurmasDoInstrutor(email);
+
+        mapaTurmas.clear();
+        cbTurma.getItems().clear();
+
+        for (String[] turma : turmas) {
+            int    id    = Integer.parseInt(turma[0]);
+            String label = turma[1]; // ex: "Turma B - Vespertino"
+            mapaTurmas.put(label, id);
+            cbTurma.getItems().add(label);
+        }
+
+        if (!cbTurma.getItems().isEmpty()) {
+            cbTurma.getSelectionModel().selectFirst();
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    @FXML
+    protected void onVerTodosClick() {
+        exibindoTodos = !exibindoTodos;
+
+        String email           = MainApplication.getUsuario();
+        String turmaSelecionada = cbTurma.getValue();
+
+        if (exibindoTodos) {
+            btnVerTodos.setText("Ver semana");
+            if (lblSemanaAtual != null)
+                lblSemanaAtual.setText("Exibindo todos os agendamentos");
+
+            if (turmaSelecionada != null) {
+                int idTurma = mapaTurmas.get(turmaSelecionada);
+                tabelaAgenda.setItems(FXCollections.observableArrayList(
+                        new AgendaDAO().listarAgendamentosPorTurma(email, idTurma)
+                ));
+            }
+        } else {
+            btnVerTodos.setText("Ver todos");
+            atualizarTabela();
+        }
+    }
+
+    @FXML
+    protected void onSalvarButtonClick() {
+        if (txtServico.getValue() == null
+                || dpData.getValue() == null
+                || txtCliente.getText().isBlank()
+                || txtHorario.getText().isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Preencha todos os campos!");
+            alert.show();
+            return;
+        }
+
+        String data    = String.valueOf(dpData.getValue());
+        String horario = txtHorario.getText();
+        String cliente = txtCliente.getText();
+        String servico = txtServico.getValue();
+
+        AgendaDAO dao = new AgendaDAO();
+
+        if (agendaSendoEditada != null) {
+            agendaSendoEditada.setData(data);
+            agendaSendoEditada.setServico(servico);
+            agendaSendoEditada.setCliente(cliente);
+            agendaSendoEditada.setHorario(horario);
+            dao.editarAgendamento(agendaSendoEditada);
+            agendaSendoEditada = null;
+
+        } else {
+            int idModelo = dao.cadastrarERetornarIdModelo(cliente);
+            if (idModelo == -1) {
+                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar cliente!").show();
+                return;
+            }
+
+            int idServico = dao.cadastrarERetornarIdServico(servico);
+            if (idServico == -1) {
+                new Alert(Alert.AlertType.ERROR, "Serviço não encontrado!").show();
+                return;
+            }
+
+            // Usa a turma selecionada na ComboBox
+            String turmaSelecionada = cbTurma.getValue();
+            if (turmaSelecionada == null) {
+                new Alert(Alert.AlertType.ERROR, "Selecione uma turma!").show();
+                return;
+            }
+            int idTurmasInstrutores = mapaTurmas.get(turmaSelecionada);
+
+            dao.cadastrarAgendamento(data, horario, 1, idModelo, idServico, idTurmasInstrutores);
+        }
+
+        limparCampos();
+        atualizarTabela();
+    }
+
+    private void limparCampos() {
+        txtCliente.clear();
+        txtHorario.clear();
+        dpData.setValue(null);
+        txtServico.setValue(null);
+        // cbTurma mantém a seleção atual propositalmente
+    }
+
+    // ── Atualiza a tabela sempre filtrada pela turma selecionada ──────────────
+    public void atualizarTabela() {
+        LocalDate fimSemana = inicioSemanaAtual.plusDays(6);
+
+        if (lblSemanaAtual != null) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern(
+                    "EEEE, dd/MM/yyyy", new Locale("pt", "BR"));
+            lblSemanaAtual.setText(
+                    "Início: " + inicioSemanaAtual.format(fmt) + "\n" +
+                            "Fim: "    + fimSemana.format(fmt));
+        }
+
+        String email           = MainApplication.getUsuario();
+        String turmaSelecionada = cbTurma.getValue();
+
+        // Se nenhuma turma selecionada ainda, limpa a tabela
+        if (turmaSelecionada == null) {
+            tabelaAgenda.setItems(FXCollections.observableArrayList());
+            return;
+        }
+
+        int idTurma = mapaTurmas.get(turmaSelecionada);
+
+        List<Agenda> lista = new AgendaDAO()
+                .listarAgendamentosPorSemanaETurma(inicioSemanaAtual, fimSemana, email, idTurma);
+        tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
+    }
+}

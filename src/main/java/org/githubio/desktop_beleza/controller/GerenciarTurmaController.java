@@ -211,7 +211,7 @@ public class GerenciarTurmaController {
 
     @FXML
     public void trocarTelaParaPaginaInicial() throws IOException{
-        MainApplication.setRoot("");
+        MainApplication.setRoot("Telaagenda");
     }
 
     @FXML
