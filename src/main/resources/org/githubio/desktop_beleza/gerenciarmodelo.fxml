@@ -8,7 +8,45 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
     <left>
-        <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+            <children>
+                <VBox spacing="8.0">
+                    <padding>
+                        <Insets left="15.0" right="15.0" />
+                    </padding>
+                    <children>
+                        <Button fx:id="buscarTurmas" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Página inicial">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Modelos">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Serviços">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Turmas">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                    </children>
+                </VBox>
+                <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+                <VBox alignment="CENTER" prefHeight="80.0">
+                    <children>
+                        <Button minWidth="100.0" mnemonicParsing="false" styleClass="btn-azul" text="Sair">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
     </left>
     <bottom>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
@@ -25,32 +63,38 @@
                             <font>
                                 <Font name="Verdana Bold" size="28.0" />
                             </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="55.0" prefWidth="459.0">
+                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="431.0">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="713.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="517.0" spacing="10.0">
                             <children>
                                 <TextField fx:id="txtBuscar" prefHeight="25.0" prefWidth="287.0" promptText="Buscar" />
-                                <Button mnemonicParsing="false" onAction="#buscar" styleClass="btn-cinza" text="Buscar">
+                                <Button minHeight="25.0" minWidth="125.0" mnemonicParsing="false"  styleClass="btn-cinza" text="Buscar">
                                     <font>
                                         <Font name="Verdana" size="12.0" />
                                     </font></Button>
-                                <Button mnemonicParsing="false" onAction="#abrirTelaAdcionarPopUp" styleClass="btn-azul" text="Adicionar" textFill="WHITE">
+                                <Button minHeight="25.0" minWidth="125.0" mnemonicParsing="false"  styleClass="btn-azul" text="Adicionar" textFill="WHITE">
                                     <font>
                                         <Font name="Verdana" size="12.0" />
                                     </font>
                                 </Button>
                             </children>
                             <HBox.margin>
-                                <Insets left="85.0" />
+                                <Insets />
                             </HBox.margin>
                         </HBox>
                     </children>
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
                 </HBox>
                 <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0">
                     <columns>
@@ -60,7 +104,7 @@
                         <TableColumn fx:id="colAcoes" prefWidth="150.0" text="AÇÕES" />
                     </columns>
                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </TableView>
             </children>
@@ -68,21 +112,21 @@
                 <Insets />
             </opaqueInsets>
             <BorderPane.margin>
-                <Insets />
+                <Insets left="10.0" />
             </BorderPane.margin>
             <padding>
                 <Insets top="25.0" />
             </padding>
         </VBox>
     </center>
-   <top>
-      <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
-         <children>
+    <top>
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+            <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Imagens/Senac_logo.png" />
                     </image></ImageView>
-         </children>
-      </Pane>
-   </top>
+            </children>
+        </Pane>
+    </top>
 </BorderPane>
