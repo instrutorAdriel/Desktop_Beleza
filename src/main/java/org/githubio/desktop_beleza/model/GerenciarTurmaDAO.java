@@ -2,6 +2,7 @@ package org.githubio.desktop_beleza.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 
 import java.sql.Connection;
@@ -46,6 +47,43 @@ public class GerenciarTurmaDAO {
                     ));
                 }
              }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    public ObservableList<UsuarioDTO> buscarTurmaPorNome(String turma) throws SQLException {
+        // 1. Adicionei t.status_turma no SELECT
+        String sql = """
+                SELECT t.id_turma, t.turma, t.turno,ti.email_instrutor, st.status_turma
+                FROM rl_turmas_instrutores i
+                INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
+                INNER JOIN tb_instrutores ti ON i.id_instrutor = ti.id_instrutor
+                INNER JOIN tb_status_turma st ON t.id_status_turma = st.id_status_turma
+                where email_instrutor = ? AND t.turma = ?
+    """;
+
+
+        ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, MainApplication.getUsuario());
+            stmt.setString(2, turma);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    // 2. Agora passamos 5 parâmetros para o construtor, incluindo o status!
+                    lista.add(new UsuarioDTO(
+                            rs.getInt("id_turma"),
+                            rs.getString("turma"),
+                            rs.getString("turno"),
+                            rs.getString("email_instrutor"),
+                            rs.getString("status_turma") // PEGA O STATUS AQUI
+                    ));
+                }
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();

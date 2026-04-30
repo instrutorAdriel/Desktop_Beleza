@@ -73,6 +73,15 @@ public class GerenciarTurmaController {
         tabelaUsuarios.sort(); // Aplica a ordenação agora
     }
 
+    @FXML
+    public void onBuscarTurma() throws SQLException{
+        if (!txtBusca.getText().isEmpty()) {
+            listaOriginal.setAll(dao.buscarTurmaPorNome(txtBusca.getText()));
+        } else {
+            atualizarTabela();
+        }
+    }
+
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
             private final Button btnEditar = new Button();

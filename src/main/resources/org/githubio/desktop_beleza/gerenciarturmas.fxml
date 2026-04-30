@@ -28,7 +28,7 @@
                         <Insets />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="25.0" styleClass="btn-cinza" text="Buscar" textFill="#004587" HBox.hgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#onBuscarTurma" prefHeight="25.0" styleClass="btn-cinza" text="Buscar" textFill="#004587" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
