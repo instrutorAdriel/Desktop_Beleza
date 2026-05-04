@@ -5,17 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    
-    /*
+
     private static final String URL = "jdbc:mysql://localhost:3307/db_salao_beleza";
     private static final String USUARIO = "root";
     private static final String SENHA = "senac";
-    */
-    
-        
-    private static final String URL = "jdbc:mysql://192.168.1.15:3306/db_salao_beleza";
-    private static final String USUARIO = "debian";
-    private static final String SENHA = "123";
 
     /**
      * Estabelece uma conexão com o banco de dados.
