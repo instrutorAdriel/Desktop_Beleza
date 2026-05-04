@@ -186,7 +186,7 @@ public class ModeloController implements Initializable {
 
     @FXML
     public void trocarTelaParaPaginaInicial() throws IOException{
-        MainApplication.setRoot("");
+        MainApplication.setRoot("Telaagenda");
     }
 
     @FXML
