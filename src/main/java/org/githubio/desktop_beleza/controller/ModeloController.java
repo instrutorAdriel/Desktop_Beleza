@@ -30,20 +30,16 @@ public class ModeloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Configura as colunas para lerem os atributos da classe Modelo
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        // Configura a coluna de ações (botões)
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
 
-        // Carrega os dados na inicialização
         atualizarTabela();
     }
 
-    // Método atualizado conforme sua solicitação
     private void atualizarTabela() {
         tabelaModelos.setItems(
                 FXCollections.observableArrayList(dao.lerTodos())
@@ -91,33 +87,52 @@ public class ModeloController implements Initializable {
         TextField txtTel = new TextField(modelo.getTelefone());
         TextField txtEmail = new TextField(modelo.getEmail());
 
+        TextFormatter<String> nomeFormatter = new TextFormatter<>(change -> {
+            if (change.getControlNewText().matches("[a-zA-ZÀ-ú ]*")) {
+                return change;
+            }
+            return null;
+        });
+        txtNome.setTextFormatter(nomeFormatter);
+
+        // ── Permite apenas números no telefone (máx. 10 dígitos) ─────────────
+        TextFormatter<String> telefoneFormatter = new TextFormatter<>(change -> {
+            if (change.getControlNewText().matches("\\d{0,11}")) {
+                return change;
+            }
+            return null;
+        });
+        txtTel.setTextFormatter(telefoneFormatter);
+        txtTel.setPromptText("Somente números (máx. 11)");
+        // ─────────────────────────────────────────────────────────────────────
+
         dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Telefone:"), txtTel,
                 new Label("Email:"), txtEmail));
 
-        // Obtemos o botão real para aplicar a lógica de validação sem fechar o diálogo
         final Button btnSalvar = (Button) dialog.getDialogPane().lookupButton(btnSalvarType);
 
         btnSalvar.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-            String telRaw = txtTel.getText().replaceAll("\\D", ""); // Remove tudo que não é número
+            String telRaw = txtTel.getText();
             String email = txtEmail.getText();
 
-            // 1. Validação do Telefone (Tamanho e Tipo)
-            if (telRaw.length() > 10) {
-                mostrarAlerta("Erro no Telefone", "O telefone não pode ter mais de 10 dígitos.");
-                event.consume(); // Impede o diálogo de fechar
+            if (telRaw.length() < 11) {
+                mostrarAlerta("Erro no Telefone", "O telefone deve conter 11 dígitos.");
+                event.consume();
                 return;
             }
 
-            // 2. Validação simples de Email
+            // Validação simples de Email
             if (!email.contains("@") || !email.contains(".")) {
                 mostrarAlerta("Erro no Email", "Por favor, insira um e-mail válido.");
                 event.consume();
                 return;
             }
 
-            // Se passar nas validações, atualiza o objeto
+
+
+
             modelo.setNome(txtNome.getText());
             modelo.setTelefone(telRaw);
             modelo.setEmail(email);
@@ -133,7 +148,6 @@ public class ModeloController implements Initializable {
         dialog.showAndWait();
     }
 
-    // Método auxiliar para mostrar os avisos
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(titulo);
@@ -148,7 +162,7 @@ public class ModeloController implements Initializable {
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.YES) {
                 dao.excluir(modelo.getId());
-                atualizarTabela(); // Recarrega a tabela após excluir
+                atualizarTabela();
             }
         });
     }
@@ -173,31 +187,28 @@ public class ModeloController implements Initializable {
         }
     }
 
-    // Metodos para trocas de telas
     @FXML
     public void trocarTelaParaServicos() throws IOException {
         MainApplication.setRoot("servicos");
     }
 
     @FXML
-    public void trocarTelaParaTurmas() throws IOException{
+    public void trocarTelaParaTurmas() throws IOException {
         MainApplication.setRoot("GerenciarTurma");
     }
 
     @FXML
-    public void trocarTelaParaPaginaInicial() throws IOException{
+    public void trocarTelaParaPaginaInicial() throws IOException {
         MainApplication.setRoot("Telaagenda");
     }
 
     @FXML
     public void sairDoSistema() throws IOException {
-        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Sair do Sistema");
         alerta.setHeaderText(null);
         alerta.setContentText("Você deseja do sair do sistema?");
 
-        // Botões de SIM e NÃO
         ButtonType botaoSim = new ButtonType("SIM");
         ButtonType botaoNao = new ButtonType("NÃO");
 
