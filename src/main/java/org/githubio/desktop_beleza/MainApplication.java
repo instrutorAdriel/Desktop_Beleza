@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 public class MainApplication extends Application {
     private static Scene scene;
@@ -20,6 +21,10 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
+        // Adição do logo como icone
+        Image appIcon = new Image(MainApplication.class.getResource("Imagens/icon.png").toString());
+        stage.getIcons().add(appIcon);
+        
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);
         stage.setMinWidth(MinWidth);
