@@ -352,7 +352,7 @@ public class AgendaController {
 
     @FXML
     public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servico");
+        MainApplication.setRoot("servicos");
     }
 
     @FXML
