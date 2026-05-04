@@ -92,6 +92,7 @@ public class AgendaController {
             }
         });
 
+
         // Colunas da tabela
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
