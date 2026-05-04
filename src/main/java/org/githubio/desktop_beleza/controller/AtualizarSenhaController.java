@@ -3,7 +3,6 @@ package org.githubio.desktop_beleza.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,10 +10,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 
 public class AtualizarSenhaController {
-    @FXML
-    protected void voltarParaLogin() throws IOException {
-        MainApplication.setRoot("login");
-    }
 
     @FXML
     private TextField campoEmail;
@@ -24,56 +19,66 @@ public class AtualizarSenhaController {
     private TextField campoConfirmarSenha;
 
     @FXML
-    public void onAlterarSenha() {
-        String email = campoEmail.getText();
-        String NovaSenha = campoNovaSenha.getText();
-        String ConfirmarSenha = campoConfirmarSenha.getText();
-
-        // 1. Verifica se algum campo está vazio
-        if (email.isBlank() || NovaSenha.isBlank() || ConfirmarSenha.isBlank()) {
-            mostrarErro("Campos obrigatórios", "Por favor, preencha todos os campos.");
-        }
-        // 2. Verifica o domínio do e-mail (O "!" significa "NÃO contém")
-        else if (!email.contains("@df.senac.br")) {
-            mostrarErro("E-mail Inválido", "Use um e-mail institucional (@df.senac.br).");
-        }
-        // 3. Verifica se as senhas são DIFERENTES (O "!" antes de NovaSenha)
-        else if (!NovaSenha.equals(ConfirmarSenha)) {
-            mostrarErro("Erro de Senha", "As senhas não coincidem!");
-        }
-        // 4. Se passar por tudo, sucesso!
-        else {
-            IO.println("Sucesso! Iniciando cadastro...");
-            // Sua lógica de banco de dados aqui
-
-            AtualizarSenhaDAO dao = new AtualizarSenhaDAO();
-
-            boolean existe = dao.instrutorExiste(campoEmail.getText());
-            IO.println(existe);
-            if (existe){
-                try {
-                    String senhaHash = BCrypt.hashpw(campoNovaSenha.getText(), BCrypt.gensalt());
-
-                    // Atualiza a senha
-                    if (dao.atualizarSenha(campoEmail.getText(),senhaHash)){
-                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("Senha Atualizada");
-                        alerta.setHeaderText(null);
-                        alerta.setContentText("A senha do email " + campoEmail.getText() + " foi atualizada com sucesso. Clique em OK para voltar para tela de login.");
-                        alerta.showAndWait();
-
-                        // Load the login FXML
-                        MainApplication.setRoot("login");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    mostrarErro("Erro", e.getMessage());
-                }
-            }
-        }
-
+    protected void voltarParaLogin() throws IOException {
+        MainApplication.setRoot("login");
     }
 
+    @FXML
+    public void onAlterarSenha() {
+        String email = campoEmail.getText();
+        String novaSenha = campoNovaSenha.getText();
+        String confirmarSenha = campoConfirmarSenha.getText();
+
+        // 1. Validação de campos vazios
+        if (email.isBlank() || novaSenha.isBlank() || confirmarSenha.isBlank()) {
+            mostrarErro("Campos obrigatórios", "Por favor, preencha todos os campos.");
+            return;
+        }
+
+        // 2. Validação de domínio institucional
+        if (!email.contains("@df.senac.br")) {
+            mostrarErro("E-mail Inválido", "Use um e-mail institucional (@df.senac.br).");
+            return;
+        }
+
+        // 3. Verificação de coincidência de senhas
+        if (!novaSenha.equals(confirmarSenha)) {
+            mostrarErro("Erro de Senha", "As senhas não coincidem!");
+            return;
+        }
+
+        // 4. Lógica de Banco de Dados
+        AtualizarSenhaDAO dao = new AtualizarSenhaDAO();
+        boolean existe = dao.instrutorExiste(email);
+
+        if (existe) {
+            try {
+                // Criptografa a nova senha antes de salvar
+                String senhaHash = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
+
+                if (dao.atualizarSenha(email, senhaHash)) {
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Sucesso");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Senha atualizada com sucesso para: " + email);
+                    alerta.showAndWait();
+
+                    MainApplication.setRoot("login");
+                }
+            } catch (IOException e) {
+                mostrarErro("Erro de Navegação", "Não foi possível retornar à tela de login.");
+            }
+        }
+        else {
+            // --- NOVO AVISO: E-MAIL NÃO ENCONTRADO NO BANCO ---
+            mostrarErro("E-mail Não Cadastrado", "O e-mail informado não consta em nosso sistema. Verifique os dados.");
+            campoEmail.requestFocus(); // Coloca o foco de volta no campo de e-mail para facilitar a correção
+        }
+    }
+
+    /**
+     * Método utilitário para exibir alertas de erro
+     */
     private void mostrarErro(String titulo, String mensagem) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
@@ -82,12 +87,9 @@ public class AtualizarSenhaController {
         alerta.showAndWait();
     }
 
-    private void limparCamposFormulario(){
+    private void limparCamposFormulario() {
         campoEmail.clear();
         campoNovaSenha.clear();
         campoConfirmarSenha.clear();
     }
 }
-
-
-
