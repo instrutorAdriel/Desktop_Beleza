@@ -77,6 +77,7 @@ public class TurmaController {
         }
         if (txtNomeTurma.getText().length() > 255) {
             mostrarAlerta("O nome da turma não pode ultrapassar 255 caracteres.");
+            return false;
         }
         return true;
     }
