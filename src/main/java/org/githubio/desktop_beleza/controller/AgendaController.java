@@ -1,11 +1,13 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.scene.layout.HBox;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
 import org.githubio.desktop_beleza.model.AgendaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -157,45 +159,56 @@ public class AgendaController {
             }
         });
 
+        // ── Coluna de Ação com botões de ícone (igual ao ModeloController) ────
         colAcao.setCellFactory(parm -> new TableCell<>() {
-            private final MenuButton mnuOpcoes = new MenuButton("...");
-            private final MenuItem   itemEdit  = new MenuItem("Editar");
-            private final MenuItem   itemDel   = new MenuItem("Excluir");
+            private final Button btnEdit      = new Button("");
+            private final Button btnDel       = new Button("");
+            private final HBox   container    = new HBox(10, btnEdit, btnDel);
 
             {
-                mnuOpcoes.getItems().addAll(itemEdit, itemDel);
+                btnEdit.getStyleClass().add("editar");
+                btnDel.getStyleClass().add("excluir");
+                container.setAlignment(Pos.CENTER);
+
+                btnEdit.setOnAction(e -> {
+                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
+                    txtCliente.setText(agendaDaLinha.getCliente());
+                    txtServico.setValue(agendaDaLinha.getServico());
+                    txtHorario.setText(agendaDaLinha.getHorario());
+                    try {
+                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData()));
+                    } catch (Exception ex) {
+                        // Tenta formato alternativo caso getData() não seja yyyy-MM-dd
+                        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData(), fmt));
+                    }
+                    agendaSendoEditada = agendaDaLinha;
+                });
+
+                btnDel.setOnAction(e -> {
+                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
+                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta.setTitle("Excluir Agendamento");
+                    alerta.setHeaderText("Deseja excluir o agendamento de "
+                            + agendaDaLinha.getCliente() + "?");
+                    if (alerta.showAndWait().get() == ButtonType.OK) {
+                        new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
+                        atualizarTabela();
+                    }
+                });
             }
 
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
+                if (empty || getTableRow().getItem() == null) {
                     setGraphic(null);
                 } else {
-                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
-
-                    itemDel.setOnAction(e -> {
-                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("Excluir Agendamento");
-                        alerta.setHeaderText("Deseja excluir o agendamento de "
-                                + agendaDaLinha.getCliente() + "?");
-                        if (alerta.showAndWait().get() == ButtonType.OK) {
-                            new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
-                            atualizarTabela();
-                        }
-                    });
-
-                    itemEdit.setOnAction(e -> {
-                        txtCliente.setText(agendaDaLinha.getCliente());
-                        txtServico.setValue(agendaDaLinha.getServico());
-                        txtHorario.setText(agendaDaLinha.getHorario());
-                        agendaSendoEditada = agendaDaLinha;
-                    });
-
-                    setGraphic(mnuOpcoes);
+                    setGraphic(container);
                 }
             }
         });
+        // ─────────────────────────────────────────────────────────────────────
 
         inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
         atualizarTabela();
