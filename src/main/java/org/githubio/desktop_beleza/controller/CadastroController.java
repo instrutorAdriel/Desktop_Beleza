@@ -88,23 +88,28 @@ public class CadastroController {
 
         CadastroDAO dao = new CadastroDAO();
 
+        if (dao.instrutorExiste(email)) {
+            mostrarErro("E-mail já cadastrado", "Este e-mail já está em uso. Tente outro.");
+            return; // Para o código aqui e não cadastra
+        }
+
+        // Se o código chegar aqui, é porque o e-mail não existe
         dao.cadastrarUsuario(email, senha);
 
         // 5. Informa ao usuário que o cadastro foi realizado
         Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
         sucesso.setTitle("Cadastro realizado");
         sucesso.setHeaderText(null);
-        sucesso.setContentText("Usuário '"  + "' cadastrado com sucesso!");
+        sucesso.setContentText("Usuário cadastrado com sucesso!");
         sucesso.showAndWait();
 
-        // 6. Limpa os campos após o cadastro (boa prática de UX)
+        // 6. Limpa os campos e volta
         campoEmail.clear();
         campoSenha.clear();
         campoConfirmarSenha.clear();
 
-       MainApplication.setRoot("login");
+        MainApplication.setRoot("login");
     }
-
     private void mostrarErro(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
@@ -113,6 +118,4 @@ public class CadastroController {
         alert.showAndWait();
     }
 
-
 }
-
