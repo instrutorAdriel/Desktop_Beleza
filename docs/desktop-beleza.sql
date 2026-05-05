@@ -18,7 +18,7 @@ CREATE TABLE tb_servicos (
     id_servico INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome_servico VARCHAR(64) NOT NULL,
     descricao VARCHAR(255),
-    duracao_tempo TIME
+    duracao TIME
 );
 
 # Status da turma: Em Andamento, Finalizado
