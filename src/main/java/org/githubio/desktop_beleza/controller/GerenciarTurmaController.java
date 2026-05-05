@@ -19,6 +19,7 @@ import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
 
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -37,6 +38,8 @@ public class GerenciarTurmaController {
     // 2. A lista original que o filtro vai observar
     private final ObservableList<UsuarioDTO> listaOriginal = FXCollections.observableArrayList();
 
+    private FilteredList<UsuarioDTO> listaFiltrada;
+
     public void initialize() throws SQLException {
         // Vincula as colunas
         colTurma.setCellValueFactory(new PropertyValueFactory<>("turma"));
@@ -50,19 +53,8 @@ public class GerenciarTurmaController {
         // 2. Carrega os dados
         atualizarTabela();
 
-        // 3. Configuração do Filtro (Busca)
-        FilteredList<UsuarioDTO> listaFiltrada = new FilteredList<>(listaOriginal, p -> true);
-        txtBusca.textProperty().addListener((observable, oldValue, newValue) -> {
-            listaFiltrada.setPredicate(usuario -> {
-                if (newValue == null || newValue.isEmpty()) return true;
-                String filtro = newValue.toLowerCase();
-
-                return usuario.getTurma().toLowerCase().contains(filtro) ||
-                        usuario.getTurno().toLowerCase().contains(filtro) ||
-                        usuario.getNomeInstrutor().toLowerCase().contains(filtro) ||
-                        usuario.getStatusTurma().toLowerCase().contains(filtro);
-            });
-        });
+        listaFiltrada = new FilteredList<>(listaOriginal, p -> true);
+        tabelaUsuarios.setItems(listaFiltrada);
 
         SortedList<UsuarioDTO> listaOrdenada = new SortedList<>(listaFiltrada);
         listaOrdenada.comparatorProperty().bind(tabelaUsuarios.comparatorProperty());
@@ -72,6 +64,25 @@ public class GerenciarTurmaController {
         colTurma.setSortType(TableColumn.SortType.ASCENDING); // Define que é de A a Z
         tabelaUsuarios.sort(); // Aplica a ordenação agora
     }
+
+    @FXML
+    public void btnPesquisarClick() {
+        String filtro = txtBusca.getText().toLowerCase().trim();
+
+        listaFiltrada.setPredicate(usuario -> {
+
+            if (filtro.isEmpty()) {
+                return true;
+            }
+
+
+            return usuario.getTurma().toLowerCase().contains(filtro) ||
+                    usuario.getTurno().toLowerCase().contains(filtro) ||
+                    usuario.getNomeInstrutor().toLowerCase().contains(filtro) ||
+                    usuario.getStatusTurma().toLowerCase().contains(filtro);
+        });
+    }
+
 
     @FXML
     public void onBuscarTurma() throws SQLException{
@@ -165,6 +176,7 @@ public class GerenciarTurmaController {
                 tabelaUsuarios.refresh();
             }
         });
+        tabelaUsuarios.refresh();
     }
 
     @FXML
