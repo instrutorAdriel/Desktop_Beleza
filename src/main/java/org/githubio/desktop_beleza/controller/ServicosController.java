@@ -33,7 +33,7 @@ public class ServicosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+        colHorario.setCellValueFactory(new PropertyValueFactory<>("duração"));
 
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
@@ -95,7 +95,7 @@ public class ServicosController implements Initializable {
         VBox layout = new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc,
-                new Label("Horário:"), inputHora
+                new Label("duração:"), inputHora
         );
 
         dialog.getDialogPane().setContent(layout);
@@ -174,7 +174,7 @@ public class ServicosController implements Initializable {
                 new VBox(10,
                         new Label("Nome:"), txtNome,
                         new Label("Descrição:"), txtDesc,
-                        new Label("Horário:"), inputHora)
+                        new Label("duração:"), inputHora)
         );
 
         dialog.showAndWait().ifPresent(r -> {

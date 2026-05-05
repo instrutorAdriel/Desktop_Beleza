@@ -15,7 +15,7 @@
                         <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="101.0" text="Data" />
                         <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="101.0" text="Servico" />
                         <TableColumn fx:id="colCliente" minWidth="-1.0" prefWidth="101.0" text="Cliente" />
-                        <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="96.0" text="Horario" />
+                        <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="96.0" text="Duração " />
                         <TableColumn fx:id="colStatus" minWidth="-1.0" prefWidth="96.0" text="Status" />
                          <TableColumn fx:id="colAcao" minWidth="-1.0" prefWidth="96.0" text="Ação" />
                     </columns>
