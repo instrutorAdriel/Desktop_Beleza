@@ -25,6 +25,20 @@ public class AgendaDAO {
         }
         return lista;
     }
+    public List<String> listarModelos() {
+        List<String> lista = new ArrayList<>();
+        String sql = "SELECT nome_modelo FROM tb_modelos ORDER BY nome_modelo";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                lista.add(rs.getString("nome_modelo"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao listar modelos: " + e.getMessage());
+        }
+        return lista;
+    }
 
     /**
      * Retorna todas as turmas vinculadas ao instrutor logado.

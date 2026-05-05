@@ -14,8 +14,8 @@
                     <columns>
                         <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="101.0" text="Data" />
                         <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="101.0" text="Servico" />
-                        <TableColumn fx:id="colCliente" minWidth="-1.0" prefWidth="101.0" text="Cliente" />
-                        <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="96.0" text="Horario" />
+                        <TableColumn fx:id="colModelo" minWidth="-1.0" prefWidth="101.0" text="Modelo" />
+                        <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="96.0" text="Horário" />
                         <TableColumn fx:id="colStatus" minWidth="-1.0" prefWidth="96.0" text="Status" />
                          <TableColumn fx:id="colAcao" minWidth="-1.0" prefWidth="96.0" text="Ação" />
                     </columns>
@@ -131,11 +131,10 @@
                                 <Insets left="3.6" right="3.6" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="txtCliente" prefHeight="20.0" prefWidth="120.0" promptText="Inserir Modelo">
-                            <VBox.margin>
-                                <Insets left="3.6" right="3.6" />
-                            </VBox.margin>
-                        </TextField>
+                  <ComboBox fx:id="txtModelo" prefWidth="130.0" promptText="Modelos">
+                     <VBox.margin>
+                        <Insets left="3.6" />
+                     </VBox.margin></ComboBox>
                   <ComboBox fx:id="cbTurma" prefWidth="130.0" promptText="Turmas">
                      <VBox.margin>
                         <Insets left="3.6" />

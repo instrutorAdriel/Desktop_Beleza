@@ -87,7 +87,6 @@
 /* Hover dos botões azuis */
 .btn-azul:hover {
     -fx-background-color: #003466;
-    -fx-translate-y: -2px;
 }
 
 /* Botões cinzas */
@@ -100,5 +99,4 @@
 /* Hover dos botões cinzas */
 .btn-cinza:hover{
     -fx-background-color: #dddddd;
-    -fx-translate-y: -2px;
 }
