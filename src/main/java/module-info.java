@@ -5,6 +5,7 @@ module org.githubio.desktop_beleza {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires jbcrypt;
+    requires java.desktop;
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;
