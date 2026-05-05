@@ -1,6 +1,11 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
 import org.githubio.desktop_beleza.model.AgendaDAO;
@@ -68,7 +73,6 @@ public class AgendaController {
         List<String> servicos = new AgendaDAO().listarServicos();
         txtServico.getItems().addAll(servicos);
 
-        // ── Validação de horário em tempo real ────────────────────────────────
         TextFormatter<String> horarioFormatter = new TextFormatter<>(change -> {
             String novo = change.getControlNewText();
             if (novo.matches("([01]?[0-9]?|2[0-3]?|([01][0-9]|2[0-3]):[0-5]?[0-9]?)")) {
@@ -83,7 +87,6 @@ public class AgendaController {
         });
         txtHorario.setTextFormatter(horarioFormatter);
         txtHorario.setPromptText("HH:mm");
-        // ─────────────────────────────────────────────────────────────────────
 
         carregarTurmas();
 
@@ -158,11 +161,11 @@ public class AgendaController {
             }
         });
 
-        // ── Coluna de Ação com botões de ícone (igual ao ModeloController) ────
+        // ── Coluna de Ação ────────────────────────────────────────────────────
         colAcao.setCellFactory(parm -> new TableCell<>() {
-            private final Button btnEdit      = new Button("");
-            private final Button btnDel       = new Button("");
-            private final HBox   container    = new HBox(10, btnEdit, btnDel);
+            private final Button btnEdit   = new Button("");
+            private final Button btnDel    = new Button("");
+            private final HBox   container = new HBox(10, btnEdit, btnDel);
 
             {
                 btnEdit.getStyleClass().add("editar");
@@ -171,17 +174,7 @@ public class AgendaController {
 
                 btnEdit.setOnAction(e -> {
                     Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
-                    txtCliente.setText(agendaDaLinha.getCliente());
-                    txtServico.setValue(agendaDaLinha.getServico());
-                    txtHorario.setText(agendaDaLinha.getHorario());
-                    try {
-                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData()));
-                    } catch (Exception ex) {
-                        // Tenta formato alternativo caso getData() não seja yyyy-MM-dd
-                        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData(), fmt));
-                    }
-                    agendaSendoEditada = agendaDaLinha;
+                    abrirPopupEdicao(agendaDaLinha);
                 });
 
                 btnDel.setOnAction(e -> {
@@ -212,6 +205,116 @@ public class AgendaController {
         inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
         atualizarTabela();
     }
+
+    // ── Popup de edição ───────────────────────────────────────────────────────
+    private void abrirPopupEdicao(Agenda agendaDaLinha) {
+        Stage popup = new Stage();
+        popup.setTitle("Editar Agendamento");
+        popup.initModality(Modality.APPLICATION_MODAL);
+
+        // ── CORREÇÃO: remove segundos se o horário vier como HH:mm:ss ─────────
+        String horarioLimpo = agendaDaLinha.getHorario();
+        if (horarioLimpo != null && horarioLimpo.matches("([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]")) {
+            horarioLimpo = horarioLimpo.substring(0, 5);
+        }
+        // ─────────────────────────────────────────────────────────────────────
+
+        TextField campoCliente = new TextField(agendaDaLinha.getCliente());
+
+        ComboBox<String> campoServico = new ComboBox<>();
+        campoServico.getItems().addAll(txtServico.getItems());
+        campoServico.setValue(agendaDaLinha.getServico());
+
+        TextField campoHorario = new TextField(horarioLimpo);
+        campoHorario.setPromptText("HH:mm");
+
+        TextFormatter<String> horarioPopupFormatter = new TextFormatter<>(change -> {
+            String novo = change.getControlNewText();
+            if (novo.matches("([01]?[0-9]?|2[0-3]?|([01][0-9]|2[0-3]):[0-5]?[0-9]?)")) {
+                if (change.getText().matches("[0-9]") && novo.length() == 2 && !novo.contains(":")) {
+                    change.setText(change.getText() + ":");
+                    change.setCaretPosition(change.getCaretPosition() + 1);
+                    change.setAnchor(change.getAnchor() + 1);
+                }
+                return change;
+            }
+            return null;
+        });
+        campoHorario.setTextFormatter(horarioPopupFormatter);
+
+        DatePicker campoData = new DatePicker();
+        campoData.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (date.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #d3d3d3;");
+                }
+            }
+        });
+        try {
+            campoData.setValue(LocalDate.parse(agendaDaLinha.getData()));
+        } catch (Exception ex) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            campoData.setValue(LocalDate.parse(agendaDaLinha.getData(), fmt));
+        }
+
+        javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
+        grid.setHgap(10);
+        grid.setVgap(12);
+        grid.setPadding(new Insets(20));
+
+        grid.add(new Label("Cliente:"),  0, 0); grid.add(campoCliente,  1, 0);
+        grid.add(new Label("Serviço:"),  0, 1); grid.add(campoServico,  1, 1);
+        grid.add(new Label("Horário:"),  0, 2); grid.add(campoHorario,  1, 2);
+        grid.add(new Label("Data:"),     0, 3); grid.add(campoData,     1, 3);
+
+        Button btnSalvar   = new Button("Salvar");
+        Button btnCancelar = new Button("Cancelar");
+
+        btnSalvar.setOnAction(ev -> {
+            if (campoCliente.getText().isBlank()
+                    || campoServico.getValue() == null
+                    || campoHorario.getText().isBlank()
+                    || campoData.getValue() == null) {
+                Alert aviso = new Alert(Alert.AlertType.WARNING);
+                aviso.setContentText("Preencha todos os campos!");
+                aviso.show();
+                return;
+            }
+
+            if (!campoHorario.getText().matches("([01][0-9]|2[0-3]):[0-5][0-9]")) {
+                Alert aviso = new Alert(Alert.AlertType.WARNING);
+                aviso.setTitle("Horário inválido");
+                aviso.setContentText("Informe o horário no formato HH:mm (ex: 09:30)");
+                aviso.show();
+                return;
+            }
+
+            agendaDaLinha.setCliente(campoCliente.getText());
+            agendaDaLinha.setServico(campoServico.getValue());
+            agendaDaLinha.setHorario(campoHorario.getText());
+            agendaDaLinha.setData(campoData.getValue().toString());
+
+            new AgendaDAO().editarAgendamento(agendaDaLinha);
+            tabelaAgenda.refresh();
+            popup.close();
+        });
+
+        btnCancelar.setOnAction(ev -> popup.close());
+
+        HBox botoes = new HBox(10, btnSalvar, btnCancelar);
+        botoes.setAlignment(Pos.CENTER_RIGHT);
+        botoes.setPadding(new Insets(0, 20, 15, 0));
+
+        VBox layout = new VBox(10, grid, botoes);
+
+        popup.setScene(new Scene(layout, 360, 250));
+        popup.setResizable(false);
+        popup.showAndWait();
+    }
+    // ─────────────────────────────────────────────────────────────────────────
 
     private void carregarTurmas() {
         String email = MainApplication.getUsuario();
@@ -268,7 +371,6 @@ public class AgendaController {
             return;
         }
 
-        // ── Valida formato HH:mm completo antes de salvar ─────────────────────
         String horario = txtHorario.getText();
         if (!horario.matches("([01][0-9]|2[0-3]):[0-5][0-9]")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -277,7 +379,6 @@ public class AgendaController {
             alert.show();
             return;
         }
-        // ─────────────────────────────────────────────────────────────────────
 
         String data    = String.valueOf(dpData.getValue());
         String cliente = txtCliente.getText();
