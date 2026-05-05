@@ -11,14 +11,14 @@ CREATE TABLE tb_modelos (
     id_modelo INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome_modelo VARCHAR(96) NOT NULL,
     email VARCHAR(64) UNIQUE,
-    telefone INT(10)
+    telefone VARCHAR(11)
 );
 
 CREATE TABLE tb_servicos (
     id_servico INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome_servico VARCHAR(64) NOT NULL,
     descricao VARCHAR(255),
-    horario_disponivel TIME
+    duracao_tempo TIME
 );
 
 # Status da turma: Em Andamento, Finalizado

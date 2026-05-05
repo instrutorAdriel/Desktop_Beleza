@@ -20,16 +20,11 @@ import java.util.Map;
 
 public class AgendaController {
 
-    // ── Campos do formulário ──────────────────────────────────────────────────
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker       dpData;
     @FXML private TextField        txtCliente;
     @FXML private TextField        txtHorario;
-
-    // ── ComboBox de turmas ────────────────────────────────────────────────────
     @FXML private ComboBox<String> cbTurma;
-
-    // ── Tabela ────────────────────────────────────────────────────────────────
     @FXML private TableView<Agenda>           tabelaAgenda;
     @FXML private TableColumn<Agenda, String> colData;
     @FXML private TableColumn<Agenda, String> colServico;
@@ -37,24 +32,17 @@ public class AgendaController {
     @FXML private TableColumn<Agenda, String> colHorario;
     @FXML private TableColumn<Agenda, String> colStatus;
     @FXML private TableColumn<Agenda, String> colAcao;
-
-    // ── Outros controles ──────────────────────────────────────────────────────
     @FXML private Label  lblSemanaAtual;
     @FXML private Button btnVerTodos;
 
-    // ── Estado interno ────────────────────────────────────────────────────────
     private Agenda    agendaSendoEditada = null;
     private LocalDate inicioSemanaAtual;
     private boolean   exibindoTodos     = false;
-
-    // Mapa: label da ComboBox → id_turmas_instrutores real no banco
     private final Map<String, Integer> mapaTurmas = new HashMap<>();
 
-    // ─────────────────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
 
-        // DatePicker: bloqueia datas passadas
         dpData.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -66,7 +54,6 @@ public class AgendaController {
             }
         });
 
-        // Ao selecionar data, filtra semana correspondente
         dpData.valueProperty().addListener((obs, dataAntiga, dataSelecionada) -> {
             if (dataSelecionada != null) {
                 exibindoTodos = false;
@@ -76,14 +63,28 @@ public class AgendaController {
             }
         });
 
-        // Carrega serviços
         List<String> servicos = new AgendaDAO().listarServicos();
         txtServico.getItems().addAll(servicos);
 
-        // Carrega turmas do instrutor logado
+        // ── Validação de horário em tempo real ────────────────────────────────
+        TextFormatter<String> horarioFormatter = new TextFormatter<>(change -> {
+            String novo = change.getControlNewText();
+            if (novo.matches("([01]?[0-9]?|2[0-3]?|([01][0-9]|2[0-3]):[0-5]?[0-9]?)")) {
+                if (change.getText().matches("[0-9]") && novo.length() == 2 && !novo.contains(":")) {
+                    change.setText(change.getText() + ":");
+                    change.setCaretPosition(change.getCaretPosition() + 1);
+                    change.setAnchor(change.getAnchor() + 1);
+                }
+                return change;
+            }
+            return null;
+        });
+        txtHorario.setTextFormatter(horarioFormatter);
+        txtHorario.setPromptText("HH:mm");
+        // ─────────────────────────────────────────────────────────────────────
+
         carregarTurmas();
 
-        // Ao trocar de turma na ComboBox → recarrega a tabela automaticamente
         cbTurma.valueProperty().addListener((obs, antiga, nova) -> {
             if (nova != null) {
                 exibindoTodos = false;
@@ -92,7 +93,6 @@ public class AgendaController {
             }
         });
 
-
         // Colunas da tabela
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
@@ -100,7 +100,6 @@ public class AgendaController {
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Impede reordenação de colunas
         tabelaAgenda.getColumns().addListener(new ListChangeListener<TableColumn<Agenda, ?>>() {
             private boolean suspender = false;
             @Override
@@ -118,7 +117,6 @@ public class AgendaController {
 
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Coluna Status com MenuButton
         colStatus.setCellFactory(col -> new TableCell<Agenda, String>() {
             private final MenuItem   itemPendente      = new MenuItem("Pendente");
             private final MenuItem   itemCompareceu    = new MenuItem("Compareceu");
@@ -159,7 +157,6 @@ public class AgendaController {
             }
         });
 
-        // Coluna Ação (Editar / Excluir)
         colAcao.setCellFactory(parm -> new TableCell<>() {
             private final MenuButton mnuOpcoes = new MenuButton("...");
             private final MenuItem   itemEdit  = new MenuItem("Editar");
@@ -204,7 +201,6 @@ public class AgendaController {
         atualizarTabela();
     }
 
-    // ── Carrega turmas do instrutor na cbTurma ────────────────────────────────
     private void carregarTurmas() {
         String email = MainApplication.getUsuario();
         List<String[]> turmas = new AgendaDAO().listarTurmasDoInstrutor(email);
@@ -214,7 +210,7 @@ public class AgendaController {
 
         for (String[] turma : turmas) {
             int    id    = Integer.parseInt(turma[0]);
-            String label = turma[1]; // ex: "Turma B - Vespertino"
+            String label = turma[1];
             mapaTurmas.put(label, id);
             cbTurma.getItems().add(label);
         }
@@ -224,12 +220,11 @@ public class AgendaController {
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
     @FXML
     protected void onVerTodosClick() {
         exibindoTodos = !exibindoTodos;
 
-        String email           = MainApplication.getUsuario();
+        String email            = MainApplication.getUsuario();
         String turmaSelecionada = cbTurma.getValue();
 
         if (exibindoTodos) {
@@ -261,8 +256,18 @@ public class AgendaController {
             return;
         }
 
-        String data    = String.valueOf(dpData.getValue());
+        // ── Valida formato HH:mm completo antes de salvar ─────────────────────
         String horario = txtHorario.getText();
+        if (!horario.matches("([01][0-9]|2[0-3]):[0-5][0-9]")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Horário inválido");
+            alert.setContentText("Informe o horário no formato HH:mm (ex: 09:30)");
+            alert.show();
+            return;
+        }
+        // ─────────────────────────────────────────────────────────────────────
+
+        String data    = String.valueOf(dpData.getValue());
         String cliente = txtCliente.getText();
         String servico = txtServico.getValue();
 
@@ -289,7 +294,6 @@ public class AgendaController {
                 return;
             }
 
-            // Usa a turma selecionada na ComboBox
             String turmaSelecionada = cbTurma.getValue();
             if (turmaSelecionada == null) {
                 new Alert(Alert.AlertType.ERROR, "Selecione uma turma!").show();
@@ -309,10 +313,8 @@ public class AgendaController {
         txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
-        // cbTurma mantém a seleção atual propositalmente
     }
 
-    // ── Atualiza a tabela sempre filtrada pela turma selecionada ──────────────
     public void atualizarTabela() {
         LocalDate fimSemana = inicioSemanaAtual.plusDays(6);
 
@@ -324,10 +326,9 @@ public class AgendaController {
                             "Fim: "    + fimSemana.format(fmt));
         }
 
-        String email           = MainApplication.getUsuario();
+        String email            = MainApplication.getUsuario();
         String turmaSelecionada = cbTurma.getValue();
 
-        // Se nenhuma turma selecionada ainda, limpa a tabela
         if (turmaSelecionada == null) {
             tabelaAgenda.setItems(FXCollections.observableArrayList());
             return;
@@ -340,7 +341,6 @@ public class AgendaController {
         tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
     }
 
-    // Metodos para trocas de telas
     @FXML
     public void trocarTelaParaModelos() throws IOException {
         MainApplication.setRoot("gerenciarmodelo");
@@ -353,18 +353,16 @@ public class AgendaController {
 
     @FXML
     public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servico");
+        MainApplication.setRoot("servicos");
     }
 
     @FXML
     public void sairDoSistema() throws IOException {
-        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Sair do Sistema");
         alerta.setHeaderText(null);
         alerta.setContentText("Você deseja do sair do sistema?");
 
-        // Botões de SIM e NÃO
         ButtonType botaoSim = new ButtonType("SIM");
         ButtonType botaoNao = new ButtonType("NÃO");
 
