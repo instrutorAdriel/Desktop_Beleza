@@ -55,7 +55,7 @@ CREATE TABLE tb_agenda (
     id_turmas_instrutores INTEGER,
     id_modelo INTEGER,
     data_agenda DATE NOT NULL,
-    horario_agenda TIME NOT NULL,
+    Duracao_agenda TIME NOT NULL,
     id_status_agenda INTEGER,
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico),
     FOREIGN KEY (id_turmas_instrutores) REFERENCES rl_turmas_instrutores(id_turmas_instrutores),

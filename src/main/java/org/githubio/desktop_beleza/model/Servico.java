@@ -4,21 +4,21 @@ public class Servico {
     private int id;
     private String nome;
     private String descricao;
-    private String horario;
+    private String duracao;
 
     // Construtor completo (útil para o DAO)
-    public Servico(int id, String nome, String descricao, String horario) {
+    public Servico(int id, String nome, String descricao, String duracao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.horario = horario;
+        this.duracao = duracao;
     }
 
     // Construtor sem ID (útil para novos cadastros antes de irem ao banco)
-    public Servico(String nome, String descricao, String horario) {
+    public Servico(String nome, String descricao, String duracao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.horario = horario;
+        this.duracao = duracao;
     }
 
     // Construtor vazio (exigido por algumas bibliotecas e boa prática)
@@ -50,12 +50,12 @@ public class Servico {
         this.descricao = descricao;
     }
 
-    public String getHorario() {
-        return horario;
+    public String getDuracao() {
+        return duracao;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
     }
 
     // Opcional: Sobrescrever o toString ajuda no debug
