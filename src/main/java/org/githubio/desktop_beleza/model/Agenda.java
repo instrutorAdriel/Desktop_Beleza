@@ -5,17 +5,17 @@ public class Agenda {
     private String data;
     private String servico;
 
-    private String cliente;
+    private String modelo;
     private String status;
     private String horario;
 
-    // Construtor ajustado para a ordem da DAO: id, pratica, data, horario, status, cliente, servico
-    public Agenda(int id, String data, String horario, String status, String cliente, String servico) {
+    // Construtor ajustado para a ordem da DAO: id, pratica, data, horario, status, modelo, servico
+    public Agenda(int id, String data, String horario, String status, String modelo, String servico) {
         this.id = id;
         this.data = data;
         this.horario = horario;
         this.status = status;
-        this.cliente = cliente;
+        this.modelo = modelo;
         this.servico = servico;
     }
 
@@ -29,8 +29,8 @@ public class Agenda {
     public String getServico() { return servico; }
     public void setServico(String servico) { this.servico = servico; }
 
-    public String getCliente() { return cliente; }
-    public void setCliente(String cliente) { this.cliente = cliente; }
+    public String getModelo() { return modelo; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
 
     public String getHorario() { return horario; }
     public void setHorario(String horario) { this.horario = horario; }

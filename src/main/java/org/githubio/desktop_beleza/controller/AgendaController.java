@@ -24,13 +24,13 @@ public class AgendaController {
 
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker       dpData;
-    @FXML private TextField        txtCliente;
+    @FXML private TextField        txtModelo;
     @FXML private TextField        txtHorario;
     @FXML private ComboBox<String> cbTurma;
     @FXML private TableView<Agenda>           tabelaAgenda;
     @FXML private TableColumn<Agenda, String> colData;
     @FXML private TableColumn<Agenda, String> colServico;
-    @FXML private TableColumn<Agenda, String> colCliente;
+    @FXML private TableColumn<Agenda, String> colModelo;
     @FXML private TableColumn<Agenda, String> colHorario;
     @FXML private TableColumn<Agenda, String> colStatus;
     @FXML private TableColumn<Agenda, String> colAcao;
@@ -44,7 +44,7 @@ public class AgendaController {
 
     @FXML
     public void initialize() {
-
+        btnVerTodos.setText("Ver semana");
         dpData.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -59,7 +59,7 @@ public class AgendaController {
         dpData.valueProperty().addListener((obs, dataAntiga, dataSelecionada) -> {
             if (dataSelecionada != null) {
                 exibindoTodos = false;
-                btnVerTodos.setText("Ver todos");
+                btnVerTodos.setText("Ver semana");
                 inicioSemanaAtual = dataSelecionada.with(DayOfWeek.MONDAY);
                 atualizarTabela();
             }
@@ -89,7 +89,7 @@ public class AgendaController {
 
         cbTurma.valueProperty().addListener((obs, antiga, nova) -> {
             if (nova != null) {
-                exibindoTodos = false;
+                exibindoTodos = true;
                 btnVerTodos.setText("Ver todos");
                 atualizarTabela();
             }
@@ -98,7 +98,7 @@ public class AgendaController {
         // Colunas da tabela
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
-        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
@@ -110,7 +110,7 @@ public class AgendaController {
                     if (!suspender && (c.wasReplaced() || c.wasAdded() || c.wasRemoved())) {
                         suspender = true;
                         tabelaAgenda.getColumns().setAll(
-                                colData, colServico, colCliente, colHorario, colStatus, colAcao);
+                                colData, colServico, colModelo, colHorario, colStatus, colAcao);
                         suspender = false;
                     }
                 }
@@ -172,7 +172,7 @@ public class AgendaController {
 
                 btnEdit.setOnAction(e -> {
                     Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
-                    txtCliente.setText(agendaDaLinha.getCliente());
+                    txtModelo.setText(agendaDaLinha.getModelo());
                     txtServico.setValue(agendaDaLinha.getServico());
                     txtHorario.setText(agendaDaLinha.getHorario());
                     try {
@@ -190,7 +190,7 @@ public class AgendaController {
                     Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                     alerta.setTitle("Excluir Agendamento");
                     alerta.setHeaderText("Deseja excluir o agendamento de "
-                            + agendaDaLinha.getCliente() + "?");
+                            + agendaDaLinha.getModelo() + "?");
                     if (alerta.showAndWait().get() == ButtonType.OK) {
                         new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
                         atualizarTabela();
@@ -241,7 +241,7 @@ public class AgendaController {
         String turmaSelecionada = cbTurma.getValue();
 
         if (exibindoTodos) {
-            btnVerTodos.setText("Ver semana");
+            btnVerTodos.setText("Ver todos");
             if (lblSemanaAtual != null)
                 lblSemanaAtual.setText("Exibindo todos os agendamentos");
 
@@ -252,7 +252,7 @@ public class AgendaController {
                 ));
             }
         } else {
-            btnVerTodos.setText("Ver todos");
+            btnVerTodos.setText("Ver semana");
             atualizarTabela();
         }
     }
@@ -261,7 +261,7 @@ public class AgendaController {
     protected void onSalvarButtonClick() {
         if (txtServico.getValue() == null
                 || dpData.getValue() == null
-                || txtCliente.getText().isBlank()
+                || txtModelo.getText().isBlank()
                 || txtHorario.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Preencha todos os campos!");
@@ -281,7 +281,7 @@ public class AgendaController {
         // ─────────────────────────────────────────────────────────────────────
 
         String data    = String.valueOf(dpData.getValue());
-        String cliente = txtCliente.getText();
+        String Modelo = txtModelo.getText();
         String servico = txtServico.getValue();
 
         AgendaDAO dao = new AgendaDAO();
@@ -289,15 +289,15 @@ public class AgendaController {
         if (agendaSendoEditada != null) {
             agendaSendoEditada.setData(data);
             agendaSendoEditada.setServico(servico);
-            agendaSendoEditada.setCliente(cliente);
+            agendaSendoEditada.setModelo(Modelo);
             agendaSendoEditada.setHorario(horario);
             dao.editarAgendamento(agendaSendoEditada);
             agendaSendoEditada = null;
 
         } else {
-            int idModelo = dao.cadastrarERetornarIdModelo(cliente);
+            int idModelo = dao.cadastrarERetornarIdModelo(Modelo);
             if (idModelo == -1) {
-                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar cliente!").show();
+                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar Modelo!").show();
                 return;
             }
 
@@ -322,7 +322,7 @@ public class AgendaController {
     }
 
     private void limparCampos() {
-        txtCliente.clear();
+        txtModelo.clear();
         txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
