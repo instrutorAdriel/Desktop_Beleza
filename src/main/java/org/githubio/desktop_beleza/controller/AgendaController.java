@@ -23,7 +23,7 @@ public class AgendaController {
     // ── Campos do formulário ──────────────────────────────────────────────────
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker       dpData;
-    @FXML private TextField        txtCliente;
+    @FXML private ComboBox<String> txtModelo;
     @FXML private TextField        txtHorario;
 
     // ── ComboBox de turmas ────────────────────────────────────────────────────
@@ -54,6 +54,13 @@ public class AgendaController {
     @FXML
     public void initialize() {
 
+        // Carrega serviços e modelos — apenas UMA vez
+        List<String> servicos = new AgendaDAO().listarServicos();
+        txtServico.getItems().addAll(servicos);
+
+        List<String> modelos = new AgendaDAO().listarModelos();
+        txtModelo.getItems().addAll(modelos);
+
         // DatePicker: bloqueia datas passadas
         dpData.setDayCellFactory(picker -> new DateCell() {
             @Override
@@ -75,10 +82,6 @@ public class AgendaController {
                 atualizarTabela();
             }
         });
-
-        // Carrega serviços
-        List<String> servicos = new AgendaDAO().listarServicos();
-        txtServico.getItems().addAll(servicos);
 
         // Carrega turmas do instrutor logado
         carregarTurmas();
@@ -188,7 +191,7 @@ public class AgendaController {
                     });
 
                     itemEdit.setOnAction(e -> {
-                        txtCliente.setText(agendaDaLinha.getCliente());
+                        txtModelo.setValue(agendaDaLinha.getCliente());
                         txtServico.setValue(agendaDaLinha.getServico());
                         txtHorario.setText(agendaDaLinha.getHorario());
                         agendaSendoEditada = agendaDaLinha;
@@ -228,7 +231,7 @@ public class AgendaController {
     protected void onVerTodosClick() {
         exibindoTodos = !exibindoTodos;
 
-        String email           = MainApplication.getUsuario();
+        String email            = MainApplication.getUsuario();
         String turmaSelecionada = cbTurma.getValue();
 
         if (exibindoTodos) {
@@ -252,8 +255,9 @@ public class AgendaController {
     protected void onSalvarButtonClick() {
         if (txtServico.getValue() == null
                 || dpData.getValue() == null
-                || txtCliente.getText().isBlank()
-                || txtHorario.getText().isBlank()) {
+                || txtModelo.getValue() == null
+                || txtHorario.getText().isBlank()
+                || cbTurma.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Preencha todos os campos!");
             alert.show();
@@ -262,7 +266,7 @@ public class AgendaController {
 
         String data    = String.valueOf(dpData.getValue());
         String horario = txtHorario.getText();
-        String cliente = txtCliente.getText();
+        String cliente = txtModelo.getValue();
         String servico = txtServico.getValue();
 
         AgendaDAO dao = new AgendaDAO();
@@ -274,11 +278,10 @@ public class AgendaController {
             agendaSendoEditada.setHorario(horario);
             dao.editarAgendamento(agendaSendoEditada);
             agendaSendoEditada = null;
-
         } else {
             int idModelo = dao.cadastrarERetornarIdModelo(cliente);
             if (idModelo == -1) {
-                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar cliente!").show();
+                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar modelo!").show();
                 return;
             }
 
@@ -288,7 +291,6 @@ public class AgendaController {
                 return;
             }
 
-            // Usa a turma selecionada na ComboBox
             String turmaSelecionada = cbTurma.getValue();
             if (turmaSelecionada == null) {
                 new Alert(Alert.AlertType.ERROR, "Selecione uma turma!").show();
@@ -304,7 +306,7 @@ public class AgendaController {
     }
 
     private void limparCampos() {
-        txtCliente.clear();
+        txtModelo.setValue(null);
         txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
@@ -323,10 +325,9 @@ public class AgendaController {
                             "Fim: "    + fimSemana.format(fmt));
         }
 
-        String email           = MainApplication.getUsuario();
+        String email            = MainApplication.getUsuario();
         String turmaSelecionada = cbTurma.getValue();
 
-        // Se nenhuma turma selecionada ainda, limpa a tabela
         if (turmaSelecionada == null) {
             tabelaAgenda.setItems(FXCollections.observableArrayList());
             return;
@@ -339,7 +340,7 @@ public class AgendaController {
         tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
     }
 
-    // Metodos para trocas de telas
+    // ── Troca de telas ────────────────────────────────────────────────────────
     @FXML
     public void trocarTelaParaModelos() throws IOException {
         MainApplication.setRoot("gerenciarmodelo");
@@ -357,16 +358,13 @@ public class AgendaController {
 
     @FXML
     public void sairDoSistema() throws IOException {
-        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Sair do Sistema");
         alerta.setHeaderText(null);
-        alerta.setContentText("Você deseja do sair do sistema?");
+        alerta.setContentText("Você deseja sair do sistema?");
 
-        // Botões de SIM e NÃO
         ButtonType botaoSim = new ButtonType("SIM");
         ButtonType botaoNao = new ButtonType("NÃO");
-
         alerta.getButtonTypes().setAll(botaoSim, botaoNao);
 
         if (alerta.showAndWait().get() == botaoSim) {
