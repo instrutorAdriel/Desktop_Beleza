@@ -20,7 +20,7 @@ public class ServicosDAO {
                 Servico s = new Servico(
                         rs.getString("nome_servico"),
                         rs.getString("descricao"),
-                        rs.getString("horario_disponivel")
+                        rs.getString("duracao")
                 );
                 s.setId(rs.getInt("id_servico"));
                 lista.add(s);
@@ -35,7 +35,7 @@ public class ServicosDAO {
     public void inserir(Servico servico) {
         String sql = """
             INSERT INTO tb_servicos 
-            (nome_servico, descricao, horario_disponivel)
+            (nome_servico, descricao, duracao)
             VALUES (?, ?, ?)
         """;
 
@@ -44,7 +44,7 @@ public class ServicosDAO {
 
             stmt.setString(1, servico.getNome());
             stmt.setString(2, servico.getDescricao());
-            stmt.setString(3, servico.getHorario());
+            stmt.setString(3, servico.getDuracao());
 
             stmt.executeUpdate();
 
@@ -58,7 +58,7 @@ public class ServicosDAO {
             UPDATE tb_servicos
             SET nome_servico = ?,
                 descricao = ?,
-                horario_disponivel = ?
+                duracao = ?
             WHERE id_servico = ?
         """;
 
@@ -67,7 +67,7 @@ public class ServicosDAO {
 
             stmt.setString(1, servico.getNome());
             stmt.setString(2, servico.getDescricao());
-            stmt.setString(3, servico.getHorario());
+            stmt.setString(3, servico.getDuracao());
             stmt.setInt(4, servico.getId());
 
             stmt.executeUpdate();

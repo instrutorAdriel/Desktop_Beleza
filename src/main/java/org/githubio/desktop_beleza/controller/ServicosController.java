@@ -23,7 +23,7 @@ public class ServicosController implements Initializable {
     @FXML private TableView<Servico> tabelaServicos;
     @FXML private TableColumn<Servico, String> colNome;
     @FXML private TableColumn<Servico, String> colDescricao;
-    @FXML private TableColumn<Servico, String> colHorario;
+    @FXML private TableColumn<Servico, String> colDuracao;
     @FXML private TableColumn<Servico, Void> colAcoes;
     @FXML private TextField txtBuscar;
 
@@ -33,7 +33,7 @@ public class ServicosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+        colDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
 
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
@@ -66,7 +66,7 @@ public class ServicosController implements Initializable {
         Spinner<Integer> spHora = (Spinner<Integer>) box.getChildren().get(0);
         Spinner<Integer> spMinuto = (Spinner<Integer>) box.getChildren().get(2);
 
-        return String.format("%02d:%02d",
+        return String.format("%02d:%02d:00",
                 spHora.getValue(),
                 spMinuto.getValue()
         );
@@ -90,12 +90,12 @@ public class ServicosController implements Initializable {
         TextField txtNome = new TextField();
         TextField txtDesc = new TextField();
 
-        HBox inputHora = criarInputHora(8, 0);
+        HBox inputDuracao = criarInputHora(8, 0);
 
         VBox layout = new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc,
-                new Label("Horário:"), inputHora
+                new Label("Duração:"), inputDuracao
         );
 
         dialog.getDialogPane().setContent(layout);
@@ -105,7 +105,7 @@ public class ServicosController implements Initializable {
                 Servico novo = new Servico(
                         txtNome.getText(),
                         txtDesc.getText(),
-                        obterHorario(inputHora)
+                        obterHorario(inputDuracao)
                 );
 
                 dao.inserir(novo);
@@ -164,7 +164,7 @@ public class ServicosController implements Initializable {
         TextField txtNome = new TextField(servico.getNome());
         TextField txtDesc = new TextField(servico.getDescricao());
 
-        String[] partes = servico.getHorario().split(":");
+        String[] partes = servico.getDuracao().split(":");
         HBox inputHora = criarInputHora(
                 Integer.parseInt(partes[0]),
                 Integer.parseInt(partes[1])
@@ -174,14 +174,14 @@ public class ServicosController implements Initializable {
                 new VBox(10,
                         new Label("Nome:"), txtNome,
                         new Label("Descrição:"), txtDesc,
-                        new Label("Horário:"), inputHora)
+                        new Label("Duração:"), inputHora)
         );
 
         dialog.showAndWait().ifPresent(r -> {
             if (r == btnSalvar) {
                 servico.setNome(txtNome.getText());
                 servico.setDescricao(txtDesc.getText());
-                servico.setHorario(obterHorario(inputHora));
+                servico.setDuracao(obterHorario(inputHora));
 
                 dao.atualizar(servico);
                 tabelaServicos.refresh();

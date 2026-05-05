@@ -75,6 +75,10 @@ public class TurmaController {
             mostrarAlerta("Selecione um turno (Manhã, Tarde ou Noite)!");
             return false;
         }
+        if (txtNomeTurma.getText().length() > 255) {
+            mostrarAlerta("O nome da turma não pode ultrapassar 255 caracteres.");
+            return false;
+        }
         return true;
     }
 

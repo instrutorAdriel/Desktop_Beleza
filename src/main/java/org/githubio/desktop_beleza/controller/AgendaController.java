@@ -1,11 +1,13 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.scene.layout.HBox;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
 import org.githubio.desktop_beleza.model.AgendaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -20,40 +22,29 @@ import java.util.Map;
 
 public class AgendaController {
 
-    // ── Campos do formulário ──────────────────────────────────────────────────
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker       dpData;
     @FXML private ComboBox<String> txtModelo;
     @FXML private TextField        txtHorario;
-
-    // ── ComboBox de turmas ────────────────────────────────────────────────────
     @FXML private ComboBox<String> cbTurma;
-
-    // ── Tabela ────────────────────────────────────────────────────────────────
     @FXML private TableView<Agenda>           tabelaAgenda;
     @FXML private TableColumn<Agenda, String> colData;
     @FXML private TableColumn<Agenda, String> colServico;
-    @FXML private TableColumn<Agenda, String> colCliente;
+    @FXML private TableColumn<Agenda, String> colModelo;
     @FXML private TableColumn<Agenda, String> colHorario;
     @FXML private TableColumn<Agenda, String> colStatus;
     @FXML private TableColumn<Agenda, String> colAcao;
-
-    // ── Outros controles ──────────────────────────────────────────────────────
     @FXML private Label  lblSemanaAtual;
     @FXML private Button btnVerTodos;
 
-    // ── Estado interno ────────────────────────────────────────────────────────
     private Agenda    agendaSendoEditada = null;
     private LocalDate inicioSemanaAtual;
     private boolean   exibindoTodos     = false;
-
-    // Mapa: label da ComboBox → id_turmas_instrutores real no banco
     private final Map<String, Integer> mapaTurmas = new HashMap<>();
 
-    // ─────────────────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
-
+        btnVerTodos.setText("Ver semana");
         // Carrega serviços e modelos — apenas UMA vez
         List<String> servicos = new AgendaDAO().listarServicos();
         txtServico.getItems().addAll(servicos);
@@ -62,6 +53,7 @@ public class AgendaController {
         txtModelo.getItems().addAll(modelos);
 
         // DatePicker: bloqueia datas passadas
+
         dpData.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -73,23 +65,37 @@ public class AgendaController {
             }
         });
 
-        // Ao selecionar data, filtra semana correspondente
         dpData.valueProperty().addListener((obs, dataAntiga, dataSelecionada) -> {
             if (dataSelecionada != null) {
                 exibindoTodos = false;
-                btnVerTodos.setText("Ver todos");
+                btnVerTodos.setText("Ver semana");
                 inicioSemanaAtual = dataSelecionada.with(DayOfWeek.MONDAY);
                 atualizarTabela();
             }
         });
 
-        // Carrega turmas do instrutor logado
+        // ── Validação de horário em tempo real ────────────────────────────────
+        TextFormatter<String> horarioFormatter = new TextFormatter<>(change -> {
+            String novo = change.getControlNewText();
+            if (novo.matches("([01]?[0-9]?|2[0-3]?|([01][0-9]|2[0-3]):[0-5]?[0-9]?)")) {
+                if (change.getText().matches("[0-9]") && novo.length() == 2 && !novo.contains(":")) {
+                    change.setText(change.getText() + ":");
+                    change.setCaretPosition(change.getCaretPosition() + 1);
+                    change.setAnchor(change.getAnchor() + 1);
+                }
+                return change;
+            }
+            return null;
+        });
+        txtHorario.setTextFormatter(horarioFormatter);
+        txtHorario.setPromptText("HH:mm");
+        // ─────────────────────────────────────────────────────────────────────
+
         carregarTurmas();
 
-        // Ao trocar de turma na ComboBox → recarrega a tabela automaticamente
         cbTurma.valueProperty().addListener((obs, antiga, nova) -> {
             if (nova != null) {
-                exibindoTodos = false;
+                exibindoTodos = true;
                 btnVerTodos.setText("Ver todos");
                 atualizarTabela();
             }
@@ -98,11 +104,10 @@ public class AgendaController {
         // Colunas da tabela
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
-        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Impede reordenação de colunas
         tabelaAgenda.getColumns().addListener(new ListChangeListener<TableColumn<Agenda, ?>>() {
             private boolean suspender = false;
             @Override
@@ -111,7 +116,7 @@ public class AgendaController {
                     if (!suspender && (c.wasReplaced() || c.wasAdded() || c.wasRemoved())) {
                         suspender = true;
                         tabelaAgenda.getColumns().setAll(
-                                colData, colServico, colCliente, colHorario, colStatus, colAcao);
+                                colData, colServico, colModelo, colHorario, colStatus, colAcao);
                         suspender = false;
                     }
                 }
@@ -120,7 +125,6 @@ public class AgendaController {
 
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Coluna Status com MenuButton
         colStatus.setCellFactory(col -> new TableCell<Agenda, String>() {
             private final MenuItem   itemPendente      = new MenuItem("Pendente");
             private final MenuItem   itemCompareceu    = new MenuItem("Compareceu");
@@ -161,52 +165,61 @@ public class AgendaController {
             }
         });
 
-        // Coluna Ação (Editar / Excluir)
+        // ── Coluna de Ação com botões de ícone (igual ao ModeloController) ────
         colAcao.setCellFactory(parm -> new TableCell<>() {
-            private final MenuButton mnuOpcoes = new MenuButton("...");
-            private final MenuItem   itemEdit  = new MenuItem("Editar");
-            private final MenuItem   itemDel   = new MenuItem("Excluir");
+            private final Button btnEdit      = new Button("");
+            private final Button btnDel       = new Button("");
+            private final HBox   container    = new HBox(10, btnEdit, btnDel);
 
             {
-                mnuOpcoes.getItems().addAll(itemEdit, itemDel);
+                btnEdit.getStyleClass().add("editar");
+                btnDel.getStyleClass().add("excluir");
+                container.setAlignment(Pos.CENTER);
+
+                btnEdit.setOnAction(e -> {
+                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
+                    txtModelo.setValue(agendaDaLinha.getModelo());
+                    txtServico.setValue(agendaDaLinha.getServico());
+                    txtHorario.setText(agendaDaLinha.getHorario());
+                    try {
+                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData()));
+                    } catch (Exception ex) {
+                        // Tenta formato alternativo caso getData() não seja yyyy-MM-dd
+                        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        dpData.setValue(LocalDate.parse(agendaDaLinha.getData(), fmt));
+                    }
+                    agendaSendoEditada = agendaDaLinha;
+                });
+
+                btnDel.setOnAction(e -> {
+                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
+                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta.setTitle("Excluir Agendamento");
+                    alerta.setHeaderText("Deseja excluir o agendamento de "
+                            + agendaDaLinha.getModelo() + "?");
+                    if (alerta.showAndWait().get() == ButtonType.OK) {
+                        new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
+                        atualizarTabela();
+                    }
+                });
             }
 
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
+                if (empty || getTableRow().getItem() == null) {
                     setGraphic(null);
                 } else {
-                    Agenda agendaDaLinha = getTableView().getItems().get(getIndex());
-
-                    itemDel.setOnAction(e -> {
-                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("Excluir Agendamento");
-                        alerta.setHeaderText("Deseja excluir o agendamento de "
-                                + agendaDaLinha.getCliente() + "?");
-                        if (alerta.showAndWait().get() == ButtonType.OK) {
-                            new AgendaDAO().excluirAgendamento(agendaDaLinha.getId());
-                            atualizarTabela();
-                        }
-                    });
-
-                    itemEdit.setOnAction(e -> {
-                        txtModelo.setValue(agendaDaLinha.getCliente());
-                        txtServico.setValue(agendaDaLinha.getServico());
-                        txtHorario.setText(agendaDaLinha.getHorario());
-                        agendaSendoEditada = agendaDaLinha;
-                    });
-
-                    setGraphic(mnuOpcoes);
+                    setGraphic(container);
                 }
             }
         });
+        // ─────────────────────────────────────────────────────────────────────
 
         inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
         atualizarTabela();
     }
 
-    // ── Carrega turmas do instrutor na cbTurma ────────────────────────────────
     private void carregarTurmas() {
         String email = MainApplication.getUsuario();
         List<String[]> turmas = new AgendaDAO().listarTurmasDoInstrutor(email);
@@ -216,7 +229,7 @@ public class AgendaController {
 
         for (String[] turma : turmas) {
             int    id    = Integer.parseInt(turma[0]);
-            String label = turma[1]; // ex: "Turma B - Vespertino"
+            String label = turma[1];
             mapaTurmas.put(label, id);
             cbTurma.getItems().add(label);
         }
@@ -226,7 +239,6 @@ public class AgendaController {
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
     @FXML
     protected void onVerTodosClick() {
         exibindoTodos = !exibindoTodos;
@@ -235,7 +247,7 @@ public class AgendaController {
         String turmaSelecionada = cbTurma.getValue();
 
         if (exibindoTodos) {
-            btnVerTodos.setText("Ver semana");
+            btnVerTodos.setText("Ver todos");
             if (lblSemanaAtual != null)
                 lblSemanaAtual.setText("Exibindo todos os agendamentos");
 
@@ -246,7 +258,7 @@ public class AgendaController {
                 ));
             }
         } else {
-            btnVerTodos.setText("Ver todos");
+            btnVerTodos.setText("Ver semana");
             atualizarTabela();
         }
     }
@@ -264,9 +276,19 @@ public class AgendaController {
             return;
         }
 
-        String data    = String.valueOf(dpData.getValue());
+        // ── Valida formato HH:mm completo antes de salvar ─────────────────────
         String horario = txtHorario.getText();
-        String cliente = txtModelo.getValue();
+        if (!horario.matches("([01][0-9]|2[0-3]):[0-5][0-9]")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Horário inválido");
+            alert.setContentText("Informe o horário no formato HH:mm (ex: 09:30)");
+            alert.show();
+            return;
+        }
+        // ─────────────────────────────────────────────────────────────────────
+
+        String data    = String.valueOf(dpData.getValue());
+        String Modelo = txtModelo.getValue();
         String servico = txtServico.getValue();
 
         AgendaDAO dao = new AgendaDAO();
@@ -274,14 +296,14 @@ public class AgendaController {
         if (agendaSendoEditada != null) {
             agendaSendoEditada.setData(data);
             agendaSendoEditada.setServico(servico);
-            agendaSendoEditada.setCliente(cliente);
+            agendaSendoEditada.setModelo(Modelo);
             agendaSendoEditada.setHorario(horario);
             dao.editarAgendamento(agendaSendoEditada);
             agendaSendoEditada = null;
         } else {
-            int idModelo = dao.cadastrarERetornarIdModelo(cliente);
+            int idModelo = dao.cadastrarERetornarIdModelo(Modelo);
             if (idModelo == -1) {
-                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar modelo!").show();
+                new Alert(Alert.AlertType.ERROR, "Erro ao cadastrar Modelo!").show();
                 return;
             }
 
@@ -310,10 +332,8 @@ public class AgendaController {
         txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
-        // cbTurma mantém a seleção atual propositalmente
     }
 
-    // ── Atualiza a tabela sempre filtrada pela turma selecionada ──────────────
     public void atualizarTabela() {
         LocalDate fimSemana = inicioSemanaAtual.plusDays(6);
 
@@ -353,7 +373,7 @@ public class AgendaController {
 
     @FXML
     public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servico");
+        MainApplication.setRoot("servicos");
     }
 
     @FXML
