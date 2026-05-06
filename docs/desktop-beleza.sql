@@ -63,8 +63,6 @@ CREATE TABLE tb_agenda (
     FOREIGN KEY (id_status_agenda) REFERENCES tb_status_agenda(id_status_agenda)
 );
 
-ALTER TABLE tb_agenda RENAME COLUMN Duracao_agenda TO horario_agenda;
-
 # Inserção dos dados
 # Dados pré-definidos nas tabelas tb_status_agenda e tb_status_turma
 INSERT INTO tb_status_agenda(id_status_agenda, status_agenda) VALUES 
