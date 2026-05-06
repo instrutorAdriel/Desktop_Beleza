@@ -55,13 +55,15 @@ CREATE TABLE tb_agenda (
     id_turmas_instrutores INTEGER,
     id_modelo INTEGER,
     data_agenda DATE NOT NULL,
-    Duracao_agenda TIME NOT NULL,
+    horario_agenda TIME NOT NULL,
     id_status_agenda INTEGER,
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico),
     FOREIGN KEY (id_turmas_instrutores) REFERENCES rl_turmas_instrutores(id_turmas_instrutores),
     FOREIGN KEY (id_modelo) REFERENCES tb_modelos(id_modelo),
     FOREIGN KEY (id_status_agenda) REFERENCES tb_status_agenda(id_status_agenda)
 );
+
+ALTER TABLE tb_agenda RENAME COLUMN Duracao_agenda TO horario_agenda;
 
 # Inserção dos dados
 # Dados pré-definidos nas tabelas tb_status_agenda e tb_status_turma
@@ -74,10 +76,6 @@ INSERT INTO tb_status_turma(id_status_turma, status_turma) VALUES
 (1, "Em Andamento"),
 (2, "Finalizado");
 
-# Dados do usuário admnistrador
-INSERT INTO tb_instrutores(id_instrutor, email_instrutor, senha) VALUES
-(1, "Admin@df.senac.br", "Admin123");
-
 # Serviços pré-definidos no banco de dados
-INSERT INTO tb_servicos(nome_servico, horario_disponivel) VALUES
+INSERT INTO tb_servicos(nome_servico, duracao) VALUES
 ("Cabeleireiro", "12:00"),("Barbeiro", "12:00"),("Maquiador", "12:00"),("Design de Sobrancelhas", "12:00");
