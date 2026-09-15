@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AgendaController">
+    <center>
+        <HBox alignment="CENTER" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+            <children>
+                <TableView fx:id="tabelaAgenda" maxHeight="500.0">
+                    <columns>
+                        <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="101.0" text="Data" />
+                        <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="101.0" text="Servico" />
+                        <TableColumn fx:id="colModelo" minWidth="-1.0" prefWidth="101.0" text="Modelo" />
+                        <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="96.0" text="Horário" />
+                        <TableColumn fx:id="colStatus" minWidth="-1.0" prefWidth="96.0" text="Status" />
+                         <TableColumn fx:id="colAcao" minWidth="-1.0" prefWidth="96.0" text="Ação" />
+                    </columns>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </children>
+            <BorderPane.margin>
+                <Insets left="10.0" />
+            </BorderPane.margin>
+        </HBox>
+    </center>
+    <left>
+        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <children>
+            <VBox spacing="8.0">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Página inicial">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="btn-cinza" text="Serviços">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+                   <Button
+                           maxWidth="1.7976931348623157E308"
+                           mnemonicParsing="false"
+                           onAction="#trocarTelaParaUnidades"
+                           styleClass="btn-cinza"
+                           text="Unidades"/>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+            <VBox alignment="CENTER" prefHeight="80.0">
+               <children>
+                  <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+        </VBox>
+    </left>
+    <top>
+      <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+         <children>
+                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                    </image>
+            </ImageView>
+                <Label fx:id="welcomeText" layoutX="186.0" layoutY="13.0" prefHeight="50.0" prefWidth="132.0" text="Agenda" textFill="#004587">
+                    <font>
+                        <Font name="Verdana Bold" size="28.0" />
+                    </font>
+               <padding>
+                  <Insets bottom="3.0" />
+               </padding>
+                </Label>
+         </children>
+      </Pane>
+    </top>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="403.0" prefWidth="150.0" spacing="4.0">
+               <children>
+      
+                      <DatePicker fx:id="dpData">
+                          <VBox.margin>
+                              <Insets left="3.6" right="2.0" top="40.0" />
+                          </VBox.margin>
+                      </DatePicker>
+                        <Label prefHeight="27.0" prefWidth="142.0" text="Novo procedimento" textFill="#004587">
+                            <font>
+                                <Font name="Verdana Bold" size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="3.6" right="4.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+      
+                      <!-- Botão Ver todos / Ver semana -->
+                      <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" styleClass="btn-cinza" text="Ver todos" textFill="#004587">
+                          <VBox.margin>
+                              <Insets bottom="6.0" left="3.6" />
+                          </VBox.margin>
+                      </Button>
+                        <TextField fx:id="txtHorario" promptText="Horário">
+                            <VBox.margin>
+                                <Insets left="3.6" right="3.6" />
+                            </VBox.margin>
+                        </TextField>
+                  <ComboBox fx:id="txtModelo" prefWidth="130.0" promptText="Modelos">
+                     <VBox.margin>
+                        <Insets left="3.6" />
+                     </VBox.margin></ComboBox>
+                  <ComboBox fx:id="cbUnidade" prefWidth="130.0" promptText="Unidade">
+                     <VBox.margin>
+                        <Insets left="3.6" />
+                     </VBox.margin>
+                  </ComboBox>
+                        <ComboBox fx:id="txtServico" prefWidth="130.0" promptText="Tipo de Servico">
+                            <VBox.margin>
+                                <Insets left="3.6" />
+                            </VBox.margin>
+                        </ComboBox>
+                        <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefHeight="25.0" prefWidth="99.0" styleClass="btn-azul" text="Salvar" textFill="#004587">
+                            <VBox.margin>
+                                <Insets left="3.6" />
+                            </VBox.margin>
+                        </Button>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+    </right>
+    <bottom>
+        <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
