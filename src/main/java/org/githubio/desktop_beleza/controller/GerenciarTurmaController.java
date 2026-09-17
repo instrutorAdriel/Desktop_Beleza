@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class GerenciarTurmaController {
+public class    GerenciarTurmaController {
     @FXML private TableView<UsuarioDTO> tabelaUsuarios;
     @FXML private TableColumn<UsuarioDTO, String> colTurma;
     @FXML private TableColumn<UsuarioDTO, String> colTurno;
@@ -224,6 +224,11 @@ public class GerenciarTurmaController {
     @FXML
     public void trocarTelaParaPaginaInicial() throws IOException{
         MainApplication.setRoot("Telaagenda");
+    }
+
+    @FXML
+    public void trocarTelaParaUnidades() throws IOException {
+        MainApplication.setRoot("unidades");
     }
 
     @FXML

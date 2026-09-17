@@ -6,7 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,7 +32,6 @@ public class ServicosController implements Initializable {
     @FXML private TableView<Servico> tabelaServicos;
     @FXML private TableColumn<Servico, String> colNome;
     @FXML private TableColumn<Servico, String> colDescricao;
-    @FXML private TableColumn<Servico, String> colDuracao;
     @FXML private TableColumn<Servico, Void> colAcoes;
     @FXML private TextField txtBuscar;
 
@@ -33,93 +41,40 @@ public class ServicosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
-
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
         atualizarTabela();
     }
 
     private void atualizarTabela() {
-        tabelaServicos.setItems(
-                FXCollections.observableArrayList(dao.lerTodos())
-        );
+        tabelaServicos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
     }
 
-    /* =======================
-       INPUT HORA
-       ======================= */
-    private HBox criarInputHora(int horaInicial, int minutoInicial) {
-        Spinner<Integer> spHora = new Spinner<>(0, 23, horaInicial);
-        Spinner<Integer> spMinuto = new Spinner<>(0, 59, minutoInicial);
-
-        spHora.setEditable(true);
-        spMinuto.setEditable(true);
-
-        spHora.setPrefWidth(70);
-        spMinuto.setPrefWidth(70);
-
-        return new HBox(5, spHora, new Label(":"), spMinuto);
-    }
-
-    private String obterHorario(HBox box) {
-        Spinner<Integer> spHora = (Spinner<Integer>) box.getChildren().get(0);
-        Spinner<Integer> spMinuto = (Spinner<Integer>) box.getChildren().get(2);
-
-        return String.format("%02d:%02d:00",
-                spHora.getValue(),
-                spMinuto.getValue()
-        );
-    }
-
-    /* =======================
-       BOTÃO ADICIONAR ✅
-       ======================= */
     @FXML
     private void abrirDialogoAdicionar(ActionEvent event) {
-
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Novo Serviço");
-        dialog.setHeaderText("Preencha os dados do serviço");
+        dialog.setHeaderText("Preencha os dados do serviço/produto");
 
-        ButtonType btnSalvar =
-                new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes()
-                .addAll(btnSalvar, ButtonType.CANCEL);
+        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
         TextField txtNome = new TextField();
         TextField txtDesc = new TextField();
-
-        HBox inputDuracao = criarInputHora(8, 0);
-
-        VBox layout = new VBox(10,
+        dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
-                new Label("Descrição:"), txtDesc,
-                new Label("Duração:"), inputDuracao
-        );
+                new Label("Descrição:"), txtDesc));
 
-        dialog.getDialogPane().setContent(layout);
-
-        dialog.showAndWait().ifPresent(r -> {
-            if (r == btnSalvar) {
-                Servico novo = new Servico(
-                        txtNome.getText(),
-                        txtDesc.getText(),
-                        obterHorario(inputDuracao)
-                );
-
-                dao.inserir(novo);
+        dialog.showAndWait().ifPresent(resposta -> {
+            if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
+                dao.inserir(new Servico(txtNome.getText().trim(), txtDesc.getText().trim()));
                 atualizarTabela();
             }
         });
     }
 
-    /* =======================
-       COLUNA AÇÕES
-       ======================= */
     private void configurarColunaAcoes() {
         colAcoes.setCellFactory(param -> new TableCell<>() {
-
             private final Button btnEditar = new Button("");
             private final Button btnExcluir = new Button("");
             private final HBox container = new HBox(10, btnEditar, btnExcluir);
@@ -131,16 +86,11 @@ public class ServicosController implements Initializable {
 
                 btnEditar.setOnAction(e -> {
                     Servico servico = getTableRow().getItem();
-                    if (servico != null) {
-                        abrirDialogoEdicao(servico);
-                    }
+                    if (servico != null) abrirDialogoEdicao(servico);
                 });
-
                 btnExcluir.setOnAction(e -> {
                     Servico servico = getTableRow().getItem();
-                    if (servico != null) {
-                        confirmarExclusao(servico);
-                    }
+                    if (servico != null) confirmarExclusao(servico);
                 });
             }
 
@@ -155,48 +105,39 @@ public class ServicosController implements Initializable {
     private void abrirDialogoEdicao(Servico servico) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Editar Serviço");
-
-        ButtonType btnSalvar =
-                new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes()
-                .addAll(btnSalvar, ButtonType.CANCEL);
+        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
         TextField txtNome = new TextField(servico.getNome());
         TextField txtDesc = new TextField(servico.getDescricao());
+        dialog.getDialogPane().setContent(new VBox(10,
+                new Label("Nome:"), txtNome,
+                new Label("Descrição:"), txtDesc));
 
-        String[] partes = servico.getDuracao().split(":");
-        HBox inputHora = criarInputHora(
-                Integer.parseInt(partes[0]),
-                Integer.parseInt(partes[1])
-        );
-
-        dialog.getDialogPane().setContent(
-                new VBox(10,
-                        new Label("Nome:"), txtNome,
-                        new Label("Descrição:"), txtDesc,
-                        new Label("Duração:"), inputHora)
-        );
-
-        dialog.showAndWait().ifPresent(r -> {
-            if (r == btnSalvar) {
-                servico.setNome(txtNome.getText());
-                servico.setDescricao(txtDesc.getText());
-                servico.setDuracao(obterHorario(inputHora));
-
+        dialog.showAndWait().ifPresent(resposta -> {
+            if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
+                servico.setNome(txtNome.getText().trim());
+                servico.setDescricao(txtDesc.getText().trim());
                 dao.atualizar(servico);
-                tabelaServicos.refresh();
+                atualizarTabela();
             }
         });
     }
 
     private void confirmarExclusao(Servico servico) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Excluir " + servico.getNome() + "?");
-
-        alert.showAndWait().ifPresent(r -> {
-            if (r == ButtonType.OK) {
-                dao.excluir(servico.getId());
-                tabelaServicos.getItems().remove(servico);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Excluir " + servico.getNome() + "?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait().ifPresent(resposta -> {
+            if (resposta == ButtonType.YES) {
+                try {
+                    dao.excluir(servico.getId());
+                    atualizarTabela();
+                } catch (RuntimeException e) {
+                    Alert erro = new Alert(Alert.AlertType.ERROR);
+                    erro.setHeaderText("Não foi possível excluir o serviço");
+                    erro.setContentText(e.getMessage());
+                    erro.showAndWait();
+                }
             }
         });
     }
@@ -204,53 +145,27 @@ public class ServicosController implements Initializable {
     @FXML
     private void buscar() {
         String termo = txtBuscar.getText();
-
         if (termo == null || termo.isBlank()) {
             atualizarTabela();
             return;
         }
-
-        tabelaServicos.setItems(
-                FXCollections.observableArrayList(
-                        dao.lerTodos().stream()
-                                .filter(s -> s.getNome().toLowerCase()
-                                        .contains(termo.toLowerCase()))
-                                .toList()
-                )
-        );
+        String filtro = termo.toLowerCase();
+        tabelaServicos.setItems(FXCollections.observableArrayList(
+                dao.lerTodos().stream()
+                        .filter(s -> s.getNome().toLowerCase().contains(filtro)
+                                || (s.getDescricao() != null && s.getDescricao().toLowerCase().contains(filtro)))
+                        .toList()));
     }
 
-    // Metodos para trocas de telas
-    @FXML
-    public void trocarTelaParaModelos() throws IOException {
-        MainApplication.setRoot("gerenciarmodelo");
-    }
-
-    @FXML
-    public void trocarTelaParaTurmas() throws IOException {
-        MainApplication.setRoot("GerenciarTurma");
-    }
-
-    @FXML
-    public void trocarTelaParaPaginaInicial() throws IOException{
-        MainApplication.setRoot("Telaagenda");
-    }
+    @FXML public void trocarTelaParaModelos() throws IOException { MainApplication.setRoot("gerenciarmodelo"); }
+    @FXML public void trocarTelaParaTurmas() throws IOException { MainApplication.setRoot("GerenciarTurma"); }
+    @FXML public void trocarTelaParaPaginaInicial() throws IOException { MainApplication.setRoot("Telaagenda"); }
 
     @FXML
     public void sairDoSistema() throws IOException {
-        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Sair do Sistema");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Você deseja do sair do sistema?");
-
-        // Botões de SIM e NÃO
-        ButtonType botaoSim = new ButtonType("SIM");
-        ButtonType botaoNao = new ButtonType("NÃO");
-
-        alerta.getButtonTypes().setAll(botaoSim, botaoNao);
-
-        if (alerta.showAndWait().get() == botaoSim) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION,
+                "Você deseja sair do sistema?", ButtonType.YES, ButtonType.NO);
+        if (alerta.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
             MainApplication.setUsuario("");
             MainApplication.setRoot("login");
         }

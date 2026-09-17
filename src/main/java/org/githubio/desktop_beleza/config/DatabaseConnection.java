@@ -5,21 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    
-    private static final String URL = "jdbc:mysql://localhost:3307/db_salao_beleza";
+
+    // Banco informado para o projeto. Mantida a porta 3307 que já estava no Desktop original.
+    private static final String URL = "jdbc:mysql://localhost:3307/beleza_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo";
     private static final String USUARIO = "root";
     private static final String SENHA = "senac";
-    
-    /**
-     * Estabelece uma conexão com o banco de dados.
-     * @return Connection objeto de conexão
-     * @throws SQLException Caso ocorra um erro na tentativa de conexão
-     */
+
+    private DatabaseConnection() {
+    }
+
     public static Connection getConnection() {
         try {
             return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (SQLException e) {
-            IO.println("Erro ao conectar com o banco do Salão de Beleza: " + e.getMessage());
+            System.err.println("Erro ao conectar com o banco beleza_db: " + e.getMessage());
             throw new RuntimeException("Não foi possível estabelecer conexão com o banco de dados.", e);
         }
     }

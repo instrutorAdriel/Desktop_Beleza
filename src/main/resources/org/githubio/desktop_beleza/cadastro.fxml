@@ -15,6 +15,11 @@
                   <Font name="Verdana Bold" size="28.0" />
                </font>
             </Label>
+            <TextField fx:id="campoNome" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Nome" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+               <VBox.margin>
+                  <Insets left="86.0" right="86.0" />
+               </VBox.margin>
+            </TextField>
             <TextField fx:id="campoEmail" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
                <VBox.margin>
                   <Insets left="86.0" right="86.0" />

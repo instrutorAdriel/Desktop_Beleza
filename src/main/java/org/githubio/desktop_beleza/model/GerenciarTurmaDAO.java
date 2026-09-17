@@ -12,185 +12,177 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GerenciarTurmaDAO {
 
-    public ObservableList<UsuarioDTO> lerUsuariosParaTabela(String usuario) throws SQLException {
-        // 1. Adicionei t.status_turma no SELECT
+    public ObservableList<UsuarioDTO> lerUsuariosParaTabela(String emailInstrutor) throws SQLException {
         String sql = """
-    
-                SELECT t.id_turma, t.turma, t.turno,ti.email_instrutor, st.status_turma
-                FROM rl_turmas_instrutores i
-                INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
-                INNER JOIN tb_instrutores ti ON i.id_instrutor = ti.id_instrutor
-                INNER JOIN tb_status_turma st ON t.id_status_turma = st.id_status_turma
-                where email_instrutor = ?
-    """;
-
-
-        ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
-                 stmt.setString(1,usuario);
-
-
-
-             try (ResultSet rs = stmt.executeQuery()){
-                while (rs.next()) {
-                    // 2. Agora passamos 5 parâmetros para o construtor, incluindo o status!
-                    lista.add(new UsuarioDTO(
-                            rs.getInt("id_turma"),
-                            rs.getString("turma"),
-                            rs.getString("turno"),
-                            rs.getString("email_instrutor"),
-                            rs.getString("status_turma") // PEGA O STATUS AQUI
-                    ));
-                }
-             }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return lista;
+                SELECT t.id_turma,
+                       t.nome_turma,
+                       t.torma,
+                       u.email,
+                       CASE WHEN t.situacao = 'A' THEN 'Em Andamento' ELSE 'Finalizada' END AS status_turma
+                FROM instrutor_gerencia_turma igt
+                INNER JOIN turma t ON t.id_turma = igt.id_turma
+                INNER JOIN instrutor i ON i.id_instrutor = igt.id_instrutor
+                INNER JOIN usuario u ON u.id_usuario = i.id_usuario
+                WHERE u.email = ?
+                ORDER BY t.nome_turma
+                """;
+        return executarConsulta(sql, emailInstrutor, null);
     }
 
     public ObservableList<UsuarioDTO> buscarTurmaPorNome(String turma) throws SQLException {
-        // 1. Adicionei t.status_turma no SELECT
         String sql = """
-                SELECT t.id_turma, t.turma, t.turno,ti.email_instrutor, st.status_turma
-                FROM rl_turmas_instrutores i
-                INNER JOIN tb_turmas t ON i.id_turma = t.id_turma
-                INNER JOIN tb_instrutores ti ON i.id_instrutor = ti.id_instrutor
-                INNER JOIN tb_status_turma st ON t.id_status_turma = st.id_status_turma
-                where email_instrutor = ? AND t.turma = ?
-    """;
+                SELECT t.id_turma,
+                       t.nome_turma,
+                       t.torma,
+                       u.email,
+                       CASE WHEN t.situacao = 'A' THEN 'Em Andamento' ELSE 'Finalizada' END AS status_turma
+                FROM instrutor_gerencia_turma igt
+                INNER JOIN turma t ON t.id_turma = igt.id_turma
+                INNER JOIN instrutor i ON i.id_instrutor = igt.id_instrutor
+                INNER JOIN usuario u ON u.id_usuario = i.id_usuario
+                WHERE u.email = ? AND t.nome_turma = ?
+                ORDER BY t.nome_turma
+                """;
+        return executarConsulta(sql, MainApplication.getUsuario(), turma);
+    }
 
-
+    private ObservableList<UsuarioDTO> executarConsulta(String sql, String email, String nomeTurma) throws SQLException {
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setString(1, MainApplication.getUsuario());
-            stmt.setString(2, turma);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            if (nomeTurma != null) {
+                stmt.setString(2, nomeTurma);
+            }
 
-            try (ResultSet rs = stmt.executeQuery()){
+            try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    // 2. Agora passamos 5 parâmetros para o construtor, incluindo o status!
                     lista.add(new UsuarioDTO(
                             rs.getInt("id_turma"),
-                            rs.getString("turma"),
-                            rs.getString("turno"),
-                            rs.getString("email_instrutor"),
-                            rs.getString("status_turma") // PEGA O STATUS AQUI
+                            rs.getString("nome_turma"),
+                            rs.getString("torma"),
+                            rs.getString("email"),
+                            rs.getString("status_turma")
                     ));
                 }
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
         return lista;
     }
 
-
     public void excluirTurma(String nomeTurma) {
-        // 1. SQL para apagar o vínculo na tabela de relação
-        // Note que usamos um subquery para achar o ID da turma pelo nome
-        String sqlVinculo = "DELETE FROM rl_turmas_instrutores WHERE id_turma = (SELECT id_turma FROM tb_turmas WHERE turma = ?)";
-
-        // 2. SQL para apagar a turma de fato
-        String sqlTurma = "DELETE FROM tb_turmas WHERE turma = ?";
+        String buscarId = "SELECT id_turma FROM turma WHERE nome_turma = ?";
+        String excluirVinculo = "DELETE FROM instrutor_gerencia_turma WHERE id_turma = ?";
+        String excluirTurma = "DELETE FROM turma WHERE id_turma = ?";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            // Desativa o auto-save para controlar o processo manualmente
             conn.setAutoCommit(false);
+            try {
+                int idTurma;
+                try (PreparedStatement stmtBusca = conn.prepareStatement(buscarId)) {
+                    stmtBusca.setString(1, nomeTurma);
+                    try (ResultSet rs = stmtBusca.executeQuery()) {
+                        if (!rs.next()) {
+                            return;
+                        }
+                        idTurma = rs.getInt("id_turma");
+                    }
+                }
 
-            try (PreparedStatement stmtVinculo = conn.prepareStatement(sqlVinculo);
-                 PreparedStatement stmtTurma = conn.prepareStatement(sqlTurma)) {
-
-                // Executa o primeiro: apaga o vínculo
-                stmtVinculo.setString(1, nomeTurma);
-                stmtVinculo.executeUpdate();
-
-                // Executa o segundo: apaga a turma
-                stmtTurma.setString(1, nomeTurma);
-                stmtTurma.executeUpdate();
-
-                // Se chegou aqui sem erro, salva as mudanças permanentemente
+                try (PreparedStatement stmtV = conn.prepareStatement(excluirVinculo);
+                     PreparedStatement stmtT = conn.prepareStatement(excluirTurma)) {
+                    stmtV.setInt(1, idTurma);
+                    stmtV.executeUpdate();
+                    stmtT.setInt(1, idTurma);
+                    stmtT.executeUpdate();
+                }
                 conn.commit();
-                System.out.println("Vínculo e turma excluídos com sucesso!");
-
             } catch (SQLException e) {
-                // Se algo deu errado, desfaz tudo (rollback) para não corromper os dados
                 conn.rollback();
-                e.printStackTrace();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao excluir turma", e);
         }
     }
 
-    public void atualizarCompleto(int id, String nome, String turno, String instrutor, String status) {
-        // 1. SQL para atualizar os dados básicos da turma
-        String sqlTurma = "UPDATE tb_turmas SET turma = ?, turno = ?, id_status_turma = ? WHERE id_turma = ?";
-
-        // 2. SQL para atualizar o instrutor vinculado a essa turma
-        // Buscamos o ID do instrutor pelo nome e atualizamos na tabela de relação
-        String sqlVinculo = """
-        UPDATE rl_turmas_instrutores
-        SET id_instrutor = (SELECT id_instrutor FROM tb_instrutores WHERE email_instrutor = ?) 
-        WHERE id_turma = ?
-    """;
+    public void atualizarCompleto(int idTurma, String nome, String turno, String emailInstrutor, String status) {
+        String atualizarTurma = "UPDATE turma SET nome_turma = ?, torma = ?, situacao = ? WHERE id_turma = ?";
+        String buscarInstrutor = """
+                SELECT i.id_instrutor, u.id_usuario
+                FROM instrutor i
+                INNER JOIN usuario u ON u.id_usuario = i.id_usuario
+                WHERE u.email = ?
+                LIMIT 1
+                """;
+        String atualizarVinculo = """
+                UPDATE instrutor_gerencia_turma
+                SET id_instrutor = ?, id_usuario = ?
+                WHERE id_turma = ?
+                """;
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            conn.setAutoCommit(false); // Iniciamos uma transação para garantir que ambos mudem
-
-            try (PreparedStatement stmtT = conn.prepareStatement(sqlTurma);
-                 PreparedStatement stmtV = conn.prepareStatement(sqlVinculo)) {
-
-                // Executa a atualização da Turma
-                stmtT.setString(1, nome);
-                stmtT.setString(2, turno);
-                if(status.equals("Em Andamento")){
-                    stmtT.setInt(3, 1);
+            conn.setAutoCommit(false);
+            try {
+                int idInstrutor;
+                int idUsuario;
+                try (PreparedStatement stmtBusca = conn.prepareStatement(buscarInstrutor)) {
+                    stmtBusca.setString(1, emailInstrutor);
+                    try (ResultSet rs = stmtBusca.executeQuery()) {
+                        if (!rs.next()) {
+                            throw new SQLException("Instrutor não encontrado.");
+                        }
+                        idInstrutor = rs.getInt("id_instrutor");
+                        idUsuario = rs.getInt("id_usuario");
+                    }
                 }
-                else {
-                    stmtT.setInt(3, 2);
+
+                try (PreparedStatement stmtT = conn.prepareStatement(atualizarTurma);
+                     PreparedStatement stmtV = conn.prepareStatement(atualizarVinculo)) {
+                    stmtT.setString(1, nome);
+                    stmtT.setString(2, turno);
+                    stmtT.setString(3, "Em Andamento".equals(status) ? "A" : "C");
+                    stmtT.setInt(4, idTurma);
+                    stmtT.executeUpdate();
+
+                    stmtV.setInt(1, idInstrutor);
+                    stmtV.setInt(2, idUsuario);
+                    stmtV.setInt(3, idTurma);
+                    stmtV.executeUpdate();
                 }
-
-                stmtT.setInt(4, id);
-                stmtT.executeUpdate();
-
-                // Executa a atualização do Vínculo com o Instrutor
-                stmtV.setString(1, instrutor);
-                stmtV.setInt(2, id);
-                stmtV.executeUpdate();
-
-                conn.commit(); // Salva as duas alterações no banco
-                System.out.println("Turma e Instrutor atualizados com sucesso!");
-
+                conn.commit();
             } catch (SQLException e) {
-                conn.rollback(); // Se um falhar, desfaz o outro
-                e.printStackTrace();
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar turma", e);
         }
     }
 
     public List<String> listarNomesInstrutores() {
-        List<String> nomes = new ArrayList<>();
-        String sql = "SELECT email_instrutor FROM tb_instrutores ORDER BY email_instrutor";
-
+        List<String> emails = new ArrayList<>();
+        String sql = """
+                SELECT u.email
+                FROM instrutor i
+                INNER JOIN usuario u ON u.id_usuario = i.id_usuario
+                ORDER BY u.email
+                """;
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
-                nomes.add(rs.getString("email_instrutor"));
+                emails.add(rs.getString("email"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao listar instrutores", e);
         }
-        return nomes;
+        return emails;
     }
 }

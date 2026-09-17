@@ -32,9 +32,8 @@
 
             <TableView fx:id="tabelaServicos" prefWidth="600.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colNome" prefWidth="120.0" text="Nome" />
-                    <TableColumn fx:id="colDescricao" prefWidth="150.0" text="Descrição" />
-                    <TableColumn fx:id="colDuracao" prefWidth="100.0" text="Duração " />
+                    <TableColumn fx:id="colNome" prefWidth="170.0" text="Nome" />
+                    <TableColumn fx:id="colDescricao" prefWidth="240.0" text="Descrição" />
                     <!-- Coluna para os botões Editar e Excluir -->
                     <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
                 </columns>

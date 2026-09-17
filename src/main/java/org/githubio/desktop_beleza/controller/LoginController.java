@@ -57,7 +57,7 @@ public class LoginController {
 
     @FXML
     protected void irParaAtualizarSenha() throws IOException {
-        MainApplication.setRoot("AtualizarSenha");
+        MainApplication.setRoot("atualizarsenha");
     }
 }
 
