@@ -21,7 +21,7 @@
 ## Instruções de Uso
 
 1. **Pré-requisitos**
-    - Java 25+
+    - Java 21+
     - MySQL Server
 
 2. **Clonar Repositório**

@@ -6,19 +6,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.githubio.desktop_beleza.controller.LoginController">
    <left>
       <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" spacing="10.0"
+            style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
          <children>
             <Label text="Bem-vindo" textFill="#004587">
                <font>
                   <Font name="Verdana Bold" size="28.0" />
                </font>
             </Label>
-            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+
+            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0"
+                       prefHeight="24.0" prefWidth="202.0" promptText="E-mail"
+                       style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;"
+                       styleClass="rounded">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -29,12 +37,46 @@
                   <Insets />
                </BorderPane.margin>
             </TextField>
-            <PasswordField fx:id="Senha" maxHeight="500.0" maxWidth="500.0" prefHeight="25.0" prefWidth="191.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+
+            <!-- Campo de Senha e Botão de Mostrar/Ocultar -->
+            <HBox alignment="CENTER" maxWidth="500.0">
                <VBox.margin>
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
-            </PasswordField>
-            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+               <children>
+                  <StackPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <PasswordField fx:id="Senha" maxHeight="500.0" maxWidth="500.0"
+                                       prefHeight="25.0" prefWidth="191.0" promptText="Senha"
+                                       style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;"
+                                       styleClass="rounded" />
+                        <TextField fx:id="SenhaVisible" maxHeight="500.0" maxWidth="500.0"
+                                   prefHeight="25.0" prefWidth="191.0" promptText="Senha"
+                                   style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;"
+                                   styleClass="rounded" visible="false" managed="false" />
+                     </children>
+                  </StackPane>
+
+                  <Button fx:id="btnOlho" mnemonicParsing="false"
+                          onAction="#alternarVisibilidadeSenha"
+                          style="-fx-background-color: transparent; -fx-cursor: hand;">
+                     <graphic>
+                        <ImageView fx:id="imgOlho" fitHeight="20.0" fitWidth="20.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Imagens/olho-fechado.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+
+            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha"
+                       text="Esqueceu a senha?" textFill="#004a8d" underline="true">
                <VBox.margin>
                   <Insets left="300.0" />
                </VBox.margin>
