@@ -30,6 +30,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
             </TextField>
+
             <!-- ===== NOVA SENHA ===== -->
             <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Nova Senha" textFill="#004587">
                <font>
@@ -42,7 +43,7 @@
 
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" />
+                  <Insets left="20.0" right="20.0" bottom="10.0" />
                </VBox.margin>
                <!-- Campo oculto para a password -->
                <PasswordField fx:id="campoNovaSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
@@ -51,6 +52,27 @@
                <!-- Botão do olho -->
                <Button fx:id="btnToggleNovaSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
             </StackPane>
+
+            <!-- ===== LISTA DE VALIDAÇÕES DA SENHA ===== -->
+            <VBox fx:id="vboxValidacoes" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" spacing="2" visible="false" managed="false">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <Label fx:id="lblMaiuscula" text="❌ Letra maiúscula" textFill="#d9534f">
+                     <font> <Font name="Verdana" size="11.0" /> </font>
+                  </Label>
+                  <Label fx:id="lblMinuscula" text="❌ Letra minúscula" textFill="#d9534f">
+                     <font> <Font name="Verdana" size="11.0" /> </font>
+                  </Label>
+                  <Label fx:id="lblNumero" text="❌ Número" textFill="#d9534f">
+                     <font> <Font name="Verdana" size="11.0" /> </font>
+                  </Label>
+                  <Label fx:id="lblEspecial" text="❌ Caractere especial" textFill="#d9534f">
+                     <font> <Font name="Verdana" size="11.0" /> </font>
+                  </Label>
+               </children>
+            </VBox>
 
 
             <!-- ===== CONFIRMAR SENHA ===== -->
@@ -65,7 +87,7 @@
 
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
                <!-- Campo oculto para confirmar a password -->
                <PasswordField fx:id="campoConfirmarSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
@@ -74,6 +96,7 @@
                <!-- Botão do olho -->
                <Button fx:id="btnToggleConfirmarSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
             </StackPane>
+
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="443.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#onAlterarSenha" styleClass="btn-cinza" text="Alterar Senha" textFill="#004587">
@@ -91,7 +114,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
          </children></VBox>
