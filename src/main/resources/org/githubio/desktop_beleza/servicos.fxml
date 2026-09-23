@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+    <center>
+        <VBox spacing="10" stylesheets="@css/style.css">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
+                <children>
+                    <Label alignment="CENTER" text="Serviços" textFill="#004587">
+                        <font>
+                            <Font name="Verdana Bold" size="28.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" minHeight="25.0" minWidth="263.0" promptText="Buscar serviço">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></TextField>
+                <Button minHeight="25.0" minWidth="125.0" onAction="#buscar" styleClass="btn-cinza" text="Buscar" />
+
+                <!-- Botão atualizado com a ação de clique -->
+                <Button minHeight="25.0" minWidth="125.0" onAction="#abrirDialogoAdicionar" prefWidth="0.0" styleClass="btn-azul" text="Adicionar serviços" />
+            </HBox>
+
+            <TableView fx:id="tabelaServicos" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNome" prefWidth="170.0" text="Nome" />
+                    <TableColumn fx:id="colDescricao" prefWidth="240.0" text="Descrição" />
+                    <!-- Coluna para os botões Editar e Excluir -->
+                    <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+    <left>
+        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+            <children>
+                <VBox spacing="8.0">
+                    <padding>
+                        <Insets left="15.0" right="15.0" />
+                    </padding>
+                    <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="btn-cinza" text="Página inicial">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Serviços">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                    </children>
+                </VBox>
+                <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+                <VBox alignment="CENTER" prefHeight="80.0">
+                    <children>
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
+                            <font>
+                                <Font name="Verdana" size="12.0" />
+                            </font></Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+    <right>
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+    </right>
+    <bottom>
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+    </bottom>
+   <top>
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                    </image>
+            </ImageView>
+            </children>
+        </Pane>
+   </top>
+</BorderPane>
