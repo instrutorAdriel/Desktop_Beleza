@@ -12,9 +12,10 @@ import java.util.List;
 
 public class ModeloDAO {
 
+
     public void cadastrar(Modelo modelo) {
         String buscarUsuario = "SELECT id_usuario FROM usuario WHERE email = ? ORDER BY id_usuario LIMIT 1";
-        String inserirUsuario = "INSERT INTO usuario (email, nome_usuario, senha) VALUES (?, ?, NULL)";
+        String inserirUsuario = "INSERT INTO usuario (email, nome_usuario, senha) VALUES (?, ?, ?)";
         String atualizarUsuario = "UPDATE usuario SET nome_usuario = ? WHERE id_usuario = ?";
         String verificarModelo = "SELECT 1 FROM modelo WHERE id_usuario = ? LIMIT 1";
         String inserirModelo = "INSERT INTO modelo (telefone, id_usuario) VALUES (?, ?)";
@@ -34,11 +35,13 @@ public class ModeloDAO {
                     try (PreparedStatement stmtUsuario = conn.prepareStatement(inserirUsuario, Statement.RETURN_GENERATED_KEYS)) {
                         stmtUsuario.setString(1, modelo.getEmail());
                         stmtUsuario.setString(2, modelo.getNome());
+                        stmtUsuario.setString(3, java.util.UUID.randomUUID().toString());
                         stmtUsuario.executeUpdate();
                         try (ResultSet rs = stmtUsuario.getGeneratedKeys()) {
                             if (!rs.next()) throw new SQLException("Não foi possível obter o id_usuario do modelo.");
                             idUsuario = rs.getInt(1);
                         }
+
                     }
                 } else {
                     try (PreparedStatement stmtAtualiza = conn.prepareStatement(atualizarUsuario)) {

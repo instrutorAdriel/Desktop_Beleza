@@ -34,8 +34,7 @@ public class TurmaDAO {
     }
 
     public void salvarTurma(String nomeTurma, String turno, String emailInstrutor, String statusTurma) {
-        // O banco fornecido possui a coluna escrita como 'torma'. O Desktop usa exatamente esse nome.
-        String inserirTurma = "INSERT INTO turma (nome_turma, torma, situacao) VALUES (?, ?, ?)";
+        String inserirTurma = "INSERT INTO turma (nome_turma, turno, situacao) VALUES (?, ?, ?)";
         String buscarInstrutor = """
                 SELECT i.id_instrutor, u.id_usuario
                 FROM instrutor i

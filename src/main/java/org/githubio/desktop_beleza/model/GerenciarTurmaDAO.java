@@ -18,7 +18,7 @@ public class GerenciarTurmaDAO {
         String sql = """
                 SELECT t.id_turma,
                        t.nome_turma,
-                       t.torma,
+                       t.turno,
                        u.email,
                        CASE WHEN t.situacao = 'A' THEN 'Em Andamento' ELSE 'Finalizada' END AS status_turma
                 FROM instrutor_gerencia_turma igt
@@ -35,7 +35,7 @@ public class GerenciarTurmaDAO {
         String sql = """
                 SELECT t.id_turma,
                        t.nome_turma,
-                       t.torma,
+                       t.turno,
                        u.email,
                        CASE WHEN t.situacao = 'A' THEN 'Em Andamento' ELSE 'Finalizada' END AS status_turma
                 FROM instrutor_gerencia_turma igt
@@ -62,7 +62,7 @@ public class GerenciarTurmaDAO {
                     lista.add(new UsuarioDTO(
                             rs.getInt("id_turma"),
                             rs.getString("nome_turma"),
-                            rs.getString("torma"),
+                            rs.getString("turno"),
                             rs.getString("email"),
                             rs.getString("status_turma")
                     ));
@@ -111,7 +111,7 @@ public class GerenciarTurmaDAO {
     }
 
     public void atualizarCompleto(int idTurma, String nome, String turno, String emailInstrutor, String status) {
-        String atualizarTurma = "UPDATE turma SET nome_turma = ?, torma = ?, situacao = ? WHERE id_turma = ?";
+        String atualizarTurma = "UPDATE turma SET nome_turma = ?, turno = ?, situacao = ? WHERE id_turma = ?";
         String buscarInstrutor = """
                 SELECT i.id_instrutor, u.id_usuario
                 FROM instrutor i
