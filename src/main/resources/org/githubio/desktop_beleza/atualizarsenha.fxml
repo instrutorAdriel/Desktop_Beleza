@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="1114.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
    <center>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="28.0" prefWidth="225.0" text="Atualizar Senha" textFill="#004587">
                <font>
@@ -18,21 +18,62 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="campoEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
+            <Label depthTest="DISABLE" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="E-mail" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
+            <TextField fx:id="campoEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField fx:id="campoNovaSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="Nova Senha" style="-fx-background-color: tranparet; -fx-border-color: transparent transparent black transparent;">
+            <!-- ===== NOVA SENHA ===== -->
+            <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Nova Senha" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" bottom="5.0" />
+               </VBox.margin>
+            </Label>
+
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
-            </PasswordField>
-            <PasswordField fx:id="campoConfirmarSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" promptText="Confimar Nova Senha" style="-fx-background-color: transparet; -fx-border-color: transparent transparent black transparent;">
+               <!-- Campo oculto para a password -->
+               <PasswordField fx:id="campoNovaSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
+               <!-- Campo visível para quando o utilizador clica no olho -->
+               <TextField fx:id="campoNovaSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
+               <!-- Botão do olho -->
+               <Button fx:id="btnToggleNovaSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
+            </StackPane>
+
+
+            <!-- ===== CONFIRMAR SENHA ===== -->
+            <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Confirmar Senha" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" bottom="5.0" />
+               </VBox.margin>
+            </Label>
+
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
-            </PasswordField>
+               <!-- Campo oculto para confirmar a password -->
+               <PasswordField fx:id="campoConfirmarSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
+               <!-- Campo visível -->
+               <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
+               <!-- Botão do olho -->
+               <Button fx:id="btnToggleConfirmarSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
+            </StackPane>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="443.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#onAlterarSenha" styleClass="btn-cinza" text="Alterar Senha" textFill="#004587">
