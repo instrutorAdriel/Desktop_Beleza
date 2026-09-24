@@ -6,6 +6,7 @@ module org.githubio.desktop_beleza {
     requires java.sql;
     requires jbcrypt;
     requires java.desktop;
+    requires java.dotenv;
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;

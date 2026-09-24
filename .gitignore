@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignorar ficheiro de variáveis de ambiente
+.env
