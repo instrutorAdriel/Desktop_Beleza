@@ -51,7 +51,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@Imagens/eyeOpen%201.png" />
+                           <Image url="@Imagens/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -99,7 +99,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@Imagens/eyeOpen%201.png" />
+                           <Image url="@Imagens/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
