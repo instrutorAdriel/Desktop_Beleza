@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
@@ -20,24 +22,33 @@ public class AtualizarSenhaController {
     @FXML private PasswordField campoNovaSenha;
     @FXML private TextField campoNovaSenhaVisivel;
     @FXML private Button btnToggleNovaSenha;
+    @FXML private ImageView imgOlhoNova;
 
     @FXML private PasswordField campoConfirmarSenha;
     @FXML private TextField campoConfirmarSenhaVisivel;
     @FXML private Button btnToggleConfirmarSenha;
+    @FXML private ImageView imgOlhoConfirmar;
 
-    // Componentes de validação
+    // Componentes de validação em tempo real
     @FXML private VBox vboxValidacoes;
     @FXML private Label lblMaiuscula;
     @FXML private Label lblMinuscula;
     @FXML private Label lblNumero;
     @FXML private Label lblEspecial;
 
+    // Carregamento das imagens personalizadas da pasta Imagens
+    // Carrega as imagens usando o URL absoluto do classpath
+    // Recua duas pastas a partir de 'controller' para chegar à pasta 'Imagens' na raiz do pacote
+    // Carrega as imagens de forma absoluta a partir da raiz do classpath (resources)
+    private final Image imagemOlhoAberto = new Image(getClass().getResource("/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png").toExternalForm());
+    private final Image imagemOlhoFechado = new Image(getClass().getResource("/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png").toExternalForm());
+
     private boolean novaSenhaVisivel = false;
     private boolean confirmarSenhaVisivel = false;
 
     @FXML
     public void initialize() {
-        // Sincronização dos campos de senha
+        // Sincronização dos campos de texto (oculto e visível)
         campoNovaSenhaVisivel.textProperty().bindBidirectional(campoNovaSenha.textProperty());
 
         btnToggleNovaSenha.setOnAction(event -> {
@@ -46,7 +57,9 @@ public class AtualizarSenhaController {
             campoNovaSenhaVisivel.setManaged(novaSenhaVisivel);
             campoNovaSenha.setVisible(!novaSenhaVisivel);
             campoNovaSenha.setManaged(!novaSenhaVisivel);
-            btnToggleNovaSenha.setText(novaSenhaVisivel ? "🙈" : "👁");
+
+            // Troca a imagem do botão consoante o estado
+            imgOlhoNova.setImage(novaSenhaVisivel ? imagemOlhoFechado : imagemOlhoAberto);
         });
 
         campoConfirmarSenhaVisivel.textProperty().bindBidirectional(campoConfirmarSenha.textProperty());
@@ -57,33 +70,32 @@ public class AtualizarSenhaController {
             campoConfirmarSenhaVisivel.setManaged(confirmarSenhaVisivel);
             campoConfirmarSenha.setVisible(!confirmarSenhaVisivel);
             campoConfirmarSenha.setManaged(!confirmarSenhaVisivel);
-            btnToggleConfirmarSenha.setText(confirmarSenhaVisivel ? "🙈" : "👁");
+
+            imgOlhoConfirmar.setImage(confirmarSenhaVisivel ? imagemOlhoFechado : imagemOlhoAberto);
         });
 
-        // Ouvinte para a senha oculta
+        // Ouvintes para validar a senha e mostrar a VBox dinamicamente
         campoNovaSenha.textProperty().addListener((observable, oldValue, newValue) -> {
             atualizarEstadoValidacoes(newValue);
         });
 
-        // Ouvinte para o campo de senha visível (caso o utilizador mude com o olho aberto)
         campoNovaSenhaVisivel.textProperty().addListener((observable, oldValue, newValue) -> {
             atualizarEstadoValidacoes(newValue);
         });
     }
 
     private void atualizarEstadoValidacoes(String senha) {
-        // Se o campo estiver vazio, esconde o bloco de validações e limpa o layout
         if (senha == null || senha.isEmpty()) {
             vboxValidacoes.setVisible(false);
             vboxValidacoes.setManaged(false);
             return;
         }
 
-        // Se começou a digitar, mostra o bloco de validações de forma responsiva
+        // Mostra o bloco responsivo assim que o utilizador começa a escrever
         vboxValidacoes.setVisible(true);
         vboxValidacoes.setManaged(true);
 
-        // Validação dos 4 critérios
+        // Critério 1: Letra Maiúscula
         if (senha.matches(".*[A-Z].*")) {
             lblMaiuscula.setText("✔ Letra maiúscula");
             lblMaiuscula.setTextFill(javafx.scene.paint.Color.web("#5cb85c"));
@@ -92,6 +104,7 @@ public class AtualizarSenhaController {
             lblMaiuscula.setTextFill(javafx.scene.paint.Color.web("#d9534f"));
         }
 
+        // Critério 2: Letra Minúscula
         if (senha.matches(".*[a-z].*")) {
             lblMinuscula.setText("✔ Letra minúscula");
             lblMinuscula.setTextFill(javafx.scene.paint.Color.web("#5cb85c"));
@@ -100,6 +113,7 @@ public class AtualizarSenhaController {
             lblMinuscula.setTextFill(javafx.scene.paint.Color.web("#d9534f"));
         }
 
+        // Critério 3: Número
         if (senha.matches(".*[0-9].*")) {
             lblNumero.setText("✔ Número");
             lblNumero.setTextFill(javafx.scene.paint.Color.web("#5cb85c"));
@@ -108,6 +122,7 @@ public class AtualizarSenhaController {
             lblNumero.setTextFill(javafx.scene.paint.Color.web("#d9534f"));
         }
 
+        // Critério 4: Caractere Especial
         if (senha.matches(".*[^a-zA-Z0-9].*")) {
             lblEspecial.setText("✔ Caractere especial");
             lblEspecial.setTextFill(javafx.scene.paint.Color.web("#5cb85c"));
@@ -138,7 +153,7 @@ public class AtualizarSenhaController {
             return;
         }
 
-        // Validação estrita para garantir que a senha cumpre todos os requisitos antes de avançar
+        // Validação estrita dos requisitos antes de gravar
         boolean senhaForte = novaSenha.matches(".*[A-Z].*") &&
                 novaSenha.matches(".*[a-z].*") &&
                 novaSenha.matches(".*[0-9].*") &&

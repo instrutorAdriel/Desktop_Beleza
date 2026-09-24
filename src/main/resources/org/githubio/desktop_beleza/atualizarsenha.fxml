@@ -45,15 +45,20 @@
                <VBox.margin>
                   <Insets left="20.0" right="20.0" bottom="10.0" />
                </VBox.margin>
-               <!-- Campo oculto para a password -->
                <PasswordField fx:id="campoNovaSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <!-- Campo visível para quando o utilizador clica no olho -->
                <TextField fx:id="campoNovaSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <!-- Botão do olho -->
-               <Button fx:id="btnToggleNovaSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
+               <Button fx:id="btnToggleNovaSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
+                  <graphic>
+                     <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@Imagens/eyeOpen%201.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
             </StackPane>
 
-            <!-- ===== LISTA DE VALIDAÇÕES DA SENHA ===== -->
+            <!-- ===== VALIDAÇÕES DA SENHA (OCULTAS ATÉ DIGITAR) ===== -->
             <VBox fx:id="vboxValidacoes" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" spacing="2" visible="false" managed="false">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" bottom="20.0" />
@@ -74,7 +79,6 @@
                </children>
             </VBox>
 
-
             <!-- ===== CONFIRMAR SENHA ===== -->
             <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Confirmar Senha" textFill="#004587">
                <font>
@@ -89,12 +93,17 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
-               <!-- Campo oculto para confirmar a password -->
                <PasswordField fx:id="campoConfirmarSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <!-- Campo visível -->
                <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <!-- Botão do olho -->
-               <Button fx:id="btnToggleConfirmarSenha" text="👁" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #004587; -fx-padding: 0 8 0 0;" />
+               <Button fx:id="btnToggleConfirmarSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
+                  <graphic>
+                     <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@Imagens/eyeOpen%201.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
             </StackPane>
 
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="443.0">
