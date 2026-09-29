@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
+        stylesheets="@css/style.css">
+
+    <top>
+
+        <Pane prefHeight="70"
+              style="-fx-background-color: #faf8f7;">
+
+            <ImageView
+                    fitHeight="52"
+                    fitWidth="83"
+                    layoutX="14"
+                    layoutY="14"
+                    preserveRatio="true">
+
+                <image>
+                    <Image url="@Imagens/Senac_logo.png"/>
+                </image>
+
+            </ImageView>
+
+        </Pane>
+
+    </top>
+
+
+    <left>
+
+        <VBox
+                prefWidth="155"
+                spacing="8"
+                style="-fx-background-color: #faf8f7;
+                       -fx-border-color: #E1E3E2;
+                       -fx-border-width: 0 1 0 0;">
+
+            <padding>
+                <Insets top="20"
+                        left="10"
+                        right="10"/>
+            </padding>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Página inicial"
+                    styleClass="btn-cinza"
+                    onAction="#trocarTelaParaPaginaInicial"/>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Modelos"
+                    styleClass="btn-cinza"
+                    onAction="#trocarTelaParaModelos"/>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Serviços"
+                    styleClass="btn-cinza"
+                    onAction="#trocarTelaParaServicos"/>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Unidades"
+                    styleClass="btn-cinza"/>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Turmas"
+                    styleClass="btn-cinza"
+                    onAction="#trocarTelaParaTurmas"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button
+                    maxWidth="Infinity"
+                    text="Sair"
+                    styleClass="btn-azul"
+                    onAction="#sairDoSistema"/>
+
+        </VBox>
+
+    </left>
+
+
+    <center>
+
+        <VBox spacing="20">
+
+            <padding>
+                <Insets
+                        top="25"
+                        left="30"
+                        right="30"
+                        bottom="30"/>
+            </padding>
+
+
+            <Label
+                    text="Gerenciamento de Unidades"
+                    textFill="#004587">
+
+                <font>
+                    <Font
+                            name="Verdana Bold"
+                            size="28"/>
+                </font>
+
+            </Label>
+
+
+            <HBox spacing="10">
+
+                <VBox spacing="5">
+
+                    <Label text="Nome da unidade"/>
+
+                    <TextField
+                            fx:id="txtNome"
+                            prefWidth="220"
+                            promptText="Nome da unidade"/>
+
+                </VBox>
+
+
+                <VBox spacing="5">
+
+                    <Label text="Endereço"/>
+
+                    <TextField
+                            fx:id="txtEndereco"
+                            prefWidth="280"
+                            promptText="Endereço"/>
+
+                </VBox>
+
+
+                <VBox spacing="5">
+
+                    <Label text="Situação"/>
+
+                    <ComboBox
+                            fx:id="cbSituacao"
+                            prefWidth="130"/>
+
+                </VBox>
+
+            </HBox>
+
+
+            <HBox spacing="10">
+
+                <Button
+                        text="Novo"
+                        styleClass="btn-cinza"
+                        onAction="#novoCadastro"/>
+
+                <Button
+                        text="Salvar"
+                        styleClass="btn-azul"
+                        onAction="#salvar"/>
+
+            </HBox>
+
+
+            <TableView
+                    fx:id="tabelaUnidades"
+                    prefHeight="400">
+
+                <columns>
+
+                    <TableColumn
+                            fx:id="colNome"
+                            text="Unidade"
+                            prefWidth="220"/>
+
+                    <TableColumn
+                            fx:id="colEndereco"
+                            text="Endereço"
+                            prefWidth="350"/>
+
+                    <TableColumn
+                            fx:id="colSituacao"
+                            text="Situação"
+                            prefWidth="130"/>
+
+                </columns>
+
+            </TableView>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

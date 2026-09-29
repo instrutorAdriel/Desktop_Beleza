@@ -198,6 +198,11 @@ public class ModeloController implements Initializable {
     }
 
     @FXML
+    public void trocarTelaParaUnidades() throws IOException {
+        MainApplication.setRoot("unidades");
+    }
+
+    @FXML
     public void trocarTelaParaPaginaInicial() throws IOException {
         MainApplication.setRoot("Telaagenda");
     }

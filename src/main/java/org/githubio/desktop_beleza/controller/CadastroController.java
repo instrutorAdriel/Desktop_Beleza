@@ -2,114 +2,68 @@ package org.githubio.desktop_beleza.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.CadastroDAO;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class CadastroController {
-    @FXML
-    private TextField campoEmail;
-    @FXML
-    private TextField campoSenha;
-    @FXML
-    private TextField campoConfirmarSenha;
+    @FXML private TextField campoNome;
+    @FXML private TextField campoEmail;
+    @FXML private PasswordField campoSenha;
+    @FXML private PasswordField campoConfirmarSenha;
 
-    // Metodo chamado ao clicar no botão "Voltar" no cadastro.fxml
     @FXML
     protected void onVoltarClick() throws IOException {
-        // Volta para a tela principal
         MainApplication.setRoot("login");
     }
 
-    // Metodo chamado ao clicar em "Salvar" (exemplo)
-    @FXML
-    protected void onSalvarClick() throws IOException {
-        // Faça o que precisar aqui antes de trocar a tela
-        IO.println("Cadastro salvo!");
-
-        // Após salvar, volta para a tela principal
-        MainApplication.setRoot("login");
-    }
     @FXML
     public void onCadastrarClick() throws IOException {
-
-        // 1. Lê os valores digitados nos campos da tela
-        //    getText() retorna o conteúdo atual do campo como String
-        String email    = campoEmail.getText();
-        String senha   = campoSenha.getText();
-        String regex = "^[a-zA-Z0-9._%+-]+@df\\.senac\\.br$";
-
-        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-
-        // 2. Validação básica: verifica se algum campo está vazio
-        //    isBlank() retorna true se a String for vazia ou só tiver espaços
-        //  matcher.matches()
-        if (email.isBlank() || senha.isBlank()) {
-
-            // Exibe uma janela de aviso para o usuário
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Campos obrigatórios");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Por favor, preencha todos os campos antes de cadastrar.");
-            alerta.showAndWait();
-
-            // Interrompe o metodo — não vai ao banco com dados incompletos
-            return;
-        }
-
-        if (!matcher.matches()){
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("E-mail fora do padrão");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Por favor, preencha o e-mail seguindo o padrão \"@df.senac.br\".");
-            alerta.showAndWait();
-            return;
-        }
-
-        // 1. Get the text from YOUR specific field IDs
+        String nome = campoNome.getText().trim();
+        String email = campoEmail.getText().trim();
+        String senha = campoSenha.getText();
         String confirma = campoConfirmarSenha.getText();
 
-        // 2. The Logic
-        if (confirma.isEmpty()) {
-            mostrarErro("Campos Vazios", "Por favor, preencha todos os campos.");
+        if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirma.isBlank()) {
+            mostrarErro("Campos obrigatórios", "Preencha todos os campos.");
             return;
-        } else if (!senha.equals(confirma)) {
-            mostrarErro("Erro de Senha", "As senhas não coincidem!");
+        }
+
+        Pattern emailInstitucional = Pattern.compile("^[a-zA-Z0-9._%+-]+@df\\.senac\\.br$", Pattern.CASE_INSENSITIVE);
+        if (!emailInstitucional.matcher(email).matches()) {
+            mostrarErro("E-mail fora do padrão", "Use um e-mail institucional @df.senac.br.");
             return;
-        } else {
-            IO.println("Sucesso! Iniciando cadastro...");
-            // Sua lógica de banco de dados aqui
+        }
+
+        if (!senha.equals(confirma)) {
+            mostrarErro("Erro de senha", "As senhas não coincidem.");
+            return;
         }
 
         CadastroDAO dao = new CadastroDAO();
-
         if (dao.instrutorExiste(email)) {
-            mostrarErro("E-mail já cadastrado", "Este e-mail já está em uso. Tente outro.");
-            return; // Para o código aqui e não cadastra
+            mostrarErro("E-mail já cadastrado", "Este instrutor já está cadastrado.");
+            return;
         }
 
-        // Se o código chegar aqui, é porque o e-mail não existe
-        dao.cadastrarUsuario(email, senha);
+        try {
+            dao.cadastrarUsuario(nome, email, senha);
+        } catch (RuntimeException e) {
+            mostrarErro("Erro no cadastro", e.getMessage());
+            return;
+        }
 
-        // 5. Informa ao usuário que o cadastro foi realizado
         Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
-        sucesso.setTitle("Cadastro realizado");
         sucesso.setHeaderText(null);
-        sucesso.setContentText("Usuário cadastrado com sucesso!");
+        sucesso.setContentText("Instrutor cadastrado com sucesso!");
         sucesso.showAndWait();
-
-        // 6. Limpa os campos e volta
-        campoEmail.clear();
-        campoSenha.clear();
-        campoConfirmarSenha.clear();
-
         MainApplication.setRoot("login");
     }
+
     private void mostrarErro(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
@@ -117,5 +71,4 @@ public class CadastroController {
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
-
 }

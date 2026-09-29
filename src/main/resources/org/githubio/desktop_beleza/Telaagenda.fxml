@@ -55,6 +55,12 @@
                         <Font name="Verdana" size="12.0" />
                      </font>
                   </Button>
+                   <Button
+                           maxWidth="1.7976931348623157E308"
+                           mnemonicParsing="false"
+                           onAction="#trocarTelaParaUnidades"
+                           styleClass="btn-cinza"
+                           text="Unidades"/>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
                      <font>
                         <Font name="Verdana" size="12.0" />
@@ -135,7 +141,7 @@
                      <VBox.margin>
                         <Insets left="3.6" />
                      </VBox.margin></ComboBox>
-                  <ComboBox fx:id="cbTurma" prefWidth="130.0" promptText="Turmas">
+                  <ComboBox fx:id="cbUnidade" prefWidth="130.0" promptText="Unidade">
                      <VBox.margin>
                         <Insets left="3.6" />
                      </VBox.margin>

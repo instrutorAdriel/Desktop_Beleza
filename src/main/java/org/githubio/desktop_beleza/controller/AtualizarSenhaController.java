@@ -201,4 +201,10 @@ public class AtualizarSenhaController {
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
+
+    private void limparCamposFormulario() {
+        campoEmail.clear();
+        campoNovaSenha.clear();
+        campoConfirmarSenha.clear();
+    }
 }
