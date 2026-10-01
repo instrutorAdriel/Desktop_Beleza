@@ -30,7 +30,7 @@
                 <Button minHeight="25.0" minWidth="125.0" onAction="#abrirDialogoAdicionar" prefWidth="0.0" styleClass="btn-azul" text="Adicionar serviços" />
             </HBox>
 
-            <TableView fx:id="tabelaServicos" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tabelaServicos" prefHeight="376.0" prefWidth="556.0" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colNome" prefWidth="170.0" text="Nome" />
                     <TableColumn fx:id="colDescricao" prefWidth="240.0" text="Descrição" />
