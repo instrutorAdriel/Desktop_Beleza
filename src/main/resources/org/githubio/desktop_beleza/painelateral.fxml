@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="15.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.VBox" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets top="20.0" />
+   </padding>
    <children>
-      <Button mnemonicParsing="false" stylesheets="@css/style.css" text="Início">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-azul" />
-         </styleClass></Button>
-      <Button lineSpacing="30.0" mnemonicParsing="false" stylesheets="@css/style.css" text="Modelos">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-cinza" />
-         </styleClass></Button>
-      <Button mnemonicParsing="false" stylesheets="@css/style.css" text="Agenda">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-azul" />
-         </styleClass></Button>
-      <Button mnemonicParsing="false" stylesheets="@css/style.css" text="Serviços">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-cinza" />
-         </styleClass></Button>
-      <Button alignment="CENTER" mnemonicParsing="false" stylesheets="@css/style.css" text="Sair" textAlignment="RIGHT">
-         <styleClass>
-            <String fx:value="btn-sair" />
-            <String fx:value="btn-azul" />
-         </styleClass></Button>
+      <VBox spacing="8.0">
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="btn-cinza" text="Página inicial">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="btn-cinza" text="Serviços">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" styleClass="btn-cinza" text="Unidades">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+      <VBox alignment="CENTER" prefHeight="80.0">
+         <children>
+            <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
-   <styleClass>
-      <String fx:value="btn-cinza" />
-      <String fx:value="btn" />
-   </styleClass>
-</VBox>
+</fx:root>

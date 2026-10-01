@@ -13,49 +13,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
+
+    <!-- Menu lateral centralizado pelo componente reutilizável -->
     <left>
-        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets top="20.0" />
-            </padding>
-            <children>
-                <VBox spacing="8.0">
-                    <padding>
-                        <Insets left="15.0" right="15.0" />
-                    </padding>
-                    <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="btn-cinza" text="Página inicial">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font></Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cinza" text="Modelos">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font></Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="btn-cinza" text="Serviços">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font></Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font></Button>
-                    </children>
-                </VBox>
-                <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
-                <VBox alignment="CENTER" prefHeight="80.0">
-                    <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font></Button>
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
+        <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
+
     <bottom>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </bottom>
@@ -71,9 +37,9 @@
                             <font>
                                 <Font name="Verdana Bold" size="28.0" />
                             </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
+                            <HBox.margin>
+                                <Insets top="10.0" />
+                            </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
@@ -100,9 +66,9 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
                 </HBox>
                 <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0">
                     <columns>

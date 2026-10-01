@@ -334,35 +334,4 @@ public class AgendaController {
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
-
-    @FXML
-    public void trocarTelaParaModelos() throws IOException {
-        MainApplication.setRoot("gerenciarmodelo");
-    }
-
-    @FXML
-    public void trocarTelaParaTurmas() throws IOException {
-        MainApplication.setRoot("GerenciarTurma");
-    }
-
-    @FXML
-    public void trocarTelaParaUnidades() throws IOException {
-
-        MainApplication.setRoot("unidades");
-    }
-
-    @FXML
-    public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servicos");
-    }
-
-    @FXML
-    public void sairDoSistema() throws IOException {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION,
-                "Você deseja sair do sistema?", ButtonType.YES, ButtonType.NO);
-        if (alerta.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
-            MainApplication.setUsuario("");
-            MainApplication.setRoot("login");
-        }
-    }
 }
