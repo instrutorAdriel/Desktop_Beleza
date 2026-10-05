@@ -64,7 +64,7 @@
     </left>
 
     <center>
-        <VBox spacing="20.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="485.0" prefWidth="624.0" spacing="20.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
             </padding>
@@ -94,7 +94,7 @@
                     </children>
                 </HBox>
 
-                <TableView fx:id="tabelaUsuarios" prefHeight="373.0" prefWidth="556.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tabelaUsuarios" prefHeight="400.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colTurma" prefWidth="200.0" text="Nome/Código" />
                         <TableColumn fx:id="colTurno" prefWidth="100.0" text="Turno" />
@@ -110,9 +110,9 @@
         </VBox>
     </center>
     <right>
-        <Pane prefHeight="460.0" prefWidth="146.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="460.0" prefWidth="104.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </right>
     <bottom>
-        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="56.0" prefWidth="950.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>

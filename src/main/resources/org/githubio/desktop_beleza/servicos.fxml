@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
     <center>
         <VBox spacing="10" stylesheets="@css/style.css">
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
@@ -30,12 +30,12 @@
                 <Button minHeight="25.0" minWidth="125.0" onAction="#abrirDialogoAdicionar" prefWidth="0.0" styleClass="btn-azul" text="Adicionar serviços" />
             </HBox>
 
-            <TableView fx:id="tabelaServicos" prefHeight="376.0" prefWidth="556.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tabelaServicos" prefHeight="346.0" prefWidth="744.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colNome" prefWidth="170.0" text="Nome" />
-                    <TableColumn fx:id="colDescricao" prefWidth="240.0" text="Descrição" />
+                    <TableColumn fx:id="colNome" prefWidth="152.0" text="Nome" />
+                    <TableColumn fx:id="colDescricao" prefWidth="152.0" text="Descrição" />
                     <!-- Coluna para os botões Editar e Excluir -->
-                    <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
+                    <TableColumn fx:id="colAcoes" prefWidth="152.0" text="Ações" />
                 </columns>
             </TableView>
 
@@ -70,7 +70,7 @@
                             </font></Button>
                     </children>
                 </VBox>
-                <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+                <VBox prefHeight="224.0" prefWidth="150.0" style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
                 <VBox alignment="CENTER" prefHeight="80.0">
                     <children>
                         <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
@@ -83,7 +83,7 @@
         </VBox>
     </left>
     <right>
-        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="390.0" prefWidth="50.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </right>
     <bottom>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />

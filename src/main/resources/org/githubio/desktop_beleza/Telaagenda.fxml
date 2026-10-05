@@ -10,7 +10,7 @@
     <center>
         <HBox alignment="CENTER" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="tabelaAgenda" maxHeight="500.0">
+                <TableView fx:id="tabelaAgenda" maxHeight="500.0" prefHeight="390.0" prefWidth="933.0">
                     <columns>
                         <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="101.0" text="Data" />
                         <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="101.0" text="Servico" />
@@ -35,7 +35,7 @@
     <left>
         <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
             <children>
-            <VBox spacing="8.0">
+            <VBox prefHeight="163.0" prefWidth="179.0" spacing="8.0">
                <padding>
                   <Insets left="15.0" right="15.0" />
                </padding>
@@ -55,12 +55,7 @@
                         <Font name="Verdana" size="12.0" />
                      </font>
                   </Button>
-                   <Button
-                           maxWidth="1.7976931348623157E308"
-                           mnemonicParsing="false"
-                           onAction="#trocarTelaParaUnidades"
-                           styleClass="btn-cinza"
-                           text="Unidades"/>
+                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" styleClass="btn-cinza" text="Unidades" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
                      <font>
                         <Font name="Verdana" size="12.0" />
@@ -68,7 +63,7 @@
                   </Button>
                </children>
             </VBox>
-            <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+            <VBox prefHeight="0.0" prefWidth="184.0" style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
             <VBox alignment="CENTER" prefHeight="80.0">
                <children>
                   <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
@@ -106,61 +101,72 @@
          </children>
       </Pane>
     </top>
-    <right>
-        <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="403.0" prefWidth="150.0" spacing="4.0">
-               <children>
-      
-                      <DatePicker fx:id="dpData">
-                          <VBox.margin>
-                              <Insets left="3.6" right="2.0" top="40.0" />
-                          </VBox.margin>
-                      </DatePicker>
-                        <Label prefHeight="27.0" prefWidth="142.0" text="Novo procedimento" textFill="#004587">
-                            <font>
-                                <Font name="Verdana Bold" size="12.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="3.6" right="4.0" top="10.0" />
-                            </VBox.margin>
-                        </Label>
-      
-                      <!-- Botão Ver todos / Ver semana -->
-                      <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" styleClass="btn-cinza" text="Ver todos" textFill="#004587">
-                          <VBox.margin>
-                              <Insets bottom="6.0" left="3.6" />
-                          </VBox.margin>
-                      </Button>
-                        <TextField fx:id="txtHorario" promptText="Horário">
-                            <VBox.margin>
-                                <Insets left="3.6" right="3.6" />
-                            </VBox.margin>
-                        </TextField>
-                  <ComboBox fx:id="txtModelo" prefWidth="130.0" promptText="Modelos">
-                     <VBox.margin>
-                        <Insets left="3.6" />
-                     </VBox.margin></ComboBox>
-                  <ComboBox fx:id="cbUnidade" prefWidth="130.0" promptText="Unidade">
-                     <VBox.margin>
-                        <Insets left="3.6" />
-                     </VBox.margin>
-                  </ComboBox>
-                        <ComboBox fx:id="txtServico" prefWidth="130.0" promptText="Tipo de Servico">
-                            <VBox.margin>
-                                <Insets left="3.6" />
-                            </VBox.margin>
-                        </ComboBox>
-                        <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefHeight="25.0" prefWidth="99.0" styleClass="btn-azul" text="Salvar" textFill="#004587">
-                            <VBox.margin>
-                                <Insets left="3.6" />
-                            </VBox.margin>
-                        </Button>
-               </children>
-            </VBox>
-         </children></AnchorPane>
-    </right>
     <bottom>
-        <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+              <AnchorPane prefHeight="70.0" prefWidth="822.0" style="-fx-background-color: #faf8f7;" />
+         </children>
+      </VBox>
     </bottom>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="390.0" prefWidth="211.0" spacing="4.0" BorderPane.alignment="CENTER">
+         <children>
+
+                <DatePicker fx:id="dpData">
+                    <VBox.margin>
+                        <Insets left="5.16" top="40.0" />
+                    </VBox.margin>
+                </DatePicker>
+                  <Label prefHeight="27.0" prefWidth="142.0" text="Novo procedimento" textFill="#004587">
+                      <font>
+                          <Font name="Verdana Bold" size="12.0" />
+                      </font>
+                      <VBox.margin>
+                          <Insets left="5.16" top="10.0" />
+                      </VBox.margin>
+               <padding>
+                  <Insets left="3.6" />
+               </padding>
+                  </Label>
+
+                <!-- Botão Ver todos / Ver semana -->
+                <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" prefWidth="142.0" styleClass="btn-cinza" text="Ver todos" textFill="#004587">
+                    <VBox.margin>
+                        <Insets left="5.16" />
+                    </VBox.margin>
+                </Button>
+                  <TextField fx:id="txtHorario" promptText="Horário">
+                      <VBox.margin>
+                          <Insets left="5.16" />
+                      </VBox.margin>
+                  </TextField>
+            <ComboBox fx:id="txtModelo" prefWidth="142.0" promptText="Modelos">
+               <VBox.margin>
+                  <Insets left="5.16" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="cbUnidade" prefWidth="142.0" promptText="Unidade">
+               <VBox.margin>
+                  <Insets left="5.16" />
+               </VBox.margin>
+            </ComboBox>
+                  <ComboBox fx:id="txtServico" prefWidth="142.0" promptText="Tipo de Servico">
+                      <VBox.margin>
+                          <Insets left="5.16" />
+                      </VBox.margin>
+                  </ComboBox>
+                  <Button id="btn-salvar" alignment="CENTER" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefHeight="25.0" prefWidth="99.0" styleClass="btn-azul" text="Salvar" textFill="#004587">
+                      <VBox.margin>
+                          <Insets left="3.6" />
+                      </VBox.margin>
+                  </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="30.0" right="40.0" />
+         </padding>
+      </VBox>
+   </right>
 </BorderPane>
