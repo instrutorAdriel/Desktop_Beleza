@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
@@ -8,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
     <center>
-        <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="320.0" BorderPane.alignment="CENTER">
             <children>
                 <Label alignment="CENTER" prefHeight="25.0" prefWidth="317.0" text="Registro de Modelos" textFill="#004587">
                     <font>
@@ -29,7 +30,12 @@
                     <VBox.margin>
                         <Insets left="25.0" top="20.0" />
                     </VBox.margin></TextField>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                <DatePicker fx:id="colDataNascimento" maxHeight="200.0" maxWidth="250.0" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+                    <VBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                    </VBox.margin>
+                </DatePicker>
+                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="320.0">
                     <children>
                         <Button mnemonicParsing="false" styleClass="btn-cinza" stylesheets="@css/style.css" text="Voltar">
                             <HBox.margin>

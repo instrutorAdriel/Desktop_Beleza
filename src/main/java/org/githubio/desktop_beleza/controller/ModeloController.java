@@ -15,6 +15,8 @@ import org.githubio.desktop_beleza.model.ModeloDAO;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ModeloController implements Initializable {
@@ -23,6 +25,7 @@ public class ModeloController implements Initializable {
     @FXML private TableColumn<Modelo, String> colNome;
     @FXML private TableColumn<Modelo, String> colTelefone;
     @FXML private TableColumn<Modelo, String> colEmail;
+    @FXML private TableColumn<Modelo, Date> colDataNascimento;
     @FXML private TableColumn<Modelo, Void> colAcoes;
     @FXML private TextField txtBuscar;
 
@@ -33,6 +36,8 @@ public class ModeloController implements Initializable {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        // CORRIGIDO: o nome da propriedade é "data" (getData()), não "data_nascimento"
+        colDataNascimento.setCellValueFactory(new PropertyValueFactory<>("data"));
 
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
@@ -86,6 +91,12 @@ public class ModeloController implements Initializable {
         TextField txtNome = new TextField(modelo.getNome());
         TextField txtTel = new TextField(modelo.getTelefone());
         TextField txtEmail = new TextField(modelo.getEmail());
+        DatePicker dpNascimento = new DatePicker();
+
+        // CORRIGIDO: preenche o DatePicker com a data já salva (edição)
+        if (modelo.getData() != null) {
+            dpNascimento.setValue(modelo.getData().toLocalDate());
+        }
 
         TextFormatter<String> nomeFormatter = new TextFormatter<>(change -> {
             if (change.getControlNewText().matches("[a-zA-ZÀ-ú ]*")) {
@@ -95,7 +106,6 @@ public class ModeloController implements Initializable {
         });
         txtNome.setTextFormatter(nomeFormatter);
 
-        // ── Permite apenas números no telefone (máx. 10 dígitos) ─────────────
         TextFormatter<String> telefoneFormatter = new TextFormatter<>(change -> {
             if (change.getControlNewText().matches("\\d{0,11}")) {
                 return change;
@@ -104,12 +114,13 @@ public class ModeloController implements Initializable {
         });
         txtTel.setTextFormatter(telefoneFormatter);
         txtTel.setPromptText("Somente números (máx. 11)");
-        // ─────────────────────────────────────────────────────────────────────
 
         dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Telefone:"), txtTel,
-                new Label("Email:"), txtEmail));
+                new Label("Email:"), txtEmail,
+                new Label("Data de nascimento:"), dpNascimento
+        ));
 
         final Button btnSalvar = (Button) dialog.getDialogPane().lookupButton(btnSalvarType);
 
@@ -117,25 +128,32 @@ public class ModeloController implements Initializable {
             String telRaw = txtTel.getText();
             String email = txtEmail.getText();
 
+            // CORRIGIDO: pega o valor real do DatePicker e converte para java.sql.Date
+            LocalDate dataEscolhida = dpNascimento.getValue();
+            Date dataN = (dataEscolhida != null) ? Date.valueOf(dataEscolhida) : null;
+
             if (telRaw.length() < 11) {
                 mostrarAlerta("Erro no Telefone", "O telefone deve conter 11 dígitos.");
                 event.consume();
                 return;
             }
 
-            // Validação simples de Email
             if (!email.contains("@") || !email.contains(".")) {
                 mostrarAlerta("Erro no Email", "Por favor, insira um e-mail válido.");
                 event.consume();
                 return;
             }
 
-
-
+            if (dataN == null) {
+                mostrarAlerta("Erro na Data", "Por favor, selecione a data de nascimento.");
+                event.consume();
+                return;
+            }
 
             modelo.setNome(txtNome.getText());
             modelo.setTelefone(telRaw);
             modelo.setEmail(email);
+            modelo.setData(dataN);
 
             if (isNovo) {
                 dao.cadastrar(modelo);

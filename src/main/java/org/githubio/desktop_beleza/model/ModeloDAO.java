@@ -2,23 +2,19 @@ package org.githubio.desktop_beleza.model;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModeloDAO {
-
 
     public void cadastrar(Modelo modelo) {
         String buscarUsuario = "SELECT id_usuario FROM usuario WHERE email = ? ORDER BY id_usuario LIMIT 1";
         String inserirUsuario = "INSERT INTO usuario (email, nome_usuario, senha) VALUES (?, ?, ?)";
         String atualizarUsuario = "UPDATE usuario SET nome_usuario = ? WHERE id_usuario = ?";
         String verificarModelo = "SELECT 1 FROM modelo WHERE id_usuario = ? LIMIT 1";
-        String inserirModelo = "INSERT INTO modelo (telefone, id_usuario) VALUES (?, ?)";
+        // CORRIGIDO: agora inclui data_nascimento
+        String inserirModelo = "INSERT INTO modelo (telefone, data_nascimento, id_usuario) VALUES (?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
@@ -41,7 +37,6 @@ public class ModeloDAO {
                             if (!rs.next()) throw new SQLException("Não foi possível obter o id_usuario do modelo.");
                             idUsuario = rs.getInt(1);
                         }
-
                     }
                 } else {
                     try (PreparedStatement stmtAtualiza = conn.prepareStatement(atualizarUsuario)) {
@@ -59,7 +54,12 @@ public class ModeloDAO {
 
                 try (PreparedStatement stmtModelo = conn.prepareStatement(inserirModelo)) {
                     stmtModelo.setString(1, modelo.getTelefone());
-                    stmtModelo.setInt(2, idUsuario);
+                    if (modelo.getData() != null) {
+                        stmtModelo.setDate(2, modelo.getData());
+                    } else {
+                        stmtModelo.setNull(2, Types.DATE);
+                    }
+                    stmtModelo.setInt(3, idUsuario);
                     stmtModelo.executeUpdate();
                 }
 
@@ -77,7 +77,7 @@ public class ModeloDAO {
 
     public List<Modelo> lerTodos() {
         String sql = """
-                SELECT m.id_modelo, m.telefone, u.nome_usuario, u.email
+                SELECT m.id_modelo, m.telefone, u.nome_usuario, u.email, m.data_nascimento
                 FROM modelo m
                 INNER JOIN usuario u ON u.id_usuario = m.id_usuario
                 ORDER BY u.nome_usuario
@@ -93,7 +93,8 @@ public class ModeloDAO {
                         rs.getInt("id_modelo"),
                         rs.getString("nome_usuario"),
                         rs.getString("telefone"),
-                        rs.getString("email")
+                        rs.getString("email"),
+                        rs.getDate("data_nascimento")
                 ));
             }
         } catch (SQLException e) {
@@ -105,7 +106,7 @@ public class ModeloDAO {
     public void atualizar(Modelo modelo) {
         String buscarUsuario = "SELECT id_usuario FROM modelo WHERE id_modelo = ?";
         String atualizarUsuario = "UPDATE usuario SET nome_usuario = ?, email = ? WHERE id_usuario = ?";
-        String atualizarModelo = "UPDATE modelo SET telefone = ? WHERE id_modelo = ?";
+        String atualizarModelo = "UPDATE modelo SET telefone = ?, data_nascimento = ? WHERE id_modelo = ?";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
@@ -129,7 +130,12 @@ public class ModeloDAO {
                     stmtUsuario.executeUpdate();
 
                     stmtModelo.setString(1, modelo.getTelefone());
-                    stmtModelo.setInt(2, modelo.getId());
+                    if (modelo.getData() != null) {
+                        stmtModelo.setDate(2, modelo.getData());
+                    } else {
+                        stmtModelo.setNull(2, Types.DATE);
+                    }
+                    stmtModelo.setInt(3, modelo.getId());
                     stmtModelo.executeUpdate();
                 }
                 conn.commit();
