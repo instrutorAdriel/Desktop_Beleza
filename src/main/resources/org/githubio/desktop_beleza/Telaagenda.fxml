@@ -10,7 +10,7 @@
     <center>
         <HBox alignment="CENTER" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="tabelaAgenda" maxHeight="500.0" prefHeight="390.0" prefWidth="933.0">
+                <TableView fx:id="tabelaAgenda" maxHeight="780.0" maxWidth="1866.0" prefHeight="390.0" prefWidth="933.0" HBox.hgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="101.0" text="Data" />
                         <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="101.0" text="Servico" />
@@ -109,7 +109,7 @@
       </VBox>
     </bottom>
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="390.0" prefWidth="211.0" spacing="4.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="4.0" BorderPane.alignment="CENTER">
          <children>
 
                 <DatePicker fx:id="dpData">
