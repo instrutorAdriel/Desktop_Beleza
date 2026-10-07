@@ -204,42 +204,4 @@ public class ModeloController implements Initializable {
             ));
         }
     }
-
-    @FXML
-    public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servicos");
-    }
-
-    @FXML
-    public void trocarTelaParaTurmas() throws IOException {
-        MainApplication.setRoot("GerenciarTurma");
-    }
-
-    @FXML
-    public void trocarTelaParaUnidades() throws IOException {
-        MainApplication.setRoot("unidades");
-    }
-
-    @FXML
-    public void trocarTelaParaPaginaInicial() throws IOException {
-        MainApplication.setRoot("Telaagenda");
-    }
-
-    @FXML
-    public void sairDoSistema() throws IOException {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Sair do Sistema");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Você deseja do sair do sistema?");
-
-        ButtonType botaoSim = new ButtonType("SIM");
-        ButtonType botaoNao = new ButtonType("NÃO");
-
-        alerta.getButtonTypes().setAll(botaoSim, botaoNao);
-
-        if (alerta.showAndWait().get() == botaoSim) {
-            MainApplication.setUsuario("");
-            MainApplication.setRoot("login");
-        }
-    }
 }

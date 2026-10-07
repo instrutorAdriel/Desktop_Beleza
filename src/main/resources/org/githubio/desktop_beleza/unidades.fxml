@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
 
 <BorderPane
         xmlns="http://javafx.com/javafx/17.0.12"
@@ -35,63 +36,10 @@
 
     </top>
 
-
+    <!-- Menu lateral centralizado pelo componente reutilizável -->
     <left>
-
-        <VBox
-                prefWidth="155"
-                spacing="8"
-                style="-fx-background-color: #faf8f7;
-                       -fx-border-color: #E1E3E2;
-                       -fx-border-width: 0 1 0 0;">
-
-            <padding>
-                <Insets top="20"
-                        left="10"
-                        right="10"/>
-            </padding>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Página inicial"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaPaginaInicial"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Modelos"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaModelos"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Serviços"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaServicos"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Unidades"
-                    styleClass="btn-cinza"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Turmas"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaTurmas"/>
-
-            <Region VBox.vgrow="ALWAYS"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Sair"
-                    styleClass="btn-azul"
-                    onAction="#sairDoSistema"/>
-
-        </VBox>
-
+        <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
-
 
     <center>
 

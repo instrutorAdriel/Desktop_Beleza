@@ -210,44 +210,4 @@ public class    GerenciarTurmaController {
         }
     }
 
-    // Metodos para trocas de telas
-    @FXML
-    public void trocarTelaParaModelos() throws IOException {
-        MainApplication.setRoot("gerenciarmodelo");
-    }
-
-    @FXML
-    public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servicos");
-    }
-
-    @FXML
-    public void trocarTelaParaPaginaInicial() throws IOException{
-        MainApplication.setRoot("Telaagenda");
-    }
-
-    @FXML
-    public void trocarTelaParaUnidades() throws IOException {
-        MainApplication.setRoot("unidades");
-    }
-
-    @FXML
-    public void sairDoSistema() throws IOException {
-        // Desenvolver uma tela de dialogo pergunta se o usuário deseja sair do sistema e retornar para tela de login
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Sair do Sistema");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Você deseja do sair do sistema?");
-
-        // Botões de SIM e NÃO
-        ButtonType botaoSim = new ButtonType("SIM");
-        ButtonType botaoNao = new ButtonType("NÃO");
-
-        alerta.getButtonTypes().setAll(botaoSim, botaoNao);
-
-        if (alerta.showAndWait().get() == botaoSim) {
-            MainApplication.setUsuario("");
-            MainApplication.setRoot("login");
-        }
-    }
 }
