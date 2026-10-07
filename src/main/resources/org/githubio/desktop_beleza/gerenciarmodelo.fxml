@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-        <?import javafx.geometry.*?>
-        <?import javafx.scene.control.*?>
-        <?import javafx.scene.image.*?>
-        <?import javafx.scene.layout.*?>
-        <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="807.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
     <left>
@@ -96,7 +96,7 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0">
+                <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0" prefHeight="275.0" prefWidth="457.0">
                     <columns>
                         <TableColumn fx:id="colNome" prefWidth="92.0" text="NOME" />
                         <TableColumn fx:id="colTelefone" prefWidth="75.0" text="TELEFONE" />

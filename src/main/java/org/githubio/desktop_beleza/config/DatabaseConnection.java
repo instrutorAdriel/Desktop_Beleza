@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    // Carrega o .env ignorando erro se ele não existir
+    // Carrega o ..env ignorando erro se ele não existir
     private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-    // Lê a URL completa e os dados de login definidos no seu .env
+    // Lê a URL completa e os dados de login definidos no seu ..env
     private static final String URL = dotenv.get("URL");
     private static final String USUARIO = dotenv.get("USUARIO");
     private static final String SENHA = dotenv.get("SENHA");
@@ -20,9 +20,9 @@ public class DatabaseConnection {
 
     public static Connection getConnection() {
         try {
-            // Valida se as variáveis do .env foram carregadas antes de tentar conectar
+            // Valida se as variáveis do ..env foram carregadas antes de tentar conectar
             if (URL == null || USUARIO == null || SENHA == null) {
-                throw new IllegalStateException("Variáveis de ambiente (URL, USUARIO, SENHA) não foram encontradas no arquivo .env.");
+                throw new IllegalStateException("Variáveis de ambiente (URL, USUARIO, SENHA) não foram encontradas no arquivo ..env.");
             }
 
             return DriverManager.getConnection(URL, USUARIO, SENHA);

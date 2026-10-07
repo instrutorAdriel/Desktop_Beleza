@@ -16,7 +16,7 @@
 
     <dependencies>
 
-        <!-- Biblioteca para ler arquivos .env em Java -->
+        <!-- Biblioteca para ler arquivos ..env em Java -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>java-dotenv</artifactId>
