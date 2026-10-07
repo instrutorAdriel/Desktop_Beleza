@@ -14,6 +14,12 @@
         <junit.version>5.12.1</junit.version>
     </properties>
 
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>9.3.0</version>
+    </dependency>
+
     <dependencies>
 
         <!-- Biblioteca para ler arquivos ..env em Java -->

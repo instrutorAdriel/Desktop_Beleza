@@ -29,21 +29,21 @@
         <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
     </right>
     <center>
-        <VBox alignment="CENTER" prefHeight="463.0" prefWidth="527.0" BorderPane.alignment="CENTER_RIGHT">
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="527.0" BorderPane.alignment="CENTER_RIGHT">
             <children>
                 <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #0000;">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Gerenciamento de Modelos" textFill="#004587">
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Gerenciamento de Modelos" textFill="#004587">
                             <font>
                                 <Font name="Verdana Bold" size="28.0" />
                             </font>
                             <HBox.margin>
-                                <Insets top="10.0" />
+                                <Insets top="6.0" />
                             </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="431.0">
+                <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="431.0">
                     <children>
                         <HBox alignment="CENTER" prefHeight="35.0" prefWidth="517.0" spacing="10.0">
                             <children>
@@ -70,12 +70,12 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0" prefHeight="275.0" prefWidth="457.0">
+                <TableView fx:id="tabelaModelos" maxHeight="650.0" maxWidth="950.0" prefHeight="600.0" prefWidth="800.0">
                     <columns>
-                        <TableColumn fx:id="colNome" prefWidth="92.0" text="NOME" />
-                        <TableColumn fx:id="colTelefone" prefWidth="75.0" text="TELEFONE" />
-                        <TableColumn fx:id="colEmail" prefWidth="64.0" text="EMAIL" />
-                        <TableColumn fx:id="colDataNascimento" prefWidth="145.0" text="DATA DE NASCIMENTO" />
+                        <TableColumn fx:id="colNome" prefWidth="230.0" text="NOME" />
+                        <TableColumn fx:id="colTelefone" prefWidth="216.0" text="TELEFONE" />
+                        <TableColumn fx:id="colEmail" prefWidth="230.0" text="EMAIL" />
+                        <TableColumn fx:id="colDataNascimento" prefWidth="200.0" text="DATA DE NASCIMENTO" />
                         <TableColumn fx:id="colAcoes" text="AÇÕES" />
                     </columns>
                     <VBox.margin>

@@ -37,21 +37,21 @@
                   <Font name="Verdana Bold" size="12.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="5.0" />
+                  <Insets bottom="5.0" left="20.0" right="20.0" />
                </VBox.margin>
             </Label>
 
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="10.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
                </VBox.margin>
                <PasswordField fx:id="campoNovaSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <TextField fx:id="campoNovaSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <Button fx:id="btnToggleNovaSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
+               <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" visible="false" />
+               <Button fx:id="btnToggleNovaSenha" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;" StackPane.alignment="CENTER_RIGHT">
                   <graphic>
                      <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@Imagens/eyeOpen 1.png" />
+                           <Image url="@Imagens/eyeOpen%201.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -59,9 +59,9 @@
             </StackPane>
 
             <!-- ===== VALIDAÇÕES DA SENHA (OCULTAS ATÉ DIGITAR) ===== -->
-            <VBox fx:id="vboxValidacoes" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" spacing="2" visible="false" managed="false">
+            <VBox fx:id="vboxValidacoes" managed="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" spacing="2" visible="false">
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
                <children>
                   <Label fx:id="lblMaiuscula" text="❌ Letra maiúscula" textFill="#d9534f">
@@ -85,7 +85,7 @@
                   <Font name="Verdana Bold" size="12.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="5.0" />
+                  <Insets bottom="5.0" left="20.0" right="20.0" />
                </VBox.margin>
             </Label>
 
@@ -94,8 +94,8 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
                <PasswordField fx:id="campoConfirmarSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <Button fx:id="btnToggleConfirmarSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
+               <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" visible="false" />
+               <Button fx:id="btnToggleConfirmarSenha" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;" StackPane.alignment="CENTER_RIGHT">
                   <graphic>
                      <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
