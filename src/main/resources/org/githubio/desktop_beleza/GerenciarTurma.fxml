@@ -56,13 +56,13 @@
                         <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma" />
                     </children>
                 </HBox>
-                <TableView fx:id="tabelaModelos" maxHeight="318.0" maxWidth="550.0">
+                <TableView fx:id="tabelaUsuarios" maxHeight="318.0" maxWidth="550.0">
                     <columns>
-                        <TableColumn fx:id="colNome" prefWidth="92.0" text="NOME" />
-                        <TableColumn fx:id="colTelefone" prefWidth="75.0" text="TELEFONE" />
-                        <TableColumn fx:id="colEmail" prefWidth="64.0" text="EMAIL" />
-                        <TableColumn fx:id="colDataNascimento" prefWidth="145.0" text="DATA DE NASCIMENTO" />
-                        <TableColumn fx:id="colAcoes" text="AÇÕES" />
+                        <TableColumn fx:id="colTurma" prefWidth="130.0" text="TURMA" />
+                        <TableColumn fx:id="colTurno" prefWidth="90.0" text="TURNO" />
+                        <TableColumn fx:id="colInstrutor" prefWidth="140.0" text="INSTRUTOR" />
+                        <TableColumn fx:id="colStatus" prefWidth="100.0" text="STATUS" />
+                        <TableColumn fx:id="colAcoes" prefWidth="80.0" text="AÇÕES" />
                     </columns>
                     <VBox.margin>
                         <Insets left="10.0" right="10.0" top="10.0" />
