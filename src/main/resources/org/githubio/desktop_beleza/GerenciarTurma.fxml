@@ -48,7 +48,7 @@
                                 <Font name="Verdana" size="12.0" />
                             </font>
                      <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin></TextField>
                         <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#btnPesquisarClick" text="Buscar">
                             <styleClass>
@@ -62,7 +62,7 @@
                      </HBox.margin></Button>
                     </children>
                 </HBox>
-                <TableView fx:id="tabelaUsuarios" maxHeight="1.7976931348623157E308" maxWidth="850.0" minWidth="850.0" prefWidth="850.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tabelaUsuarios" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" VBox.vgrow="ALWAYS">
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
@@ -74,7 +74,7 @@
                         <TableColumn fx:id="colAcoes" prefWidth="100.0" text="AÇÕES" />
                     </columns>
                     <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="25.0" left="5.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </TableView>
             </children>
