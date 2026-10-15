@@ -1,7 +1,7 @@
 package org.githubio.desktop_beleza.model;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class CadastroDAO {
         String inserirUsuario = "INSERT INTO usuario (email, nome_usuario, senha) VALUES (?, ?, ?)";
         String atualizarUsuario = "UPDATE usuario SET nome_usuario = ?, senha = ? WHERE id_usuario = ?";
         String inserirInstrutor = "INSERT INTO instrutor (id_usuario) VALUES (?)";
-        String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
+        String senhaHash = new BCryptPasswordEncoder().encode(senha);
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
