@@ -24,6 +24,9 @@ public class MainApplication extends Application {
         // Adição do logo como icone
         Image appIcon = new Image(MainApplication.class.getResource("Imagens/icon.png").toString());
         stage.getIcons().add(appIcon);
+
+        String cssSenac = MainApplication.class.getResource("css/style.css").toExternalForm();
+        scene.getStylesheets().add(cssSenac);
         
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);

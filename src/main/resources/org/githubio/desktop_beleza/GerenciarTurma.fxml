@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import org.githubio.desktop_beleza.components.*?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="950.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+
+    <!-- TOPO COM LOGO (do projeto antigo) -->
     <top>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <children>
@@ -21,82 +21,68 @@
         </Pane>
     </top>
 
-    <!-- Aqui entra o componente reutilizável do painel lateral -->
+    <!-- PAINEL LATERAL (do projeto antigo) -->
     <left>
         <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
 
+    <!-- ===== LAYOUT DA SEGUNDA TELA, COM ESTILOS INLINE ===== -->
     <center>
-        <VBox spacing="20.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+        <VBox spacing="20.0">
             <padding>
-                <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
             </padding>
             <children>
-                <Label alignment="CENTER" text="Gerenciamento de Turmas" textFill="#004587">
-                    <font>
-                        <Font name="Verdana Bold" size="24.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets left="100.0" />
-                    </VBox.margin>
-                </Label>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #24292f;" text="Gerenciamento de Turmas" />
 
-                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <TextField fx:id="txtBusca" maxWidth="850.0" minWidth="850.0" prefHeight="35.0" prefWidth="850.0" promptText="Buscar..." HBox.hgrow="ALWAYS">
-                            <font>
-                                <Font name="Verdana" size="12.0" />
-                            </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </HBox.margin></TextField>
-                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#btnPesquisarClick" text="Buscar">
-                            <styleClass>
-                                <String fx:value="btn-cinza" />
-                                <String fx:value="btn-cinza" />
-                            </styleClass>
-                        </Button>
-                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma">
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin></Button>
+
+                        <!-- TABELA DE TURMAS -->
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <TableView fx:id="tabelaUsuarios" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                    <columns>
+                                        <TableColumn fx:id="colTurma" prefWidth="140.0" text="Turma" />
+                                        <TableColumn fx:id="colTurno" prefWidth="100.0" text="Turno" />
+                                        <TableColumn fx:id="colInstrutor" prefWidth="140.0" text="Instrutor" />
+                                        <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+                                        <TableColumn fx:id="colAcoes" prefWidth="100.0" text="Ações" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <!-- CARD LATERAL (busca e ações) -->
+                        <VBox minWidth="260.0" prefWidth="300.0" spacing="12.0" style="-fx-background-color: #ffffff; -fx-border-color: #d0d7de; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                            <children>
+                                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #24292f;" text="Buscar Turma" />
+
+                                <VBox spacing="4.0">
+                                    <children>
+                                        <Label text="Pesquisar" />
+                                        <TextField fx:id="txtBusca" promptText="Buscar..." />
+                                    </children>
+                                </VBox>
+
+                                <Button maxWidth="1.7976931348623157E308" minHeight="32.0" mnemonicParsing="false" onAction="#btnPesquisarClick" style="-fx-background-color: #eaeef2; -fx-text-fill: #24292f; -fx-background-radius: 6; -fx-cursor: hand;" text="Buscar">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
+
+                                <Button maxWidth="1.7976931348623157E308" minHeight="32.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" style="-fx-background-color: #004a8d; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Adicionar Turma" />
+                            </children>
+                        </VBox>
                     </children>
                 </HBox>
-                <TableView fx:id="tabelaUsuarios" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" VBox.vgrow="ALWAYS">
-                    <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                    </columnResizePolicy>
-                    <columns>
-                        <TableColumn fx:id="colTurma" prefWidth="100.0" text="TURMA" />
-                        <TableColumn fx:id="colTurno" prefWidth="100.0" text="TURNO" />
-                        <TableColumn fx:id="colInstrutor" prefWidth="100.0" text="INSTRUTOR" />
-                        <TableColumn fx:id="colStatus" prefWidth="100.0" text="STATUS" />
-                        <TableColumn fx:id="colAcoes" prefWidth="100.0" text="AÇÕES" />
-                    </columns>
-                    <VBox.margin>
-                        <Insets bottom="25.0" left="5.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </TableView>
             </children>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <BorderPane.margin>
-                <Insets left="10.0" />
-            </BorderPane.margin>
-            <padding>
-                <Insets top="25.0" />
-            </padding>
         </VBox>
     </center>
-    <top>
-        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Imagens/Senac_logo.png" />
-                    </image></ImageView>
-            </children>
-        </Pane>
-    </top>
 </BorderPane>
