@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 <?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
 
 <BorderPane
@@ -15,136 +16,133 @@
         stylesheets="@css/style.css">
 
     <top>
-
-        <Pane prefHeight="70"
-              style="-fx-background-color: #faf8f7;">
-
-            <ImageView
-                    fitHeight="52"
-                    fitWidth="83"
-                    layoutX="14"
-                    layoutY="14"
-                    preserveRatio="true">
-
-                <image>
-                    <Image url="@Imagens/Senac_logo.png"/>
-                </image>
-
-            </ImageView>
-
+        <Pane prefHeight="70" style="-fx-background-color: #faf8f7;">
+            <children>
+                <ImageView
+                        fitHeight="52"
+                        fitWidth="83"
+                        layoutX="14"
+                        layoutY="14"
+                        preserveRatio="true">
+                    <image>
+                        <Image url="@Imagens/Senac_logo.png"/>
+                    </image>
+                </ImageView>
+            </children>
         </Pane>
-
     </top>
 
-    <!-- Menu lateral centralizado pelo componente reutilizável -->
     <left>
-        <PainelLateralComponent BorderPane.alignment="CENTER" />
+        <PainelLateralComponent BorderPane.alignment="CENTER"/>
     </left>
 
     <center>
 
-        <VBox spacing="20">
+        <VBox spacing="22" style="-fx-background-color: #f5f7fb;">
 
             <padding>
                 <Insets
-                        top="25"
-                        left="30"
-                        right="30"
-                        bottom="30"/>
+                        top="30"
+                        left="32"
+                        right="32"
+                        bottom="32"/>
             </padding>
 
-
             <Label
-                    text="Gerenciamento de Unidades"
-                    textFill="#004587">
-
+                    text="Unidades SENAC"
+                    textFill="#17324d">
                 <font>
-                    <Font
-                            name="Verdana Bold"
-                            size="28"/>
+                    <Font name="Verdana Bold" size="26"/>
                 </font>
-
             </Label>
 
+            <HBox spacing="22" VBox.vgrow="ALWAYS">
 
-            <HBox spacing="10">
+                <VBox
+                        spacing="12"
+                        HBox.hgrow="ALWAYS"
+                        style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e3e9f0; -fx-border-radius: 12;">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
 
-                <VBox spacing="5">
+                    <Label text="Lista de unidades" textFill="#17324d">
+                        <font>
+                            <Font name="Verdana Bold" size="16"/>
+                        </font>
+                    </Label>
 
-                    <Label text="Nome da unidade"/>
-
-                    <TextField
-                            fx:id="txtNome"
-                            prefWidth="220"
-                            promptText="Nome da unidade"/>
-
+                    <TableView
+                            fx:id="tabelaUnidades"
+                            VBox.vgrow="ALWAYS"
+                            style="-fx-background-color: white; -fx-background-radius: 8;">
+                        <placeholder>
+                            <Label text="Nenhuma unidade cadastrada." textFill="#758397"/>
+                        </placeholder>
+                        <columns>
+                            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="colNome" text="Nome da unidade" prefWidth="190"/>
+                            <TableColumn fx:id="colEndereco" text="Endereço" prefWidth="260"/>
+                            <TableColumn fx:id="colSituacao" text="Situação" prefWidth="110"/>
+                        </columns>
+                    </TableView>
                 </VBox>
 
+                <VBox
+                        prefWidth="310"
+                        minWidth="280"
+                        spacing="18"
+                        style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e3e9f0; -fx-border-radius: 12;">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
 
-                <VBox spacing="5">
+                    <Label text="Dados da unidade" textFill="#17324d">
+                        <font>
+                            <Font name="Verdana Bold" size="16"/>
+                        </font>
+                    </Label>
 
-                    <Label text="Endereço"/>
+                    <VBox spacing="7">
+                        <Label text="Nome da unidade" textFill="#425466"/>
+                        <TextField
+                                fx:id="txtNome"
+                                promptText="Ex.: SENAC Taguatinga"
+                                style="-fx-background-radius: 7; -fx-border-radius: 7; -fx-border-color: #d7e0e9; -fx-padding: 10;"/>
+                    </VBox>
 
-                    <TextField
-                            fx:id="txtEndereco"
-                            prefWidth="280"
-                            promptText="Endereço"/>
+                    <VBox spacing="7">
+                        <Label text="Endereço" textFill="#425466"/>
+                        <TextField
+                                fx:id="txtEndereco"
+                                promptText="Ex.: QNG AE 01, Taguatinga Norte"
+                                style="-fx-background-radius: 7; -fx-border-radius: 7; -fx-border-color: #d7e0e9; -fx-padding: 10;"/>
+                    </VBox>
 
+                    <VBox spacing="7">
+                        <Label text="Situação" textFill="#425466"/>
+                        <ComboBox
+                                fx:id="cbSituacao"
+                                maxWidth="Infinity"
+                                promptText="Selecione a situação"
+                                style="-fx-background-radius: 7; -fx-border-radius: 7;"/>
+                    </VBox>
+
+                    <Region VBox.vgrow="ALWAYS"/>
+
+                    <Button
+                            maxWidth="Infinity"
+                            text="Salvar unidade"
+                            style="-fx-background-color: #004a8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 7; -fx-padding: 11 16;"
+                            onAction="#salvar"/>
+
+                    <Button
+                            maxWidth="Infinity"
+                            text="Limpar formulário"
+                            style="-fx-background-color: #edf2f7; -fx-text-fill: #24445f; -fx-font-weight: bold; -fx-background-radius: 7; -fx-padding: 10 16;"
+                            onAction="#novoCadastro"/>
                 </VBox>
-
-
-                <VBox spacing="5">
-
-                    <Label text="Situação"/>
-
-                    <ComboBox
-                            fx:id="cbSituacao"
-                            prefWidth="130"/>
-
-                </VBox>
-
             </HBox>
-
-
-            <HBox spacing="10">
-
-                <Button
-                        text="Novo"
-                        styleClass="btn-cinza"
-                        onAction="#novoCadastro"/>
-
-                <Button
-                        text="Salvar"
-                        styleClass="btn-azul"
-                        onAction="#salvar"/>
-
-            </HBox>
-
-
-            <TableView
-                    fx:id="tabelaUnidades"
-                    prefHeight="400">
-
-                <columns>
-
-                    <TableColumn
-                            fx:id="colNome"
-                            text="Unidade"
-                            prefWidth="220"/>
-
-                    <TableColumn
-                            fx:id="colEndereco"
-                            text="Endereço"
-                            prefWidth="350"/>
-
-                    <TableColumn
-                            fx:id="colSituacao"
-                            text="Situação"
-                            prefWidth="130"/>
-
-                </columns>
-
-            </TableView>
 
         </VBox>
 

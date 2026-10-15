@@ -31,6 +31,9 @@ public class UnidadeController implements Initializable {
     private TableColumn<Unidade, String> colNome;
 
     @FXML
+    private TableColumn<Unidade, Integer> colId;
+
+    @FXML
     private TableColumn<Unidade, String> colEndereco;
 
     @FXML
@@ -50,6 +53,10 @@ public class UnidadeController implements Initializable {
         );
 
         cbSituacao.setValue("Ativa");
+
+        colId.setCellValueFactory(
+                new PropertyValueFactory<>("id")
+        );
 
         colNome.setCellValueFactory(
                 new PropertyValueFactory<>("nome")
