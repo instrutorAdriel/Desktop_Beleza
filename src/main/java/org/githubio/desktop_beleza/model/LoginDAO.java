@@ -1,7 +1,7 @@
 package org.githubio.desktop_beleza.model;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +33,7 @@ public class LoginDAO {
                 }
 
                 String senhaHash = rs.getString("senha");
-                return senhaHash != null && BCrypt.checkpw(senha, senhaHash);
+                return senhaHash != null && new BCryptPasswordEncoder().matches(senha, senhaHash);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao autenticar usuário", e);

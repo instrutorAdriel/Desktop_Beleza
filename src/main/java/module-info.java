@@ -4,7 +4,7 @@ module org.githubio.desktop_beleza {
 
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
-    requires jbcrypt;
+    requires spring.security.crypto;
     requires java.desktop;
     requires java.dotenv;
 
