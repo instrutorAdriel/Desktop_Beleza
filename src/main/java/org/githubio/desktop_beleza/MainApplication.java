@@ -1,5 +1,6 @@
 package org.githubio.desktop_beleza;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,8 @@ public class MainApplication extends Application {
         // Adição do logo como icone
         Image appIcon = new Image(MainApplication.class.getResource("Imagens/icon.png").toString());
         stage.getIcons().add(appIcon);
+
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
         String cssSenac = MainApplication.class.getResource("css/style.css").toExternalForm();
         scene.getStylesheets().add(cssSenac);

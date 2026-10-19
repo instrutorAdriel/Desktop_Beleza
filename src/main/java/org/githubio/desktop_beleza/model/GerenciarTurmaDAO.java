@@ -138,7 +138,7 @@ public class GerenciarTurmaDAO {
                         }
                         idInstrutor = rs.getInt("id_instrutor");
                         idUsuario = rs.getInt("id_usuario");
-                    }
+                    }   
                 }
 
                 try (PreparedStatement stmtT = conn.prepareStatement(atualizarTurma);
