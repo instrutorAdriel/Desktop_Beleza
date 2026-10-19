@@ -369,4 +369,84 @@ public class AgendaDAO {
         }
         throw new SQLException("Não foi possível criar a disponibilidade.");
     }
+    //Não mexa aqui otario
+    public int contarPraticasDoMes(String emailInstrutor) {
+        String sql = """
+            SELECT COUNT(*)
+            FROM agendamento a
+            INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
+            INNER JOIN instrutor i ON i.id_usuario = ui.id_usuario
+            WHERE ui.email = ?
+              AND a.data_hora_agendamento >= ?
+              AND a.data_hora_agendamento < ?
+            """;
+        LocalDate inicio = LocalDate.now().withDayOfMonth(1);
+        return executarContagem(sql, emailInstrutor,
+                Timestamp.valueOf(inicio.atStartOfDay()),
+                Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay()));
+    }
+
+    public int calcularPercentualVagasOcupadas(String emailInstrutor) {
+        String sql = """
+            SELECT COALESCE(SUM(d.total_vagas), 0)
+            FROM disponibilidade d
+            WHERE d.id_disponibilidade IN (
+                SELECT a.id_disponibilidade
+                FROM agendamento a
+                INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
+                WHERE ui.email = ?
+                  AND a.data_hora_agendamento >= ?
+                  AND a.data_hora_agendamento < ?
+            )
+            """;
+        String sqlOcupadas = """
+            SELECT COUNT(*)
+            FROM agendamento a
+            INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
+            WHERE ui.email = ?
+              AND a.situacao NOT IN ('Cancelado', 'Não Compareceu')
+              AND a.data_hora_agendamento >= ?
+              AND a.data_hora_agendamento < ?
+            """;
+        LocalDate inicio = LocalDate.now().withDayOfMonth(1);
+        Timestamp de = Timestamp.valueOf(inicio.atStartOfDay());
+        Timestamp ate = Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay());
+
+        int totalVagas = executarContagem(sql, emailInstrutor, de, ate);
+        int ocupadas = executarContagem(sqlOcupadas, emailInstrutor, de, ate);
+        return totalVagas == 0 ? 0 : (int) Math.round(ocupadas * 100.0 / totalVagas);
+    }
+
+    private int executarContagem(String sql, String email, Timestamp de, Timestamp ate) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setTimestamp(2, de);
+            stmt.setTimestamp(3, ate);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao executar contagem", e);
+        }
+    }
+    public int contarTurmasAtivas(String emailInstrutor) {
+        String sql = """
+            SELECT COUNT(DISTINCT t.id_turma)
+            FROM turma t
+            INNER JOIN instrutor_gerencia_turma igt ON igt.id_turma = t.id_turma
+            INNER JOIN usuario u ON u.id_usuario = igt.id_usuario
+            WHERE u.email = ?
+              AND t.situacao = 'A'
+            """;
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailInstrutor);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao contar turmas ativas", e);
+        }
+    }
 }

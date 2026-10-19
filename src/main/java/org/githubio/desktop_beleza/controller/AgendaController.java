@@ -52,7 +52,9 @@ public class AgendaController {
     @FXML private TableColumn<Agenda, String> colAcao;
     @FXML private Label lblSemanaAtual;
     @FXML private Button btnVerTodos;
-
+    @FXML private Label lblPraticasDoMes;
+    @FXML private Label lblVagasOcupadas;
+    @FXML private Label lblTurmasAtivas;
     private final AgendaDAO dao = new AgendaDAO();
     private LocalDate inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
     private boolean exibindoTodos = false;
@@ -114,7 +116,9 @@ public class AgendaController {
             }
             return null;
         });
+
     }
+
 
     private void configurarStatus() {
         colStatus.setCellFactory(coluna -> new TableCell<>() {
@@ -333,5 +337,12 @@ public class AgendaController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+
+    private void atualizarVisaoGeral() {
+        String usuario = MainApplication.getUsuario();
+        lblPraticasDoMes.setText(String.valueOf(dao.contarPraticasDoMes(usuario)));
+        lblVagasOcupadas.setText(dao.calcularPercentualVagasOcupadas(usuario) + "%");
+        lblTurmasAtivas.setText(String.valueOf(dao.contarTurmasAtivas(usuario)));
     }
 }
