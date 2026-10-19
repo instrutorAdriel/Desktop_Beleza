@@ -322,6 +322,7 @@ public class AgendaController {
             }
         }
         tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
+        atualizarVisaoGeral();
     }
 
     private void mostrarAviso(String mensagem) {

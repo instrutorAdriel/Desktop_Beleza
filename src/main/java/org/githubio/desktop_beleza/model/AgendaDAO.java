@@ -388,33 +388,38 @@ public class AgendaDAO {
 
     public int calcularPercentualVagasOcupadas(String emailInstrutor) {
         String sql = """
-            SELECT COALESCE(SUM(d.total_vagas), 0)
+            SELECT COALESCE(SUM(d.total_vagas), 0) AS total_vagas,
+                   COALESCE(SUM(LEAST(x.ocupadas, d.total_vagas)), 0) AS vagas_ocupadas
             FROM disponibilidade d
-            WHERE d.id_disponibilidade IN (
-                SELECT a.id_disponibilidade
+            INNER JOIN (
+                SELECT a.id_disponibilidade, COUNT(*) AS ocupadas
                 FROM agendamento a
                 INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
                 WHERE ui.email = ?
+                  AND a.situacao NOT IN ('Cancelado', 'Não Compareceu')
                   AND a.data_hora_agendamento >= ?
                   AND a.data_hora_agendamento < ?
-            )
-            """;
-        String sqlOcupadas = """
-            SELECT COUNT(*)
-            FROM agendamento a
-            INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
-            WHERE ui.email = ?
-              AND a.situacao NOT IN ('Cancelado', 'Não Compareceu')
-              AND a.data_hora_agendamento >= ?
-              AND a.data_hora_agendamento < ?
+                GROUP BY a.id_disponibilidade
+            ) x ON x.id_disponibilidade = d.id_disponibilidade
             """;
         LocalDate inicio = LocalDate.now().withDayOfMonth(1);
-        Timestamp de = Timestamp.valueOf(inicio.atStartOfDay());
-        Timestamp ate = Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay());
 
-        int totalVagas = executarContagem(sql, emailInstrutor, de, ate);
-        int ocupadas = executarContagem(sqlOcupadas, emailInstrutor, de, ate);
-        return totalVagas == 0 ? 0 : (int) Math.round(ocupadas * 100.0 / totalVagas);
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailInstrutor);
+            stmt.setTimestamp(2, Timestamp.valueOf(inicio.atStartOfDay()));
+            stmt.setTimestamp(3, Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay()));
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int total = rs.getInt("total_vagas");
+                    int ocupadas = rs.getInt("vagas_ocupadas");
+                    return total == 0 ? 0 : (int) Math.round(ocupadas * 100.0 / total);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular vagas ocupadas", e);
+        }
+        return 0;
     }
 
     private int executarContagem(String sql, String email, Timestamp de, Timestamp ate) {
