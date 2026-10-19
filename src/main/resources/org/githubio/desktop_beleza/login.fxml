@@ -1,81 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
-   <left>
-      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </left>
-   <center>
-      <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Bem-vindo" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets left="100.0" right="100.0" />
-               </VBox.margin>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </TextField>
-            <PasswordField fx:id="Senha" maxHeight="500.0" maxWidth="500.0" prefHeight="25.0" prefWidth="191.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
-               <VBox.margin>
-                  <Insets left="100.0" right="100.0" />
-               </VBox.margin>
-            </PasswordField>
-            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
-               <VBox.margin>
-                  <Insets left="300.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Hyperlink>
-            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="90.0" styleClass="btn-cinza" text="Login">
-               <padding>
-                  <Insets bottom="1.6" left="25.0" right="25.0" top="1.6" />
-               </padding></Button>
-            <Button mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="27.0" styleClass="btn-azul" text="Registre-se" textFill="#e4e4e4">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
-               </padding></Button>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <right>
-      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </right>
-   <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+<StackPane prefHeight="768.0" prefWidth="1366.0"
+           stylesheets="@css/style.css"
+           styleClass="login-root"
+           xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+
+   <children>
+      <HBox maxHeight="640.0" maxWidth="1120.0"
+            prefHeight="620.0" prefWidth="1080.0"
+            styleClass="login-card">
+
+         <VBox alignment="CENTER" spacing="18.0"
+               minWidth="430.0" prefWidth="500.0"
+               HBox.hgrow="ALWAYS" styleClass="login-form">
+
+            <padding>
+               <Insets top="42.0" right="58.0" bottom="38.0" left="58.0"/>
+            </padding>
+
+            <ImageView fitHeight="58.0" fitWidth="105.0"
+                       preserveRatio="true" pickOnBounds="true">
                <image>
-                  <Image url="@Imagens/Senac_logo.png" />
+                  <Image url="@Imagens/Senac_logo.png"/>
                </image>
+               <VBox.margin>
+                  <Insets bottom="4.0"/>
+               </VBox.margin>
             </ImageView>
-         </children></AnchorPane>
-   </top>
-   <bottom>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </bottom>
-</BorderPane>
+
+            <Label text="Bem-vindo" styleClass="login-title"/>
+            <Label text="Acesse sua conta para continuar"
+                   styleClass="login-subtitle"/>
+
+            <VBox spacing="7.0" maxWidth="390.0" HBox.hgrow="ALWAYS">
+               <Label text="E-mail" styleClass="field-label"/>
+               <TextField fx:id="Email" promptText="Digite seu e-mail"
+                          prefHeight="48.0" styleClass="login-input"/>
+            </VBox>
+
+            <VBox spacing="7.0" maxWidth="390.0">
+               <Label text="Senha" styleClass="field-label"/>
+               <StackPane prefHeight="48.0" maxWidth="390.0"
+                          styleClass="password-container">
+                  <PasswordField fx:id="Senha" promptText="Digite sua senha"
+                                 prefHeight="48.0" styleClass="password-input"/>
+                  <TextField fx:id="SenhaVisivel" promptText="Digite sua senha"
+                             managed="false" visible="false"
+                             prefHeight="48.0" styleClass="password-input"/>
+                  <Button fx:id="btnToggleSenha"
+                          onAction="#alternarVisibilidadeSenha"
+                          styleClass="password-toggle"
+                          StackPane.alignment="CENTER_RIGHT">
+                     <graphic>
+                        <ImageView fx:id="imgOlho" fitHeight="17.0" fitWidth="17.0"
+                                   preserveRatio="true" pickOnBounds="true">
+                           <image>
+                              <Image url="@Imagens/eyeClosed 1.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </StackPane>
+            </VBox>
+
+            <HBox alignment="CENTER_RIGHT" maxWidth="390.0">
+               <Region HBox.hgrow="ALWAYS"/>
+               <Hyperlink text="Esqueceu a senha?"
+                          onAction="#irParaAtualizarSenha"
+                          styleClass="forgot-link"/>
+            </HBox>
+
+            <Button text="Entrar no sistema"
+                    onAction="#onLoginButtonClick"
+                    maxWidth="390.0" prefHeight="49.0"
+                    styleClass="login-primary"/>
+
+            <HBox alignment="CENTER" spacing="5.0">
+               <Label text="Ainda não tem uma conta?"
+                      styleClass="register-text"/>
+               <Hyperlink text="Registre-se"
+                          onAction="#irParaCadastro"
+                          styleClass="register-link"/>
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label text="Desktop Beleza • SENAC"
+                   styleClass="login-footer"/>
+         </VBox>
+
+         <VBox alignment="CENTER" spacing="22.0"
+               minWidth="390.0" prefWidth="470.0"
+               styleClass="login-decorative-panel" HBox.hgrow="ALWAYS">
+            <padding>
+               <Insets top="50.0" right="42.0" bottom="50.0" left="42.0"/>
+            </padding>
+
+            <StackPane styleClass="decorative-mark">
+               <Label text="B" styleClass="decorative-mark-letter"/>
+            </StackPane>
+
+            <VBox alignment="CENTER" spacing="10.0">
+               <Label text="Beleza Desktop"
+                      wrapText="true" styleClass="decorative-title"/>
+               <Label text="Organização, praticidade e cuidado em um só lugar."
+                      wrapText="true" textAlignment="CENTER"
+                      styleClass="decorative-description"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <VBox spacing="12.0" styleClass="decorative-info">
+               <HBox alignment="CENTER_LEFT" spacing="12.0">
+                  <StackPane styleClass="feature-icon">
+                     <Label text="✓" styleClass="feature-check"/>
+                  </StackPane>
+                  <Label text="Gestão simples e organizada" styleClass="feature-text"/>
+               </HBox>
+               <HBox alignment="CENTER_LEFT" spacing="12.0">
+                  <StackPane styleClass="feature-icon">
+                     <Label text="✓" styleClass="feature-check"/>
+                  </StackPane>
+                  <Label text="Acesso às ferramentas do sistema" styleClass="feature-text"/>
+               </HBox>
+               <HBox alignment="CENTER_LEFT" spacing="12.0">
+                  <StackPane styleClass="feature-icon">
+                     <Label text="✓" styleClass="feature-check"/>
+                  </StackPane>
+                  <Label text="Uma experiência mais intuitiva" styleClass="feature-text"/>
+               </HBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label text="SENAC • Educação profissional"
+                   styleClass="decorative-footer"/>
+         </VBox>
+      </HBox>
+   </children>
+</StackPane>
