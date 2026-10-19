@@ -125,4 +125,54 @@ public class UnidadeDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Cria o vínculo entre um serviço (produto) e a unidade que o oferece,
+     * na tabela produto_unidade.
+     *
+     * @return true se o vínculo foi criado; false se já existia.
+     */
+    public boolean vincularServico(int idUnidade, int idProduto) {
+
+        String buscar = """
+                SELECT 1
+                FROM produto_unidade
+                WHERE id_unidade = ?
+                  AND id_produto = ?
+                LIMIT 1
+                """;
+
+        String inserir = """
+                INSERT INTO produto_unidade (id_unidade, id_produto)
+                VALUES (?, ?)
+                """;
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+
+            try (PreparedStatement stmt = conn.prepareStatement(buscar)) {
+
+                stmt.setInt(1, idUnidade);
+                stmt.setInt(2, idProduto);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return false;
+                    }
+                }
+            }
+
+            try (PreparedStatement stmt = conn.prepareStatement(inserir)) {
+
+                stmt.setInt(1, idUnidade);
+                stmt.setInt(2, idProduto);
+
+                stmt.executeUpdate();
+            }
+
+            return true;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao vincular serviço à unidade", e);
+        }
+    }
 }
