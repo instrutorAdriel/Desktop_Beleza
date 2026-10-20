@@ -34,8 +34,8 @@ public class PainelLateralComponent extends VBox {
     }
 
     @FXML
-    public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servicos");
+    public void trocarTelaParaProcedimentos() throws IOException {
+        MainApplication.setRoot("procedimentos");
     }
 
     @FXML

@@ -20,6 +20,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.scene.control.Button;
+import java.io.File;
 import org.githubio.desktop_beleza.model.Servico;
 import org.githubio.desktop_beleza.model.ServicosDAO;
 
@@ -134,5 +137,25 @@ public class ProcedimentosController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private Button btnAnexarImagem;
+
+    private File imagemSelecionada;
+
+    @FXML
+    private void anexarImagem() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecionar imagem");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        File arquivo = fileChooser.showOpenDialog(btnAnexarImagem.getScene().getWindow());
+        if (arquivo != null) {
+            imagemSelecionada = arquivo;
+            btnAnexarImagem.setText(arquivo.getName());
+        }
     }
 }

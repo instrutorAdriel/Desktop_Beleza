@@ -27,11 +27,14 @@
                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                     <children>
                         <TableView fx:id="tabelaProcedimentos" VBox.vgrow="ALWAYS">
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
                             <columns>
-                                <TableColumn fx:id="colIdProcedimento" prefWidth="60.0" text="ID" />
-                                <TableColumn fx:id="colNomeProcedimento" prefWidth="200.0" text="Nome do Procedimento" />
-                                <TableColumn fx:id="colDescricao" prefWidth="280.0" text="Descrição" />
-                                <TableColumn fx:id="colAcoes" prefWidth="100.0" text="Ações" />
+                                <TableColumn fx:id="colIdProcedimento" prefWidth="60.0" text="ID" resizable="false" reorderable="false" />
+                                <TableColumn fx:id="colNomeProcedimento" prefWidth="200.0" text="Nome do Procedimento" resizable="false" reorderable="false" />
+                                <TableColumn fx:id="colDescricao" prefWidth="280.0" text="Descrição" reorderable="false" />
+                                <TableColumn fx:id="colAcoes" prefWidth="100.0" text="Ações" resizable="false" reorderable="false" />
                             </columns>
                         </TableView>
                     </children>
@@ -61,7 +64,7 @@
                         <VBox spacing="4.0">
                             <children>
                                 <Label text="Imagem Ilustrativa" />
-                                <Button maxWidth="1.7976931348623157E308" styleClass="flat" text="Anexar Imagem..." />
+                                <Button fx:id="btnAnexarImagem" maxWidth="1.7976931348623157E308" styleClass="flat" text="Anexar Imagem..." onAction="#anexarImagem" />
                             </children>
                         </VBox>
 
