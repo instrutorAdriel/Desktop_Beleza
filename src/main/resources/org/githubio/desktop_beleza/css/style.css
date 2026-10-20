@@ -100,3 +100,113 @@
 .btn-cinza:hover{
     -fx-background-color: #dddddd;
 }
+
+/* Tema exclusivo da tela de atualização de senha */
+.tela-atualizar-senha {
+    -fx-background-color: #f4f7fb;
+    -fx-font-family: "System";
+}
+
+.tela-atualizar-senha .cartao-atualizar-senha {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 20, 0, 0, 6);
+}
+
+.tela-atualizar-senha .formulario-atualizar-senha {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16 0 0 16;
+}
+
+.tela-atualizar-senha .titulo-formulario {
+    -fx-text-fill: #004a8d;
+}
+
+.tela-atualizar-senha .descricao-formulario {
+    -fx-font-size: 14px;
+    -fx-text-fill: #687586;
+}
+
+.tela-atualizar-senha .rotulo-formulario {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #344054;
+}
+
+.tela-atualizar-senha .campo-formulario {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+    -fx-padding: 0 42 0 12;
+    -fx-prompt-text-fill: #8994a3;
+}
+
+.tela-atualizar-senha .campo-formulario:focused {
+    -fx-border-color: #004a8d;
+    -fx-border-width: 1.5;
+}
+
+.tela-atualizar-senha .botao-olho {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 0 12 0 8;
+}
+
+.tela-atualizar-senha .validacoes-senha {
+    -fx-padding: 0 0 0 2;
+}
+
+.tela-atualizar-senha .validacao-senha {
+    -fx-font-size: 12px;
+}
+
+.tela-atualizar-senha .botao-principal {
+    -fx-background-color: #004a8d;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.tela-atualizar-senha .botao-principal:hover {
+    -fx-background-color: #003666;
+}
+
+.tela-atualizar-senha .botao-principal:pressed {
+    -fx-background-color: #002b52;
+}
+
+.tela-atualizar-senha .botao-secundario {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-text-fill: #004a8d;
+}
+
+.tela-atualizar-senha .botao-secundario:hover {
+    -fx-background-color: #e5f0fa;
+    -fx-border-color: #004a8d;
+}
+
+.tela-atualizar-senha .painel-decorativo-atualizar {
+    -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
+    -fx-background-radius: 0 16 16 0;
+}
+
+.tela-atualizar-senha .titulo-decorativo {
+    -fx-text-fill: #ffffff;
+}
+
+.tela-atualizar-senha .texto-decorativo {
+    -fx-font-size: 16px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #ffffff;
+}
