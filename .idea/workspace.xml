@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "yuripetra"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/instrutorAdriel/Desktop_Beleza.git",
+    "accountId": "0ac69af6-cf65-4042-b05f-d96a8065f933"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000017621697" />
+      <entry key="MS500" value="1.017838954993791" />
+      <entry key="S2" value="1.4619993594479874" />
+      <entry key="S5" value="2.0614944534316746" />
+      <entry key="S10" value="2.4445628028300703" />
+      <entry key="S30" value="2.7909693354317566" />
+      <entry key="S60" value="2.8921396598945623" />
+      <entry key="M2" value="2.9452329536796134" />
+      <entry key="M5" value="2.9992990040867493" />
+      <entry key="M10" value="3.2242839719842187" />
+      <entry key="M15" value="3.533376785871528" />
+      <entry key="M30" value="4.259761415494994" />
+      <entry key="H1" value="4.941229791114848" />
+      <entry key="H2" value="5.412295913695121" />
+      <entry key="H4" value="5.689879383330555" />
+      <entry key="D1" value="5.945894072947233" />
+      <entry key="W1" value="5.992209135673096" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="9.158772081833243E-276" />
+      <entry key="S5" value="9.654613681397423E-111" />
+      <entry key="S10" value="9.825789373580841E-56" />
+      <entry key="S30" value="4.61447697634586E-19" />
+      <entry key="S60" value="6.79299416777746E-10" />
+      <entry key="M2" value="2.6063373089025644E-5" />
+      <entry key="M5" value="0.014669396535089807" />
+      <entry key="M10" value="0.12111728421282325" />
+      <entry key="M15" value="0.244795867922898" />
+      <entry key="M30" value="0.49476849932357064" />
+      <entry key="H1" value="0.7033978243665321" />
+      <entry key="H2" value="0.8386881568059322" />
+      <entry key="H4" value="0.9157991902190851" />
+      <entry key="D1" value="0.9854472363206672" />
+      <entry key="W1" value="0.9979079494186687" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.8705505643152646" />
+      <entry key="MS500" value="0.9886494559097515" />
+      <entry key="S2" value="1.4443637012779207" />
+      <entry key="S5" value="2.0500325002285775" />
+      <entry key="S10" value="2.437584309172967" />
+      <entry key="S30" value="2.7882881843308462" />
+      <entry key="S60" value="2.890748699848338" />
+      <entry key="M2" value="2.94454991827349" />
+      <entry key="M5" value="3.0135617646413864" />
+      <entry key="M10" value="3.3447397896664595" />
+      <entry key="M15" value="3.7773623224293127" />
+      <entry key="M30" value="4.753737711202157" />
+      <entry key="H1" value="5.644064972438437" />
+      <entry key="H2" value="6.250647779506312" />
+      <entry key="H4" value="6.605494611426971" />
+      <entry key="D1" value="6.9313082532588925" />
+      <entry key="W1" value="6.990112301372815" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3KhU27Aj8IO0KKFvKMWb7hbWHlU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Launcher.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/vinculoServicoUnidade",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/yuri59073236/Music/Desktop_Beleza",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\java\org\githubio\desktop_beleza\controller" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.githubio.desktop_beleza.Launcher" />
+      <module name="Desktop_Beleza" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.githubio.desktop_beleza.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="" />
+      <created>1792009083187</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792009083187</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Criacao de botao para adicionar um servico a unidade">
+      <option name="closed" value="true" />
+      <created>1792434247535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1792434247535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criacao de botao para adicionar um servico a unidade" />
+  </component>
+</project>
