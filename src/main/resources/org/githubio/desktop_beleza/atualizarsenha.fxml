@@ -9,16 +9,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+<StackPane styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
    <stylesheets>
       <URL value="@css/style.css" />
    </stylesheets>
    <children>
-      <HBox maxHeight="690.0" maxWidth="1050.0" styleClass="cartao-atualizar-senha">
+      <HBox>
          <children>
             <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
                <padding>
@@ -96,22 +97,59 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="20.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefWidth="340.0" spacing="22.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
                <padding>
-                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
+                  <Insets bottom="50.0" left="42.0" right="42.0" top="50.0" />
                </padding>
                <children>
-                  <ImageView fitHeight="82.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagens/Senac_logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="titulo-decorativo" text="SENAC">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label maxWidth="250.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." wrapText="true" />
+                  <StackPane styleClass="marca-decorativa" translateY="90.0">
+                     <children>
+                        <Label styleClass="letra-marca-decorativa" text="B" />
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" spacing="10.0" translateY="90.0">
+                     <children>
+                        <Label styleClass="titulo-decorativo" text="Beleza Desktop" textAlignment="CENTER" wrapText="true" />
+                        <Label maxWidth="320.0" styleClass="texto-decorativo" text="Organização, praticidade e cuidado em um só lugar." textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <Region minHeight="32.0" prefHeight="32.0" maxHeight="32.0" />
+                  <VBox spacing="12.0" styleClass="informacoes-decorativas" translateY="90.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                           <children>
+                              <StackPane styleClass="icone-recurso">
+                                 <children>
+                                    <Label styleClass="check-recurso" text="✓" />
+                                 </children>
+                              </StackPane>
+                              <Label styleClass="texto-recurso" text="Gestão simples e organizada" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                           <children>
+                              <StackPane styleClass="icone-recurso">
+                                 <children>
+                                    <Label styleClass="check-recurso" text="✓" />
+                                 </children>
+                              </StackPane>
+                              <Label styleClass="texto-recurso" text="Acesso às ferramentas do sistema" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                           <children>
+                              <StackPane styleClass="icone-recurso">
+                                 <children>
+                                    <Label styleClass="check-recurso" text="✓" />
+                                 </children>
+                              </StackPane>
+                              <Label styleClass="texto-recurso" text="Uma experiência mais intuitiva" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Label styleClass="rodape-decorativo" text="SENAC • Educação profissional" />
                </children>
             </VBox>
          </children>

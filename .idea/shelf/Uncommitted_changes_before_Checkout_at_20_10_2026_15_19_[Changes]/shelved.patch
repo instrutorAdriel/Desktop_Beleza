@@ -1,0 +1,307 @@
+Index: src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import java.net.URL?>\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.PasswordField?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.layout.StackPane?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<StackPane prefHeight=\"700.0\" prefWidth=\"1100.0\" styleClass=\"tela-atualizar-senha\" xmlns=\"http://javafx.com/javafx/17.0.12\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"org.githubio.desktop_beleza.controller.AtualizarSenhaController\">\r\n   <stylesheets>\r\n      <URL value=\"@css/style.css\" />\r\n   </stylesheets>\r\n   <children>\r\n      <HBox maxHeight=\"690.0\" maxWidth=\"1050.0\" styleClass=\"cartao-atualizar-senha\">\r\n         <children>\r\n            <VBox alignment=\"CENTER\" spacing=\"18.0\" styleClass=\"formulario-atualizar-senha\" HBox.hgrow=\"ALWAYS\">\r\n               <padding>\r\n                  <Insets bottom=\"32.0\" left=\"44.0\" right=\"44.0\" top=\"32.0\" />\r\n               </padding>\r\n               <children>\r\n                  <VBox spacing=\"6.0\">\r\n                     <children>\r\n                        <Label styleClass=\"titulo-formulario\" text=\"Atualizar Senha\">\r\n                           <font>\r\n                              <Font name=\"System Bold\" size=\"28.0\" />\r\n                           </font>\r\n                        </Label>\r\n                        <Label styleClass=\"descricao-formulario\" text=\"Crie uma nova senha para sua conta\" />\r\n                     </children>\r\n                     <VBox.margin>\r\n                        <Insets bottom=\"4.0\" />\r\n                     </VBox.margin>\r\n                  </VBox>\r\n                  <VBox spacing=\"6.0\">\r\n                     <children>\r\n                        <Label styleClass=\"rotulo-formulario\" text=\"E-mail institucional\" />\r\n                        <TextField fx:id=\"campoEmail\" prefHeight=\"45.0\" promptText=\"seu.email@df.senac.br\" styleClass=\"campo-formulario\" />\r\n                     </children>\r\n                  </VBox>\r\n                  <VBox spacing=\"6.0\">\r\n                     <children>\r\n                        <Label styleClass=\"rotulo-formulario\" text=\"Nova Senha\" />\r\n                        <StackPane prefHeight=\"45.0\" styleClass=\"campo-senha\">\r\n                           <PasswordField fx:id=\"campoNovaSenha\" prefHeight=\"45.0\" promptText=\"Digite sua nova senha\" styleClass=\"campo-formulario\" />\r\n                           <TextField fx:id=\"campoNovaSenhaVisivel\" prefHeight=\"45.0\" promptText=\"Digite sua nova senha\" visible=\"false\" managed=\"false\" styleClass=\"campo-formulario\" />\r\n                           <Button fx:id=\"btnToggleNovaSenha\" StackPane.alignment=\"CENTER_RIGHT\" styleClass=\"botao-olho\">\r\n                              <graphic>\r\n                                 <ImageView fx:id=\"imgOlhoNova\" fitHeight=\"16.0\" fitWidth=\"16.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                                    <image>\r\n                                       <Image url=\"@Imagens/eyeOpen 1.png\" />\r\n                                    </image>\r\n                                 </ImageView>\r\n                              </graphic>\r\n                           </Button>\r\n                        </StackPane>\r\n                     </children>\r\n                  </VBox>\r\n                  <VBox fx:id=\"vboxValidacoes\" maxWidth=\"1.7976931348623157E308\" spacing=\"2.0\" visible=\"false\" managed=\"false\" styleClass=\"validacoes-senha\">\r\n                     <children>\r\n                        <Label fx:id=\"lblMaiuscula\" styleClass=\"validacao-senha\" text=\"❌ Letra maiúscula\" />\r\n                        <Label fx:id=\"lblMinuscula\" styleClass=\"validacao-senha\" text=\"❌ Letra minúscula\" />\r\n                        <Label fx:id=\"lblNumero\" styleClass=\"validacao-senha\" text=\"❌ Número\" />\r\n                        <Label fx:id=\"lblEspecial\" styleClass=\"validacao-senha\" text=\"❌ Caractere especial\" />\r\n                     </children>\r\n                  </VBox>\r\n                  <VBox spacing=\"6.0\">\r\n                     <children>\r\n                        <Label styleClass=\"rotulo-formulario\" text=\"Confirmar Senha\" />\r\n                        <StackPane prefHeight=\"45.0\" styleClass=\"campo-senha\">\r\n                           <PasswordField fx:id=\"campoConfirmarSenha\" prefHeight=\"45.0\" promptText=\"Digite novamente sua senha\" styleClass=\"campo-formulario\" />\r\n                           <TextField fx:id=\"campoConfirmarSenhaVisivel\" prefHeight=\"45.0\" promptText=\"Digite novamente sua senha\" visible=\"false\" managed=\"false\" styleClass=\"campo-formulario\" />\r\n                           <Button fx:id=\"btnToggleConfirmarSenha\" StackPane.alignment=\"CENTER_RIGHT\" styleClass=\"botao-olho\">\r\n                              <graphic>\r\n                                 <ImageView fx:id=\"imgOlhoConfirmar\" fitHeight=\"16.0\" fitWidth=\"16.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                                    <image>\r\n                                       <Image url=\"@Imagens/eyeOpen 1.png\" />\r\n                                    </image>\r\n                                 </ImageView>\r\n                              </graphic>\r\n                           </Button>\r\n                        </StackPane>\r\n                     </children>\r\n                  </VBox>\r\n                  <VBox spacing=\"10.0\" styleClass=\"acoes-formulario\">\r\n                     <children>\r\n                        <Button maxWidth=\"1.7976931348623157E308\" mnemonicParsing=\"false\" onAction=\"#onAlterarSenha\" prefHeight=\"45.0\" styleClass=\"botao-principal\" text=\"Alterar Senha\" />\r\n                        <Button maxWidth=\"1.7976931348623157E308\" mnemonicParsing=\"false\" onAction=\"#voltarParaLogin\" prefHeight=\"40.0\" styleClass=\"botao-secundario\" text=\"Voltar para o login\" />\r\n                     </children>\r\n                  </VBox>\r\n               </children>\r\n            </VBox>\r\n            <VBox alignment=\"CENTER\" prefWidth=\"340.0\" spacing=\"20.0\" styleClass=\"painel-decorativo-atualizar\" HBox.hgrow=\"ALWAYS\">\r\n               <padding>\r\n                  <Insets bottom=\"36.0\" left=\"30.0\" right=\"30.0\" top=\"36.0\" />\r\n               </padding>\r\n               <children>\r\n                  <ImageView fitHeight=\"82.0\" fitWidth=\"150.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                     <image>\r\n                        <Image url=\"@Imagens/Senac_logo.png\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <Label styleClass=\"titulo-decorativo\" text=\"SENAC\">\r\n                     <font>\r\n                        <Font name=\"System Bold\" size=\"24.0\" />\r\n                     </font>\r\n                  </Label>\r\n                  <Label maxWidth=\"250.0\" styleClass=\"texto-decorativo\" text=\"A educação transforma. Sua jornada começa aqui.\" wrapText=\"true\" />\r\n               </children>\r\n            </VBox>\r\n         </children>\r\n      </HBox>\r\n   </children>\r\n</StackPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml b/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml
+--- a/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml	(revision 9d8242a3e62b83e4f2397364bd28d86cb55ec202)
++++ b/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml	(date 1792520147721)
+@@ -1,17 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import java.net.URL?>
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Button?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.control.PasswordField?>
+-<?import javafx.scene.control.TextField?>
+-<?import javafx.scene.image.Image?>
+-<?import javafx.scene.image.ImageView?>
+-<?import javafx.scene.layout.HBox?>
+-<?import javafx.scene.layout.StackPane?>
+-<?import javafx.scene.layout.VBox?>
+-<?import javafx.scene.text.Font?>
++<?import java.net.*?>
++<?import javafx.geometry.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.image.*?>
++<?import javafx.scene.layout.*?>
++<?import javafx.scene.text.*?>
+ 
+ <StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+    <stylesheets>
+@@ -49,8 +43,8 @@
+                         <Label styleClass="rotulo-formulario" text="Nova Senha" />
+                         <StackPane prefHeight="45.0" styleClass="campo-senha">
+                            <PasswordField fx:id="campoNovaSenha" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" />
+-                           <TextField fx:id="campoNovaSenhaVisivel" prefHeight="45.0" promptText="Digite sua nova senha" visible="false" managed="false" styleClass="campo-formulario" />
+-                           <Button fx:id="btnToggleNovaSenha" StackPane.alignment="CENTER_RIGHT" styleClass="botao-olho">
++                           <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
++                           <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                               <graphic>
+                                  <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+@@ -62,7 +56,7 @@
+                         </StackPane>
+                      </children>
+                   </VBox>
+-                  <VBox fx:id="vboxValidacoes" maxWidth="1.7976931348623157E308" spacing="2.0" visible="false" managed="false" styleClass="validacoes-senha">
++                  <VBox fx:id="vboxValidacoes" managed="false" maxWidth="1.7976931348623157E308" spacing="2.0" styleClass="validacoes-senha" visible="false">
+                      <children>
+                         <Label fx:id="lblMaiuscula" styleClass="validacao-senha" text="❌ Letra maiúscula" />
+                         <Label fx:id="lblMinuscula" styleClass="validacao-senha" text="❌ Letra minúscula" />
+@@ -75,8 +69,8 @@
+                         <Label styleClass="rotulo-formulario" text="Confirmar Senha" />
+                         <StackPane prefHeight="45.0" styleClass="campo-senha">
+                            <PasswordField fx:id="campoConfirmarSenha" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" />
+-                           <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="45.0" promptText="Digite novamente sua senha" visible="false" managed="false" styleClass="campo-formulario" />
+-                           <Button fx:id="btnToggleConfirmarSenha" StackPane.alignment="CENTER_RIGHT" styleClass="botao-olho">
++                           <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" visible="false" />
++                           <Button fx:id="btnToggleConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                               <graphic>
+                                  <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+@@ -106,11 +100,6 @@
+                         <Image url="@Imagens/Senac_logo.png" />
+                      </image>
+                   </ImageView>
+-                  <Label styleClass="titulo-decorativo" text="SENAC">
+-                     <font>
+-                        <Font name="System Bold" size="24.0" />
+-                     </font>
+-                  </Label>
+                   <Label maxWidth="250.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." wrapText="true" />
+                </children>
+             </VBox>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7f54a0a6-f64f-4337-9e9f-d999838302be\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"NextEditCompletionFeaturesState\">\r\n    <decayedCancelled>\r\n      <entry key=\"MS100\" value=\"2.0355120107450757\" />\r\n      <entry key=\"MS500\" value=\"6.637776296685587\" />\r\n      <entry key=\"S2\" value=\"19.42701848824836\" />\r\n      <entry key=\"S5\" value=\"37.80157869045796\" />\r\n      <entry key=\"S10\" value=\"58.986891685801226\" />\r\n      <entry key=\"S30\" value=\"102.12975623715846\" />\r\n      <entry key=\"S60\" value=\"136.3274110278969\" />\r\n      <entry key=\"M2\" value=\"214.51513422271543\" />\r\n      <entry key=\"M5\" value=\"399.32418720845766\" />\r\n      <entry key=\"M10\" value=\"544.9822590502325\" />\r\n      <entry key=\"M15\" value=\"614.3920953788257\" />\r\n      <entry key=\"M30\" value=\"699.6340127504934\" />\r\n      <entry key=\"H1\" value=\"749.9782360106348\" />\r\n      <entry key=\"H2\" value=\"777.5552863246226\" />\r\n      <entry key=\"H4\" value=\"792.0291687063606\" />\r\n      <entry key=\"D1\" value=\"804.468920615809\" />\r\n      <entry key=\"W1\" value=\"806.6375171987125\" />\r\n    </decayedCancelled>\r\n    <decayedSelected>\r\n      <entry key=\"MS100\" value=\"0.0\" />\r\n      <entry key=\"MS500\" value=\"0.0\" />\r\n      <entry key=\"S2\" value=\"0.0\" />\r\n      <entry key=\"S5\" value=\"4.4677737102129355E-212\" />\r\n      <entry key=\"S10\" value=\"2.1137108861461706E-106\" />\r\n      <entry key=\"S30\" value=\"5.9568298439489855E-36\" />\r\n      <entry key=\"S60\" value=\"2.440661763528285E-18\" />\r\n      <entry key=\"M2\" value=\"1.5622617461642608E-9\" />\r\n      <entry key=\"M5\" value=\"3.002627926172465E-4\" />\r\n      <entry key=\"M10\" value=\"0.017328092584507036\" />\r\n      <entry key=\"M15\" value=\"0.06696283619646433\" />\r\n      <entry key=\"M30\" value=\"0.2587717840037122\" />\r\n      <entry key=\"H1\" value=\"0.5086961607912104\" />\r\n      <entry key=\"H2\" value=\"0.7132293886199634\" />\r\n      <entry key=\"H4\" value=\"0.8445290928203381\" />\r\n      <entry key=\"D1\" value=\"0.9722301893291942\" />\r\n      <entry key=\"W1\" value=\"0.9959848420655113\" />\r\n    </decayedSelected>\r\n    <decayedShown>\r\n      <entry key=\"MS100\" value=\"1.9504908655942086\" />\r\n      <entry key=\"MS500\" value=\"6.583639182089456\" />\r\n      <entry key=\"S2\" value=\"19.38975547040357\" />\r\n      <entry key=\"S5\" value=\"37.77290772407465\" />\r\n      <entry key=\"S10\" value=\"58.964300350243406\" />\r\n      <entry key=\"S30\" value=\"102.11664195096542\" />\r\n      <entry key=\"S60\" value=\"136.31854722706106\" />\r\n      <entry key=\"M2\" value=\"214.50783199643942\" />\r\n      <entry key=\"M5\" value=\"399.3186675538719\" />\r\n      <entry key=\"M10\" value=\"544.9953734448638\" />\r\n      <entry key=\"M15\" value=\"614.4556902028105\" />\r\n      <entry key=\"M30\" value=\"699.8905453612774\" />\r\n      <entry key=\"H1\" value=\"750.4855373883897\" />\r\n      <entry key=\"H2\" value=\"778.2677150201688\" />\r\n      <entry key=\"H4\" value=\"792.873265344687\" />\r\n      <entry key=\"D1\" value=\"805.4410736097177\" />\r\n      <entry key=\"W1\" value=\"807.6334908778575\" />\r\n    </decayedShown>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3KhU27Aj8IO0KKFvKMWb7hbWHlU\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\r\n    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;remade/recuperarSenha&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/arthur59318636/Music/Desktop_Beleza&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\arthur59318636\\Music\\Desktop_Beleza\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Launcher\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.githubio.desktop_beleza.Launcher\" />\r\n      <module name=\"Desktop_Beleza\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.githubio.desktop_beleza.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Launcher\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7f54a0a6-f64f-4337-9e9f-d999838302be\" name=\"Changes\" comment=\"\" />\r\n      <created>1792009083187</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1792009083187</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9d8242a3e62b83e4f2397364bd28d86cb55ec202)
++++ b/.idea/workspace.xml	(date 1792520274864)
+@@ -5,7 +5,6 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" afterDir="false" />
+     </list>
+@@ -25,66 +24,82 @@
+     </option>
+   </component>
+   <component name="McpProjectServerCommands">
+-    <commands />
+-    <urls />
++    <McpServerCommand sourceId="UserConfigurationSource">
++      <option name="allowedToolsNames" />
++      <option name="enabled" value="true" />
++      <option name="name" value="" />
++      <option name="programPath" value="" />
++      <option name="arguments" value="" />
++      <option name="workingDirectory" value="" />
++      <envs />
++    </McpServerCommand>
++    <McpServerCommand sourceId="UserConfigurationSource">
++      <option name="allowedToolsNames" />
++      <option name="enabled" value="true" />
++      <option name="name" value="" />
++      <option name="programPath" value="" />
++      <option name="arguments" value="" />
++      <option name="workingDirectory" value="" />
++      <envs />
++    </McpServerCommand>
+   </component>
+   <component name="NextEditCompletionFeaturesState">
+     <decayedCancelled>
+-      <entry key="MS100" value="2.0355120107450757" />
+-      <entry key="MS500" value="6.637776296685587" />
+-      <entry key="S2" value="19.42701848824836" />
+-      <entry key="S5" value="37.80157869045796" />
+-      <entry key="S10" value="58.986891685801226" />
+-      <entry key="S30" value="102.12975623715846" />
+-      <entry key="S60" value="136.3274110278969" />
+-      <entry key="M2" value="214.51513422271543" />
+-      <entry key="M5" value="399.32418720845766" />
+-      <entry key="M10" value="544.9822590502325" />
+-      <entry key="M15" value="614.3920953788257" />
+-      <entry key="M30" value="699.6340127504934" />
+-      <entry key="H1" value="749.9782360106348" />
+-      <entry key="H2" value="777.5552863246226" />
+-      <entry key="H4" value="792.0291687063606" />
+-      <entry key="D1" value="804.468920615809" />
+-      <entry key="W1" value="806.6375171987125" />
++      <entry key="MS100" value="1.01642136181158E-7" />
++      <entry key="MS500" value="0.049346394148556225" />
++      <entry key="S2" value="2.1252705480585345" />
++      <entry key="S5" value="9.305542973170107" />
++      <entry key="S10" value="20.178333660331486" />
++      <entry key="S30" value="43.81883317839562" />
++      <entry key="S60" value="73.96767546352956" />
++      <entry key="M2" value="145.57788275056413" />
++      <entry key="M5" value="341.60530006369726" />
++      <entry key="M10" value="519.3329132461174" />
++      <entry key="M15" value="609.2140115363011" />
++      <entry key="M30" value="723.1753537134143" />
++      <entry key="H1" value="791.9968049238811" />
++      <entry key="H2" value="830.0823500263622" />
++      <entry key="H4" value="850.1658734246041" />
++      <entry key="D1" value="867.4735148590639" />
++      <entry key="W1" value="870.4948630906916" />
+     </decayedCancelled>
+     <decayedSelected>
+-      <entry key="MS100" value="0.0" />
+-      <entry key="MS500" value="0.0" />
+-      <entry key="S2" value="0.0" />
+-      <entry key="S5" value="4.4677737102129355E-212" />
+-      <entry key="S10" value="2.1137108861461706E-106" />
+-      <entry key="S30" value="5.9568298439489855E-36" />
+-      <entry key="S60" value="2.440661763528285E-18" />
+-      <entry key="M2" value="1.5622617461642608E-9" />
+-      <entry key="M5" value="3.002627926172465E-4" />
+-      <entry key="M10" value="0.017328092584507036" />
+-      <entry key="M15" value="0.06696283619646433" />
+-      <entry key="M30" value="0.2587717840037122" />
+-      <entry key="H1" value="0.5086961607912104" />
+-      <entry key="H2" value="0.7132293886199634" />
+-      <entry key="H4" value="0.8445290928203381" />
+-      <entry key="D1" value="0.9722301893291942" />
+-      <entry key="W1" value="0.9959848420655113" />
++      <entry key="MS100" value="1.0" />
++      <entry key="MS500" value="1.0" />
++      <entry key="S2" value="1.0" />
++      <entry key="S5" value="1.0" />
++      <entry key="S10" value="1.0" />
++      <entry key="S30" value="1.0" />
++      <entry key="S60" value="1.0" />
++      <entry key="M2" value="1.0000000006469434" />
++      <entry key="M5" value="1.0002110311125714" />
++      <entry key="M10" value="1.014526909945732" />
++      <entry key="M15" value="1.0595363441135257" />
++      <entry key="M30" value="1.2440007051496473" />
++      <entry key="H1" value="1.4939642751754947" />
++      <entry key="H2" value="1.7028259209615793" />
++      <entry key="H4" value="1.8383471363114205" />
++      <entry key="D1" value="1.9710404338770446" />
++      <entry key="W1" value="1.9958106328308647" />
+     </decayedSelected>
+     <decayedShown>
+-      <entry key="MS100" value="1.9504908655942086" />
+-      <entry key="MS500" value="6.583639182089456" />
+-      <entry key="S2" value="19.38975547040357" />
+-      <entry key="S5" value="37.77290772407465" />
+-      <entry key="S10" value="58.964300350243406" />
+-      <entry key="S30" value="102.11664195096542" />
+-      <entry key="S60" value="136.31854722706106" />
+-      <entry key="M2" value="214.50783199643942" />
+-      <entry key="M5" value="399.3186675538719" />
+-      <entry key="M10" value="544.9953734448638" />
+-      <entry key="M15" value="614.4556902028105" />
+-      <entry key="M30" value="699.8905453612774" />
+-      <entry key="H1" value="750.4855373883897" />
+-      <entry key="H2" value="778.2677150201688" />
+-      <entry key="H4" value="792.873265344687" />
+-      <entry key="D1" value="805.4410736097177" />
+-      <entry key="W1" value="807.6334908778575" />
++      <entry key="MS100" value="4.555827904983922E-4" />
++      <entry key="MS500" value="0.23596439632906904" />
++      <entry key="S2" value="2.6799110581104797" />
++      <entry key="S5" value="10.067433061779507" />
++      <entry key="S10" value="21.041462289410767" />
++      <entry key="S30" value="44.764529782191346" />
++      <entry key="S60" value="74.93724478198473" />
++      <entry key="M2" value="146.559773701156" />
++      <entry key="M5" value="342.59521153890256" />
++      <entry key="M10" value="520.3407715337514" />
++      <entry key="M15" value="610.2684554862865" />
++      <entry key="M30" value="724.4161904674069" />
++      <entry key="H1" value="793.4888875939329" />
++      <entry key="H2" value="831.7841230951865" />
++      <entry key="H4" value="852.0036592950036" />
++      <entry key="D1" value="869.444456187778" />
++      <entry key="W1" value="872.4906594188989" />
+     </decayedShown>
+   </component>
+   <component name="ProjectColorInfo">{
+@@ -95,31 +110,32 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;remade/recuperarSenha&quot;,
+-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arthur59318636/Music/Desktop_Beleza&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.Launcher.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.MCP Project settings loaded": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
++    "git-widget-placeholder": "remade/recuperarSenha",
++    "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/arthur59318636/Music/Desktop_Beleza",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "to.speed.mode.migration.done": "true",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
+@@ -148,8 +164,8 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
++        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
++        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -160,6 +176,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1792009083187</updated>
++      <workItem from="1792520274483" duration="1000" />
+     </task>
+     <servers />
+   </component>
