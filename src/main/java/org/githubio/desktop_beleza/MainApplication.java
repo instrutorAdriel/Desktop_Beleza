@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.image.Image;
 
-public class MainApplication extends Application {
+public class    MainApplication extends Application {
     private static Scene scene;
     private static final int MinWidth = 1366;
     private static final int MinHeight = 768;
