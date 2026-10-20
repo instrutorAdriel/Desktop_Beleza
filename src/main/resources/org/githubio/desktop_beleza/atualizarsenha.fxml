@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
    <stylesheets>
       <URL value="@css/style.css" />
    </stylesheets>
@@ -50,8 +43,8 @@
                         <Label styleClass="rotulo-formulario" text="Nova Senha" />
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
                            <PasswordField fx:id="campoNovaSenha" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" />
-                           <TextField fx:id="campoNovaSenhaVisivel" prefHeight="45.0" promptText="Digite sua nova senha" visible="false" managed="false" styleClass="campo-formulario" />
-                           <Button fx:id="btnToggleNovaSenha" StackPane.alignment="CENTER_RIGHT" styleClass="botao-olho">
+                           <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                               <graphic>
                                  <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -63,7 +56,7 @@
                         </StackPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxValidacoes" maxWidth="1.7976931348623157E308" spacing="2.0" visible="false" managed="false" styleClass="validacoes-senha">
+                  <VBox fx:id="vboxValidacoes" managed="false" maxWidth="1.7976931348623157E308" spacing="2.0" styleClass="validacoes-senha" visible="false">
                      <children>
                         <Label fx:id="lblMaiuscula" styleClass="validacao-senha" text="❌ Letra maiúscula" />
                         <Label fx:id="lblMinuscula" styleClass="validacao-senha" text="❌ Letra minúscula" />
@@ -76,8 +69,8 @@
                         <Label styleClass="rotulo-formulario" text="Confirmar Senha" />
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
                            <PasswordField fx:id="campoConfirmarSenha" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" />
-                           <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="45.0" promptText="Digite novamente sua senha" visible="false" managed="false" styleClass="campo-formulario" />
-                           <Button fx:id="btnToggleConfirmarSenha" StackPane.alignment="CENTER_RIGHT" styleClass="botao-olho">
+                           <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                               <graphic>
                                  <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -97,59 +90,17 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="22.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
                <padding>
-                  <Insets bottom="50.0" left="42.0" right="42.0" top="50.0" />
+                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
                </padding>
                <children>
-                  <StackPane styleClass="marca-decorativa" translateY="90.0">
-                     <children>
-                        <Label styleClass="letra-marca-decorativa" text="B" />
-                     </children>
-                  </StackPane>
-                  <VBox alignment="CENTER" spacing="10.0" translateY="90.0">
-                     <children>
-                        <Label styleClass="titulo-decorativo" text="Beleza Desktop" textAlignment="CENTER" wrapText="true" />
-                        <Label maxWidth="320.0" styleClass="texto-decorativo" text="Organização, praticidade e cuidado em um só lugar." textAlignment="CENTER" wrapText="true" />
-                     </children>
-                  </VBox>
-                  <Region minHeight="32.0" prefHeight="32.0" maxHeight="32.0" />
-                  <VBox spacing="12.0" styleClass="informacoes-decorativas" translateY="90.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                           <children>
-                              <StackPane styleClass="icone-recurso">
-                                 <children>
-                                    <Label styleClass="check-recurso" text="✓" />
-                                 </children>
-                              </StackPane>
-                              <Label styleClass="texto-recurso" text="Gestão simples e organizada" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                           <children>
-                              <StackPane styleClass="icone-recurso">
-                                 <children>
-                                    <Label styleClass="check-recurso" text="✓" />
-                                 </children>
-                              </StackPane>
-                              <Label styleClass="texto-recurso" text="Acesso às ferramentas do sistema" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                           <children>
-                              <StackPane styleClass="icone-recurso">
-                                 <children>
-                                    <Label styleClass="check-recurso" text="✓" />
-                                 </children>
-                              </StackPane>
-                              <Label styleClass="texto-recurso" text="Uma experiência mais intuitiva" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Region VBox.vgrow="ALWAYS" />
-                  <Label styleClass="rodape-decorativo" text="SENAC • Educação profissional" />
+                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
          </children>

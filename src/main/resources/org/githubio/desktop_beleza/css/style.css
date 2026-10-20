@@ -192,60 +192,12 @@
     -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
 }
 
-.tela-atualizar-senha .marca-decorativa {
-    -fx-background-color: rgba(255, 255, 255, 0.16);
-    -fx-background-radius: 24;
-    -fx-min-height: 104;
-    -fx-min-width: 104;
-    -fx-max-height: 104;
-    -fx-max-width: 104;
-}
-
-.tela-atualizar-senha .letra-marca-decorativa {
-    -fx-font-size: 58px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
 .tela-atualizar-senha .titulo-decorativo {
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
     -fx-text-fill: #ffffff;
 }
 
 .tela-atualizar-senha .texto-decorativo {
-    -fx-font-size: 16px;
+    -fx-font-size: 28px;
     -fx-text-alignment: center;
-    -fx-text-fill: rgba(255, 255, 255, 0.9);
-}
-
-.tela-atualizar-senha .informacoes-decorativas {
-    -fx-max-width: 360px;
-}
-
-.tela-atualizar-senha .icone-recurso {
-    -fx-background-color: rgba(255, 255, 255, 0.18);
-    -fx-background-radius: 20;
-    -fx-min-height: 30;
-    -fx-min-width: 30;
-    -fx-max-height: 30;
-    -fx-max-width: 30;
-}
-
-.tela-atualizar-senha .check-recurso {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
-.tela-atualizar-senha .texto-recurso {
-    -fx-font-size: 14px;
-    -fx-text-fill: #ffffff;
-}
-
-.tela-atualizar-senha .rodape-decorativo {
-    -fx-font-size: 12px;
-    -fx-text-fill: rgba(255, 255, 255, 0.82);
     -fx-text-fill: #ffffff;
 }
