@@ -15,31 +15,33 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Servico;
 import org.githubio.desktop_beleza.model.ServicosDAO;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ServicosController implements Initializable {
+public class ProcedimentosController implements Initializable {
 
-    @FXML private TableView<Servico> tabelaServicos;
-    @FXML private TableColumn<Servico, String> colNome;
+    @FXML private TableView<Servico> tabelaProcedimentos;
+    @FXML private TableColumn<Servico, Integer> colIdProcedimento;
+    @FXML private TableColumn<Servico, String> colNomeProcedimento;
     @FXML private TableColumn<Servico, String> colDescricao;
     @FXML private TableColumn<Servico, Void> colAcoes;
-    @FXML private TextField txtBuscar;
+    @FXML private TextField txtNomeProcedimento;
+    @FXML private TextArea txtDescricao;
 
     private final ServicosDAO dao = new ServicosDAO();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colIdProcedimento.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNomeProcedimento.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
@@ -47,30 +49,22 @@ public class ServicosController implements Initializable {
     }
 
     private void atualizarTabela() {
-        tabelaServicos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
+        tabelaProcedimentos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
     }
 
     @FXML
-    private void abrirDialogoAdicionar(ActionEvent event) {
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Novo Serviço");
-        dialog.setHeaderText("Preencha os dados do serviço/produto");
-
-        ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
-
-        TextField txtNome = new TextField();
-        TextField txtDesc = new TextField();
-        dialog.getDialogPane().setContent(new VBox(10,
-                new Label("Nome:"), txtNome,
-                new Label("Descrição:"), txtDesc));
-
-        dialog.showAndWait().ifPresent(resposta -> {
-            if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
-                dao.inserir(new Servico(txtNome.getText().trim(), txtDesc.getText().trim()));
-                atualizarTabela();
-            }
-        });
+    private void salvarProcedimento(ActionEvent event) {
+        String nome = txtNomeProcedimento.getText();
+        if (nome == null || nome.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Informe o nome do procedimento.");
+            alert.showAndWait();
+            return;
+        }
+        String descricao = txtDescricao.getText() == null ? "" : txtDescricao.getText().trim();
+        dao.inserir(new Servico(nome.trim(), descricao));
+        txtNomeProcedimento.clear();
+        txtDescricao.clear();
+        atualizarTabela();
     }
 
     private void configurarColunaAcoes() {
@@ -85,12 +79,12 @@ public class ServicosController implements Initializable {
                 container.setAlignment(Pos.CENTER);
 
                 btnEditar.setOnAction(e -> {
-                    Servico servico = getTableRow().getItem();
-                    if (servico != null) abrirDialogoEdicao(servico);
+                    Servico item = getTableRow().getItem();
+                    if (item != null) abrirDialogoEdicao(item);
                 });
                 btnExcluir.setOnAction(e -> {
-                    Servico servico = getTableRow().getItem();
-                    if (servico != null) confirmarExclusao(servico);
+                    Servico item = getTableRow().getItem();
+                    if (item != null) confirmarExclusao(item);
                 });
             }
 
@@ -102,59 +96,43 @@ public class ServicosController implements Initializable {
         });
     }
 
-    private void abrirDialogoEdicao(Servico servico) {
+    private void abrirDialogoEdicao(Servico procedimento) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Editar Serviço");
+        dialog.setTitle("Editar Procedimento");
         ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
-        TextField txtNome = new TextField(servico.getNome());
-        TextField txtDesc = new TextField(servico.getDescricao());
+        TextField txtNome = new TextField(procedimento.getNome());
+        TextField txtDesc = new TextField(procedimento.getDescricao());
         dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc));
 
         dialog.showAndWait().ifPresent(resposta -> {
             if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
-                servico.setNome(txtNome.getText().trim());
-                servico.setDescricao(txtDesc.getText().trim());
-                dao.atualizar(servico);
+                procedimento.setNome(txtNome.getText().trim());
+                procedimento.setDescricao(txtDesc.getText().trim());
+                dao.atualizar(procedimento);
                 atualizarTabela();
             }
         });
     }
 
-    private void confirmarExclusao(Servico servico) {
+    private void confirmarExclusao(Servico procedimento) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Excluir " + servico.getNome() + "?", ButtonType.YES, ButtonType.NO);
+                "Excluir " + procedimento.getNome() + "?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait().ifPresent(resposta -> {
             if (resposta == ButtonType.YES) {
                 try {
-                    dao.excluir(servico.getId());
+                    dao.excluir(procedimento.getId());
                     atualizarTabela();
                 } catch (RuntimeException e) {
                     Alert erro = new Alert(Alert.AlertType.ERROR);
-                    erro.setHeaderText("Não foi possível excluir o serviço");
+                    erro.setHeaderText("Não foi possível excluir o procedimento");
                     erro.setContentText(e.getMessage());
                     erro.showAndWait();
                 }
             }
         });
     }
-
-    @FXML
-    private void buscar() {
-        String termo = txtBuscar.getText();
-        if (termo == null || termo.isBlank()) {
-            atualizarTabela();
-            return;
-        }
-        String filtro = termo.toLowerCase();
-        tabelaServicos.setItems(FXCollections.observableArrayList(
-                dao.lerTodos().stream()
-                        .filter(s -> s.getNome().toLowerCase().contains(filtro)
-                                || (s.getDescricao() != null && s.getDescricao().toLowerCase().contains(filtro)))
-                        .toList()));
-    }
-
 }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
+
+<BorderPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ProcedimentosController">
+    <center>
+        <VBox spacing="10" stylesheets="@css/style.css">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="0.0" />
+            </padding>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
+                <children>
+                    <Label alignment="CENTER" text="Procedimentos" textFill="#004587">
+                        <font>
+                            <Font name="Verdana Bold" size="28.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+
+            <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <TableView fx:id="tabelaProcedimentos" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colIdProcedimento" prefWidth="60.0" text="ID" />
+                                <TableColumn fx:id="colNomeProcedimento" prefWidth="200.0" text="Nome do Procedimento" />
+                                <TableColumn fx:id="colDescricao" prefWidth="280.0" text="Descrição" />
+                                <TableColumn fx:id="colAcoes" prefWidth="100.0" text="Ações" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+
+                <VBox prefWidth="260.0" spacing="12.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-font-weight: bold;" styleClass="title-4" text="Novo Procedimento" />
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Nome do Procedimento" />
+                                <TextField fx:id="txtNomeProcedimento" promptText="Ex: Maquiagem para Peles Negras" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Descrição Detalhada" />
+                                <TextArea fx:id="txtDescricao" prefHeight="80.0" promptText="Descreva o procedimento..." wrapText="true" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Imagem Ilustrativa" />
+                                <Button maxWidth="1.7976931348623157E308" styleClass="flat" text="Anexar Imagem..." />
+                            </children>
+                        </VBox>
+
+                        <Button maxWidth="1.7976931348623157E308" onAction="#salvarProcedimento" styleClass="accent" text="Salvar Procedimento">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <left>
+        <PainelLateralComponent BorderPane.alignment="CENTER" />
+    </left>
+
+    <right>
+        <Pane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+    </right>
+    <bottom>
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+    </bottom>
+    <top>
+        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+    </top>
+</BorderPane>
