@@ -4,25 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AtualizarSenhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AtualizarSenhaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/CadastroDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/CadastroDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/LoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/LoginDAO.java" afterDir="false" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Agora as contas criadas no web podem fazer login no desktop">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="67" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MateusDouradoYNWA&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,
+    &quot;accountId&quot;: &quot;8939ab2d-4fc4-4ebb-b375-54346f6f545a&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -36,61 +49,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000017621697" />
-      <entry key="MS500" value="1.017838954993791" />
-      <entry key="S2" value="1.4619993594479874" />
-      <entry key="S5" value="2.0614944534316746" />
-      <entry key="S10" value="2.4445628028300703" />
-      <entry key="S30" value="2.7909693354317566" />
-      <entry key="S60" value="2.8921396598945623" />
-      <entry key="M2" value="2.9452329536796134" />
-      <entry key="M5" value="2.9992990040867493" />
-      <entry key="M10" value="3.2242839719842187" />
-      <entry key="M15" value="3.533376785871528" />
-      <entry key="M30" value="4.259761415494994" />
-      <entry key="H1" value="4.941229791114848" />
-      <entry key="H2" value="5.412295913695121" />
-      <entry key="H4" value="5.689879383330555" />
-      <entry key="D1" value="5.945894072947233" />
-      <entry key="W1" value="5.992209135673096" />
+      <entry key="MS100" value="1.0000001159495056" />
+      <entry key="MS500" value="1.0417212734961383" />
+      <entry key="S2" value="1.7102426010284026" />
+      <entry key="S5" value="3.2770476115154374" />
+      <entry key="S10" value="5.616209446078733" />
+      <entry key="S30" value="13.96375559652778" />
+      <entry key="S60" value="22.604073238460764" />
+      <entry key="M2" value="31.193571138831594" />
+      <entry key="M5" value="39.0689855797005" />
+      <entry key="M10" value="42.52589569297731" />
+      <entry key="M15" value="43.989107684634874" />
+      <entry key="M30" value="45.9253065028726" />
+      <entry key="H1" value="47.2496218503283" />
+      <entry key="H2" value="48.0585814908436" />
+      <entry key="H4" value="48.51075024048855" />
+      <entry key="D1" value="48.91569477339131" />
+      <entry key="W1" value="48.987886108357124" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="9.158772081833243E-276" />
-      <entry key="S5" value="9.654613681397423E-111" />
-      <entry key="S10" value="9.825789373580841E-56" />
-      <entry key="S30" value="4.61447697634586E-19" />
-      <entry key="S60" value="6.79299416777746E-10" />
-      <entry key="M2" value="2.6063373089025644E-5" />
-      <entry key="M5" value="0.014669396535089807" />
-      <entry key="M10" value="0.12111728421282325" />
-      <entry key="M15" value="0.244795867922898" />
-      <entry key="M30" value="0.49476849932357064" />
-      <entry key="H1" value="0.7033978243665321" />
-      <entry key="H2" value="0.8386881568059322" />
-      <entry key="H4" value="0.9157991902190851" />
-      <entry key="D1" value="0.9854472363206672" />
-      <entry key="W1" value="0.9979079494186687" />
+      <entry key="S2" value="2.1172858927834653E-296" />
+      <entry key="S5" value="5.374174965740442E-119" />
+      <entry key="S10" value="7.330876459019369E-60" />
+      <entry key="S30" value="1.942608569657562E-20" />
+      <entry key="S60" value="1.393774935080108E-10" />
+      <entry key="M2" value="1.1805824558581685E-5" />
+      <entry key="M5" value="0.010686574802573543" />
+      <entry key="M10" value="0.10337589081876658" />
+      <entry key="M15" value="0.22026534651584262" />
+      <entry key="M30" value="0.469324351079126" />
+      <entry key="H1" value="0.6850725151975715" />
+      <entry key="H2" value="0.8276910747359615" />
+      <entry key="H4" value="0.9097752880442299" />
+      <entry key="D1" value="0.9843639251263823" />
+      <entry key="W1" value="0.9977511599101889" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8705505643152646" />
-      <entry key="MS500" value="0.9886494559097515" />
-      <entry key="S2" value="1.4443637012779207" />
-      <entry key="S5" value="2.0500325002285775" />
-      <entry key="S10" value="2.437584309172967" />
-      <entry key="S30" value="2.7882881843308462" />
-      <entry key="S60" value="2.890748699848338" />
-      <entry key="M2" value="2.94454991827349" />
-      <entry key="M5" value="3.0135617646413864" />
-      <entry key="M10" value="3.3447397896664595" />
-      <entry key="M15" value="3.7773623224293127" />
-      <entry key="M30" value="4.753737711202157" />
-      <entry key="H1" value="5.644064972438437" />
-      <entry key="H2" value="6.250647779506312" />
-      <entry key="H4" value="6.605494611426971" />
-      <entry key="D1" value="6.9313082532588925" />
-      <entry key="W1" value="6.990112301372815" />
+      <entry key="MS100" value="0.9726550594121253" />
+      <entry key="MS500" value="1.035903168124207" />
+      <entry key="S2" value="1.7060287621354255" />
+      <entry key="S5" value="3.2688443059214802" />
+      <entry key="S10" value="5.60787357105948" />
+      <entry key="S30" value="13.958392459837595" />
+      <entry key="S60" value="22.600315543166346" />
+      <entry key="M2" value="31.191141194871804" />
+      <entry key="M5" value="39.078390993013976" />
+      <entry key="M10" value="42.6281863558534" />
+      <entry key="M15" value="44.208290051537254" />
+      <entry key="M30" value="46.393698961566834" />
+      <entry key="H1" value="47.93405526497702" />
+      <entry key="H2" value="48.885894897630784" />
+      <entry key="H4" value="49.420319825667654" />
+      <entry key="D1" value="49.90002184568463" />
+      <entry key="W1" value="49.985631937508195" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -101,28 +114,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "fix/criptografia",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/arthur59318636/Music/Desktop_Beleza",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fix/criptoDesktop&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mateus59356496/Music/Desktop_Beleza&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
@@ -168,5 +184,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Agora as contas criadas no web podem fazer login no desktop" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agora as contas criadas no web podem fazer login no desktop" />
   </component>
 </project>
