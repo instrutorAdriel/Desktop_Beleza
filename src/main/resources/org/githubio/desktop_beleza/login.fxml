@@ -18,6 +18,9 @@
                <Insets bottom="38.0" left="58.0" right="58.0" top="42.0" />
             </padding>
 
+            <!-- ADICIONE ESTA LINHA AQUI PARA EMPURRAR O CONTEÚDO PARA BAIXO -->
+            <Region VBox.vgrow="ALWAYS" />
+
             <!-- Este logo da esquerda continua normal (Azul) pois o fundo é branco -->
             <ImageView fitHeight="58.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -27,6 +30,8 @@
                   <Insets bottom="4.0" />
                </VBox.margin>
             </ImageView>
+
+            <!-- Restante do seu código continua igual... -->
 
             <Label styleClass="login-title" text="Bem-vindo" />
             <Label styleClass="login-subtitle" text="Acesse sua conta para continuar" />
@@ -45,7 +50,7 @@
                      <graphic>
                         <ImageView fx:id="imgOlho" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Imagens/eyeClosed 1.png" />
+                              <Image url="@Imagens/eyeOpen 1.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -69,7 +74,6 @@
             <Label styleClass="login-footer" text="Desktop Beleza • SENAC" />
          </VBox>
 
-         <!-- Painel Decorativo Azul (Lado Direito) -->
          <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
             <padding>
                <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />

@@ -59,8 +59,8 @@ public class LoginController {
         SenhaVisivel.setManaged(senhaEstaVisivel);
 
         String imagemOlho = senhaEstaVisivel
-                ? "/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png"
-                : "/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png";
+                ? "/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png"
+                : "/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png";
 
         imgOlho.setImage(new Image(getClass().getResourceAsStream(imagemOlho)));
     }
