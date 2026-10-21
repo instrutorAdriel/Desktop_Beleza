@@ -63,7 +63,7 @@ public class LoginController {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("As informações inseridas não está corretas");
             alerta.setHeaderText(null);
-            alerta.setContentText("E-mail ou senha incorreto.");
+            alerta.setContentText("E-mail ou senha incorreto.\n\n[diagnóstico temporário]\n" + LoginDAO.getUltimoMotivo());
             alerta.showAndWait();
         }
     }
