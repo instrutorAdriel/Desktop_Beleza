@@ -1,193 +1,132 @@
-/* Identidade visual inspirada no Beleza Desktop Remade */
+/* =========================================
+   FUNDO DA TELA E CARTÃO PRINCIPAL
+   ========================================= */
 .login-root {
-    -fx-background-color: linear-gradient(to bottom right, #f3f6fb, #edf1f7);
-    -fx-padding: 38px;
-    -fx-font-family: "Verdana";
+    -fx-background-color: #FFFFFF; /* Fundo branco geral */
 }
 
 .login-card {
-    -fx-background-color: white;
-    -fx-background-radius: 22px;
-    -fx-border-radius: 22px;
-    -fx-effect: dropshadow(gaussian, rgba(20, 42, 72, 0.16), 28, 0.18, 0, 10);
-    -fx-background-insets: 0;
+    -fx-background-color: #FFFFFF;
+    /* Sem bordas arredondadas e sem sombras para completar a totalidade da página */
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
 }
 
+/* =========================================
+   LADO ESQUERDO: FORMULÁRIO DE LOGIN
+   ========================================= */
 .login-form {
-    -fx-background-color: white;
-    -fx-background-radius: 22px 0 0 22px;
+    -fx-background-color: transparent;
 }
 
 .login-title {
-    -fx-font-family: "Verdana";
-    -fx-font-size: 29px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #004a8d;
+    -fx-text-fill: #333333;
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 
 .login-subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: #718096;
-    -fx-padding: 0 0 12px 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-padding: 0 0 10 0;
 }
 
 .field-label {
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #34445a;
-}
-
-.login-input,
-.password-input {
-    -fx-background-color: #f8fafc;
-    -fx-border-color: #dbe3ed;
-    -fx-border-width: 1px;
-    -fx-border-radius: 9px;
-    -fx-background-radius: 9px;
-    -fx-padding: 0 14px;
     -fx-font-size: 13px;
-    -fx-text-fill: #243449;
-    -fx-prompt-text-fill: #9aa8b8;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
 }
 
-.login-input:focused,
-.password-input:focused {
-    -fx-background-color: white;
-    -fx-border-color: #2674b8;
-    -fx-effect: dropshadow(gaussian, rgba(0, 74, 141, 0.10), 7, 0.1, 0, 0);
+/* Campos de Texto (E-mail e Senha) */
+.login-input, .password-input {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 15px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
 }
 
+.login-input:focused, .password-input:focused {
+    -fx-border-color: #004A8D; /* Borda azul ao clicar */
+    -fx-background-color: #FFFFFF;
+}
+
+/* Container e Botão do Olho da Senha */
 .password-container {
     -fx-background-color: transparent;
 }
 
-.password-input {
-    -fx-padding: 0 43px 0 14px;
-}
-
 .password-toggle {
     -fx-background-color: transparent;
-    -fx-background-radius: 7px;
-    -fx-padding: 8px 12px 8px 8px;
     -fx-cursor: hand;
+    -fx-padding: 0 12 0 0; /* Espaço à direita */
 }
 
 .password-toggle:hover {
-    -fx-background-color: #eaf1f8;
+    -fx-opacity: 0.7;
 }
 
-.login-primary {
-    -fx-background-color: #004a8d;
-    -fx-background-radius: 9px;
-    -fx-text-fill: white;
-    -fx-font-family: "Verdana";
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0, 74, 141, 0.20), 9, 0.12, 0, 3);
-}
-
-.login-primary:hover {
-    -fx-background-color: #00396d;
-}
-
-.login-primary:pressed {
-    -fx-background-color: #002c54;
-}
-
-.forgot-link,
-.register-link {
-    -fx-border-color: transparent;
-    -fx-padding: 4px 0;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #07589a;
+/* Links (Esqueceu a senha, Registre-se) */
+.forgot-link, .register-link {
+    -fx-text-fill: #004A8D;
+    -fx-font-size: 13px;
     -fx-underline: false;
+    -fx-border-color: transparent;
 }
 
-.forgot-link:hover,
-.register-link:hover {
+.forgot-link:hover, .register-link:hover {
     -fx-underline: true;
 }
 
+/* Botão Principal de Login */
+.login-primary {
+    -fx-background-color: #004A8D; /* Azul Senac */
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.login-primary:hover {
+    -fx-background-color: #003666; /* Azul mais escuro no hover */
+}
+
+/* Textos do Rodapé */
 .register-text {
-    -fx-font-size: 11px;
-    -fx-text-fill: #718096;
+    -fx-font-size: 13px;
+    -fx-text-fill: #666666;
 }
 
 .login-footer {
-    -fx-font-size: 10px;
-    -fx-text-fill: #9aa8b8;
-}
-
-.login-decorative-panel {
-    -fx-background-color: linear-gradient(to bottom right, #004a8d 0%, #0065a8 54%, #f58220 140%);
-    -fx-background-radius: 0 22px 22px 0;
-}
-
-.decorative-mark {
-    -fx-min-width: 92px;
-    -fx-min-height: 92px;
-    -fx-max-width: 92px;
-    -fx-max-height: 92px;
-    -fx-background-color: rgba(255,255,255,0.14);
-    -fx-background-radius: 24px;
-    -fx-border-color: rgba(255,255,255,0.32);
-    -fx-border-radius: 24px;
-    -fx-border-width: 1px;
-}
-
-.decorative-mark-letter {
-    -fx-font-family: "Verdana";
-    -fx-font-size: 54px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.decorative-title {
-    -fx-font-family: "Verdana";
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-text-alignment: center;
-}
-
-.decorative-description {
-    -fx-font-size: 13px;
-    -fx-text-fill: rgba(255,255,255,0.84);
-    -fx-line-spacing: 4px;
-    -fx-max-width: 300px;
-}
-
-.decorative-info {
-    -fx-padding: 22px;
-    -fx-background-color: rgba(255,255,255,0.10);
-    -fx-background-radius: 14px;
-    -fx-border-color: rgba(255,255,255,0.18);
-    -fx-border-radius: 14px;
-}
-
-.feature-icon {
-    -fx-min-width: 25px;
-    -fx-min-height: 25px;
-    -fx-max-width: 25px;
-    -fx-max-height: 25px;
-    -fx-background-color: rgba(255,255,255,0.18);
-    -fx-background-radius: 13px;
-}
-
-.feature-check {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.feature-text {
     -fx-font-size: 12px;
-    -fx-text-fill: white;
+    -fx-text-fill: #999999;
 }
 
-.decorative-footer {
-    -fx-font-size: 10px;
-    -fx-text-fill: rgba(255,255,255,0.70);
+/* =========================================
+   LADO DIREITO: PAINEL DECORATIVO AZUL
+   ========================================= */
+.painel-decorativo-atualizar {
+    -fx-background-color: #004A8D; /* Fundo azul estilo Senac */
+    -fx-background-radius: 0; /* Sem bordas para completar a tela */
+    -fx-alignment: center;
+}
+
+/* TRUQUE: Deixa a imagem PNG (Logo do Senac) totalmente branca! */
+.logo-branca {
+    -fx-opacity: 1;
+    /* O valor "1" aumenta o brilho ao máximo, deixando os pixels brancos sem afetar a transparência */
+}
+
+.texto-decorativo {
+    -fx-text-fill: #FFFFFF; /* Letras brancas */
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+    -fx-line-spacing: 5px;
 }

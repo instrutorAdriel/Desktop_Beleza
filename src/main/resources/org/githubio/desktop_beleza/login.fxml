@@ -1,76 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="768.0" prefWidth="1366.0"
-           stylesheets="@css/style.css"
-           styleClass="login-root"
-           xmlns="http://javafx.com/javafx/17.0.12"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+<StackPane prefHeight="768.0" prefWidth="1336.0" styleClass="login-root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
 
    <children>
-      <HBox maxHeight="640.0" maxWidth="1120.0"
-            prefHeight="620.0" prefWidth="1080.0"
-            styleClass="login-card">
+      <!-- Removido o maxHeight e maxWidth para ocupar a tela toda -->
+      <HBox styleClass="login-card">
 
-         <VBox alignment="CENTER" spacing="18.0"
-               minWidth="430.0" prefWidth="500.0"
-               HBox.hgrow="ALWAYS" styleClass="login-form">
+         <!-- Painel de Login (Lado Esquerdo) -->
+         <VBox alignment="CENTER" minWidth="430.0" prefHeight="674.0" prefWidth="600.0" spacing="18.0" styleClass="login-form" HBox.hgrow="ALWAYS">
 
             <padding>
-               <Insets top="42.0" right="58.0" bottom="38.0" left="58.0"/>
+               <Insets bottom="38.0" left="58.0" right="58.0" top="42.0" />
             </padding>
 
-            <ImageView fitHeight="58.0" fitWidth="105.0"
-                       preserveRatio="true" pickOnBounds="true">
+            <!-- Este logo da esquerda continua normal (Azul) pois o fundo é branco -->
+            <ImageView fitHeight="58.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Imagens/Senac_logo.png"/>
+                  <Image url="@Imagens/Senac_logo.png" />
                </image>
                <VBox.margin>
-                  <Insets bottom="4.0"/>
+                  <Insets bottom="4.0" />
                </VBox.margin>
             </ImageView>
 
-            <Label text="Bem-vindo" styleClass="login-title"/>
-            <Label text="Acesse sua conta para continuar"
-                   styleClass="login-subtitle"/>
+            <Label styleClass="login-title" text="Bem-vindo" />
+            <Label styleClass="login-subtitle" text="Acesse sua conta para continuar" />
 
-            <VBox spacing="7.0" maxWidth="390.0" HBox.hgrow="ALWAYS">
-               <Label text="E-mail" styleClass="field-label"/>
-               <TextField fx:id="Email" promptText="Digite seu e-mail"
-                          prefHeight="48.0" styleClass="login-input"/>
+            <VBox maxWidth="390.0" spacing="7.0" HBox.hgrow="ALWAYS">
+               <Label styleClass="field-label" text="E-mail" />
+               <TextField fx:id="Email" prefHeight="48.0" promptText="Digite seu e-mail" styleClass="login-input" />
             </VBox>
 
-            <VBox spacing="7.0" maxWidth="390.0">
-               <Label text="Senha" styleClass="field-label"/>
-               <StackPane prefHeight="48.0" maxWidth="390.0"
-                          styleClass="password-container">
-                  <PasswordField fx:id="Senha" promptText="Digite sua senha"
-                                 prefHeight="48.0" styleClass="password-input"/>
-                  <TextField fx:id="SenhaVisivel" promptText="Digite sua senha"
-                             managed="false" visible="false"
-                             prefHeight="48.0" styleClass="password-input"/>
-                  <Button fx:id="btnToggleSenha"
-                          onAction="#alternarVisibilidadeSenha"
-                          styleClass="password-toggle"
-                          StackPane.alignment="CENTER_RIGHT">
+            <VBox maxWidth="390.0" spacing="7.0">
+               <Label styleClass="field-label" text="Senha" />
+               <StackPane maxWidth="390.0" prefHeight="48.0" styleClass="password-container">
+                  <PasswordField fx:id="Senha" prefHeight="48.0" promptText="Digite sua senha" styleClass="password-input" />
+                  <TextField fx:id="SenhaVisivel" managed="false" prefHeight="48.0" promptText="Digite sua senha" styleClass="password-input" visible="false" />
+                  <Button fx:id="btnToggleSenha" onAction="#alternarVisibilidadeSenha" styleClass="password-toggle" StackPane.alignment="CENTER_RIGHT">
                      <graphic>
-                        <ImageView fx:id="imgOlho" fitHeight="17.0" fitWidth="17.0"
-                                   preserveRatio="true" pickOnBounds="true">
+                        <ImageView fx:id="imgOlho" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Imagens/eyeClosed 1.png"/>
+                              <Image url="@Imagens/eyeClosed 1.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -79,76 +54,37 @@
             </VBox>
 
             <HBox alignment="CENTER_RIGHT" maxWidth="390.0">
-               <Region HBox.hgrow="ALWAYS"/>
-               <Hyperlink text="Esqueceu a senha?"
-                          onAction="#irParaAtualizarSenha"
-                          styleClass="forgot-link"/>
+               <Region HBox.hgrow="ALWAYS" />
+               <Hyperlink onAction="#irParaAtualizarSenha" styleClass="forgot-link" text="Esqueceu a senha?" />
             </HBox>
 
-            <Button text="Entrar no sistema"
-                    onAction="#onLoginButtonClick"
-                    maxWidth="390.0" prefHeight="49.0"
-                    styleClass="login-primary"/>
+            <Button maxWidth="390.0" onAction="#onLoginButtonClick" prefHeight="49.0" styleClass="login-primary" text="Entrar no sistema" />
 
             <HBox alignment="CENTER" spacing="5.0">
-               <Label text="Ainda não tem uma conta?"
-                      styleClass="register-text"/>
-               <Hyperlink text="Registre-se"
-                          onAction="#irParaCadastro"
-                          styleClass="register-link"/>
+               <Label styleClass="register-text" text="Ainda não tem uma conta?" />
+               <Hyperlink onAction="#irParaCadastro" styleClass="register-link" text="Registre-se" />
             </HBox>
 
-            <Region VBox.vgrow="ALWAYS"/>
-            <Label text="Desktop Beleza • SENAC"
-                   styleClass="login-footer"/>
+            <Region VBox.vgrow="ALWAYS" />
+            <Label styleClass="login-footer" text="Desktop Beleza • SENAC" />
          </VBox>
 
-         <VBox alignment="CENTER" spacing="22.0"
-               minWidth="390.0" prefWidth="470.0"
-               styleClass="login-decorative-panel" HBox.hgrow="ALWAYS">
+         <!-- Painel Decorativo Azul (Lado Direito) -->
+         <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
             <padding>
-               <Insets top="50.0" right="42.0" bottom="50.0" left="42.0"/>
+               <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
             </padding>
-
-            <StackPane styleClass="decorative-mark">
-               <Label text="B" styleClass="decorative-mark-letter"/>
-            </StackPane>
-
-            <VBox alignment="CENTER" spacing="10.0">
-               <Label text="Beleza Desktop"
-                      wrapText="true" styleClass="decorative-title"/>
-               <Label text="Organização, praticidade e cuidado em um só lugar."
-                      wrapText="true" textAlignment="CENTER"
-                      styleClass="decorative-description"/>
-            </VBox>
-
-            <Region VBox.vgrow="ALWAYS"/>
-
-            <VBox spacing="12.0" styleClass="decorative-info">
-               <HBox alignment="CENTER_LEFT" spacing="12.0">
-                  <StackPane styleClass="feature-icon">
-                     <Label text="✓" styleClass="feature-check"/>
-                  </StackPane>
-                  <Label text="Gestão simples e organizada" styleClass="feature-text"/>
-               </HBox>
-               <HBox alignment="CENTER_LEFT" spacing="12.0">
-                  <StackPane styleClass="feature-icon">
-                     <Label text="✓" styleClass="feature-check"/>
-                  </StackPane>
-                  <Label text="Acesso às ferramentas do sistema" styleClass="feature-text"/>
-               </HBox>
-               <HBox alignment="CENTER_LEFT" spacing="12.0">
-                  <StackPane styleClass="feature-icon">
-                     <Label text="✓" styleClass="feature-check"/>
-                  </StackPane>
-                  <Label text="Uma experiência mais intuitiva" styleClass="feature-text"/>
-               </HBox>
-            </VBox>
-
-            <Region VBox.vgrow="ALWAYS"/>
-            <Label text="SENAC • Educação profissional"
-                   styleClass="decorative-footer"/>
+            <children>
+               <!-- Adicionado a styleClass "logo-branca" aqui -->
+               <ImageView fx:id="logoDecorativa" fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-branca">
+                  <image>
+                     <Image url="@Imagens/Senac_logo.png" />
+                  </image>
+               </ImageView>
+               <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
+            </children>
          </VBox>
+
       </HBox>
    </children>
 </StackPane>

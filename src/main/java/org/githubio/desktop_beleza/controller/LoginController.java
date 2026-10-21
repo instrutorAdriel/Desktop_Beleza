@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
 import java.io.IOException;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.LoginDAO;
@@ -27,11 +28,19 @@ public class LoginController {
     @FXML
     private ImageView imgOlho;
 
+    @FXML
+    private ImageView logoDecorativa;
+
     private boolean senhaEstaVisivel = false;
 
     @FXML
     private void initialize() {
         SenhaVisivel.textProperty().bindBidirectional(Senha.textProperty());
+
+        // Torna a logo decorativa branca
+        ColorAdjust whiteEffect = new ColorAdjust();
+        whiteEffect.setBrightness(1.0);
+        logoDecorativa.setEffect(whiteEffect);
     }
 
     @FXML
