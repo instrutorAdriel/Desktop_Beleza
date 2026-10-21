@@ -90,7 +90,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" style="-fx-background-color: #004786;" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
                </padding>
