@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import org.githubio.desktop_beleza.components.*?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="gerenciar-turmas" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
 
     <!-- TOPO COM LOGO (exigido pelo projeto antigo) -->
     <top>
-        <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -36,7 +36,6 @@
                 <Label styleClass="title-2" style="-fx-font-weight: bold;" text="Gerenciamento de Turmas" />
 
                 <HBox spacing="20.0" VBox.vgrow="ALWAYS">
-                    <!-- BUSCA + TABELA DE TURMAS -->
                     <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                         <children>
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -62,7 +61,7 @@
                     </VBox>
 
                     <!-- FORMULÁRIO DE NOVA TURMA -->
-                    <VBox prefWidth="300.0" spacing="12.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;">
+                    <VBox prefWidth="300.0" spacing="12.0" styleClass="formulario-turma">
                         <padding>
                             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </padding>

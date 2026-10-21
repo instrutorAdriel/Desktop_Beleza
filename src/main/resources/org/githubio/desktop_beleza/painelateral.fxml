@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.VBox" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.VBox" prefWidth="180.0" spacing="10.0" styleClass="sidebar" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets top="20.0" />
    </padding>
@@ -43,7 +43,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
+      <VBox styleClass="sidebar-spacer" VBox.vgrow="ALWAYS" />
       <VBox alignment="CENTER" prefHeight="80.0">
          <children>
             <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">

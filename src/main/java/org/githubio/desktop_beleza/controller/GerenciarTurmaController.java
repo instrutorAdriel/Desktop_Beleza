@@ -19,7 +19,6 @@ import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
 
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -70,11 +69,9 @@ public class    GerenciarTurmaController {
         String filtro = txtBusca.getText().toLowerCase().trim();
 
         listaFiltrada.setPredicate(usuario -> {
-
             if (filtro.isEmpty()) {
                 return true;
             }
-
 
             return usuario.getTurma().toLowerCase().contains(filtro) ||
                     usuario.getTurno().toLowerCase().contains(filtro) ||
@@ -83,9 +80,8 @@ public class    GerenciarTurmaController {
         });
     }
 
-
     @FXML
-    public void onBuscarTurma() throws SQLException{
+    public void onBuscarTurma() throws SQLException {
         if (!txtBusca.getText().isEmpty()) {
             listaOriginal.setAll(dao.buscarTurmaPorNome(txtBusca.getText()));
         } else {

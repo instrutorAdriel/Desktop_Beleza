@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/SidebarController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/util/ViewNavigator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/AgendaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/AgendaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/ServicosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/ServicosDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/UnidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/UnidadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/GerenciarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/GerenciarTurma.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/Telaagenda.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/Telaagenda.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/VinculoServicoUnidade.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/VinculoServicoUnidade.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/adicionarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/adicionarTurma.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/gerenciarmodelo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/gerenciarmodelo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/registrarmodelo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/registrarmodelo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/servicos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/servicos.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/unidades.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/unidades.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,82 +62,66 @@
     </option>
   </component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000017621697" />
-      <entry key="MS500" value="1.017838954993791" />
-      <entry key="S2" value="1.4619993594479874" />
-      <entry key="S5" value="2.0614944534316746" />
-      <entry key="S10" value="2.4445628028300703" />
-      <entry key="S30" value="2.7909693354317566" />
-      <entry key="S60" value="2.8921396598945623" />
-      <entry key="M2" value="2.9452329536796134" />
-      <entry key="M5" value="2.9992990040867493" />
-      <entry key="M10" value="3.2242839719842187" />
-      <entry key="M15" value="3.533376785871528" />
-      <entry key="M30" value="4.259761415494994" />
-      <entry key="H1" value="4.941229791114848" />
-      <entry key="H2" value="5.412295913695121" />
-      <entry key="H4" value="5.689879383330555" />
-      <entry key="D1" value="5.945894072947233" />
-      <entry key="W1" value="5.992209135673096" />
+      <entry key="MS100" value="1.6415292938304522" />
+      <entry key="MS500" value="3.087396943157312" />
+      <entry key="S2" value="7.235396920686518" />
+      <entry key="S5" value="15.1839428333032" />
+      <entry key="S10" value="25.349437783037434" />
+      <entry key="S30" value="50.597330652742656" />
+      <entry key="S60" value="69.54142384470474" />
+      <entry key="M2" value="91.60049454187418" />
+      <entry key="M5" value="129.18156794169315" />
+      <entry key="M10" value="166.32893691924804" />
+      <entry key="M15" value="192.0767736679443" />
+      <entry key="M30" value="239.59353216401624" />
+      <entry key="H1" value="281.1048238729654" />
+      <entry key="H2" value="309.7645289927749" />
+      <entry key="H4" value="326.7956850385407" />
+      <entry key="D1" value="342.6346314556757" />
+      <entry key="W1" value="345.5150072167114" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="9.158772081833243E-276" />
-      <entry key="S5" value="9.654613681397423E-111" />
-      <entry key="S10" value="9.825789373580841E-56" />
-      <entry key="S30" value="4.61447697634586E-19" />
-      <entry key="S60" value="6.79299416777746E-10" />
-      <entry key="M2" value="2.6063373089025644E-5" />
-      <entry key="M5" value="0.014669396535089807" />
-      <entry key="M10" value="0.12111728421282325" />
-      <entry key="M15" value="0.244795867922898" />
-      <entry key="M30" value="0.49476849932357064" />
-      <entry key="H1" value="0.7033978243665321" />
-      <entry key="H2" value="0.8386881568059322" />
-      <entry key="H4" value="0.9157991902190851" />
-      <entry key="D1" value="0.9854472363206672" />
-      <entry key="W1" value="0.9979079494186687" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="5.033763756955E-311" />
+      <entry key="S10" value="7.094902224100444E-156" />
+      <entry key="S30" value="1.9215372367829187E-52" />
+      <entry key="S60" value="1.3861952376137055E-26" />
+      <entry key="M2" value="1.1773679278856208E-13" />
+      <entry key="M5" value="6.7354230758027965E-6" />
+      <entry key="M10" value="0.0025952693647871713" />
+      <entry key="M15" value="0.018885201666874768" />
+      <entry key="M30" value="0.13742343929211961" />
+      <entry key="H1" value="0.37070667554296866" />
+      <entry key="H2" value="0.6088568596500884" />
+      <entry key="H4" value="0.7802928037923195" />
+      <entry key="D1" value="0.9594954809166208" />
+      <entry key="W1" value="0.9941106004247714" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8705505643152646" />
-      <entry key="MS500" value="0.9886494559097515" />
-      <entry key="S2" value="1.4443637012779207" />
-      <entry key="S5" value="2.0500325002285775" />
-      <entry key="S10" value="2.437584309172967" />
-      <entry key="S30" value="2.7882881843308462" />
-      <entry key="S60" value="2.890748699848338" />
-      <entry key="M2" value="2.94454991827349" />
-      <entry key="M5" value="3.0135617646413864" />
-      <entry key="M10" value="3.3447397896664595" />
-      <entry key="M15" value="3.7773623224293127" />
-      <entry key="M30" value="4.753737711202157" />
-      <entry key="H1" value="5.644064972438437" />
-      <entry key="H2" value="6.250647779506312" />
-      <entry key="H4" value="6.605494611426971" />
-      <entry key="D1" value="6.9313082532588925" />
-      <entry key="W1" value="6.990112301372815" />
+      <entry key="MS100" value="1.5677160530120269" />
+      <entry key="MS500" value="3.0582766154153984" />
+      <entry key="S2" value="7.219574569015179" />
+      <entry key="S5" value="15.171438416920175" />
+      <entry key="S10" value="25.33915867215508" />
+      <entry key="S30" value="50.59051648857236" />
+      <entry key="S60" value="69.53673296136198" />
+      <entry key="M2" value="91.5973908374913" />
+      <entry key="M5" value="129.1798137420591" />
+      <entry key="M10" value="166.33037966381983" />
+      <entry key="M15" value="192.09471787018288" />
+      <entry key="M30" value="239.7301863335902" />
+      <entry key="H1" value="281.4749118192894" />
+      <entry key="H2" value="310.37296434728063" />
+      <entry key="H4" value="327.5757276140927" />
+      <entry key="D1" value="343.59407842967676" />
+      <entry key="W1" value="346.5091107008067" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -148,7 +141,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "fix/rapido",
+    "git-widget-placeholder": "remade/turmas",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/kelvin51837106/Documents/projeto/Desktop_Beleza",
     "node.js.detected.package.eslint": "true",

@@ -28,9 +28,6 @@ public class    MainApplication extends Application {
 
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
-        String cssSenac = MainApplication.class.getResource("css/style.css").toExternalForm();
-        scene.getStylesheets().add(cssSenac);
-        
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);
         stage.setMinWidth(MinWidth);
