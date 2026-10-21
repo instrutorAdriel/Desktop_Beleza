@@ -38,6 +38,15 @@ public class LoginController {
             return; // Ele sai da função quando o usuário fechar a caixa de alerta
         }
 
+        if (!emailDigitado.trim().toLowerCase().endsWith("@df.senac.br")) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("E-mail fora do padrão");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Para entrar nesse sistema é necessário utilizar um e-mail '@df.senac.br'");
+            alerta.showAndWait();
+            return;
+        }
+
         LoginDAO usuarioDao = new LoginDAO();
         boolean logado = usuarioDao.autenticarUsuario(emailDigitado, senhaDigitada);
 
