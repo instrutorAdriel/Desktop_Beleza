@@ -2,10 +2,16 @@ package org.githubio.desktop_beleza.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
+import org.githubio.desktop_beleza.model.ServicosDAO;
 import org.githubio.desktop_beleza.model.Unidade;
 import org.githubio.desktop_beleza.model.UnidadeDAO;
 
@@ -195,6 +201,53 @@ public class UnidadeController implements Initializable {
         alert.setContentText(mensagem);
 
         alert.showAndWait();
+    }
+
+
+    @FXML
+    private void abrirVinculoServico() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    MainApplication.class.getResource(
+                            "VinculoServicoUnidade.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            VinculoServicoUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidades(unidadeDAO.listarTodas());
+
+            controller.setServicos(new ServicosDAO().lerTodos());
+
+            // Já deixa selecionada a unidade clicada na tabela
+            controller.selecionarUnidade(
+                    tabelaUnidades.getSelectionModel().getSelectedItem()
+            );
+
+            Stage stage = new Stage();
+
+            stage.initOwner(tabelaUnidades.getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Adicionar serviço à unidade");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+
+            stage.showAndWait();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            mostrarMensagem(
+                    Alert.AlertType.ERROR,
+                    "Não foi possível abrir a tela de vínculo."
+            );
+        }
     }
 
 

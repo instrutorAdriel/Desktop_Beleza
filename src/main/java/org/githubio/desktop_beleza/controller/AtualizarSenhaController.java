@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
-import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 
@@ -174,7 +174,7 @@ public class AtualizarSenhaController {
 
         if (existe) {
             try {
-                String senhaHash = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
+                String senhaHash = new BCryptPasswordEncoder().encode(novaSenha);
 
                 if (dao.atualizarSenha(email, senhaHash)) {
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);

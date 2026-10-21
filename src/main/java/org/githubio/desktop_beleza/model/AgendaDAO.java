@@ -18,7 +18,21 @@ import java.util.List;
 
 public class AgendaDAO {
 
+    // CACHE EM MEMÓRIA PARA EVITAR CONSULTAS REPETIDAS AO BANCO
+    private static List<String> cacheServicos = null;
+    private static List<String> cacheModelos = null;
+    private static List<String> cacheUnidades = null;
+
+    public static void limparCacheCombos() {
+        cacheServicos = null;
+        cacheModelos = null;
+        cacheUnidades = null;
+    }
+
     public List<String> listarServicos() {
+        if (cacheServicos != null && !cacheServicos.isEmpty()) {
+            return cacheServicos;
+        }
         List<String> lista = new ArrayList<>();
         String sql = "SELECT nome_produto FROM produto ORDER BY nome_produto";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -27,6 +41,7 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_produto"));
             }
+            cacheServicos = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar serviços", e);
         }
@@ -34,6 +49,9 @@ public class AgendaDAO {
     }
 
     public List<String> listarModelos() {
+        if (cacheModelos != null && !cacheModelos.isEmpty()) {
+            return cacheModelos;
+        }
         List<String> lista = new ArrayList<>();
         String sql = """
                 SELECT u.nome_usuario
@@ -47,6 +65,7 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_usuario"));
             }
+            cacheModelos = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar modelos", e);
         }
@@ -54,6 +73,9 @@ public class AgendaDAO {
     }
 
     public List<String> listarUnidades() {
+        if (cacheUnidades != null && !cacheUnidades.isEmpty()) {
+            return cacheUnidades;
+        }
         List<String> lista = new ArrayList<>();
         String sql = "SELECT nome_unidade FROM unidade WHERE situacao = 'A' ORDER BY nome_unidade";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -62,24 +84,25 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_unidade"));
             }
+            cacheUnidades = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar unidades", e);
         }
         return lista;
     }
-
     public void cadastrarAgendamento(String data, String horario, String nomeModelo,
                                      String nomeServico, String nomeUnidade, String emailInstrutor) {
         String inserirAgendamento = """
-                INSERT INTO agendamento
-                    (data_hora_agendamento, situacao, observacao, id_disponibilidade, id_modelo, id_usuario)
-                VALUES (?, 'Confirmado', NULL, ?, ?, ?)
-                """;
+            INSERT INTO agendamento
+                (data_hora_agendamento, situacao, observacao, id_disponibilidade,
+                 id_modelo, id_usuario, id_instrutor)
+            VALUES (?, 'Confirmado', NULL, ?, ?, ?, ?)
+            """;
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                int idUsuarioInstrutor = buscarIdUsuarioInstrutor(conn, emailInstrutor);
+                int[] instrutor = buscarInstrutor(conn, emailInstrutor);
                 int idModelo = buscarIdModelo(conn, nomeModelo);
                 int idProduto = buscarIdProduto(conn, nomeServico);
                 int idUnidade = buscarIdUnidade(conn, nomeUnidade);
@@ -93,7 +116,8 @@ public class AgendaDAO {
                     stmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.of(localDate, localTime)));
                     stmt.setInt(2, idDisponibilidade);
                     stmt.setInt(3, idModelo);
-                    stmt.setInt(4, idUsuarioInstrutor);
+                    stmt.setInt(4, instrutor[0]);
+                    stmt.setInt(5, instrutor[1]);
                     stmt.executeUpdate();
                 }
 
@@ -108,51 +132,32 @@ public class AgendaDAO {
                 conn.setAutoCommit(true);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao cadastrar agendamento", e);
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao cadastrar agendamento" + e.getMessage(), e);
         }
     }
-
     public List<Agenda> listarAgendamentos(String emailInstrutor) {
-        String sql = consultaBase() + " WHERE ui.email = ? ORDER BY a.data_hora_agendamento";
-        return executarLista(sql, emailInstrutor, null, null);
+        String sql = consultaBase() + " ORDER BY data_hora_agendamento";
+        return executarLista(sql, null, null);
     }
 
     public List<Agenda> listarAgendamentosPorSemana(LocalDate inicio, LocalDate fim, String emailInstrutor) {
-        String sql = consultaBase() + """
-                 WHERE ui.email = ?
-                   AND DATE(a.data_hora_agendamento) BETWEEN ? AND ?
-                 ORDER BY a.data_hora_agendamento
-                """;
-        return executarLista(sql, emailInstrutor, inicio, fim);
+        String sql = consultaBase() + " WHERE data_hora_agendamento >= ? AND data_hora_agendamento < ? ORDER BY data_hora_agendamento";
+        return executarLista(sql, inicio, fim);
     }
 
     private String consultaBase() {
-        return """
-                SELECT a.id_agendamento,
-                       DATE(a.data_hora_agendamento) AS data_agendamento,
-                       TIME_FORMAT(TIME(a.data_hora_agendamento), '%H:%i') AS horario_agendamento,
-                       a.situacao,
-                       um.nome_usuario AS nome_modelo,
-                       p.nome_produto AS nome_servico
-                FROM agendamento a
-                INNER JOIN modelo m ON m.id_modelo = a.id_modelo
-                INNER JOIN usuario um ON um.id_usuario = m.id_usuario
-                INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
-                INNER JOIN instrutor i ON i.id_usuario = ui.id_usuario
-                INNER JOIN disponibilidade d ON d.id_disponibilidade = a.id_disponibilidade
-                INNER JOIN produto_unidade pu ON pu.id_produto_unidade = d.id_produto_unidade
-                INNER JOIN produto p ON p.id_produto = pu.id_produto
-                """;
+        return "SELECT id_agendamento, data_agendamento, horario_agendamento, situacao, nome_modelo, nome_servico FROM vw_agendamentos_detalhados";
     }
 
-    private List<Agenda> executarLista(String sql, String email, LocalDate inicio, LocalDate fim) {
+    private List<Agenda> executarLista(String sql, LocalDate inicio, LocalDate fim) {
         List<Agenda> lista = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
+
             if (inicio != null && fim != null) {
-                stmt.setDate(2, Date.valueOf(inicio));
-                stmt.setDate(3, Date.valueOf(fim));
+                stmt.setTimestamp(1, Timestamp.valueOf(inicio.atStartOfDay()));
+                stmt.setTimestamp(2, Timestamp.valueOf(fim.plusDays(1).atStartOfDay()));
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -163,8 +168,7 @@ public class AgendaDAO {
                             rs.getString("horario_agendamento"),
                             rs.getString("situacao"),
                             rs.getString("nome_modelo"),
-                            rs.getString("nome_servico")
-                    ));
+                            rs.getString("nome_servico")));
                 }
             }
         } catch (SQLException e) {
@@ -172,7 +176,6 @@ public class AgendaDAO {
         }
         return lista;
     }
-
     public void excluirAgendamento(int idAgendamento) {
         String sql = "DELETE FROM agendamento WHERE id_agendamento = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -254,23 +257,22 @@ public class AgendaDAO {
         }
     }
 
-    private int buscarIdUsuarioInstrutor(Connection conn, String email) throws SQLException {
+    private int[] buscarInstrutor(Connection conn, String email) throws SQLException {
         String sql = """
-                SELECT u.id_usuario
-                FROM usuario u
-                INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
-                WHERE u.email = ?
-                LIMIT 1
-                """;
+            SELECT u.id_usuario, i.id_instrutor
+            FROM usuario u
+            INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
+            WHERE u.email = ?
+            LIMIT 1
+            """;
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) return rs.getInt("id_usuario");
+                if (rs.next()) return new int[]{rs.getInt("id_usuario"), rs.getInt("id_instrutor")};
             }
         }
         throw new SQLException("Instrutor logado não encontrado no banco.");
     }
-
     private int buscarIdModelo(Connection conn, String nomeModelo) throws SQLException {
         String sql = """
                 SELECT m.id_modelo
@@ -321,10 +323,11 @@ public class AgendaDAO {
             }
         }
 
-        String inserir = "INSERT INTO produto_unidade (id_unidade, id_produto) VALUES (?, ?)";
+        String inserir = "INSERT INTO produto_unidade (id_unidade, id_produto, produto_utilizado) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(inserir, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, idUnidade);
             stmt.setInt(2, idProduto);
+            stmt.setInt(3, 0); // ajuste conforme o tipo/regra da coluna
             stmt.executeUpdate();
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) return rs.getInt(1);
@@ -334,16 +337,17 @@ public class AgendaDAO {
     }
 
     private int buscarOuCriarDisponibilidade(Connection conn, LocalDate data, LocalTime horario,
-                                              int idProdutoUnidade) throws SQLException {
+                                             int idProdutoUnidade) throws SQLException {
+        // 1) tenta encontrar uma disponibilidade já existente
         String buscar = """
-                SELECT id_disponibilidade
-                FROM disponibilidade
-                WHERE data_disponibilidade = ?
-                  AND hora_inicio = ?
-                  AND id_produto_unidade = ?
-                ORDER BY id_disponibilidade
-                LIMIT 1
-                """;
+            SELECT id_disponibilidade
+            FROM disponibilidade
+            WHERE data_disponibilidade = ?
+              AND hora_inicio = ?
+              AND id_produto_unidade = ?
+            ORDER BY id_disponibilidade
+            LIMIT 1
+            """;
         try (PreparedStatement stmt = conn.prepareStatement(buscar)) {
             stmt.setDate(1, Date.valueOf(data));
             stmt.setTime(2, Time.valueOf(horario));
@@ -353,20 +357,23 @@ public class AgendaDAO {
             }
         }
 
+        // 2) se não existir, cria uma nova
         String inserir = """
-                INSERT INTO disponibilidade
-                    (total_vagas, hora_fim, data_disponibilidade, hora_inicio, id_produto_unidade)
-                VALUES (1, NULL, ?, ?, ?)
-                """;
+            INSERT INTO disponibilidade
+                (total_vagas, hora_fim, data_disponibilidade, hora_inicio, id_produto_unidade)
+            VALUES (1, ?, ?, ?, ?)
+            """;
         try (PreparedStatement stmt = conn.prepareStatement(inserir, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setDate(1, Date.valueOf(data));
-            stmt.setTime(2, Time.valueOf(horario));
-            stmt.setInt(3, idProdutoUnidade);
+            stmt.setTime(1, Time.valueOf(horario.plusHours(1)));
+            stmt.setDate(2, Date.valueOf(data));
+            stmt.setTime(3, Time.valueOf(horario));
+            stmt.setInt(4, idProdutoUnidade);
             stmt.executeUpdate();
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) return rs.getInt(1);
             }
         }
+
         throw new SQLException("Não foi possível criar a disponibilidade.");
     }
 }
