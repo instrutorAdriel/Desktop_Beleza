@@ -34,8 +34,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label text="Nome" />
-                        <TextField fx:id="campoNome" prefHeight="45.0" promptText="Digite seu nome" />
+                        <Label styleClass="rotulo-formulario" text="Nome" />
+                        <TextField fx:id="campoNome" prefHeight="45.0" promptText="Digite seu nome" styleClass="campo-formulario" />
                      </children>
                   </VBox>
                   <VBox spacing="6.0">
