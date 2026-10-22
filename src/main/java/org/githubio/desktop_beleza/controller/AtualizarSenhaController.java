@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.AtualizarSenhaDAO;
+import org.githubio.desktop_beleza.model.dao.AtualizarSenhaDAO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;

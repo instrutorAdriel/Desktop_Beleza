@@ -1,4 +1,4 @@
-package org.githubio.desktop_beleza.model;
+package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 

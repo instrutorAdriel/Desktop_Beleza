@@ -15,11 +15,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.GerenciarTurmaDAO;
+import org.githubio.desktop_beleza.model.dao.GerenciarTurmaDAO;
 import org.githubio.desktop_beleza.model.UsuarioDTO;
 
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.githubio.desktop_beleza.model.Servico;
 import org.githubio.desktop_beleza.model.Unidade;
-import org.githubio.desktop_beleza.model.UnidadeDAO;
+import org.githubio.desktop_beleza.model.dao.UnidadeDAO;
 
 import java.util.List;
 

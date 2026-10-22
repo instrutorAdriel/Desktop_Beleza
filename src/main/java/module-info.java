@@ -18,4 +18,6 @@ module org.githubio.desktop_beleza {
     opens org.githubio.desktop_beleza.model to javafx.fxml;
     exports org.githubio.desktop_beleza.components;
     opens org.githubio.desktop_beleza.components to javafx.fxml;
+    exports org.githubio.desktop_beleza.model.dao;
+    opens org.githubio.desktop_beleza.model.dao to javafx.fxml;
 }

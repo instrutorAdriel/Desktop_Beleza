@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.LoginDAO;
+import org.githubio.desktop_beleza.model.dao.LoginDAO;
 
 public class LoginController {
     @FXML
