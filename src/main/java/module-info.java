@@ -8,6 +8,8 @@ module org.githubio.desktop_beleza {
     requires java.desktop;
     requires java.dotenv;
     requires atlantafx.base;
+    requires mysql.connector.j;
+    requires jakarta.mail;
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;
@@ -21,4 +23,6 @@ module org.githubio.desktop_beleza {
     opens org.githubio.desktop_beleza.components to javafx.fxml;
     exports org.githubio.desktop_beleza.model.dao;
     opens org.githubio.desktop_beleza.model.dao to javafx.fxml;
+    exports org.githubio.desktop_beleza.service;
+    opens org.githubio.desktop_beleza.service to javafx.fxml;
 }
