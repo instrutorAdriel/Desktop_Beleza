@@ -40,8 +40,8 @@ public class AtualizarSenhaController {
     // Carrega as imagens usando o URL absoluto do classpath
     // Recua duas pastas a partir de 'controller' para chegar à pasta 'Imagens' na raiz do pacote
     // Carrega as imagens de forma absoluta a partir da raiz do classpath (resources)
-    private final Image imagemOlhoAberto = new Image(getClass().getResource("/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png").toExternalForm());
-    private final Image imagemOlhoFechado = new Image(getClass().getResource("/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png").toExternalForm());
+    private final Image imagemOlhoAberto = new Image(getClass().getResource("/org/githubio/desktop_beleza/images/eyeOpen 1.png").toExternalForm());
+    private final Image imagemOlhoFechado = new Image(getClass().getResource("/org/githubio/desktop_beleza/images/eyeClosed 1.png").toExternalForm());
 
     private boolean novaSenhaVisivel = false;
     private boolean confirmarSenhaVisivel = false;

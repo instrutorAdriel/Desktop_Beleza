@@ -44,7 +44,7 @@
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Imagens/Senac_logo.png" />
+                        <Image url="@images/Senac_logo.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="welcomeText" layoutX="186.0" layoutY="13.0" prefHeight="50.0" prefWidth="132.0" text="Agenda" textFill="#004587">

@@ -51,7 +51,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@Imagens/eyeOpen 1.png" />
+                           <Image url="@images/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -99,7 +99,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@Imagens/eyeOpen 1.png" />
+                           <Image url="@images/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -139,7 +139,7 @@
          <children>
             <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Imagens/Senac_logo.png" />
+                  <Image url="@images/Senac_logo.png" />
                </image></ImageView>
          </children>
       </AnchorPane>

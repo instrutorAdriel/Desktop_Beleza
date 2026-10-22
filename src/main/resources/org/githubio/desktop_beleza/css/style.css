@@ -1,13 +1,13 @@
 
 .editar{
-    -fx-background-image: url("../Imagens/editar.png");
+    -fx-background-image: url("../images/editar.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
 .editar:hover{
-    -fx-background-image: url("../Imagens/editar-blue.png");
+    -fx-background-image: url("../images/editar-blue.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
@@ -15,14 +15,14 @@
 
 
 .excluir{
-    -fx-background-image: url("../Imagens/lixo.png");
+    -fx-background-image: url("../images/lixo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
 .excluir:hover{
-    -fx-background-image: url("../Imagens/lixo-red.png");
+    -fx-background-image: url("../images/lixo-red.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
