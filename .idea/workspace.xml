@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="refactor: pasta de imagens renomeada" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="refactor: criada pasta chamada view e realocado .fxml para essa pasta">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +154,7 @@
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\view" />
       <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza" />
       <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza" />
       <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\java\org\githubio\desktop_beleza\controller" />
@@ -218,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1792693053247</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor: criada pasta chamada view e realocado .fxml para essa pasta">
+      <option name="closed" value="true" />
+      <created>1792693434533</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1792693434533</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +251,7 @@
     <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
     <MESSAGE value="refactor: classes DAO sendo realocados para pacote 'dao'" />
     <MESSAGE value="refactor: pasta de imagens renomeada" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: pasta de imagens renomeada" />
+    <MESSAGE value="refactor: criada pasta chamada view e realocado .fxml para essa pasta" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: criada pasta chamada view e realocado .fxml para essa pasta" />
   </component>
 </project>

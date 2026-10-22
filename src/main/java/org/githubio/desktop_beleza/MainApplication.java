@@ -19,10 +19,10 @@ public class    MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
+        scene = new Scene(loadFXML("view/login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
         // Adição do logo como icone
-        Image appIcon = new Image(MainApplication.class.getResource("Imagens/icon.png").toString());
+        Image appIcon = new Image(MainApplication.class.getResource("images/icon.png").toString());
         stage.getIcons().add(appIcon);
         
         stage.setTitle("Desktop Beleza");
