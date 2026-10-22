@@ -1,210 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane
-        xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
-        stylesheets="@css/style.css">
-
-    <top>
-
-        <Pane prefHeight="70"
-              style="-fx-background-color: #faf8f7;">
-
-            <ImageView
-                    fitHeight="52"
-                    fitWidth="83"
-                    layoutX="14"
-                    layoutY="14"
-                    preserveRatio="true">
-
-                <image>
-                    <Image url="@Imagens/Senac_logo.png"/>
-                </image>
-
-            </ImageView>
-
-        </Pane>
-
-    </top>
-
-
+<BorderPane prefHeight="700.0" prefWidth="1050.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
+            stylesheets="@css/style.css"
+            style="-fx-background-color: #ffffff;">
     <left>
-
-        <VBox
-                prefWidth="155"
-                spacing="8"
-                style="-fx-background-color: #faf8f7;
-                       -fx-border-color: #E1E3E2;
-                       -fx-border-width: 0 1 0 0;">
-
+        <VBox prefWidth="228.0" spacing="10.0"
+              style="-fx-background-color: #004a8d;">
             <padding>
-                <Insets top="20"
-                        left="10"
-                        right="10"/>
+                <Insets top="22.0" right="14.0" bottom="20.0" left="14.0"/>
             </padding>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Página inicial"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaPaginaInicial"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Modelos"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaModelos"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Serviços"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaServicos"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Unidades"
-                    styleClass="btn-cinza"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Turmas"
-                    styleClass="btn-cinza"
-                    onAction="#trocarTelaParaTurmas"/>
-
-            <Region VBox.vgrow="ALWAYS"/>
-
-            <Button
-                    maxWidth="Infinity"
-                    text="Sair"
-                    styleClass="btn-azul"
-                    onAction="#sairDoSistema"/>
-
+            <children>
+                <Region prefHeight="14.0"/>
+                <Button maxWidth="Infinity" text="Página inicial"
+                        onAction="#trocarTelaParaPaginaInicial"
+                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
+                <Button maxWidth="Infinity" text="Modelos"
+                        onAction="#trocarTelaParaModelos"
+                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
+                <Button maxWidth="Infinity" text="Serviços"
+                        onAction="#trocarTelaParaServicos"
+                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
+                <Button maxWidth="Infinity" text="Unidades"
+                        style="-fx-background-color: #e07f0c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
+                <Button maxWidth="Infinity" text="Turmas"
+                        onAction="#trocarTelaParaTurmas"
+                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Button maxWidth="Infinity" text="Sair do Sistema"
+                        onAction="#sairDoSistema"
+                        style="-fx-background-color: transparent; -fx-border-color: #fdc180; -fx-border-radius: 8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12;"/>
+            </children>
         </VBox>
-
     </left>
 
-
     <center>
-
-        <VBox spacing="20">
-
+        <VBox spacing="20.0" style="-fx-background-color: #ffffff;">
             <padding>
-                <Insets
-                        top="25"
-                        left="30"
-                        right="30"
-                        bottom="30"/>
+                <Insets top="25.0" right="25.0" bottom="25.0" left="25.0"/>
             </padding>
+            <children>
+                <Label text="Unidades SENAC"
+                       style="-fx-text-fill: #1f2937; -fx-font-weight: bold;">
+                    <font>
+                        <Font name="Verdana Bold" size="24.0"/>
+                    </font>
+                </Label>
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <TableView fx:id="tabelaUnidades" HBox.hgrow="ALWAYS"
+                                   VBox.vgrow="ALWAYS"
+                                   style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-background-radius: 4;">
+                            <columns>
+                                <TableColumn fx:id="colNome" prefWidth="180.0"
+                                             text="Nome da Unidade"/>
+                                <TableColumn fx:id="colEndereco" prefWidth="240.0"
+                                             text="Endereço"/>
+                                <TableColumn fx:id="colSituacao" prefWidth="100.0"
+                                             text="Status"/>
+                            </columns>
+                        </TableView>
 
-
-            <Label
-                    text="Gerenciamento de Unidades"
-                    textFill="#004587">
-
-                <font>
-                    <Font
-                            name="Verdana Bold"
-                            size="28"/>
-                </font>
-
-            </Label>
-
-
-            <HBox spacing="10">
-
-                <VBox spacing="5">
-
-                    <Label text="Nome da unidade"/>
-
-                    <TextField
-                            fx:id="txtNome"
-                            prefWidth="220"
-                            promptText="Nome da unidade"/>
-
-                </VBox>
-
-
-                <VBox spacing="5">
-
-                    <Label text="Endereço"/>
-
-                    <TextField
-                            fx:id="txtEndereco"
-                            prefWidth="280"
-                            promptText="Endereço"/>
-
-                </VBox>
-
-
-                <VBox spacing="5">
-
-                    <Label text="Situação"/>
-
-                    <ComboBox
-                            fx:id="cbSituacao"
-                            prefWidth="130"/>
-
-                </VBox>
-
-            </HBox>
-
-
-            <HBox spacing="10">
-
-                <Button
-                        text="Novo"
-                        styleClass="btn-cinza"
-                        onAction="#novoCadastro"/>
-
-                <Button
-                        text="Salvar"
-                        styleClass="btn-azul"
-                        onAction="#salvar"/>
-
-                <Button
-                        text="Adicionar serviço à unidade"
-                        styleClass="btn-cinza"
-                        onAction="#abrirVinculoServico"/>
-
-            </HBox>
-
-
-            <TableView
-                    fx:id="tabelaUnidades"
-                    prefHeight="400">
-
-                <columns>
-
-                    <TableColumn
-                            fx:id="colNome"
-                            text="Unidade"
-                            prefWidth="220"/>
-
-                    <TableColumn
-                            fx:id="colEndereco"
-                            text="Endereço"
-                            prefWidth="350"/>
-
-                    <TableColumn
-                            fx:id="colSituacao"
-                            text="Situação"
-                            prefWidth="130"/>
-
-                </columns>
-
-            </TableView>
-
+                        <VBox prefWidth="245.0" minWidth="220.0" spacing="14.0"
+                              style="-fx-background-color: #ffffff; -fx-border-color: #cbd5e1; -fx-border-radius: 9; -fx-background-radius: 9;">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <children>
+                                <Label text="Editar Unidade"
+                                       style="-fx-text-fill: #1f2937; -fx-font-weight: bold;">
+                                    <font>
+                                        <Font name="Verdana Bold" size="17.0"/>
+                                    </font>
+                                </Label>
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Nome da Unidade"
+                                               style="-fx-text-fill: #334155;"/>
+                                        <TextField fx:id="txtNome"
+                                                   promptText="Ex: SENAC Taguatinga"
+                                                   style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e1;"/>
+                                    </children>
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Endereço"
+                                               style="-fx-text-fill: #334155;"/>
+                                        <TextField fx:id="txtEndereco"
+                                                   promptText="Ex: QNG AE 01, Taguatinga Norte"
+                                                   style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e1;"/>
+                                    </children>
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Status"
+                                               style="-fx-text-fill: #334155;"/>
+                                        <ComboBox fx:id="cbSituacao"
+                                                  maxWidth="Infinity"
+                                                  promptText="Selecione..."
+                                                  style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e1;"/>
+                                    </children>
+                                </VBox>
+                                <Button maxWidth="Infinity" text="Salvar Alterações"
+                                        onAction="#salvar"
+                                        style="-fx-background-color: #004a8d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 12;">
+                                    <VBox.margin>
+                                        <Insets top="4.0"/>
+                                    </VBox.margin>
+                                </Button>
+                                <Button maxWidth="Infinity" text="Novo Cadastro"
+                                        onAction="#novoCadastro"
+                                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 12;"/>
+                                <Button maxWidth="Infinity"
+                                        text="Adicionar serviço à unidade"
+                                        onAction="#abrirVinculoServico"
+                                        style="-fx-background-color: #fff7ed; -fx-border-color: #f7941d; -fx-border-radius: 5; -fx-background-radius: 5; -fx-text-fill: #004a8d; -fx-cursor: hand; -fx-padding: 10 8;"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
         </VBox>
-
     </center>
-
 </BorderPane>
