@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="">
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/Imagens/senaclogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/atualizarsenha.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +15,25 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="remade/unidades" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yuripetra&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,
+    &quot;accountId&quot;: &quot;0ac69af6-cf65-4042-b05f-d96a8065f933&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -24,82 +42,66 @@
     </option>
   </component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.1086327046496016E-12" />
-      <entry key="MS500" value="0.009439853296124696" />
-      <entry key="S2" value="2.0879290161068513" />
-      <entry key="S5" value="12.821164551372775" />
-      <entry key="S10" value="31.53998222849434" />
-      <entry key="S30" value="76.66953158025393" />
-      <entry key="S60" value="130.71160693341784" />
-      <entry key="M2" value="226.84520294289942" />
-      <entry key="M5" value="468.00670968263034" />
-      <entry key="M10" value="736.0922084544294" />
-      <entry key="M15" value="892.0218702042656" />
-      <entry key="M30" value="1107.9944155467358" />
-      <entry key="H1" value="1247.4641387594406" />
-      <entry key="H2" value="1327.2975535538212" />
-      <entry key="H4" value="1370.1036674256072" />
-      <entry key="D1" value="1407.3664407675728" />
-      <entry key="W1" value="1413.9057199769006" />
+      <entry key="MS100" value="1.0000636213821175" />
+      <entry key="MS500" value="1.2536981913023675" />
+      <entry key="S2" value="2.4637069710039783" />
+      <entry key="S5" value="3.485229050107457" />
+      <entry key="S10" value="4.103112558959278" />
+      <entry key="S30" value="4.661214623499298" />
+      <entry key="S60" value="4.824936322707373" />
+      <entry key="M2" value="4.911020834198015" />
+      <entry key="M5" value="4.985388838316073" />
+      <entry key="M10" value="5.216928108864407" />
+      <entry key="M15" value="5.52810982519265" />
+      <entry key="M30" value="6.2567021235138265" />
+      <entry key="H1" value="6.939500511785129" />
+      <entry key="H2" value="7.411362284528541" />
+      <entry key="H4" value="7.689392242951442" />
+      <entry key="D1" value="7.945809758530646" />
+      <entry key="W1" value="7.992197010011308" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000062539283" />
-      <entry key="S30" value="1.0018977969693204" />
-      <entry key="S60" value="1.05344863360632" />
-      <entry key="M2" value="1.352266307010834" />
-      <entry key="M5" value="2.233117387928863" />
-      <entry key="M10" value="2.922013640138698" />
-      <entry key="M15" value="3.2624775962474075" />
-      <entry key="M30" value="3.784778145504821" />
-      <entry key="H1" value="4.234539605044191" />
-      <entry key="H2" value="4.561689495895545" />
-      <entry key="H4" value="4.764174641781842" />
-      <entry key="D1" value="4.958097635644147" />
-      <entry key="W1" value="4.993946261374803" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="5.408221308175361E-276" />
+      <entry key="S5" value="7.820270618507387E-111" />
+      <entry key="S10" value="8.843229397967343E-56" />
+      <entry key="S30" value="4.455231720489375E-19" />
+      <entry key="S60" value="6.674752220486819E-10" />
+      <entry key="M2" value="2.5835541837721964E-5" />
+      <entry key="M5" value="0.01461796876940795" />
+      <entry key="M10" value="0.1209047921689126" />
+      <entry key="M15" value="0.24450946566068466" />
+      <entry key="M30" value="0.4944789840434927" />
+      <entry key="H1" value="0.7031919965724103" />
+      <entry key="H2" value="0.8385654396482186" />
+      <entry key="H4" value="0.9157321877318818" />
+      <entry key="D1" value="0.9854352195981058" />
+      <entry key="W1" value="0.9979062110280466" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2848241307974502E-6" />
-      <entry key="MS500" value="0.07573659232930345" />
-      <entry key="S2" value="2.580115357903362" />
-      <entry key="S5" value="13.545601333806662" />
-      <entry key="S10" value="32.37361525832638" />
-      <entry key="S30" value="77.60170907500711" />
-      <entry key="S60" value="131.7242558729954" />
-      <entry key="M2" value="228.17045494016966" />
-      <entry key="M5" value="470.2219473620455" />
-      <entry key="M10" value="739.0018449361606" />
-      <entry key="M15" value="895.274769668862" />
-      <entry key="M30" value="1111.7733338456298" />
-      <entry key="H1" value="1251.6952951516066" />
-      <entry key="H2" value="1331.85739069176" />
-      <entry key="H4" value="1374.8668668508717" />
-      <entry key="D1" value="1412.324368108773" />
-      <entry key="W1" value="1418.8996417065282" />
+      <entry key="MS100" value="0.9526876931381584" />
+      <entry key="MS500" value="1.2321265884279458" />
+      <entry key="S2" value="2.440964721801429" />
+      <entry key="S5" value="3.469566984514685" />
+      <entry key="S10" value="4.093347426749128" />
+      <entry key="S30" value="4.657392920725318" />
+      <entry key="S60" value="4.822943693790175" />
+      <entry key="M2" value="4.91002846339668" />
+      <entry key="M5" value="4.999474902507109" />
+      <entry key="M10" value="5.3371091522935465" />
+      <entry key="M15" value="5.771767591135132" />
+      <entry key="M30" value="6.750368198652891" />
+      <entry key="H1" value="7.642119442868819" />
+      <entry key="H2" value="8.249586188179638" />
+      <entry key="H4" value="8.60493783474913" />
+      <entry key="D1" value="8.931211481287933" />
+      <entry key="W1" value="8.990098374294615" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -110,35 +112,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;remade/recuperarSenha&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arthur59318636/Music/Desktop_Beleza&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Launcher.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "remade/recuperarSenha",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/max57374586/IdeaProjects/Desktop_Beleza/src/main/resources/org/githubio/desktop_beleza/Imagens",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\max57374586\IdeaProjects\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\Imagens" />
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\max57374586\IdeaProjects\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\Imagens" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\java\org\githubio\desktop_beleza\controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -158,14 +168,17 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
       </set>
     </attachedChunks>
   </component>
@@ -176,9 +189,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792009083187</updated>
-      <workItem from="1792604073754" duration="4000" />
-      <workItem from="1792691239363" duration="1000" />
     </task>
+    <task id="LOCAL-00001" summary="Criacao de botao para adicionar um servico a unidade">
+      <option name="closed" value="true" />
+      <created>1792434247535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1792434247535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,5 +214,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criacao de botao para adicionar um servico a unidade" />
   </component>
 </project>

@@ -97,7 +97,7 @@
                <children>
                   <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagens/Senac_logo.png" />
+                        <Image url="@Imagens/senaclogo.png" />
                      </image>
                   </ImageView>
                   <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
