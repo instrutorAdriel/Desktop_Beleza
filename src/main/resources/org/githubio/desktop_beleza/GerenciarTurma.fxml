@@ -2,26 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import org.githubio.desktop_beleza.components.*?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="gerenciar-turmas" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
 
-    <!-- TOPO COM LOGO (exigido pelo projeto antigo) -->
-    <top>
-        <Pane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Imagens/Senac_logo.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
-    </top>
-
-    <!-- PAINEL LATERAL (exigido pelo projeto antigo) -->
+    <!-- Painel lateral -->
     <left>
         <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>

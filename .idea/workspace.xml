@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,82 +48,66 @@
     </option>
   </component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.6415292938304522" />
-      <entry key="MS500" value="3.087396943157312" />
-      <entry key="S2" value="7.235396920686518" />
-      <entry key="S5" value="15.1839428333032" />
-      <entry key="S10" value="25.349437783037434" />
-      <entry key="S30" value="50.597330652742656" />
-      <entry key="S60" value="69.54142384470474" />
-      <entry key="M2" value="91.60049454187418" />
-      <entry key="M5" value="129.18156794169315" />
-      <entry key="M10" value="166.32893691924804" />
-      <entry key="M15" value="192.0767736679443" />
-      <entry key="M30" value="239.59353216401624" />
-      <entry key="H1" value="281.1048238729654" />
-      <entry key="H2" value="309.7645289927749" />
-      <entry key="H4" value="326.7956850385407" />
-      <entry key="D1" value="342.6346314556757" />
-      <entry key="W1" value="345.5150072167114" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0005586077164763" />
+      <entry key="S2" value="1.805761856426249" />
+      <entry key="S5" value="5.93337609390472" />
+      <entry key="S10" value="12.077147865074801" />
+      <entry key="S30" value="36.2512382240814" />
+      <entry key="S60" value="64.11560232063725" />
+      <entry key="M2" value="118.06007860030707" />
+      <entry key="M5" value="231.9713681902326" />
+      <entry key="M10" value="324.66073218890983" />
+      <entry key="M15" value="376.1034135016358" />
+      <entry key="M30" value="456.01855218158715" />
+      <entry key="H1" value="518.5191531017779" />
+      <entry key="H2" value="559.8613296455839" />
+      <entry key="H4" value="584.0173260191544" />
+      <entry key="D1" value="606.2878373457635" />
+      <entry key="W1" value="610.3213016629351" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="5.033763756955E-311" />
-      <entry key="S10" value="7.094902224100444E-156" />
-      <entry key="S30" value="1.9215372367829187E-52" />
-      <entry key="S60" value="1.3861952376137055E-26" />
-      <entry key="M2" value="1.1773679278856208E-13" />
-      <entry key="M5" value="6.7354230758027965E-6" />
-      <entry key="M10" value="0.0025952693647871713" />
-      <entry key="M15" value="0.018885201666874768" />
-      <entry key="M30" value="0.13742343929211961" />
-      <entry key="H1" value="0.37070667554296866" />
-      <entry key="H2" value="0.6088568596500884" />
-      <entry key="H4" value="0.7802928037923195" />
-      <entry key="D1" value="0.9594954809166208" />
-      <entry key="W1" value="0.9941106004247714" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="6.760658391855648E-166" />
+      <entry key="S30" value="8.776667872068662E-56" />
+      <entry key="S60" value="2.962544155294346E-28" />
+      <entry key="M2" value="1.7212042747141483E-14" />
+      <entry key="M5" value="3.121281702085324E-6" />
+      <entry key="M10" value="0.001766714946471374" />
+      <entry key="M15" value="0.014614287792881406" />
+      <entry key="M30" value="0.12088956858588548" />
+      <entry key="H1" value="0.3476917723873921" />
+      <entry key="H2" value="0.5896539429083725" />
+      <entry key="H4" value="0.7678892777662403" />
+      <entry key="D1" value="0.9569364572094765" />
+      <entry key="W1" value="0.9937314033439809" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.5677160530120269" />
-      <entry key="MS500" value="3.0582766154153984" />
-      <entry key="S2" value="7.219574569015179" />
-      <entry key="S5" value="15.171438416920175" />
-      <entry key="S10" value="25.33915867215508" />
-      <entry key="S30" value="50.59051648857236" />
-      <entry key="S60" value="69.53673296136198" />
-      <entry key="M2" value="91.5973908374913" />
-      <entry key="M5" value="129.1798137420591" />
-      <entry key="M10" value="166.33037966381983" />
-      <entry key="M15" value="192.09471787018288" />
-      <entry key="M30" value="239.7301863335902" />
-      <entry key="H1" value="281.4749118192894" />
-      <entry key="H2" value="310.37296434728063" />
-      <entry key="H4" value="327.5757276140927" />
-      <entry key="D1" value="343.59407842967676" />
-      <entry key="W1" value="346.5091107008067" />
+      <entry key="MS100" value="0.9726549474122855" />
+      <entry key="MS500" value="0.9950241074576207" />
+      <entry key="S2" value="1.802786452877393" />
+      <entry key="S5" value="5.928908784377057" />
+      <entry key="S10" value="12.0724507778127" />
+      <entry key="S30" value="36.2463997877475" />
+      <entry key="S60" value="64.11119437139348" />
+      <entry key="M2" value="118.05576831486232" />
+      <entry key="M5" value="231.96782516941425" />
+      <entry key="M10" value="324.6599904307372" />
+      <entry key="M15" value="376.11605165889495" />
+      <entry key="M30" value="456.13808600632217" />
+      <entry key="H1" value="518.865910098516" />
+      <entry key="H2" value="560.4503942531489" />
+      <entry key="H4" value="584.7848774901902" />
+      <entry key="D1" value="607.2447100262488" />
+      <entry key="W1" value="611.3150237493337" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -192,8 +176,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
       </set>
     </attachedChunks>
   </component>
@@ -207,7 +191,8 @@
       <workItem from="1792527026767" duration="1530000" />
       <workItem from="1792602533963" duration="5100000" />
       <workItem from="1792689511426" duration="880000" />
-      <workItem from="1792690602971" duration="2118000" />
+      <workItem from="1792690602971" duration="3576000" />
+      <workItem from="1792694244691" duration="147000" />
     </task>
     <task id="LOCAL-00001" summary="Criacao de botao para adicionar um servico a unidade">
       <option name="closed" value="true" />

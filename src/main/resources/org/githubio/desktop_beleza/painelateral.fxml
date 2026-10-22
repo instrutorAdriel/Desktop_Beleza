@@ -44,9 +44,12 @@
          </children>
       </VBox>
       <VBox styleClass="sidebar-spacer" VBox.vgrow="ALWAYS" />
-      <VBox alignment="CENTER" prefHeight="80.0">
-         <children>
-            <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
+       <VBox alignment="CENTER" prefHeight="80.0">
+          <padding>
+             <Insets left="15.0" right="15.0" />
+          </padding>
+          <children>
+             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" style="-fx-alignment: CENTER;" styleClass="btn-azul" text="Sair">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
