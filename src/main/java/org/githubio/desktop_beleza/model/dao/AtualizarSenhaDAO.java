@@ -46,4 +46,22 @@ public class AtualizarSenhaDAO {
             throw new RuntimeException("Erro ao atualizar senha", e);
         }
     }
+
+    public int buscarIdUsuarioPorEmail(String email) {
+        String sql = """
+                SELECT u.id_usuario
+                FROM usuario u
+                WHERE u.email = ?
+                """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.getInt("id_usuario");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar senha", e);
+        }
+    }
 }

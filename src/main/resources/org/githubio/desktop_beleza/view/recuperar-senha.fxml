@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
    <children>
       <HBox maxHeight="520.0" maxWidth="820.0" style="-fx-background-color: -color-bg-default; -fx-background-radius: 16; -fx-border-radius: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 20, 0, 0, 6);">
          <children>
@@ -32,7 +32,7 @@
                                  <graphic>
                                     <ImageView fx:id="imgOlhoNova" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/eyeOpen 1.png" />
+                                          <Image url="@../images/eye-open.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -51,7 +51,7 @@
                                  <graphic>
                                     <ImageView fx:id="imgOlhoConfirmar" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/eyeOpen 1.png" />
+                                          <Image url="@../images/eye-open.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
