@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: -color-bg-default; -fx-background-radius: 16; -fx-border-radius: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 20, 0, 0, 6);">
+            <children>
+                <VBox alignment="CENTER" spacing="22.0" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="40.0" left="45.0" right="45.0" top="40.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 28px; -fx-text-fill: #004a8d;" styleClass="title-1" text="E-mail de Recuperacão" />
+                        <VBox spacing="14.0">
+                            <children>
+                                <TextField fx:id="txtEmail" prefHeight="45.0" promptText="E-mail" style="-fx-background-radius: 8;" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <Button maxWidth="1.7976931348623157E308" prefHeight="45.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 15px;" styleClass="accent" text="Enviar Código" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefWidth="380.0" styleClass="login-panel-decorativo" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </children>
+</StackPane>

@@ -7,6 +7,7 @@ module org.githubio.desktop_beleza {
     requires spring.security.crypto;
     requires java.desktop;
     requires java.dotenv;
+    requires atlantafx.base;
 
     opens org.githubio.desktop_beleza to javafx.fxml;
     exports org.githubio.desktop_beleza;
