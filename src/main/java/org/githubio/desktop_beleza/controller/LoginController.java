@@ -26,7 +26,7 @@ public class LoginController {
     protected void onLoginButtonClick() throws IOException{
         String emailDigitado = Email.getText();
         String senhaDigitada = Senha.getText();
-
+        
         // Alerta do tipo ERRO
         Alert erro = new Alert(Alert.AlertType.ERROR);
         if (emailDigitado.isEmpty()){
@@ -48,6 +48,15 @@ public class LoginController {
             erro.setHeaderText(null);
             erro.setContentText("O e-mail precisa ser do domínio @df.senac.br.");
             erro.showAndWait();
+            return;
+        }
+
+        if (!emailDigitado.trim().toLowerCase().endsWith("@df.senac.br")) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("E-mail fora do padrão");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Para entrar nesse sistema é necessário utilizar um e-mail '@df.senac.br'");
+            alerta.showAndWait();
             return;
         }
 
@@ -73,3 +82,6 @@ public class LoginController {
         MainApplication.setRoot("atualizarsenha");
     }
 }
+
+
+

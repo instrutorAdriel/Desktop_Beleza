@@ -33,11 +33,21 @@ public class ServicosDAO {
 
     public void inserir(Servico servico) {
         String sql = "INSERT INTO produto (nome_produto, descricao, imagem_anexo) VALUES (?, ?, NULL)";
+
+        // Adicionado Statement.RETURN_GENERATED_KEYS no prepareStatement
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
+
             stmt.setString(1, servico.getNome());
             stmt.setString(2, servico.getDescricao());
             stmt.executeUpdate();
+
+            // Recupera o id_produto auto-incrementado pelo MySQL
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    servico.setId(rs.getInt(1)); // Atribui o ID gerado de volta ao DTO
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir produto/serviço", e);
         }

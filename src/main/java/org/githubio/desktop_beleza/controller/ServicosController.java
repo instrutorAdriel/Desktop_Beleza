@@ -2,6 +2,7 @@ package org.githubio.desktop_beleza.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,11 +20,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Servico;
 import org.githubio.desktop_beleza.model.ServicosDAO;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,17 +36,25 @@ public class ServicosController implements Initializable {
 
     private final ServicosDAO dao = new ServicosDAO();
 
+    // Cache local em memória
+    private final ObservableList<Servico> listaServicosCache = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
-        atualizarTabela();
+
+        // Associa a tabela diretamente ao cache
+        tabelaServicos.setItems(listaServicosCache);
+
+        // Carrega do banco de dados APENAS 1 VEZ
+        carregarDadosDoBanco();
     }
 
-    private void atualizarTabela() {
-        tabelaServicos.setItems(FXCollections.observableArrayList(dao.lerTodos()));
+    private void carregarDadosDoBanco() {
+        listaServicosCache.setAll(dao.lerTodos());
     }
 
     @FXML
@@ -67,8 +74,13 @@ public class ServicosController implements Initializable {
 
         dialog.showAndWait().ifPresent(resposta -> {
             if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
-                dao.inserir(new Servico(txtNome.getText().trim(), txtDesc.getText().trim()));
-                atualizarTabela();
+                Servico novoServico = new Servico(txtNome.getText().trim(), txtDesc.getText().trim());
+
+                // Insere no Banco
+                dao.inserir(novoServico);
+
+                // Adiciona direto no Cache da memória (sem ler todos do banco)
+                listaServicosCache.add(novoServico);
             }
         });
     }
@@ -118,8 +130,12 @@ public class ServicosController implements Initializable {
             if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
                 servico.setNome(txtNome.getText().trim());
                 servico.setDescricao(txtDesc.getText().trim());
+
+                // Atualiza no Banco
                 dao.atualizar(servico);
-                atualizarTabela();
+
+                // Atualiza na Tabela/Cache
+                tabelaServicos.refresh();
             }
         });
     }
@@ -130,8 +146,11 @@ public class ServicosController implements Initializable {
         alert.showAndWait().ifPresent(resposta -> {
             if (resposta == ButtonType.YES) {
                 try {
+                    // Exclui do Banco
                     dao.excluir(servico.getId());
-                    atualizarTabela();
+
+                    // Remove direto do Cache
+                    listaServicosCache.remove(servico);
                 } catch (RuntimeException e) {
                     Alert erro = new Alert(Alert.AlertType.ERROR);
                     erro.setHeaderText("Não foi possível excluir o serviço");
@@ -146,15 +165,20 @@ public class ServicosController implements Initializable {
     private void buscar() {
         String termo = txtBuscar.getText();
         if (termo == null || termo.isBlank()) {
-            atualizarTabela();
+            // Se a busca estiver vazia, restaura o cache original completo
+            tabelaServicos.setItems(listaServicosCache);
             return;
         }
         String filtro = termo.toLowerCase();
-        tabelaServicos.setItems(FXCollections.observableArrayList(
-                dao.lerTodos().stream()
-                        .filter(s -> s.getNome().toLowerCase().contains(filtro)
-                                || (s.getDescricao() != null && s.getDescricao().toLowerCase().contains(filtro)))
-                        .toList()));
-    }
 
+        // Filtra a partir do CACHE EM MEMÓRIA (sem ir ao banco)
+        ObservableList<Servico> listaFiltrada = FXCollections.observableArrayList(
+                listaServicosCache.stream()
+                        .filter(s -> (s.getNome() != null && s.getNome().toLowerCase().contains(filtro))
+                                || (s.getDescricao() != null && s.getDescricao().toLowerCase().contains(filtro)))
+                        .toList()
+        );
+
+        tabelaServicos.setItems(listaFiltrada);
+    }
 }
