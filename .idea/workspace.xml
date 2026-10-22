@@ -4,29 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/AgendaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/AgendaDAO.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade" />
+>>>>>>> 61c3194295e8dba4c914f270ae01d86adf1b867a
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
     "state": "OPEN",
+<<<<<<< HEAD
     "assignee": "JoaoAlexandre705"
+=======
+    "assignee": "yuripetra"
+>>>>>>> 61c3194295e8dba4c914f270ae01d86adf1b867a
   }
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
+<<<<<<< HEAD
     "url": "https://github.com/instrutorAdriel/Desktop_Beleza",
     "accountId": "e6ab017c-1879-4fa5-97ff-5b9d5130bf8c"
+=======
+    "url": "https://github.com/instrutorAdriel/Desktop_Beleza.git",
+    "accountId": "0ac69af6-cf65-4042-b05f-d96a8065f933"
+>>>>>>> 61c3194295e8dba4c914f270ae01d86adf1b867a
   }
 }]]></component>
   <component name="MavenImportPreferences">
@@ -37,8 +55,24 @@
     </option>
   </component>
   <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
@@ -116,11 +150,15 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+<<<<<<< HEAD
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "remade/Dashboard",
     "junie.onboarding.icon.badge.shown": "true",
+=======
+    "git-widget-placeholder": "feature/vinculoServicoUnidade",
+>>>>>>> 61c3194295e8dba4c914f270ae01d86adf1b867a
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/arthur59318636/Music/Desktop_Beleza",
+    "last_opened_file_path": "C:/Users/yuri59073236/Music/Desktop_Beleza",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,6 +173,11 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza" />
+      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\java\org\githubio\desktop_beleza\controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -154,14 +197,15 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
       </set>
     </attachedChunks>
   </component>
@@ -173,9 +217,33 @@
       <option name="presentableId" value="Default" />
       <updated>1792009083187</updated>
     </task>
+    <task id="LOCAL-00001" summary="Criacao de botao para adicionar um servico a unidade">
+      <option name="closed" value="true" />
+      <created>1792434247535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1792434247535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criacao de botao para adicionar um servico a unidade" />
   </component>
 </project>

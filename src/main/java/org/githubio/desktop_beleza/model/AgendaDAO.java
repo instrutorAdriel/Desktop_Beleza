@@ -18,7 +18,21 @@ import java.util.List;
 
 public class AgendaDAO {
 
+    // CACHE EM MEMÓRIA PARA EVITAR CONSULTAS REPETIDAS AO BANCO
+    private static List<String> cacheServicos = null;
+    private static List<String> cacheModelos = null;
+    private static List<String> cacheUnidades = null;
+
+    public static void limparCacheCombos() {
+        cacheServicos = null;
+        cacheModelos = null;
+        cacheUnidades = null;
+    }
+
     public List<String> listarServicos() {
+        if (cacheServicos != null && !cacheServicos.isEmpty()) {
+            return cacheServicos;
+        }
         List<String> lista = new ArrayList<>();
         String sql = "SELECT nome_produto FROM produto ORDER BY nome_produto";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -27,6 +41,7 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_produto"));
             }
+            cacheServicos = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar serviços", e);
         }
@@ -34,6 +49,9 @@ public class AgendaDAO {
     }
 
     public List<String> listarModelos() {
+        if (cacheModelos != null && !cacheModelos.isEmpty()) {
+            return cacheModelos;
+        }
         List<String> lista = new ArrayList<>();
         String sql = """
                 SELECT u.nome_usuario
@@ -47,6 +65,7 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_usuario"));
             }
+            cacheModelos = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar modelos", e);
         }
@@ -54,6 +73,9 @@ public class AgendaDAO {
     }
 
     public List<String> listarUnidades() {
+        if (cacheUnidades != null && !cacheUnidades.isEmpty()) {
+            return cacheUnidades;
+        }
         List<String> lista = new ArrayList<>();
         String sql = "SELECT nome_unidade FROM unidade WHERE situacao = 'A' ORDER BY nome_unidade";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -62,6 +84,7 @@ public class AgendaDAO {
             while (rs.next()) {
                 lista.add(rs.getString("nome_unidade"));
             }
+            cacheUnidades = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar unidades", e);
         }
@@ -114,45 +137,30 @@ public class AgendaDAO {
             throw new RuntimeException("Erro ao cadastrar agendamento" + e.getMessage(), e);
         }
     }
-
     public List<Agenda> listarAgendamentos(String emailInstrutor) {
-        String sql = consultaBase() + " ORDER BY a.data_hora_agendamento";
+        String sql = consultaBase() + " ORDER BY data_hora_agendamento";
         return executarLista(sql, null, null);
     }
 
     public List<Agenda> listarAgendamentosPorSemana(LocalDate inicio, LocalDate fim, String emailInstrutor) {
-        String sql = consultaBase() + """
-             WHERE DATE(a.data_hora_agendamento) BETWEEN ? AND ?
-             ORDER BY a.data_hora_agendamento
-            """;
+        String sql = consultaBase() + " WHERE data_hora_agendamento >= ? AND data_hora_agendamento < ? ORDER BY data_hora_agendamento";
         return executarLista(sql, inicio, fim);
     }
 
     private String consultaBase() {
-        return """
-            SELECT a.id_agendamento,
-                   DATE(a.data_hora_agendamento) AS data_agendamento,
-                   TIME_FORMAT(TIME(a.data_hora_agendamento), '%H:%i') AS horario_agendamento,
-                   a.situacao,
-                   COALESCE(um.nome_usuario, '-') AS nome_modelo,
-                   COALESCE(p.nome_produto, '-') AS nome_servico
-            FROM agendamento a
-            LEFT JOIN modelo m ON m.id_modelo = a.id_modelo
-            LEFT JOIN usuario um ON um.id_usuario = m.id_usuario
-            LEFT JOIN disponibilidade d ON d.id_disponibilidade = a.id_disponibilidade
-            LEFT JOIN produto_unidade pu ON pu.id_produto_unidade = d.id_produto_unidade
-            LEFT JOIN produto p ON p.id_produto = pu.id_produto
-            """;
+        return "SELECT id_agendamento, data_agendamento, horario_agendamento, situacao, nome_modelo, nome_servico FROM vw_agendamentos_detalhados";
     }
 
     private List<Agenda> executarLista(String sql, LocalDate inicio, LocalDate fim) {
         List<Agenda> lista = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             if (inicio != null && fim != null) {
-                stmt.setDate(1, Date.valueOf(inicio));
-                stmt.setDate(2, Date.valueOf(fim));
+                stmt.setTimestamp(1, Timestamp.valueOf(inicio.atStartOfDay()));
+                stmt.setTimestamp(2, Timestamp.valueOf(fim.plusDays(1).atStartOfDay()));
             }
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     lista.add(new Agenda(
