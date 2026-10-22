@@ -1,161 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.githubio.desktop_beleza.components.*?>
 
-<?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
-<BorderPane prefHeight="700.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AgendaController">
+<BorderPane prefHeight="700.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AgendaController">
 
     <!-- Menu lateral unificado e reutilizável -->
     <left>
         <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
 
-    <!-- CONTEÚDO PRINCIPAL DA AGENDA -->
+    <!-- CONTEÚDO PRINCIPAL DA DASHBOARD / AGENDA -->
     <center>
-        <ScrollPane fitToWidth="true" style="-fx-background-color: #f4f5f7; -fx-background: #f4f5f7;" BorderPane.alignment="CENTER">
-            <VBox spacing="20.0" style="-fx-background-color: #f4f5f7;">
-                <padding>
-                    <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
-                </padding>
-                <children>
+        <VBox spacing="20.0" style="-fx-background-color: -color-bg-default;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            </padding>
+            <children>
+                <Label fx:id="welcomeText" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Visão Geral" />
 
-                    <!-- TÍTULO: Visão Geral -->
-                    <Label fx:id="welcomeText" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Visão Geral" />
+                <!-- CARDS DE MÉTRICAS -->
+                <HBox spacing="15.0">
+                    <children>
+                        <VBox prefWidth="200.0" spacing="5.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <children>
+                                <Label style="-fx-text-fill: -color-fg-muted;" text="Práticas do Mês" />
+                                <Label fx:id="lblPraticasDoMes" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="0" />
+                            </children>
+                        </VBox>
 
-                    <!-- CARDS DE MÉTRICAS: Práticas do Mês, Vagas Ocupadas, Turmas Ativas -->
-                    <HBox spacing="15.0">
-                        <children>
-                            <!-- Card: Práticas do Mês -->
-                            <VBox prefWidth="200.0" spacing="5.0" styleClass="card-metrica" HBox.hgrow="ALWAYS">
-                                <padding>
-                                    <Insets bottom="15.0" left="18.0" right="18.0" top="15.0" />
-                                </padding>
-                                <children>
-                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Práticas do Mês" />
-                                    <Label fx:id="lblPraticasDoMes" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="0" />
-                                </children>
-                            </VBox>
+                        <VBox prefWidth="200.0" spacing="5.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <children>
+                                <Label style="-fx-text-fill: -color-fg-muted;" text="Vagas Ocupadas" />
+                                <Label fx:id="lblVagasOcupadas" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -color-success-emphasis;" text="0%" />
+                            </children>
+                        </VBox>
 
-                            <!-- Card: Vagas Ocupadas -->
-                            <VBox prefWidth="200.0" spacing="5.0" styleClass="card-metrica" HBox.hgrow="ALWAYS">
-                                <padding>
-                                    <Insets bottom="15.0" left="18.0" right="18.0" top="15.0" />
-                                </padding>
-                                <children>
-                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Vagas Ocupadas" />
-                                    <Label fx:id="lblVagasOcupadas" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="0%" />
-                                </children>
-                            </VBox>
+                        <VBox prefWidth="200.0" spacing="5.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <children>
+                                <Label style="-fx-text-fill: -color-fg-muted;" text="Turmas Ativas" />
+                                <Label fx:id="lblTurmasAtivas" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -color-accent-emphasis;" text="0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
 
-                            <!-- Card: Turmas Ativas -->
-                            <VBox prefWidth="200.0" spacing="5.0" styleClass="card-metrica" HBox.hgrow="ALWAYS">
-                                <padding>
-                                    <Insets bottom="15.0" left="18.0" right="18.0" top="15.0" />
-                                </padding>
-                                <children>
-                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Turmas Ativas" />
-                                    <Label  fx:id="lblTurmasAtivas" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #004a8d;" text="0" />
-                                </children>
-                            </VBox>
-                        </children>
-                    </HBox>
+                <!-- SEÇÃO: PRÓXIMAS PRÁTICAS AGENDADAS -->
+                <VBox spacing="12.0" style="-fx-background-color: -color-bg-default; -fx-border-color: -color-border-default; -fx-border-radius: 8; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Próximas Práticas Agendadas" />
 
-                    <!-- CARD: Próximas Práticas Agendadas + Tabela -->
-                    <VBox spacing="15.0" styleClass="card-principal" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                        <children>
-                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Próximas Práticas Agendadas" />
+                        <!-- BARRA DE FILTROS E AÇÕES -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Data da Prática" />
+                                        <DatePicker fx:id="dpData" prefWidth="140.0" promptText="Selecione..." />
+                                    </children>
+                                </VBox>
 
-                            <!-- BARRA DE FILTROS -->
-                            <HBox alignment="CENTER_LEFT" spacing="12.0">
-                                <children>
-                                    <VBox spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Data da Prática" />
-                                            <DatePicker fx:id="dpData" prefWidth="140.0" promptText="Selecione..." />
-                                        </children>
-                                    </VBox>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Unidade" />
+                                        <ComboBox fx:id="cbUnidade" prefWidth="180.0" promptText="Todas as Unidades" />
+                                    </children>
+                                </VBox>
 
-                                    <VBox spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Unidade" />
-                                            <ComboBox fx:id="cbUnidade" prefWidth="170.0" promptText="Todas as Unidades" />
-                                        </children>
-                                    </VBox>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Tipo de Serviço" />
+                                        <ComboBox fx:id="txtServico" prefWidth="180.0" promptText="Tipo de Serviço" />
+                                    </children>
+                                </VBox>
 
-                                    <VBox spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Tipo de Serviço" />
-                                            <ComboBox fx:id="txtServico" prefWidth="180.0" promptText="Tipo de Serviço" />
-                                        </children>
-                                    </VBox>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Modelo" />
+                                        <ComboBox fx:id="txtModelo" prefWidth="160.0" promptText="Modelos" />
+                                    </children>
+                                </VBox>
 
-                                    <VBox spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Modelo" />
-                                            <ComboBox fx:id="txtModelo" prefWidth="160.0" promptText="Modelos" />
-                                        </children>
-                                    </VBox>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Horário" />
+                                        <TextField fx:id="txtHorario" prefWidth="110.0" promptText="HH:mm" />
+                                    </children>
+                                </VBox>
 
-                                    <VBox spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Horário" />
-                                            <TextField fx:id="txtHorario" prefWidth="160.0" promptText="HH:mm" />
-                                        </children>
-                                    </VBox>
+                                <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" styleClass="flat" text="Ver semana">
+                                    <HBox.margin>
+                                        <Insets top="15.0" />
+                                    </HBox.margin>
+                                </Button>
 
-                                    <!-- Botão Ver semana / Ver todos -->
-                                    <VBox alignment="BOTTOM_LEFT" spacing="3.0">
-                                        <children>
-                                            <Label style="-fx-font-size: 11px;" text=" " />
-                                            <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" styleClass="btn-link" text="Ver semana" />
-                                        </children>
-                                    </VBox>
-                                </children>
-                            </HBox>
+                                <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefWidth="110.0" styleClass="btn-azul" text="Salvar">
+                                    <HBox.margin>
+                                        <Insets top="15.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
 
-                            <!-- BARRA DE AÇÕES (Salvar agendamento) -->
-                            <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                <children>
-                                    <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefWidth="140.0" styleClass="btn-azul" text="Salvar" />
-                                </children>
-                            </HBox>
-
-                            <!-- Separador visual -->
-                            <Separator />
-
-                            <!-- TABELA DE AGENDAMENTOS -->
-                            <TableView fx:id="tabelaAgenda" minHeight="300.0" VBox.vgrow="ALWAYS">
-                                <columns>
-                                    <TableColumn fx:id="colData" minWidth="-1.0" prefWidth="120.0" text="Data " />
-                                    <TableColumn fx:id="colServico" minWidth="-1.0" prefWidth="160.0" text="Procedimento" />
-                                    <TableColumn fx:id="colModelo" minWidth="-1.0" prefWidth="120.0" text="Unidade" />
-                                    <TableColumn fx:id="colHorario" minWidth="-1.0" prefWidth="140.0" text="Horário" />
-                                    <TableColumn fx:id="colStatus" minWidth="-1.0" prefWidth="96.0" text="Status" />
-                                    <TableColumn fx:id="colAcao" minWidth="-1.0" prefWidth="80.0" text="" />
-                                </columns>
-                                <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                </columnResizePolicy>
-                            </TableView>
-                        </children>
-                    </VBox>
-                </children>
-            </VBox>
-        </ScrollPane>
+                        <!-- TABELA DE AGENDAMENTOS -->
+                        <TableView fx:id="tabelaAgenda" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colData" prefWidth="120.0" text="Data " />
+                                <TableColumn fx:id="colServico" prefWidth="200.0" text="Procedimento" />
+                                <TableColumn fx:id="colModelo" prefWidth="150.0" text="Modelo" />
+                                <TableColumn fx:id="colHorario" prefWidth="120.0" text="Horário" />
+                                <TableColumn fx:id="colStatus" prefWidth="110.0" text="Status" />
+                                <TableColumn fx:id="colAcao" prefWidth="80.0" text="Ação" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
     </center>
 </BorderPane>

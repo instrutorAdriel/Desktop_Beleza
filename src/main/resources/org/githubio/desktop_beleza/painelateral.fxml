@@ -3,54 +3,31 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<fx:root prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets top="20.0" />
-   </padding>
-   <children>
-      <VBox spacing="8.0">
-         <padding>
-            <Insets left="15.0" right="15.0" />
-         </padding>
-         <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" text="Página inicial">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="btn-cinza" text="Serviços">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" styleClass="btn-cinza" text="Unidades">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-      <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
-      <VBox alignment="CENTER" prefHeight="80.0">
-         <children>
-            <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-   </children>
+<fx:root prefWidth="230.0" spacing="10.0" styleClass="sidebar" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+    </padding>
+    <children>
+        <!-- CABEÇALHO -->
+        <Label styleClass="sidebar-titulo" />
+        <Label styleClass="sidebar-subtitulo" />
+
+        <!-- LISTA DE BOTÕES DE NAVEGAÇÃO (LARANJA SENAC) -->
+        <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+            <children>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" text="Página inicial" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" prefHeight="40.0" text="Modelos" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" prefHeight="40.0" text="Serviços" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" prefHeight="40.0" text="Unidades" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" prefHeight="40.0" text="Turmas" />
+            </children>
+        </VBox>
+
+        <!-- BOTÃO DE LOGOUT -->
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" prefHeight="38.0" styleClass="danger-senac" text="Sair do Sistema" />
+    </children>
 </fx:root>
