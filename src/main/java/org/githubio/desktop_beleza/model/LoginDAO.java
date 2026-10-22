@@ -7,29 +7,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 public class LoginDAO {
 
+    // Mesmo padrão usado em CadastroController.
+    private static final Pattern EMAIL_INSTITUCIONAL =
+            Pattern.compile("^[a-zA-Z0-9._%+-]+@df\\.senac\\.br$", Pattern.CASE_INSENSITIVE);
+
     private static final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
-    /** TEMPORÁRIO (diagnóstico): motivo da última falha de login, exibido na janela de erro. */
-    private static String ultimoMotivo = "";
-
-    public static String getUltimoMotivo() {
-        return ultimoMotivo;
-    }
-
     /**
-     * Aceita qualquer usuário da tabela usuario (inclusive os criados no Web/Mobile).
-     * Se o usuário ainda não for instrutor, o registro é criado após validar a senha,
-     * pois o restante do Desktop depende da linha em instrutor.
-     *
-     * As mensagens [LOGIN] vão para o console (System.err) e NÃO exibem senha nem hash.
+     * O Desktop é a área do instrutor. O acesso é permitido quando a senha confere e:
+     *  - o usuário já possui registro na tabela instrutor; ou
+     *  - o e-mail é institucional (@df.senac.br), caso em que o registro de instrutor
+     *    é criado automaticamente (ex.: conta criada pelo Web/Mobile).
+     * Qualquer outro e-mail é recusado.
      */
     public boolean autenticarUsuario(String email, String senha) {
-        ultimoMotivo = "";
         String sql = """
-                SELECT u.id_usuario, u.senha, i.id_instrutor
+                SELECT u.id_usuario, u.email, u.senha, i.id_instrutor
                 FROM usuario u
                 LEFT JOIN instrutor i ON i.id_usuario = u.id_usuario
                 WHERE u.email = ?
@@ -43,46 +40,42 @@ public class LoginDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (!rs.next()) {
-                    ultimoMotivo = "E-mail não encontrado no banco: " + conn.getMetaData().getURL();
-                    System.err.println("[LOGIN] " + ultimoMotivo);
                     return false;
                 }
 
-                int idUsuario = rs.getInt("id_usuario");
                 String senhaHash = rs.getString("senha");
-
-                if (senhaHash == null || !senhaHash.matches("\\$2[aby]?\\$\\d\\d\\$.{53}")) {
-                    ultimoMotivo = "Usuário " + idUsuario + " existe, mas a coluna senha não tem formato BCrypt (tamanho="
-                            + (senhaHash == null ? "null" : senhaHash.length()) + ").";
-                    System.err.println("[LOGIN] " + ultimoMotivo);
-                    return false;
-                }
-
-                if (!ENCODER.matches(senha, senhaHash)) {
-                    ultimoMotivo = "Usuário " + idUsuario + " existe e o hash é BCrypt válido ("
-                            + senhaHash.substring(0, 7) + "...), mas a senha digitada não confere.";
-                    System.err.println("[LOGIN] " + ultimoMotivo);
+                if (senhaHash == null || !ENCODER.matches(senha, senhaHash)) {
                     return false;
                 }
 
                 rs.getInt("id_instrutor");
-                if (rs.wasNull()) {
-                    System.err.println("[LOGIN] Usuario " + idUsuario + ": senha OK, criando registro em instrutor.");
-                    garantirInstrutor(conn, idUsuario);
+                boolean jaEhInstrutor = !rs.wasNull();
+                if (jaEhInstrutor) {
+                    return true;
                 }
+
+                String emailCadastrado = rs.getString("email");
+                if (emailCadastrado == null || !EMAIL_INSTITUCIONAL.matcher(emailCadastrado.trim()).matches()) {
+                    return false;
+                }
+
+                criarInstrutor(conn, rs.getInt("id_usuario"));
                 return true;
             }
         } catch (SQLException e) {
-            ultimoMotivo = "Erro de banco: " + e.getMessage();
-            System.err.println("[LOGIN] " + ultimoMotivo);
-            throw new RuntimeException("Erro ao autenticar usuário: " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao autenticar usuário", e);
         }
     }
 
-    private void garantirInstrutor(Connection conn, int idUsuario) throws SQLException {
-        String sql = "INSERT INTO instrutor (id_usuario) VALUES (?)";
+    private void criarInstrutor(Connection conn, int idUsuario) throws SQLException {
+        String sql = """
+                INSERT INTO instrutor (id_usuario)
+                SELECT ? FROM DUAL
+                WHERE NOT EXISTS (SELECT 1 FROM instrutor WHERE id_usuario = ?)
+                """;
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idUsuario);
+            stmt.setInt(2, idUsuario);
             stmt.executeUpdate();
         }
     }

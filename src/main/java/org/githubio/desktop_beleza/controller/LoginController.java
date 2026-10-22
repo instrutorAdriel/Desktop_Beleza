@@ -46,7 +46,7 @@ public class LoginController {
         if (!EMAIL_INSTITUCIONAL.matcher(emailDigitado.trim()).matches()) {
             erro.setTitle("E-mail fora do padrão");
             erro.setHeaderText(null);
-            erro.setContentText("O e-mail precisa ter o seguinte domínio: @df.senac.br");
+            erro.setContentText("O e-mail precisa ser do domínio @df.senac.br.");
             erro.showAndWait();
             return;
         }
@@ -63,7 +63,7 @@ public class LoginController {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("As informações inseridas não está corretas");
             alerta.setHeaderText(null);
-            alerta.setContentText("E-mail ou senha incorreto.\n\n[diagnóstico temporário]\n" + LoginDAO.getUltimoMotivo());
+            alerta.setContentText("E-mail ou senha incorreto.");
             alerta.showAndWait();
         }
     }
