@@ -11,7 +11,7 @@
         xmlns="http://javafx.com/javafx/17.0.12"
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
-        stylesheets="@css/style.css">
+        stylesheets="@../css/style.css">
 
     <top>
 
@@ -26,7 +26,7 @@
                     preserveRatio="true">
 
                 <image>
-                    <Image url="@images/Senac_logo.png"/>
+                    <Image url="@../images/Senac_logo.png"/>
                 </image>
 
             </ImageView>

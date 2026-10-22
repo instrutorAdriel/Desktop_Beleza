@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="1114.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="1114.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
    <center>
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +51,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@images/eyeOpen 1.png" />
+                           <Image url="@../images/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -99,7 +99,7 @@
                   <graphic>
                      <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@images/eyeOpen 1.png" />
+                           <Image url="@../images/eyeOpen 1.png" />
                         </image>
                      </ImageView>
                   </graphic>
@@ -139,7 +139,7 @@
          <children>
             <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Senac_logo.png" />
+                  <Image url="@../images/Senac_logo.png" />
                </image></ImageView>
          </children>
       </AnchorPane>

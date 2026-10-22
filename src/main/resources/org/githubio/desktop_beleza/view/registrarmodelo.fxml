@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ModeloController">
     <center>
         <VBox alignment="CENTER" prefHeight="268.0" prefWidth="320.0" BorderPane.alignment="CENTER">
             <children>
@@ -37,14 +37,14 @@
                 </DatePicker>
                 <HBox alignment="CENTER" prefHeight="36.0" prefWidth="320.0">
                     <children>
-                        <Button mnemonicParsing="false" styleClass="btn-cinza" stylesheets="@css/style.css" text="Voltar">
+                        <Button mnemonicParsing="false" styleClass="btn-cinza" stylesheets="@../css/style.css" text="Voltar">
                             <HBox.margin>
                                 <Insets left="20.0" />
                             </HBox.margin>
                             <font>
                                 <Font name="Verdana" size="12.0" />
                             </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onAdicionarmodelo" styleClass="btn-azul" stylesheets="@css/style.css" text="Adicionar" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onAdicionarmodelo" styleClass="btn-azul" stylesheets="@../css/style.css" text="Adicionar" textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="100.0" />
                             </HBox.margin>
@@ -63,7 +63,7 @@
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/Senac_logo.png" />
+                        <Image url="@../images/Senac_logo.png" />
                     </image></ImageView>
             </children></AnchorPane>
     </top>

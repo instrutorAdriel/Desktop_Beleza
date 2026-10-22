@@ -8,13 +8,13 @@
 <?import javafx.scene.text.*?>
 <?import org.githubio.desktop_beleza.components.*?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="950.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.GerenciarTurmaController">
     <top>
         <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/Senac_logo.png" />
+                        <Image url="@../images/Senac_logo.png" />
                     </image>
                 </ImageView>
             </children>
@@ -94,7 +94,7 @@
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/Senac_logo.png" />
+                        <Image url="@../images/Senac_logo.png" />
                     </image></ImageView>
             </children>
         </Pane>
