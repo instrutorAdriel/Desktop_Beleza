@@ -27,6 +27,7 @@
                             </VBox.margin>
                         </VBox>
                         <Button maxWidth="1.7976931348623157E308" onAction="#onEnviarCodigo" prefHeight="45.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 15px;" styleClass="accent" text="Enviar Código" />
+                  <Button maxWidth="1.7976931348623157E308" onAction="#voltarParaLogin" prefHeight="45.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 15px;" styleClass="accent" text="Voltar" />
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefWidth="380.0" styleClass="login-panel-decorativo" HBox.hgrow="ALWAYS" />
