@@ -15,7 +15,6 @@ import org.githubio.desktop_beleza.model.dao.PasswordResetTokenDAO;
 import org.githubio.desktop_beleza.service.EmailService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class RecuperarSenhaController {
@@ -24,7 +23,7 @@ public class RecuperarSenhaController {
 
     @FXML private TextField txtCodigo;
 
-    @FXML private PasswordField campoNovoSenha;
+    @FXML private PasswordField campoNovaSenha;
     @FXML private TextField campoNovaSenhaVisivel;
     @FXML private Button btnToggleNovaSenha;
     @FXML private ImageView imgOlhoNova;
@@ -46,8 +45,8 @@ public class RecuperarSenhaController {
     private boolean novaSenhaVisivel = false;
     private boolean confirmarSenhaVisivel = false;
 
-    private final Image imagemOlhoAberto = new Image(getClass().getResource("images/eye-open.png").toExternalForm());
-    private final Image imagemOlhoFechado = new Image(getClass().getResource("images/eye-closed.png").toExternalForm());
+    private final Image imagemOlhoAberto = new Image(MainApplication.class.getResource("images/eye-open.png").toExternalForm());
+    private final Image imagemOlhoFechado = new Image(MainApplication.class.getResource("images/eye-closed.png").toExternalForm());
 
     private final AtualizarSenhaDAO atualizarSenhaDAO = new AtualizarSenhaDAO();
     private final PasswordResetTokenDAO passwordResetTokenDAO = new PasswordResetTokenDAO();
@@ -55,14 +54,14 @@ public class RecuperarSenhaController {
 
     @FXML
     public void initialize() {
-        if (campoNovoSenha != null) {
+        if (campoNovaSenha != null) {
             configurarMecanismoOlhoSenha();
             configurarValidacoesSenhaTempoReal();
         }
     }
 
     @FXML
-    public void onEnviarCodigo(ActionEvent event) {
+    public void onEnviarCodigo() {
         String email = txtEmail.getText() != null ? txtEmail.getText().trim() : "";
 
         if (email.isBlank()) {
@@ -106,7 +105,7 @@ public class RecuperarSenhaController {
     }
 
     @FXML
-    public void onConfirmarCodigo(ActionEvent event) throws IOException {
+    public void onConfirmarCodigo() throws IOException {
         String codigoDigitado = txtCodigo.getText() != null ? txtCodigo.getText().trim() : "";
 
         if (codigoDigitado.isBlank()) {
@@ -125,8 +124,8 @@ public class RecuperarSenhaController {
     }
 
     @FXML
-    public void onAlterarSenha(ActionEvent event) throws IOException{
-        String novaSenha = campoNovoSenha.getText();
+    public void onAlterarSenha() throws IOException{
+        String novaSenha = campoNovaSenha.getText();
         String confirmarSenha = campoConfirmarSenha.getText();
 
         if (novaSenha == null || novaSenha.isBlank() || confirmarSenha == null || confirmarSenha.isBlank()) {
@@ -171,13 +170,13 @@ public class RecuperarSenhaController {
     }
 
     private void configurarMecanismoOlhoSenha() {
-        campoNovaSenhaVisivel.textProperty().bindBidirectional(campoNovoSenha.textProperty());
+        campoNovaSenhaVisivel.textProperty().bindBidirectional(campoNovaSenha.textProperty());
         btnToggleNovaSenha.setOnAction(e -> {
             novaSenhaVisivel = !novaSenhaVisivel;
             campoNovaSenhaVisivel.setVisible(novaSenhaVisivel);
             campoNovaSenhaVisivel.setManaged(novaSenhaVisivel);
-            campoNovoSenha.setVisible(!novaSenhaVisivel);
-            campoNovoSenha.setManaged(!novaSenhaVisivel);
+            campoNovaSenha.setVisible(!novaSenhaVisivel);
+            campoNovaSenha.setManaged(!novaSenhaVisivel);
             imgOlhoNova.setImage(novaSenhaVisivel ? imagemOlhoFechado : imagemOlhoAberto);
         });
 
@@ -193,7 +192,7 @@ public class RecuperarSenhaController {
     }
 
     private void configurarValidacoesSenhaTempoReal() {
-        campoNovoSenha.textProperty().addListener((obs, oldVal, newVal) -> atualizarEstadoValidacoes(newVal));
+        campoNovaSenha.textProperty().addListener((obs, oldVal, newVal) -> atualizarEstadoValidacoes(newVal));
         campoNovaSenhaVisivel.textProperty().addListener((obs, oldVal, newVal) -> atualizarEstadoValidacoes(newVal));
     }
 

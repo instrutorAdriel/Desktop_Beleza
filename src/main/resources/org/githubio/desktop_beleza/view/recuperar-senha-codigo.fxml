@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
+<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
     <children>
         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: -color-bg-default; -fx-background-radius: 16; -fx-border-radius: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 20, 0, 0, 6);">
             <children>
@@ -20,13 +20,13 @@
                         <Label style="-fx-font-weight: bold; -fx-font-size: 28px; -fx-text-fill: #004a8d;" styleClass="title-1" text="Código" />
                         <VBox spacing="14.0">
                             <children>
-                                <TextField fx:id="txtEmail" alignment="CENTER" prefHeight="45.0" promptText="XXXXXX" style="-fx-background-radius: 8;" />
+                                <TextField fx:id="txtCodigo" alignment="CENTER" prefHeight="45.0" promptText="XXXXXX" style="-fx-background-radius: 8;" />
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
                         </VBox>
-                        <Button maxWidth="1.7976931348623157E308" prefHeight="45.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 15px;" styleClass="accent" text="Confirmar" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#onConfirmarCodigo" prefHeight="45.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 15px;" styleClass="accent" text="Confirmar" />
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefWidth="380.0" styleClass="login-panel-decorativo" HBox.hgrow="ALWAYS" />
