@@ -51,17 +51,22 @@ public class AtualizarSenhaDAO {
         String sql = """
                 SELECT u.id_usuario
                 FROM usuario u
+                INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
                 WHERE u.email = ?
+                LIMIT 1
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.getInt("id_usuario");
+                if (rs.next())
+                    return rs.getInt("id_usuario");
             }
+
+            throw new RuntimeException("Usuário não encontrado para o e-mail informado: " + email);
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar senha", e);
+            throw new RuntimeException("Erro ao buscar ID do usuário pelo e-mail", e);
         }
     }
 }
