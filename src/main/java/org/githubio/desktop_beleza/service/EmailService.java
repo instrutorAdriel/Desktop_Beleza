@@ -33,7 +33,7 @@ public class EmailService {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return super.getPasswordAuthentication();
+                return new PasswordAuthentication(remetente, senhaApp);
             }
         });
 
