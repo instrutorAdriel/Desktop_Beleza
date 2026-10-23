@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.githubio.desktop_beleza.model.UsuarioDTO;
+import org.githubio.desktop_beleza.model.dto.UsuarioDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

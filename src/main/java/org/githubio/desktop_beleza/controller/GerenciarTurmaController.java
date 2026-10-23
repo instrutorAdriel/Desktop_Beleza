@@ -16,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.dao.GerenciarTurmaDAO;
-import org.githubio.desktop_beleza.model.UsuarioDTO;
+import org.githubio.desktop_beleza.model.dto.UsuarioDTO;
 
 
 import java.io.IOException;
