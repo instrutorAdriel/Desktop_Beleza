@@ -87,6 +87,86 @@ public class RecuperarSenhaController {
 
             String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
 
+            passwordResetTokenDAO.salvarCodigoOtp(this.idUsuarioEmRecuperacao, codigoOtp);
+
+            new Thread(() -> {
+                try {
+                    emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
+            MainApplication.setRoot("recuperar-senha-codigo");
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro no Envio", "Não foi possível gerar o código de recuperação.");
+        }
+    }
+
+    @FXML
+    public void onConfirmarCodigo(ActionEvent event) throws IOException {
+        String codigoDigitado = txtCodigo.getText() != null ? txtCodigo.getText().trim() : "";
+
+        if (codigoDigitado.isBlank()) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Campo Obrigatório", "Por favor, informe o código recebido.");
+            return;
+        }
+
+        boolean valido = passwordResetTokenDAO.validarCodigoOtp(this.idUsuarioEmRecuperacao, codigoDigitado);
+
+        if (!valido) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Código Inválido", "O código digitado é incorreto ou já expirou.");
+            return;
+        }
+
+        MainApplication.setRoot("recuperar-senha");
+    }
+
+    @FXML
+    public void onAlterarSenha(ActionEvent event) throws IOException{
+        String novaSenha = campoNovoSenha.getText();
+        String confirmarSenha = campoConfirmarSenha.getText();
+
+        if (novaSenha == null || novaSenha.isBlank() || confirmarSenha == null || confirmarSenha.isBlank()) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos Obrigatórios", "Preencha a nova senha e a confirmação.");
+            return;
+        }
+
+        boolean senhaForte = novaSenha.matches(".*[A-Z].*") &&
+                novaSenha.matches(".*[a-z].*") &&
+                novaSenha.matches(".*[0-9].*") &&
+                novaSenha.matches(".*[^a-zA-Z0-9].*");
+
+        if (!senhaForte) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Senha Fraca", "A senha deve conter maiúscula, minúscula, número e caractere especial.");
+            return;
+        }
+
+        if (!novaSenha.equals(confirmarSenha)) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Divergência de Senha", "As senhas não coincidem.");
+            return;
+        }
+
+        String senhaHash = new BCryptPasswordEncoder().encode(novaSenha);
+
+        if (atualizarSenhaDAO.atualizarSenha(emailEmRecuperacao, senhaHash)) {
+            passwordResetTokenDAO.inativarTokensDoUsuario(idUsuarioEmRecuperacao);
+
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Sua senha foi alterada com sucesso.");
+            voltarParaLogin();
+        } else {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao Atualizar", "Não foi possível atualizar a senha.");
+        }
+    }
+
+    @FXML
+    public void voltarParaLogin() {
+        try {
+            MainApplication.setRoot("login");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
