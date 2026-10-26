@@ -1,72 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
-   <center>
-      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
+   <stylesheets>
+      <URL value="@../css/style.css" />
+   </stylesheets>
+   <children>
+      <HBox>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="230.0" text="Cadastro" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoNome" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Nome" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
-               <VBox.margin>
-                  <Insets left="86.0" right="86.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="campoEmail" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
-               <VBox.margin>
-                  <Insets left="86.0" right="86.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField fx:id="campoSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
-               <VBox.margin>
-                  <Insets left="90.0" right="90.0" />
-               </VBox.margin>
-            </PasswordField>
-            <PasswordField fx:id="campoConfirmarSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Confirmar senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
-               <VBox.margin>
-                  <Insets left="90.0" right="90.0" />
-               </VBox.margin>
-            </PasswordField>
-            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onDragDetected="#onCadastrarClick" prefHeight="26.0" prefWidth="281.0" spacing="26.0">
+            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
+               </padding>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onVoltarClick" styleClass="btn-azul" text="Voltar" textFill="#e4e4e4" />
-                  <Button mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="27.0" prefWidth="91.0" styleClass="btn-cinza" text="Cadastrar" />
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="titulo-formulario" text="Cadastro">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="descricao-formulario" text="Inicie o seu cadastro." />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Nome" />
+                        <TextField fx:id="campoNome" prefHeight="45.0" promptText="Digite seu nome" styleClass="campo-formulario" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="E-mail institucional" />
+                        <TextField fx:id="campoEmail" prefHeight="45.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Senha" />
+                        <StackPane prefHeight="45.0" styleClass="campo-senha">
+                           <PasswordField fx:id="campoSenha" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" />
+                           <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                              <graphic>
+                                 <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../images/eye-open.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vboxValidacoes" managed="false" maxWidth="1.7976931348623157E308" spacing="2.0" styleClass="validacoes-senha" visible="false">
+                     <children>
+                        <Label fx:id="lblMaiuscula" styleClass="validacao-senha" text="❌ Letra maiúscula" />
+                        <Label fx:id="lblMinuscula" styleClass="validacao-senha" text="❌ Letra minúscula" />
+                        <Label fx:id="lblNumero" styleClass="validacao-senha" text="❌ Número" />
+                        <Label fx:id="lblEspecial" styleClass="validacao-senha" text="❌ Caractere especial" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Confirmar Senha" />
+                        <StackPane prefHeight="45.0" styleClass="campo-senha">
+                           <PasswordField fx:id="campoConfirmarSenha" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" />
+                           <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                              <graphic>
+                                 <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../images/eye-open.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" styleClass="acoes-formulario">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="45.0" styleClass="botao-principal" text="Cadastrar-se" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVoltarClick" prefHeight="45.0" styleClass="botao-secundario" text="Voltar para o login" />
+                     </children>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets top="6.0" />
-               </VBox.margin>
-            </HBox>
+            </VBox>
+            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" style="-fx-background-color: #004786;" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Senac_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
          </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Senac_logo.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-   </top>
-   <bottom>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
-   </bottom>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
-   </right>
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
-   </left>
-</BorderPane>
+      </HBox>
+   </children>
+</StackPane>
