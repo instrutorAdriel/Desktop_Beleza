@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <fx:root prefWidth="230.0" spacing="10.0" styleClass="sidebar" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
@@ -19,15 +20,33 @@
                 <Insets top="20.0" />
             </VBox.margin>
             <children>
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" text="Página inicial" />
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" prefHeight="40.0" text="Modelos" />
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" prefHeight="40.0" text="Serviços" />
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" prefHeight="40.0" text="Unidades" />
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" prefHeight="40.0" text="Turmas" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" text="Página inicial">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Button>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" prefHeight="40.0" text="Modelos">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Button>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" prefHeight="40.0" text="Serviços">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Button>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" prefHeight="40.0" text="Unidades">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Button>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" prefHeight="40.0" text="Turmas">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Button>
             </children>
         </VBox>
 
         <!-- BOTÃO DE LOGOUT -->
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" prefHeight="38.0" styleClass="danger-senac" text="Sair do Sistema" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" prefHeight="38.0" styleClass="danger-senac" text="Sair do Sistema">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Button>
     </children>
 </fx:root>

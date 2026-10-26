@@ -40,35 +40,65 @@
 .sidebar .button {
     -fx-background-color: #f7941d;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-cursor: hand;
     -fx-alignment: BASELINE_LEFT;
+    -fx-padding: 8 6 8 6;
+    -fx-border-width: 0;
+    -fx-min-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
 }
 
 .sidebar .button:hover {
     -fx-background-color: #fdc180;
     -fx-text-fill: #004a8d;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 6 8 6;
+    -fx-border-width: 0;
+    -fx-min-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
 }
 
 .sidebar .button:pressed,
 .sidebar .button.active {
     -fx-background-color: #e07f0c;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
 }
 
 .sidebar .button.danger-senac {
     -fx-background-color: transparent;
-    -fx-border-color: #fdc180;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1px;
     -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
     -fx-alignment: CENTER;
+    -fx-padding: 8 6 8 6;
+    -fx-min-height: 38px;
+    -fx-pref-height: 38px;
+    -fx-max-height: 38px;
 }
 
 .sidebar .button.danger-senac:hover {
     -fx-background-color: #d9383a;
-    -fx-border-color: #d9383a;
+    -fx-border-color: #ffffff;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 6 8 6;
+    -fx-min-height: 38px;
+    -fx-pref-height: 38px;
+    -fx-max-height: 38px;
 }
 
 .login-panel-decorativo {
