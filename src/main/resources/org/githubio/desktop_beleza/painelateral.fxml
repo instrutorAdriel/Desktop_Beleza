@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.VBox" prefWidth="230.0" spacing="10.0" styleClass="sidebar" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefWidth="230.0" spacing="10.0" styleClass="sidebar" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets top="20.0" />
    </padding>
@@ -51,7 +50,7 @@
       <VBox alignment="CENTER" prefHeight="52.0">
          <padding><Insets left="15.0" right="15.0" /></padding>
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="danger-senac" text="Sair do Sistema">
+            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="danger-senac" text="Sair do Sistema">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>

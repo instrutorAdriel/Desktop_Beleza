@@ -290,6 +290,7 @@
     -fx-border-color: #fdc180;
     -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
+    -fx-alignment: center;
 }
 
 .sidebar .button.danger-senac:hover {
@@ -344,6 +345,17 @@
 .data-table .table-cell {
     -fx-border-color: transparent #e6e9ed transparent transparent;
     -fx-padding: 0 8 0 8;
+}
+
+.data-table .table-row-cell:selected {
+    -fx-background-color: #e5f0fa;
+}
+
+.data-table .table-cell:selected,
+.data-table .table-row-cell:selected .table-cell {
+    -fx-background-color: #e5f0fa;
+    -fx-text-fill: #16324f;
+    -fx-font-weight: bold;
 }
 
 .data-table .placeholder .label {
