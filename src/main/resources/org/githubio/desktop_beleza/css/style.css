@@ -102,6 +102,20 @@
 }
 
 /* Identidade visual SENAC da tela de modelos */
+.root {
+    -color-accent-emphasis: #004a8d;
+    -color-accent-muted: #004a8d;
+    -color-accent-subtle: #e5f0fa;
+    -color-accent-fg: #ffffff;
+    -color-warning-emphasis: #f7941d;
+    -color-warning-muted: #f7941d;
+    -color-warning-subtle: #fef4e8;
+    -color-warning-fg: #ffffff;
+    -color-accent-subtle-hover: #fdc180;
+    -color-cell-border-selected: #004a8d;
+    -color-accent-border-focused: #004a8d;
+}
+
 .app-root {
     -fx-background-color: #f4f6f8;
     -color-accent-emphasis: #004a8d;
@@ -241,40 +255,47 @@
     -fx-text-fill: #ffffff;
 }
 
-.sidebar-button, .sidebar-button-primary {
+.sidebar .button {
     -fx-background-color: #f7941d;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-alignment: center-left;
     -fx-padding: 10 12 10 12;
     -fx-background-radius: 8;
+    -fx-background-insets: 0;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+    -fx-min-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
     -fx-cursor: hand;
 }
 
-.sidebar-button:hover, .sidebar-button-primary:hover {
+.sidebar .button:hover {
     -fx-background-color: #fdc180;
     -fx-text-fill: #004a8d;
 }
 
-.sidebar-button-primary {
-    -fx-background-color: #ffffff;
-    -fx-text-fill: #004a8d;
+.sidebar .button:pressed,
+.sidebar .button:armed,
+.sidebar .button.active {
+    -fx-background-color: #e07f0c;
+    -fx-text-fill: #ffffff;
 }
 
-.sidebar-button-outline {
+.sidebar .button.danger-senac {
     -fx-background-color: transparent;
     -fx-border-color: #fdc180;
     -fx-border-radius: 8;
-    -fx-background-radius: 8;
     -fx-text-fill: #ffffff;
-    -fx-font-weight: bold;
-    -fx-padding: 9 15 9 15;
-    -fx-cursor: hand;
 }
 
-.sidebar-button-outline:hover {
+.sidebar .button.danger-senac:hover {
     -fx-background-color: #d9383a;
     -fx-border-color: #d9383a;
+    -fx-text-fill: #ffffff;
 }
 
 .sidebar .text-field {

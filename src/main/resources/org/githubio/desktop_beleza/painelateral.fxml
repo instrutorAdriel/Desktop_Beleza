@@ -11,7 +11,7 @@
       <Insets top="20.0" />
    </padding>
    <children>
-      <VBox spacing="8.0">
+      <VBox spacing="10.0">
          <padding>
             <Insets left="15.0" right="15.0" />
          </padding>
@@ -20,17 +20,7 @@
             <Label styleClass="sidebar-subtitulo" text="Painel de Gestão">
                <VBox.margin><Insets bottom="22.0" /></VBox.margin>
             </Label>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="sidebar-button" text="Página inicial">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="sidebar-button" text="Modelos">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="sidebar-button" text="Serviços">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="sidebar-button" text="Dashboard">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
@@ -45,12 +35,23 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="sidebar-button" text="Modelos">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="sidebar-button" text="Serviços">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <VBox style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS" />
-      <VBox alignment="CENTER" prefHeight="80.0">
+      <VBox alignment="CENTER" prefHeight="52.0">
+         <padding><Insets left="15.0" right="15.0" /></padding>
          <children>
-            <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="sidebar-button-outline" text="Sair do Sistema">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="danger-senac" text="Sair do Sistema">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
