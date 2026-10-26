@@ -84,6 +84,11 @@ public class ModeloController implements Initializable {
         boolean isNovo = (modelo.getId() == 0);
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle(isNovo ? "Novo Modelo" : "Editar Modelo");
+        dialog.getDialogPane().getStyleClass().add("model-dialog");
+        var stylesheet = ModeloController.class.getResource("/org/githubio/desktop_beleza/css/style.css");
+        if (stylesheet != null) {
+            dialog.getDialogPane().getStylesheets().add(stylesheet.toExternalForm());
+        }
 
         ButtonType btnSalvarType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvarType, ButtonType.CANCEL);
@@ -92,6 +97,11 @@ public class ModeloController implements Initializable {
         TextField txtTel = new TextField(modelo.getTelefone());
         TextField txtEmail = new TextField(modelo.getEmail());
         DatePicker dpNascimento = new DatePicker();
+        txtNome.getStyleClass().add("model-dialog-field");
+        txtTel.getStyleClass().add("model-dialog-field");
+        txtEmail.getStyleClass().add("model-dialog-field");
+        dpNascimento.getStyleClass().add("model-dialog-field");
+        dpNascimento.setMaxWidth(Double.MAX_VALUE);
 
         // CORRIGIDO: preenche o DatePicker com a data já salva (edição)
         if (modelo.getData() != null) {
@@ -115,14 +125,20 @@ public class ModeloController implements Initializable {
         txtTel.setTextFormatter(telefoneFormatter);
         txtTel.setPromptText("Somente números (máx. 11)");
 
-        dialog.getDialogPane().setContent(new VBox(10,
-                new Label("Nome:"), txtNome,
-                new Label("Telefone:"), txtTel,
-                new Label("Email:"), txtEmail,
-                new Label("Data de nascimento:"), dpNascimento
-        ));
+        VBox formulario = new VBox(12,
+                criarCampoFormulario("Nome", txtNome),
+                criarCampoFormulario("Telefone", txtTel),
+                criarCampoFormulario("Email", txtEmail),
+                criarCampoFormulario("Data de nascimento", dpNascimento)
+        );
+        formulario.getStyleClass().add("model-dialog-form");
+        dialog.getDialogPane().setContent(formulario);
+        dialog.getDialogPane().setPrefWidth(430);
 
         final Button btnSalvar = (Button) dialog.getDialogPane().lookupButton(btnSalvarType);
+        btnSalvar.getStyleClass().add("panel-button-primary");
+        Button btnCancelar = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
+        btnCancelar.getStyleClass().add("panel-button-secondary");
 
         btnSalvar.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
             String telRaw = txtTel.getText();
@@ -164,6 +180,12 @@ public class ModeloController implements Initializable {
         });
 
         dialog.showAndWait();
+    }
+
+    private VBox criarCampoFormulario(String titulo, Control campo) {
+        Label label = new Label(titulo);
+        label.getStyleClass().add("model-dialog-label");
+        return new VBox(5, label, campo);
     }
 
     private void mostrarAlerta(String titulo, String mensagem) {
