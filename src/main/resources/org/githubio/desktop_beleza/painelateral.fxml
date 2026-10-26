@@ -17,13 +17,16 @@
             <Label styleClass="sidebar-titulo" text="SISBE" />
             <Label styleClass="sidebar-subtitulo" text="Painel do Instrutor" />
          </children>
+
       </VBox>
-      <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" text="Página inicial" />
+      <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaDashboard" text="Dashboard" />
+      <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaAgenda" text="Agenda" />
       <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaModelos" text="Modelos" />
       <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaProcedimentos" text="Procedimentos" />
       <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" text="Unidades" />
       <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" text="Turmas" />
       <VBox VBox.vgrow="ALWAYS" />
+
       <Button maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="danger-senac" text="Sair do Sistema" />
    </children>
 </fx:root>

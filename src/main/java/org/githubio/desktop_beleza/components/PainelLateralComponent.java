@@ -24,7 +24,12 @@ public class PainelLateralComponent extends VBox {
     }
 
     @FXML
-    public void trocarTelaParaPaginaInicial() throws IOException {
+    public void trocarTelaParaDashboard() throws IOException {
+        MainApplication.setRoot("dashboard");
+    }
+
+    @FXML
+    public void trocarTelaParaAgenda() throws IOException {
         MainApplication.setRoot("Telaagenda");
     }
 

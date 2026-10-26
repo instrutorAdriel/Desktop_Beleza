@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
+
+<BorderPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.DashboardController">
+    <center>
+        <VBox spacing="10" stylesheets="@css/style.css">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="0.0" />
+            </padding>
+
+
+            <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+
+
+            </HBox>
+        </VBox>
+    </center>
+
+    <left>
+        <PainelLateralComponent BorderPane.alignment="CENTER" />
+    </left>
+
+
+
+</BorderPane>

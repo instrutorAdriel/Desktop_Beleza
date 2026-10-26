@@ -14,27 +14,7 @@
         fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
         stylesheets="@css/style.css">
 
-    <top>
 
-        <Pane prefHeight="70"
-              style="-fx-background-color: #faf8f7;">
-
-            <ImageView
-                    fitHeight="52"
-                    fitWidth="83"
-                    layoutX="14"
-                    layoutY="14"
-                    preserveRatio="true">
-
-                <image>
-                    <Image url="@Imagens/Senac_logo.png"/>
-                </image>
-
-            </ImageView>
-
-        </Pane>
-
-    </top>
 
     <!-- Menu lateral centralizado pelo componente reutilizável -->
     <left>
