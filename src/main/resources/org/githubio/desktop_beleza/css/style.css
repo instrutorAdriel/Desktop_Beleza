@@ -100,3 +100,78 @@
 .btn-cinza:hover{
     -fx-background-color: #dddddd;
 }
+
+.sidebar {
+    -fx-background-color: #004a8d;
+    -fx-padding: 20 15 20 15;
+}
+
+.sidebar-subtitulo {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.sidebar-nav-button {
+    -fx-background-color: #f7941d;
+    -fx-background-radius: 8px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 12px;
+    -fx-cursor: hand;
+}
+
+.sidebar-nav-button:focused {
+    -fx-background-color: #f7941d;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-effect: none;
+}
+
+.sidebar-nav-button:hover {
+    -fx-background-color: #e8b887;
+    -fx-text-fill: #004587;
+}
+
+.sidebar-nav-button:hover:focused {
+    -fx-background-color: #e8b887;
+    -fx-text-fill: #004587;
+}
+
+.sidebar-nav-button:pressed {
+    -fx-background-color: #c96c00;
+}
+
+.danger-senac {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-border-color: #fdc180;
+    -fx-border-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 12px;
+    -fx-cursor: hand;
+}
+
+.danger-senac:hover {
+    -fx-background-color: #c62828;
+    -fx-border-color: #ef5350;
+}
+
+.danger-senac:pressed {
+    -fx-background-color: #a61b1b;
+}

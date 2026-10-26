@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,31 +19,22 @@
             stylesheets="@css/style.css"
             style="-fx-background-color: #ffffff;">
     <left>
-        <VBox prefWidth="228.0" spacing="10.0"
-              style="-fx-background-color: #004a8d;">
-            <padding>
-                <Insets top="22.0" right="14.0" bottom="20.0" left="14.0"/>
-            </padding>
+        <VBox prefWidth="230.0" spacing="10.0" styleClass="sidebar">
             <children>
-                <Region prefHeight="14.0"/>
-                <Button maxWidth="Infinity" text="Página inicial"
-                        onAction="#trocarTelaParaPaginaInicial"
-                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
-                <Button maxWidth="Infinity" text="Modelos"
-                        onAction="#trocarTelaParaModelos"
-                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
-                <Button maxWidth="Infinity" text="Serviços"
-                        onAction="#trocarTelaParaServicos"
-                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
-                <Button maxWidth="Infinity" text="Unidades"
-                        style="-fx-background-color: #e07f0c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
-                <Button maxWidth="Infinity" text="Turmas"
-                        onAction="#trocarTelaParaTurmas"
-                        style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 11 12;"/>
-                <Region VBox.vgrow="ALWAYS"/>
-                <Button maxWidth="Infinity" text="Sair do Sistema"
-                        onAction="#sairDoSistema"
-                        style="-fx-background-color: transparent; -fx-border-color: #fdc180; -fx-border-radius: 8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12;"/>
+                <Label styleClass="sidebar-subtitulo" text="Painel do Instrutor" />
+                <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                    <children>
+                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" styleClass="sidebar-nav-button" text="Página inicial" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaModelos" prefHeight="40.0" styleClass="sidebar-nav-button" text="Modelos" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaServicos" prefHeight="40.0" styleClass="sidebar-nav-button" text="Serviços" />
+                        <Button maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="sidebar-nav-button" text="Unidades" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaTurmas" prefHeight="40.0" styleClass="sidebar-nav-button" text="Turmas" />
+                    </children>
+                </VBox>
+                <Button maxWidth="1.7976931348623157E308" onAction="#sairDoSistema" prefHeight="38.0" styleClass="danger-senac" text="Sair do Sistema" />
             </children>
         </VBox>
     </left>
