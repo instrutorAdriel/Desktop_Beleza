@@ -11,23 +11,27 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-base" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
    <children>
-      <HBox maxHeight="520.0" maxWidth="820.0" style="-fx-background-color: -color-bg-default; -fx-background-radius: 16; -fx-border-radius: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 20, 0, 0, 6);">
+      <HBox>
          <children>
             <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="35.0" left="40.0" right="40.0" top="35.0" />
                </padding>
                <children>
-                  <Label style="-fx-font-weight: bold; -fx-font-size: 26px; -fx-text-fill: #004a8d;" styleClass="title-1" text="Redefinir Senha" />
+                  <VBox>
+                     <children>
+                        <Label styleClass="titulo-formulario" text="Redefinir Senha" />
+                     </children>
+                  </VBox>
                   <VBox spacing="12.0" VBox.vgrow="NEVER">
                      <children>
-                        <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #004a8d;" text="Nova Senha" />
+                        <Label styleClass="rotulo-formulario" text="Nova Senha" />
                         <StackPane prefHeight="42.0">
                            <children>
-                              <PasswordField fx:id="campoNovaSenha" prefHeight="42.0" promptText="Digite a nova senha" style="-fx-background-radius: 8;" />
-                              <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="42.0" promptText="Digite a nova senha" style="-fx-background-radius: 8;" visible="false" />
+                              <PasswordField fx:id="campoNovaSenha" prefHeight="42.0" promptText="Digite a nova senha" styleClass="campo-formulario" />
+                              <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="42.0" promptText="Digite a nova senha" styleClass="campo-formulario" visible="false" />
                               <Button fx:id="btnToggleNovaSenha" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 12 0 0;" StackPane.alignment="CENTER_RIGHT">
                                  <graphic>
                                     <ImageView fx:id="imgOlhoNova" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -39,14 +43,14 @@
                               </Button>
                            </children>
                         </StackPane>
-                        <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #004a8d;" text="Confirmar Nova Senha">
+                        <Label styleClass="rotulo-formulario" text="Confirmar Nova Senha">
                            <VBox.margin>
                               <Insets top="6.0" />
                            </VBox.margin></Label>
                         <StackPane prefHeight="42.0">
                            <children>
-                              <PasswordField fx:id="campoConfirmarSenha" prefHeight="42.0" promptText="Confirme a nova senha" style="-fx-background-radius: 8;" />
-                              <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="42.0" promptText="Confirme a nova senha" style="-fx-background-radius: 8;" visible="false" />
+                              <PasswordField fx:id="campoConfirmarSenha" prefHeight="42.0" promptText="Confirme a nova senha" styleClass="campo-formulario" />
+                              <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="42.0" promptText="Confirme a nova senha" styleClass="campo-formulario" visible="false" />
                               <Button fx:id="btnToggleConfirmarSenha" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 12 0 0;" StackPane.alignment="CENTER_RIGHT">
                                  <graphic>
                                     <ImageView fx:id="imgOlhoConfirmar" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -70,8 +74,8 @@
                   </VBox>
                   <VBox spacing="10.0">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" onAction="#onAlterarSenha" prefHeight="42.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;" styleClass="accent" text="Alterar Senha" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#voltarParaLogin" prefHeight="42.0" style="-fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;" styleClass="flat" text="Voltar ao Login" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#onAlterarSenha" prefHeight="45.0" styleClass="botao-principal" text="Alterar Senha" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#voltarParaLogin" prefHeight="45.0" styleClass="botao-secundario" text="Voltar ao Login" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -79,7 +83,19 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="320.0" styleClass="login-panel-decorativo" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" spacing="38.0" styleClass="painel-decorativo">
+               <padding>
+                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #ffffff;">
+                     <image>
+                        <Image url="@../images/Senac_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

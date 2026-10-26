@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="feature: implementação do serviço de e-mail">
+    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AtualizarSenhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AtualizarSenhaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AtualizarSenhaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/images/eyeClosed 1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/images/eye-closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/images/eyeOpen 1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/images/eye-open.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/cadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/cadastro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-email.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,272 +17,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;yuripetra&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,
-    &quot;accountId&quot;: &quot;0ac69af6-cf65-4042-b05f-d96a8065f933&quot;
-  }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="4.249934202068248E-9" />
-      <entry key="MS500" value="0.03373815308678621" />
-      <entry key="S2" value="2.53944649830248" />
-      <entry key="S5" value="12.1174051380757" />
-      <entry key="S10" value="26.352613574344137" />
-      <entry key="S30" value="54.789586673417716" />
-      <entry key="S60" value="79.66670739622263" />
-      <entry key="M2" value="143.15264107406608" />
-      <entry key="M5" value="352.428212969401" />
-      <entry key="M10" value="569.7057402483873" />
-      <entry key="M15" value="686.566885537003" />
-      <entry key="M30" value="840.0211707003929" />
-      <entry key="H1" value="935.0793507904409" />
-      <entry key="H2" value="988.3346180833212" />
-      <entry key="H4" value="1016.5835946832531" />
-      <entry key="D1" value="1041.0131690435726" />
-      <entry key="W1" value="1045.2854945602671" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000000000232674" />
-      <entry key="S10" value="1.000006806786208" />
-      <entry key="S30" value="1.0300692801624518" />
-      <entry key="S60" value="1.2452167398813097" />
-      <entry key="M2" value="1.700298916757336" />
-      <entry key="M5" value="2.314547459444377" />
-      <entry key="M10" value="2.633220938341228" />
-      <entry key="M15" value="2.790860808018378" />
-      <entry key="M30" value="3.0929118805398317" />
-      <entry key="H1" value="3.4087954819851314" />
-      <entry key="H2" value="3.6563713024759297" />
-      <entry key="H4" value="3.8138787571360466" />
-      <entry key="D1" value="3.96676088888469" />
-      <entry key="W1" value="3.995193908189552" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="0.0011217758058169008" />
-      <entry key="MS500" value="0.2785266810792895" />
-      <entry key="S2" value="3.168008707482095" />
-      <entry key="S5" value="12.919823804725555" />
-      <entry key="S10" value="27.23797739077753" />
-      <entry key="S30" value="55.772078751969445" />
-      <entry key="S60" value="80.88092203615577" />
-      <entry key="M2" value="144.83028661397418" />
-      <entry key="M5" value="354.7281099039604" />
-      <entry key="M10" value="572.3292754629919" />
-      <entry key="M15" value="689.3503798401725" />
-      <entry key="M30" value="843.109617263112" />
-      <entry key="H1" value="938.4855600551926" />
-      <entry key="H2" value="991.9895672372443" />
-      <entry key="H4" value="1020.3967225724472" />
-      <entry key="D1" value="1044.9797984594757" />
-      <entry key="W1" value="1049.280669519859" />
-    </decayedShown>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="3KhU27Aj8IO0KKFvKMWb7hbWHlU" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;remade/cadastro&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arthur59318636/Music/Desktop_Beleza&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Launcher.executor": "Run",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\view" />
-      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza" />
-      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza" />
-      <recent name="C:\Users\yuri59073236\Music\Desktop_Beleza\src\main\java\org\githubio\desktop_beleza\controller" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Launcher" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.githubio.desktop_beleza.Launcher" />
       <module name="Desktop_Beleza" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.githubio.desktop_beleza.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="" />
-      <created>1792009083187</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1792009083187</updated>
-      <workItem from="1792604073754" duration="4000" />
-      <workItem from="1792695645045" duration="306000" />
-    </task>
-    <task id="LOCAL-00001" summary="mudanca do visual da tela de cadastro">
-      <option name="closed" value="true" />
-      <created>1792694549713</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1792694549713</updated>
-    </task>
-    <task id="LOCAL-00002" summary="refactor: classes DAO sendo realocados para pacote 'dao'">
-      <option name="closed" value="true" />
-      <created>1792690577872</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1792690577872</updated>
-    </task>
-    <task id="LOCAL-00003" summary="refactor: pasta de imagens renomeada">
-      <option name="closed" value="true" />
-      <created>1792693053247</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1792693053247</updated>
-    </task>
-    <task id="LOCAL-00004" summary="refactor: criada pasta chamada view e realocado .fxml para essa pasta">
-      <option name="closed" value="true" />
-      <created>1792693434533</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1792693434533</updated>
-    </task>
-    <task id="LOCAL-00005" summary="fix: correção da leitura do arquivo login.fxml na MainApplication">
-      <option name="closed" value="true" />
-      <created>1792693591084</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1792693591084</updated>
-    </task>
-    <task id="LOCAL-00006" summary="feature: adiciona as telas de recuperar-senha-codigo, recuperar-senha-email e adaptação do layout de recuperar-senha.">
-      <option name="closed" value="true" />
-      <created>1792698509385</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1792698509385</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feature: implementação do serviço de e-mail">
-      <option name="closed" value="true" />
-      <created>1792699781144</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1792699781144</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="mudanca do visual da tela de cadastro" />
-    <option name="LAST_COMMIT_MESSAGE" value="mudanca do visual da tela de cadastro" />
-    <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
-    <MESSAGE value="refactor: classes DAO sendo realocados para pacote 'dao'" />
-    <MESSAGE value="refactor: pasta de imagens renomeada" />
-    <MESSAGE value="refactor: criada pasta chamada view e realocado .fxml para essa pasta" />
-    <MESSAGE value="fix: correção da leitura do arquivo login.fxml na MainApplication" />
-    <MESSAGE value="feature: adiciona as telas de recuperar-senha-codigo, recuperar-senha-email e adaptação do layout de recuperar-senha." />
-    <MESSAGE value="feature: implementação do serviço de e-mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: implementação do serviço de e-mail" />
   </component>
 </project>
