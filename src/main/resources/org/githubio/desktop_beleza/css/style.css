@@ -1,132 +1,203 @@
-/* =========================================
-   FUNDO DA TELA E CARTÃO PRINCIPAL
-   ========================================= */
-.login-root {
-    -fx-background-color: #FFFFFF; /* Fundo branco geral */
-}
 
-.login-card {
-    -fx-background-color: #FFFFFF;
-    /* Sem bordas arredondadas e sem sombras para completar a totalidade da página */
-    -fx-background-radius: 0;
-    -fx-border-width: 0;
-}
-
-/* =========================================
-   LADO ESQUERDO: FORMULÁRIO DE LOGIN
-   ========================================= */
-.login-form {
+.editar{
+    -fx-background-image: url("../Imagens/editar.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
+.editar:hover{
+    -fx-background-image: url("../Imagens/editar-blue.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;}
 
-.login-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-font-family: "Segoe UI", sans-serif;
-}
 
-.login-subtitle {
-    -fx-font-size: 14px;
-    -fx-text-fill: #666666;
-    -fx-padding: 0 0 10 0;
-}
-
-.field-label {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #555555;
-}
-
-/* Campos de Texto (E-mail e Senha) */
-.login-input, .password-input {
-    -fx-background-color: #F9FAFB;
-    -fx-border-color: #D1D5DB;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 10px 15px;
-    -fx-font-size: 14px;
-    -fx-text-fill: #333333;
-}
-
-.login-input:focused, .password-input:focused {
-    -fx-border-color: #004A8D; /* Borda azul ao clicar */
-    -fx-background-color: #FFFFFF;
-}
-
-/* Container e Botão do Olho da Senha */
-.password-container {
+.excluir{
+    -fx-background-image: url("../Imagens/lixo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
+.excluir:hover{
+    -fx-background-image: url("../Imagens/lixo-red.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;}
 
-.password-toggle {
+.nav-container {
+    -fx-padding: 20px;
+    -fx-alignment: center;
+    -fx-hgap: 15px;
+    -fx-vgap: 15px;
+}
+
+
+/* Estilo dos botões */
+.btn {
+    -fx-min-width: 150px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 12px;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
+}
+
+
+/* EStilo do botão de sair*/
+.btn-sair{
+    -fx-min-width:70px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 2px;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
+
+}
+
+
+/* Botões azuis */
+.btn-azul {
+    -fx-background-color: #004587;
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+}
+
+/* Hover dos botões azuis */
+.btn-azul:hover {
+    -fx-background-color: #003466;
+}
+
+/* Botões cinzas */
+.btn-cinza {
+    -fx-background-color: #efefef;
+    -fx-text-fill: #004587;
+    -fx-font-family: Verdana;
+}
+
+/* Hover dos botões cinzas */
+.btn-cinza:hover{
+    -fx-background-color: #dddddd;
+}
+
+/* Tema exclusivo da tela de atualização de senha */
+.tela-atualizar-senha {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "System";
+}
+
+.tela-atualizar-senha .formulario-atualizar-senha {
+    -fx-background-color: #ffffff;
+}
+
+.tela-atualizar-senha .titulo-formulario {
+    -fx-text-fill: #004a8d;
+}
+
+.tela-atualizar-senha .descricao-formulario {
+    -fx-font-size: 14px;
+    -fx-text-fill: #687586;
+}
+
+.tela-atualizar-senha .rotulo-formulario {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #344054;
+}
+
+.tela-atualizar-senha .campo-formulario {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+    -fx-padding: 0 42 0 12;
+    -fx-prompt-text-fill: #8994a3;
+}
+
+.tela-atualizar-senha .campo-formulario:focused {
+    -fx-border-color: #004a8d;
+    -fx-border-width: 1.5;
+}
+
+.tela-atualizar-senha .botao-olho {
     -fx-background-color: transparent;
     -fx-cursor: hand;
-    -fx-padding: 0 12 0 0; /* Espaço à direita */
+    -fx-padding: 0 12 0 8;
 }
 
-.password-toggle:hover {
-    -fx-opacity: 0.7;
+.tela-atualizar-senha .validacoes-senha {
+    -fx-padding: 0 0 0 2;
 }
 
-/* Links (Esqueceu a senha, Registre-se) */
-.forgot-link, .register-link {
-    -fx-text-fill: #004A8D;
-    -fx-font-size: 13px;
-    -fx-underline: false;
-    -fx-border-color: transparent;
+.tela-atualizar-senha .validacao-senha {
+    -fx-font-size: 12px;
 }
 
-.forgot-link:hover, .register-link:hover {
-    -fx-underline: true;
-}
-
-/* Botão Principal de Login */
-.login-primary {
-    -fx-background-color: #004A8D; /* Azul Senac */
-    -fx-text-fill: white;
+.tela-atualizar-senha .botao-principal {
+    -fx-background-color: #004a8d;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-background-radius: 8px;
+    -fx-text-fill: #ffffff;
+}
+
+.tela-atualizar-senha .botao-principal:hover {
+    -fx-background-color: #003666;
+}
+
+.tela-atualizar-senha .botao-principal:pressed {
+    -fx-background-color: #002b52;
+}
+
+.tela-atualizar-senha .botao-secundario {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
     -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-text-fill: #004a8d;
 }
 
-.login-primary:hover {
-    -fx-background-color: #003666; /* Azul mais escuro no hover */
+.tela-atualizar-senha .botao-secundario:hover {
+    -fx-background-color: #e5f0fa;
+    -fx-border-color: #004a8d;
 }
 
-/* Textos do Rodapé */
-.register-text {
-    -fx-font-size: 13px;
-    -fx-text-fill: #666666;
+.tela-atualizar-senha .painel-decorativo-atualizar {
+    -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
 }
 
-.login-footer {
-    -fx-font-size: 12px;
-    -fx-text-fill: #999999;
+.tela-atualizar-senha .titulo-decorativo {
+    -fx-text-fill: #ffffff;
 }
 
-/* =========================================
-   LADO DIREITO: PAINEL DECORATIVO AZUL
-   ========================================= */
-.painel-decorativo-atualizar {
-    -fx-background-color: #004A8D; /* Fundo azul estilo Senac */
-    -fx-background-radius: 0; /* Sem bordas para completar a tela */
-    -fx-alignment: center;
-}
-
-/* TRUQUE: Deixa a imagem PNG (Logo do Senac) totalmente branca! */
-.logo-branca {
-    -fx-opacity: 1;
-    /* O valor "1" aumenta o brilho ao máximo, deixando os pixels brancos sem afetar a transparência */
-}
-
-.texto-decorativo {
-    -fx-text-fill: #FFFFFF; /* Letras brancas */
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
+.tela-atualizar-senha .texto-decorativo {
+    -fx-font-size: 28px;
     -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-wrap-text: true;
-    -fx-line-spacing: 5px;
+    -fx-text-fill: #ffffff;
 }

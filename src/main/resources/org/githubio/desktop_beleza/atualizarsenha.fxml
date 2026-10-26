@@ -1,150 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="1114.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
-   <center>
-      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+   <stylesheets>
+      <URL value="@css/style.css" />
+   </stylesheets>
+   <children>
+      <HBox>
          <children>
-            <Label prefHeight="28.0" prefWidth="225.0" text="Atualizar Senha" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="22.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="50.0" />
-               </VBox.margin>
-            </Label>
-            <Label depthTest="DISABLE" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="E-mail" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></Label>
-            <TextField fx:id="campoEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
-               <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" />
-               </VBox.margin>
-            </TextField>
-
-            <!-- ===== NOVA SENHA ===== -->
-            <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Nova Senha" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="5.0" />
-               </VBox.margin>
-            </Label>
-
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="10.0" />
-               </VBox.margin>
-               <PasswordField fx:id="campoNovaSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <TextField fx:id="campoNovaSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <Button fx:id="btnToggleNovaSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
-                  <graphic>
-                     <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@Imagens/eyeOpen 1.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </StackPane>
-
-            <!-- ===== VALIDAÇÕES DA SENHA (OCULTAS ATÉ DIGITAR) ===== -->
-            <VBox fx:id="vboxValidacoes" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" spacing="2" visible="false" managed="false">
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="20.0" />
-               </VBox.margin>
+            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
+               </padding>
                <children>
-                  <Label fx:id="lblMaiuscula" text="❌ Letra maiúscula" textFill="#d9534f">
-                     <font> <Font name="Verdana" size="11.0" /> </font>
-                  </Label>
-                  <Label fx:id="lblMinuscula" text="❌ Letra minúscula" textFill="#d9534f">
-                     <font> <Font name="Verdana" size="11.0" /> </font>
-                  </Label>
-                  <Label fx:id="lblNumero" text="❌ Número" textFill="#d9534f">
-                     <font> <Font name="Verdana" size="11.0" /> </font>
-                  </Label>
-                  <Label fx:id="lblEspecial" text="❌ Caractere especial" textFill="#d9534f">
-                     <font> <Font name="Verdana" size="11.0" /> </font>
-                  </Label>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="titulo-formulario" text="Atualizar Senha">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="descricao-formulario" text="Crie uma nova senha para sua conta" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="E-mail institucional" />
+                        <TextField fx:id="campoEmail" prefHeight="45.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Nova Senha" />
+                        <StackPane prefHeight="45.0" styleClass="campo-senha">
+                           <PasswordField fx:id="campoNovaSenha" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" />
+                           <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                              <graphic>
+                                 <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@Imagens/eyeOpen 1.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vboxValidacoes" managed="false" maxWidth="1.7976931348623157E308" spacing="2.0" styleClass="validacoes-senha" visible="false">
+                     <children>
+                        <Label fx:id="lblMaiuscula" styleClass="validacao-senha" text="❌ Letra maiúscula" />
+                        <Label fx:id="lblMinuscula" styleClass="validacao-senha" text="❌ Letra minúscula" />
+                        <Label fx:id="lblNumero" styleClass="validacao-senha" text="❌ Número" />
+                        <Label fx:id="lblEspecial" styleClass="validacao-senha" text="❌ Caractere especial" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Confirmar Senha" />
+                        <StackPane prefHeight="45.0" styleClass="campo-senha">
+                           <PasswordField fx:id="campoConfirmarSenha" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" />
+                           <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                              <graphic>
+                                 <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@Imagens/eyeOpen 1.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" styleClass="acoes-formulario">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAlterarSenha" prefHeight="45.0" styleClass="botao-principal" text="Alterar Senha" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#voltarParaLogin" prefHeight="40.0" styleClass="botao-secundario" text="Voltar para o login" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
-
-            <!-- ===== CONFIRMAR SENHA ===== -->
-            <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="304.0" text="Confirmar Senha" textFill="#004587">
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" bottom="5.0" />
-               </VBox.margin>
-            </Label>
-
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" />
-               </VBox.margin>
-               <PasswordField fx:id="campoConfirmarSenha" prefHeight="30.0" prefWidth="304.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <TextField fx:id="campoConfirmarSenhaVisivel" prefHeight="30.0" prefWidth="304.0" visible="false" managed="false" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" />
-               <Button fx:id="btnToggleConfirmarSenha" StackPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 8 0 0;">
-                  <graphic>
-                     <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@Imagens/eyeOpen 1.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </StackPane>
-
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="443.0">
+            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
+               </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#onAlterarSenha" styleClass="btn-cinza" text="Alterar Senha" textFill="#004587">
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Verdana" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#voltarParaLogin" styleClass="btn-azul" text="Voltar" textFill="#f8f8f8">
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </HBox.margin>
-                  </Button>
+                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagens/Senac_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
                </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-         </children></VBox>
-   </center>
-   <bottom>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </bottom>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </right>
-   <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Imagens/Senac_logo.png" />
-               </image></ImageView>
+            </VBox>
          </children>
-      </AnchorPane>
-   </top>
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
-   </left>
-</BorderPane>
+      </HBox>
+   </children>
+</StackPane>

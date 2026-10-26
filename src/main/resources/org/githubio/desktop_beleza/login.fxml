@@ -4,91 +4,78 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane prefHeight="768.0" prefWidth="1336.0" styleClass="login-root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
-
-   <children>
-      <!-- Removido o maxHeight e maxWidth para ocupar a tela toda -->
-      <HBox styleClass="login-card">
-
-         <!-- Painel de Login (Lado Esquerdo) -->
-         <VBox alignment="CENTER" minWidth="430.0" prefHeight="674.0" prefWidth="600.0" spacing="18.0" styleClass="login-form" HBox.hgrow="ALWAYS">
-
-            <padding>
-               <Insets bottom="38.0" left="58.0" right="58.0" top="42.0" />
-            </padding>
-
-            <!-- ADICIONE ESTA LINHA AQUI PARA EMPURRAR O CONTEÚDO PARA BAIXO -->
-            <Region VBox.vgrow="ALWAYS" />
-
-            <!-- Este logo da esquerda continua normal (Azul) pois o fundo é branco -->
-            <ImageView fitHeight="58.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+   <left>
+      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Bem-vindo" textFill="#004587">
+               <font>
+                  <Font name="Verdana Bold" size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </TextField>
+            <PasswordField fx:id="Senha" maxHeight="500.0" maxWidth="500.0" prefHeight="25.0" prefWidth="191.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+               <VBox.margin>
+                  <Insets left="300.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Hyperlink>
+            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="90.0" styleClass="btn-cinza" text="Login">
+               <padding>
+                  <Insets bottom="1.6" left="25.0" right="25.0" top="1.6" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="27.0" styleClass="btn-azul" text="Registre-se" textFill="#e4e4e4">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+               </padding></Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <right>
+      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Imagens/Senac_logo.png" />
                </image>
-               <VBox.margin>
-                  <Insets bottom="4.0" />
-               </VBox.margin>
             </ImageView>
-
-            <!-- Restante do seu código continua igual... -->
-
-            <Label styleClass="login-title" text="Bem-vindo" />
-            <Label styleClass="login-subtitle" text="Acesse sua conta para continuar" />
-
-            <VBox maxWidth="390.0" spacing="7.0" HBox.hgrow="ALWAYS">
-               <Label styleClass="field-label" text="E-mail" />
-               <TextField fx:id="Email" prefHeight="48.0" promptText="Digite seu e-mail" styleClass="login-input" />
-            </VBox>
-
-            <VBox maxWidth="390.0" spacing="7.0">
-               <Label styleClass="field-label" text="Senha" />
-               <StackPane maxWidth="390.0" prefHeight="48.0" styleClass="password-container">
-                  <PasswordField fx:id="Senha" prefHeight="48.0" promptText="Digite sua senha" styleClass="password-input" />
-                  <TextField fx:id="SenhaVisivel" managed="false" prefHeight="48.0" promptText="Digite sua senha" styleClass="password-input" visible="false" />
-                  <Button fx:id="btnToggleSenha" onAction="#alternarVisibilidadeSenha" styleClass="password-toggle" StackPane.alignment="CENTER_RIGHT">
-                     <graphic>
-                        <ImageView fx:id="imgOlho" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Imagens/eyeOpen 1.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </StackPane>
-            </VBox>
-
-            <HBox alignment="CENTER_RIGHT" maxWidth="390.0">
-               <Region HBox.hgrow="ALWAYS" />
-               <Hyperlink onAction="#irParaAtualizarSenha" styleClass="forgot-link" text="Esqueceu a senha?" />
-            </HBox>
-
-            <Button maxWidth="390.0" onAction="#onLoginButtonClick" prefHeight="49.0" styleClass="login-primary" text="Entrar no sistema" />
-
-            <HBox alignment="CENTER" spacing="5.0">
-               <Label styleClass="register-text" text="Ainda não tem uma conta?" />
-               <Hyperlink onAction="#irParaCadastro" styleClass="register-link" text="Registre-se" />
-            </HBox>
-
-            <Region VBox.vgrow="ALWAYS" />
-            <Label styleClass="login-footer" text="Desktop Beleza • SENAC" />
-         </VBox>
-
-         <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
-            <padding>
-               <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
-            </padding>
-            <children>
-               <!-- Adicionado a styleClass "logo-branca" aqui -->
-               <ImageView fx:id="logoDecorativa" fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-branca">
-                  <image>
-                     <Image url="@Imagens/Senac_logo.png" />
-                  </image>
-               </ImageView>
-               <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
-            </children>
-         </VBox>
-
-      </HBox>
-   </children>
-</StackPane>
+         </children></AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
