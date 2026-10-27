@@ -1,0 +1,78 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7f54a0a6-f64f-4337-9e9f-d999838302be\" name=\"Changes\" comment=\"Criacao de botao para adicionar um servico a unidade\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"remade/unidades\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;yuripetra&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,\r\n    &quot;accountId&quot;: &quot;0ac69af6-cf65-4042-b05f-d96a8065f933&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"NextEditCompletionFeaturesState\">\r\n    <decayedCancelled>\r\n      <entry key=\"MS100\" value=\"4.914682034097458E-8\" />\r\n      <entry key=\"MS500\" value=\"0.07994764893619973\" />\r\n      <entry key=\"S2\" value=\"2.4125735600360376\" />\r\n      <entry key=\"S5\" value=\"9.13453718885433\" />\r\n      <entry key=\"S10\" value=\"17.55974766702324\" />\r\n      <entry key=\"S30\" value=\"33.758171510610445\" />\r\n      <entry key=\"S60\" value=\"42.2911179372203\" />\r\n      <entry key=\"M2\" value=\"48.10258882060374\" />\r\n      <entry key=\"M5\" value=\"53.14576101831817\" />\r\n      <entry key=\"M10\" value=\"55.96230983489886\" />\r\n      <entry key=\"M15\" value=\"57.35028950202033\" />\r\n      <entry key=\"M30\" value=\"59.37280745087878\" />\r\n      <entry key=\"H1\" value=\"60.87531012238077\" />\r\n      <entry key=\"H2\" value=\"61.838416175104996\" />\r\n      <entry key=\"H4\" value=\"62.39100605369225\" />\r\n      <entry key=\"D1\" value=\"62.89425518840852\" />\r\n      <entry key=\"W1\" value=\"62.984785022520036\" />\r\n    </decayedCancelled>\r\n    <decayedSelected>\r\n      <entry key=\"MS100\" value=\"1.0\" />\r\n      <entry key=\"MS500\" value=\"1.0\" />\r\n      <entry key=\"S2\" value=\"1.0\" />\r\n      <entry key=\"S5\" value=\"1.0\" />\r\n      <entry key=\"S10\" value=\"1.0\" />\r\n      <entry key=\"S30\" value=\"1.0\" />\r\n      <entry key=\"S60\" value=\"1.0000000000004088\" />\r\n      <entry key=\"M2\" value=\"1.0000006394123742\" />\r\n      <entry key=\"M5\" value=\"1.003328989418306\" />\r\n      <entry key=\"M10\" value=\"1.0576973952471511\" />\r\n      <entry key=\"M15\" value=\"1.1493152405393048\" />\r\n      <entry key=\"M30\" value=\"1.3864133027463015\" />\r\n      <entry key=\"H1\" value=\"1.621621510845869\" />\r\n      <entry key=\"H2\" value=\"1.7884297754688538\" />\r\n      <entry key=\"H4\" value=\"1.887935682056339\" />\r\n      <entry key=\"D1\" value=\"1.9803855874480207\" />\r\n      <entry key=\"W1\" value=\"1.9971740963865203\" />\r\n    </decayedSelected>\r\n    <decayedShown>\r\n      <entry key=\"MS100\" value=\"5.939068750432093E-6\" />\r\n      <entry key=\"MS500\" value=\"0.16446613395001766\" />\r\n      <entry key=\"S2\" value=\"2.9070405241027255\" />\r\n      <entry key=\"S5\" value=\"9.857379057736805\" />\r\n      <entry key=\"S10\" value=\"18.39729647697328\" />\r\n      <entry key=\"S30\" value=\"34.69366563212897\" />\r\n      <entry key=\"S60\" value=\"43.256492406780076\" />\r\n      <entry key=\"M2\" value=\"49.084484909539256\" />\r\n      <entry key=\"M5\" value=\"54.14152285582312\" />\r\n      <entry key=\"M10\" value=\"57.015900188151825\" />\r\n      <entry key=\"M15\" value=\"58.496568036474194\" />\r\n      <entry key=\"M30\" value=\"60.75732273115196\" />\r\n      <entry key=\"H1\" value=\"62.49579252877373\" />\r\n      <entry key=\"H2\" value=\"63.62620829292442\" />\r\n      <entry key=\"H4\" value=\"64.27860246207592\" />\r\n      <entry key=\"D1\" value=\"64.87458105047479\" />\r\n      <entry key=\"W1\" value=\"64.98195050401972\" />\r\n    </decayedShown>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3KhU27Aj8IO0KKFvKMWb7hbWHlU\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Launcher.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\r\n    \"codeWithMe.voiceChat.enabledByDefault\": \"false\",\r\n    \"com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1\": \"true\",\r\n    \"git-widget-placeholder\": \"remade/recuperarSenha\",\r\n    \"junie.onboarding.icon.badge.shown\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/max57374586/IdeaProjects/Desktop_Beleza/src/main/resources/org/githubio/desktop_beleza/Imagens\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.jshint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.jshint\": \"\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"to.speed.mode.migration.done\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\max57374586\\IdeaProjects\\Desktop_Beleza\\src\\main\\resources\\org\\githubio\\desktop_beleza\\Imagens\" />\r\n      <recent name=\"C:\\Users\\arthur59318636\\Music\\Desktop_Beleza\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\max57374586\\IdeaProjects\\Desktop_Beleza\\src\\main\\resources\\org\\githubio\\desktop_beleza\\Imagens\" />\r\n      <recent name=\"C:\\Users\\yuri59073236\\Music\\Desktop_Beleza\" />\r\n      <recent name=\"C:\\Users\\yuri59073236\\Music\\Desktop_Beleza\\src\\main\\resources\\org\\githubio\\desktop_beleza\" />\r\n      <recent name=\"C:\\Users\\yuri59073236\\Music\\Desktop_Beleza\\src\\main\\java\\org\\githubio\\desktop_beleza\\controller\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Launcher\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.githubio.desktop_beleza.Launcher\" />\r\n      <module name=\"Desktop_Beleza\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.githubio.desktop_beleza.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Launcher\" />\r\n        <item itemvalue=\"Application.Launcher\" />\r\n        <item itemvalue=\"Application.Launcher\" />\r\n        <item itemvalue=\"Application.Launcher\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7f54a0a6-f64f-4337-9e9f-d999838302be\" name=\"Changes\" comment=\"\" />\r\n      <created>1792009083187</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1792009083187</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Criacao de botao para adicionar um servico a unidade\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1792434247535</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1792434247535</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Criacao de botao para adicionar um servico a unidade\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Criacao de botao para adicionar um servico a unidade\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e6b8fc3fd5176be21f267f7332bb66c7fdb032f6)
++++ b/.idea/workspace.xml	(date 1793040813876)
+@@ -110,33 +110,33 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.Launcher.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.MCP Project settings loaded": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-    "codeWithMe.voiceChat.enabledByDefault": "false",
+-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+-    "git-widget-placeholder": "remade/recuperarSenha",
+-    "junie.onboarding.icon.badge.shown": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/max57374586/IdeaProjects/Desktop_Beleza/src/main/resources/org/githubio/desktop_beleza/Imagens",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.jshint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.jshint": "",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "to.speed.mode.migration.done": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
++    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;remade/recuperarSenha&quot;,
++    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/max57374586/IdeaProjects/Desktop_Beleza/src/main/resources/org/githubio/desktop_beleza/Imagens&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\max57374586\IdeaProjects\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\Imagens" />
+@@ -165,6 +165,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.Launcher" />
+         <item itemvalue="Application.Launcher" />
+         <item itemvalue="Application.Launcher" />
+         <item itemvalue="Application.Launcher" />
