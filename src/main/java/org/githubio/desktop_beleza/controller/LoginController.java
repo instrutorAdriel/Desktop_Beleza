@@ -8,10 +8,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.util.regex.Pattern;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.dao.LoginDAO;
 
 public class LoginController {
+    // Mesmo padrão usado no cadastro: apenas e-mails institucionais acessam o Desktop.
+    private static final Pattern EMAIL_INSTITUCIONAL =
+            Pattern.compile("^[a-zA-Z0-9._%+-]+@df\\.senac\\.br$", Pattern.CASE_INSENSITIVE);
+
     @FXML
     private TextField Email;
 
@@ -74,6 +79,23 @@ public class LoginController {
             erro.setHeaderText(null);
             erro.setContentText("O campo senha está em branco. Por favor insira a sua senha.");
             erro.showAndWait();
+            return;
+        }
+
+        if (!EMAIL_INSTITUCIONAL.matcher(emailDigitado.trim()).matches()) {
+            erro.setTitle("E-mail fora do padrão");
+            erro.setHeaderText(null);
+            erro.setContentText("O e-mail precisa ser do domínio @df.senac.br.");
+            erro.showAndWait();
+            return;
+        }
+
+        if (!emailDigitado.trim().toLowerCase().endsWith("@df.senac.br")) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("E-mail fora do padrão");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Para entrar nesse sistema é necessário utilizar um e-mail '@df.senac.br'");
+            alerta.showAndWait();
             return;
         }
 
