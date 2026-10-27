@@ -69,6 +69,11 @@ public class UnidadeController implements Initializable {
                 new PropertyValueFactory<>("status")
         );
 
+        tabelaUnidades.widthProperty().addListener((observable, larguraAnterior, novaLargura) ->
+                ajustarLarguraColunas(novaLargura.doubleValue())
+        );
+        ajustarLarguraColunas(tabelaUnidades.getWidth());
+
         carregarTabela();
 
 
@@ -94,6 +99,18 @@ public class UnidadeController implements Initializable {
                 }
             }
         });
+    }
+
+    private void ajustarLarguraColunas(double larguraTabela) {
+        double larguraUtil = larguraTabela - tabelaUnidades.getInsets().getLeft()
+                - tabelaUnidades.getInsets().getRight() - 2;
+        if (larguraUtil <= 0) {
+            return;
+        }
+
+        colNome.setPrefWidth(larguraUtil * 0.26);
+        colEndereco.setPrefWidth(larguraUtil * 0.55);
+        colSituacao.setPrefWidth(larguraUtil * 0.19);
     }
 
 

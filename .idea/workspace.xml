@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Criacao de botao para adicionar um servico a unidade">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/UnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/UnidadeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/unidades.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/unidades.fxml" afterDir="false" />
     </list>
@@ -51,61 +51,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8402624498447624" />
-      <entry key="MS500" value="4.911147579163604" />
-      <entry key="S2" value="12.460641298862969" />
-      <entry key="S5" value="18.166352420215485" />
-      <entry key="S10" value="23.779727005736518" />
-      <entry key="S30" value="45.36620975335749" />
-      <entry key="S60" value="63.282526683735014" />
-      <entry key="M2" value="88.77880264695843" />
-      <entry key="M5" value="189.6445475416485" />
-      <entry key="M10" value="356.2895071820347" />
-      <entry key="M15" value="477.83319595969107" />
-      <entry key="M30" value="690.0968791025228" />
-      <entry key="H1" value="867.8437648685918" />
-      <entry key="H2" value="989.3079439569946" />
-      <entry key="H4" value="1061.468531931451" />
-      <entry key="D1" value="1128.694790556553" />
-      <entry key="W1" value="1140.9379107352554" />
+      <entry key="MS100" value="1.2417020337966156" />
+      <entry key="MS500" value="2.6345264956915218" />
+      <entry key="S2" value="12.89505169784567" />
+      <entry key="S5" value="28.609671866486572" />
+      <entry key="S10" value="41.89900659133976" />
+      <entry key="S30" value="56.68159783248618" />
+      <entry key="S60" value="61.53942986651348" />
+      <entry key="M2" value="64.1893278724567" />
+      <entry key="M5" value="66.75450125970966" />
+      <entry key="M10" value="88.75717540855739" />
+      <entry key="M15" value="145.48915590630276" />
+      <entry key="M30" value="406.91574564635584" />
+      <entry key="H1" value="851.0170582927859" />
+      <entry key="H2" value="1297.043775593102" />
+      <entry key="H4" value="1621.786137285886" />
+      <entry key="D1" value="1966.3282720447448" />
+      <entry key="W1" value="2033.5422150833704" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="1.2111460058838508E-177" />
-      <entry key="S30" value="1.0659385456102447E-59" />
-      <entry key="S60" value="3.264871430256064E-30" />
-      <entry key="M2" value="1.8068955227837417E-15" />
-      <entry key="M5" value="1.266990086291432E-6" />
-      <entry key="M10" value="0.0011256065415105874" />
-      <entry key="M15" value="0.010820759357952497" />
-      <entry key="M30" value="0.10402287901203473" />
-      <entry key="H1" value="0.3225257803835788" />
-      <entry key="H2" value="0.5679135324885077" />
-      <entry key="H4" value="0.7536003798356875" />
-      <entry key="D1" value="0.9539453999307913" />
-      <entry key="W1" value="0.9932870841157234" />
+      <entry key="S5" value="1.3596094468422323E-256" />
+      <entry key="S10" value="1.1660229186607692E-128" />
+      <entry key="S30" value="2.267613474212509E-43" />
+      <entry key="S60" value="4.7619465286923445E-22" />
+      <entry key="M2" value="2.1821884723121848E-11" />
+      <entry key="M5" value="5.43947693370333E-5" />
+      <entry key="M10" value="0.0073807222215717385" />
+      <entry key="M15" value="0.038198945623788165" />
+      <entry key="M30" value="0.21224310997743764" />
+      <entry key="H1" value="0.5738245918493533" />
+      <entry key="H2" value="1.0284091007793323" />
+      <entry key="H4" value="1.4184767918745513" />
+      <entry key="D1" value="1.8857508823799451" />
+      <entry key="W1" value="1.9831882643858965" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.7831810573156226" />
-      <entry key="MS500" value="4.879251615882978" />
-      <entry key="S2" value="12.44078415444894" />
-      <entry key="S5" value="18.15484415830211" />
-      <entry key="S10" value="23.77211964432619" />
-      <entry key="S30" value="45.36115371518618" />
-      <entry key="S60" value="63.278942508146166" />
-      <entry key="M2" value="88.77627179319845" />
-      <entry key="M5" value="189.64198015410565" />
-      <entry key="M10" value="356.2875872681749" />
-      <entry key="M15" value="477.84101228343957" />
-      <entry key="M30" value="690.1984215612786" />
-      <entry key="H1" value="868.1645395775166" />
-      <entry key="H2" value="989.8747720487659" />
-      <entry key="H4" value="1062.2215197086541" />
-      <entry key="D1" value="1129.6486221308353" />
-      <entry key="W1" value="1141.9311812403562" />
+      <entry key="MS100" value="1.1994047649573283" />
+      <entry key="MS500" value="2.6165031347268286" />
+      <entry key="S2" value="12.873376934828416" />
+      <entry key="S5" value="28.590224606539227" />
+      <entry key="S10" value="41.88466346624225" />
+      <entry key="S30" value="56.67509099831333" />
+      <entry key="S60" value="61.5358918135703" />
+      <entry key="M2" value="64.18748112050702" />
+      <entry key="M5" value="66.75378665060363" />
+      <entry key="M10" value="88.76401143700281" />
+      <entry key="M15" value="145.5266639559169" />
+      <entry key="M30" value="407.12675858622487" />
+      <entry key="H1" value="851.5894015372776" />
+      <entry key="H2" value="1298.0709547866716" />
+      <entry key="H4" value="1623.2038059574497" />
+      <entry key="D1" value="1968.2138519479474" />
+      <entry key="W1" value="2035.5253778757553" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -116,32 +116,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "remade/unidades",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/yuri59073236/Music/Desktop_Beleza",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;remade/unidades&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yuri59073236/Music/Desktop_Beleza&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />

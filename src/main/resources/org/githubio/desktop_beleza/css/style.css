@@ -103,12 +103,17 @@
 
 .sidebar {
     -fx-background-color: #004a8d;
-    -fx-padding: 20 15 20 15;
 }
 
 .sidebar-subtitulo {
     -fx-font-family: "Verdana";
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #f7941d;
+}
+
+.sidebar-titulo {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
@@ -162,7 +167,7 @@
     -fx-font-family: "Verdana";
     -fx-font-weight: bold;
     -fx-font-size: 13px;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
     -fx-padding: 0 12px;
     -fx-cursor: hand;
 }
@@ -174,4 +179,8 @@
 
 .danger-senac:pressed {
     -fx-background-color: #a61b1b;
+}
+
+.unidades-table .column-header .label {
+    -fx-alignment: center;
 }
