@@ -77,7 +77,7 @@
 
 .sidebar .button.danger-senac {
     -fx-background-color: transparent;
-    -fx-border-color: #ffffff;
+    -fx-border-color: #fdc180;
     -fx-border-width: 1px;
     -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
@@ -90,7 +90,7 @@
 
 .sidebar .button.danger-senac:hover {
     -fx-background-color: #d9383a;
-    -fx-border-color: #ffffff;
+    -fx-border-color: #fdc180;
     -fx-text-fill: #ffffff;
     -fx-font-family: "Verdana";
     -fx-font-size: 12px;
@@ -478,4 +478,17 @@
 .button.flat:hover {
     -fx-background-color: -color-accent-subtle;
     -fx-text-fill: -color-accent-emphasis;
+}
+.btn-limpar {
+    -fx-background-color: white;
+    -fx-text-fill: #004a8f;
+    -fx-border-color: #004a8f;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-limpar:hover {
+    -fx-background-color: #eaf2fb;
 }

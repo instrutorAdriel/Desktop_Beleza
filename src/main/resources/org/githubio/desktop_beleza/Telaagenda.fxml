@@ -88,27 +88,13 @@
                                     </children>
                                 </VBox>
 
-                                <VBox spacing="3.0">
-                                    <children>
-                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Modelo" />
-                                        <ComboBox fx:id="txtModelo" prefWidth="160.0" promptText="Modelos" />
-                                    </children>
-                                </VBox>
-
-                                <VBox spacing="3.0">
-                                    <children>
-                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Horário" />
-                                        <TextField fx:id="txtHorario" prefWidth="110.0" promptText="HH:mm" />
-                                    </children>
-                                </VBox>
-
-                                <Button fx:id="btnVerTodos" mnemonicParsing="false" onAction="#onVerTodosClick" styleClass="flat" text="Ver semana">
+                                <Button mnemonicParsing="false" onAction="#onLimparFiltroClick" prefWidth="110.0" styleClass="btn-limpar" text="Limpar filtro">
                                     <HBox.margin>
                                         <Insets top="15.0" />
                                     </HBox.margin>
                                 </Button>
 
-                                <Button id="btn-salvar" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefWidth="110.0" styleClass="btn-azul" text="Salvar">
+                                <Button id="btn-salvar" mnemonicParsing="false" onAction="#onBuscarClick" prefWidth="110.0" styleClass="btn-azul" text="Buscar">
                                     <HBox.margin>
                                         <Insets top="15.0" />
                                     </HBox.margin>

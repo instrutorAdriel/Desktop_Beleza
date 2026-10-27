@@ -461,5 +461,65 @@ public class AgendaDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao contar turmas ativas", e);
         }
+
+    }
+    public List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico) {
+        StringBuilder sql = new StringBuilder("""
+        SELECT a.id_agendamento,
+               DATE_FORMAT(a.data_hora_agendamento, '%Y-%m-%d') AS data_agendamento,
+               DATE_FORMAT(a.data_hora_agendamento, '%H:%i')    AS horario_agendamento,
+               a.situacao,
+               um.nome_usuario AS nome_modelo,
+               p.nome_produto  AS nome_servico
+        FROM agendamento a
+        INNER JOIN modelo m             ON m.id_modelo = a.id_modelo
+        INNER JOIN usuario um           ON um.id_usuario = m.id_usuario
+        INNER JOIN disponibilidade d    ON d.id_disponibilidade = a.id_disponibilidade
+        INNER JOIN produto_unidade pu   ON pu.id_produto_unidade = d.id_produto_unidade
+        INNER JOIN produto p            ON p.id_produto = pu.id_produto
+        INNER JOIN unidade un           ON un.id_unidade = pu.id_unidade
+        WHERE 1 = 1
+        """);
+
+        List<Object> params = new ArrayList<>();
+
+        if (data != null) {
+            sql.append(" AND a.data_hora_agendamento >= ? AND a.data_hora_agendamento < ?");
+            params.add(Timestamp.valueOf(data.atStartOfDay()));
+            params.add(Timestamp.valueOf(data.plusDays(1).atStartOfDay()));
+        }
+        if (unidade != null) {
+            sql.append(" AND un.nome_unidade = ?");
+            params.add(unidade);
+        }
+        if (servico != null) {
+            sql.append(" AND p.nome_produto = ?");
+            params.add(servico);
+        }
+        sql.append(" ORDER BY a.data_hora_agendamento");
+
+        List<Agenda> lista = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Agenda(
+                            rs.getInt("id_agendamento"),
+                            rs.getString("data_agendamento"),
+                            rs.getString("horario_agendamento"),
+                            rs.getString("situacao"),
+                            rs.getString("nome_modelo"),
+                            rs.getString("nome_servico")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar agendamentos", e);
+        }
+        return lista;
     }
 }
