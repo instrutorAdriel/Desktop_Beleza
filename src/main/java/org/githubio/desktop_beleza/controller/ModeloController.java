@@ -211,8 +211,15 @@ public class ModeloController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Excluir " + modelo.getNome() + "?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.YES) {
-                dao.excluir(modelo.getId());
-                atualizarTabela();
+                if (dao.excluir(modelo.getId())) {
+                    atualizarTabela();
+                } else {
+                    Alert aviso = new Alert(Alert.AlertType.WARNING);
+                    aviso.setTitle("Não foi possível excluir");
+                    aviso.setHeaderText(null);
+                    aviso.setContentText("Este modelo tem um agendamento e não será possível excluí-lo.");
+                    aviso.showAndWait();
+                }
             }
         });
     }

@@ -150,8 +150,9 @@ public class ModeloDAO {
         }
     }
 
-    public void excluir(int idModelo) {
+    public boolean excluir(int idModelo) {
         String buscarUsuario = "SELECT id_usuario FROM modelo WHERE id_modelo = ?";
+        String verificarAgendamentos = "SELECT 1 FROM agendamento WHERE id_modelo = ? LIMIT 1";
         String excluirModelo = "DELETE FROM modelo WHERE id_modelo = ?";
         String excluirUsuario = """
                 DELETE FROM usuario
@@ -167,9 +168,20 @@ public class ModeloDAO {
                     stmtBusca.setInt(1, idModelo);
                     try (ResultSet rs = stmtBusca.executeQuery()) {
                         if (!rs.next()) {
-                            return;
+                            conn.rollback();
+                            return false;
                         }
                         idUsuario = rs.getInt("id_usuario");
+                    }
+                }
+
+                try (PreparedStatement stmtAgendamento = conn.prepareStatement(verificarAgendamentos)) {
+                    stmtAgendamento.setInt(1, idModelo);
+                    try (ResultSet rs = stmtAgendamento.executeQuery()) {
+                        if (rs.next()) {
+                            conn.rollback();
+                            return false;
+                        }
                     }
                 }
 
@@ -184,6 +196,7 @@ public class ModeloDAO {
                 }
 
                 conn.commit();
+                return true;
             } catch (SQLException e) {
                 conn.rollback();
                 throw e;
@@ -191,7 +204,7 @@ public class ModeloDAO {
                 conn.setAutoCommit(true);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao excluir modelo. Verifique se ele possui agendamentos ou depoimentos vinculados.", e);
+            throw new RuntimeException("Erro ao excluir modelo.", e);
         }
     }
 }
