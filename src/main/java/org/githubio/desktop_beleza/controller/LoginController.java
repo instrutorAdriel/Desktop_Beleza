@@ -37,10 +37,7 @@ public class LoginController {
     private void initialize() {
         SenhaVisivel.textProperty().bindBidirectional(Senha.textProperty());
 
-        // Torna a logo decorativa branca
-        ColorAdjust whiteEffect = new ColorAdjust();
-        whiteEffect.setBrightness(1.0);
-        logoDecorativa.setEffect(whiteEffect);
+
     }
 
     @FXML

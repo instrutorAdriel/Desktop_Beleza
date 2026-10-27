@@ -1,0 +1,323 @@
+Index: src/main/resources/org/githubio/desktop_beleza/login.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.image.*?>\r\n<?import javafx.scene.layout.*?>\r\n<?import javafx.scene.text.*?>\r\n\r\n<BorderPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" stylesheets=\"@css/style.css\" xmlns=\"http://javafx.com/javafx/17.0.12\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"org.githubio.desktop_beleza.controller.LoginController\">\r\n   <left>\r\n      <AnchorPane prefHeight=\"260.0\" prefWidth=\"140.0\" style=\"-fx-background-color: #faf8f7;\" BorderPane.alignment=\"CENTER\" />\r\n   </left>\r\n   <center>\r\n      <VBox alignment=\"CENTER\" prefHeight=\"475.0\" prefWidth=\"504.0\" spacing=\"10.0\" style=\"-fx-background-color: #0000;\" BorderPane.alignment=\"CENTER\">\r\n         <children>\r\n            <Label text=\"Bem-vindo\" textFill=\"#004587\">\r\n               <font>\r\n                  <Font name=\"Verdana Bold\" size=\"28.0\" />\r\n               </font>\r\n            </Label>\r\n            <TextField fx:id=\"Email\" alignment=\"TOP_LEFT\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"24.0\" prefWidth=\"202.0\" promptText=\"E-mail\" style=\"-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;\" styleClass=\"rounded\">\r\n               <opaqueInsets>\r\n                  <Insets />\r\n               </opaqueInsets>\r\n               <VBox.margin>\r\n                  <Insets left=\"100.0\" right=\"100.0\" />\r\n               </VBox.margin>\r\n               <BorderPane.margin>\r\n                  <Insets />\r\n               </BorderPane.margin>\r\n            </TextField>\r\n            <PasswordField fx:id=\"Senha\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"25.0\" prefWidth=\"191.0\" promptText=\"Senha\" style=\"-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;\" styleClass=\"rounded\">\r\n               <VBox.margin>\r\n                  <Insets left=\"100.0\" right=\"100.0\" />\r\n               </VBox.margin>\r\n            </PasswordField>\r\n            <Hyperlink alignment=\"CENTER_RIGHT\" onAction=\"#irParaAtualizarSenha\" text=\"Esqueceu a senha?\" textFill=\"#004a8d\" underline=\"true\">\r\n               <VBox.margin>\r\n                  <Insets left=\"300.0\" />\r\n               </VBox.margin>\r\n               <font>\r\n                  <Font size=\"14.0\" />\r\n               </font>\r\n               <opaqueInsets>\r\n                  <Insets />\r\n               </opaqueInsets>\r\n            </Hyperlink>\r\n            <Button mnemonicParsing=\"false\" onAction=\"#onLoginButtonClick\" prefHeight=\"27.0\" prefWidth=\"90.0\" styleClass=\"btn-cinza\" text=\"Login\">\r\n               <padding>\r\n                  <Insets bottom=\"1.6\" left=\"25.0\" right=\"25.0\" top=\"1.6\" />\r\n               </padding></Button>\r\n            <Button mnemonicParsing=\"false\" onAction=\"#irParaCadastro\" prefHeight=\"27.0\" styleClass=\"btn-azul\" text=\"Registre-se\" textFill=\"#e4e4e4\">\r\n               <VBox.margin>\r\n                  <Insets />\r\n               </VBox.margin>\r\n               <padding>\r\n                  <Insets bottom=\"2.0\" left=\"10.0\" right=\"10.0\" top=\"2.0\" />\r\n               </padding></Button>\r\n         </children>\r\n         <BorderPane.margin>\r\n            <Insets />\r\n         </BorderPane.margin>\r\n      </VBox>\r\n   </center>\r\n   <right>\r\n      <AnchorPane prefHeight=\"260.0\" prefWidth=\"140.0\" style=\"-fx-background-color: #faf8f7;\" BorderPane.alignment=\"CENTER\" />\r\n   </right>\r\n   <top>\r\n      <AnchorPane prefHeight=\"70.0\" prefWidth=\"600.0\" style=\"-fx-background-color: #faf8f7;\" BorderPane.alignment=\"CENTER\">\r\n         <children>\r\n            <ImageView fitHeight=\"52.0\" fitWidth=\"83.0\" layoutX=\"14.0\" layoutY=\"14.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               <image>\r\n                  <Image url=\"@Imagens/Senac_logo.png\" />\r\n               </image>\r\n            </ImageView>\r\n         </children></AnchorPane>\r\n   </top>\r\n   <bottom>\r\n      <AnchorPane prefHeight=\"70.0\" prefWidth=\"600.0\" style=\"-fx-background-color: #faf8f7;\" BorderPane.alignment=\"CENTER\" />\r\n   </bottom>\r\n</BorderPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/githubio/desktop_beleza/login.fxml b/src/main/resources/org/githubio/desktop_beleza/login.fxml
+--- a/src/main/resources/org/githubio/desktop_beleza/login.fxml	(revision e6b8fc3fd5176be21f267f7332bb66c7fdb032f6)
++++ b/src/main/resources/org/githubio/desktop_beleza/login.fxml	(date 1793040807018)
+@@ -6,76 +6,81 @@
+ <?import javafx.scene.layout.*?>
+ <?import javafx.scene.text.*?>
+ 
+-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+-   <left>
+-      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+-   </left>
++<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tela-atualizar-senha" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+    <center>
+-      <VBox alignment="CENTER" prefHeight="475.0" prefWidth="504.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
++      <HBox BorderPane.alignment="CENTER">
+          <children>
+-            <Label text="Bem-vindo" textFill="#004587">
+-               <font>
+-                  <Font name="Verdana Bold" size="28.0" />
+-               </font>
+-            </Label>
+-            <TextField fx:id="Email" alignment="TOP_LEFT" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+-               <opaqueInsets>
+-                  <Insets />
+-               </opaqueInsets>
+-               <VBox.margin>
+-                  <Insets left="100.0" right="100.0" />
+-               </VBox.margin>
+-               <BorderPane.margin>
+-                  <Insets />
+-               </BorderPane.margin>
+-            </TextField>
+-            <PasswordField fx:id="Senha" maxHeight="500.0" maxWidth="500.0" prefHeight="25.0" prefWidth="191.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+-               <VBox.margin>
+-                  <Insets left="100.0" right="100.0" />
+-               </VBox.margin>
+-            </PasswordField>
+-            <Hyperlink alignment="CENTER_RIGHT" onAction="#irParaAtualizarSenha" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+-               <VBox.margin>
+-                  <Insets left="300.0" />
+-               </VBox.margin>
+-               <font>
+-                  <Font size="14.0" />
+-               </font>
+-               <opaqueInsets>
+-                  <Insets />
+-               </opaqueInsets>
+-            </Hyperlink>
+-            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="90.0" styleClass="btn-cinza" text="Login">
+-               <padding>
+-                  <Insets bottom="1.6" left="25.0" right="25.0" top="1.6" />
+-               </padding></Button>
+-            <Button mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="27.0" styleClass="btn-azul" text="Registre-se" textFill="#e4e4e4">
+-               <VBox.margin>
+-                  <Insets />
+-               </VBox.margin>
+-               <padding>
+-                  <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+-               </padding></Button>
+-         </children>
+-         <BorderPane.margin>
+-            <Insets />
+-         </BorderPane.margin>
+-      </VBox>
+-   </center>
+-   <right>
+-      <AnchorPane prefHeight="260.0" prefWidth="140.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+-   </right>
+-   <top>
+-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER">
+-         <children>
+-            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+-               <image>
+-                  <Image url="@Imagens/Senac_logo.png" />
+-               </image>
+-            </ImageView>
+-         </children></AnchorPane>
+-   </top>
+-   <bottom>
+-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf8f7;" BorderPane.alignment="CENTER" />
+-   </bottom>
++            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
++               <padding>
++                  <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
++               </padding>
++               <children>
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="titulo-formulario" text="Bem-vindo">
++                           <font>
++                              <Font name="System Bold" size="28.0" />
++                           </font>
++                        </Label>
++                        <Label styleClass="descricao-formulario" text="Acesse sua conta para gerenciar os serviços" />
++                     </children>
++                     <VBox.margin>
++                        <Insets bottom="4.0" />
++                     </VBox.margin>
++                  </VBox>
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="E-mail" />
++                        <TextField fx:id="Email" prefHeight="45.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
++                     </children>
++                  </VBox>
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="Senha" />
++                        <StackPane prefHeight="45.0" styleClass="campo-senha">
++                           <children>
++                              <PasswordField fx:id="Senha" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" />
++                              <TextField fx:id="SenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" visible="false" />
++                              <Button fx:id="btnToggleSenha" mnemonicParsing="false" onAction="#alternarVisibilidadeSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
++                                 <graphic>
++                                    <ImageView fx:id="imgOlho" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
++                                       <image>
++                                          <Image url="@Imagens/eyeOpen 1.png" />
++                                       </image>
++                                    </ImageView>
++                                 </graphic>
++                              </Button>
++                           </children>
++                        </StackPane>
++                        <Hyperlink onAction="#irParaAtualizarSenha" style="-fx-padding: 0;" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
++                           <font>
++                              <Font size="13.0" />
++                           </font>
++                        </Hyperlink>
++                     </children>
++                  </VBox>
++                  <VBox spacing="10.0" styleClass="acoes-formulario">
++                     <children>
++                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="45.0" styleClass="botao-principal" text="Login" />
++                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="40.0" styleClass="botao-secundario" text="Registre-se" />
++                     </children>
++                  </VBox>
++               </children>
++            </VBox>
++            <VBox alignment="CENTER" prefWidth="300.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
++               <padding>
++                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
++               </padding>
++               <children>
++                  <ImageView fx:id="logoDecorativa" fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@Imagens/Senac_logo.png" />
++                     </image>
++                  </ImageView>
++                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="Beleza e Bem-estar. Sua gestão profissional." textAlignment="CENTER" wrapText="true" />
++               </children>
++            </VBox>
++         </children>
++      </HBox>
++   </center>
+ </BorderPane>
+Index: src/main/resources/org/githubio/desktop_beleza/cadastro.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.image.*?>\r\n<?import javafx.scene.layout.*?>\r\n<?import javafx.scene.text.*?>\r\n\r\n<BorderPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" stylesheets=\"@css/style.css\" xmlns=\"http://javafx.com/javafx/17.0.12\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"org.githubio.desktop_beleza.controller.CadastroController\">\r\n   <center>\r\n      <VBox alignment=\"CENTER\" prefHeight=\"279.0\" prefWidth=\"341.0\" spacing=\"10.0\" style=\"-fx-background-color: #0000;\" BorderPane.alignment=\"CENTER\">\r\n         <children>\r\n            <Label alignment=\"CENTER\" contentDisplay=\"CENTER\" prefHeight=\"78.0\" prefWidth=\"230.0\" text=\"Cadastro\" textFill=\"#004587\">\r\n               <font>\r\n                  <Font name=\"Verdana Bold\" size=\"28.0\" />\r\n               </font>\r\n            </Label>\r\n            <TextField fx:id=\"campoNome\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"24.0\" prefWidth=\"202.0\" promptText=\"Nome\" style=\"-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;\" styleClass=\"rounded\">\r\n               <VBox.margin>\r\n                  <Insets left=\"86.0\" right=\"86.0\" />\r\n               </VBox.margin>\r\n            </TextField>\r\n            <TextField fx:id=\"campoEmail\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"24.0\" prefWidth=\"202.0\" promptText=\"E-mail\" style=\"-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;\" styleClass=\"rounded\">\r\n               <VBox.margin>\r\n                  <Insets left=\"86.0\" right=\"86.0\" />\r\n               </VBox.margin>\r\n            </TextField>\r\n            <PasswordField fx:id=\"campoSenha\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"24.0\" prefWidth=\"202.0\" promptText=\"Senha\" style=\"-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;\">\r\n               <VBox.margin>\r\n                  <Insets left=\"90.0\" right=\"90.0\" />\r\n               </VBox.margin>\r\n            </PasswordField>\r\n            <PasswordField fx:id=\"campoConfirmarSenha\" maxHeight=\"500.0\" maxWidth=\"500.0\" prefHeight=\"24.0\" prefWidth=\"202.0\" promptText=\"Confirmar senha\" style=\"-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;\">\r\n               <VBox.margin>\r\n                  <Insets left=\"90.0\" right=\"90.0\" />\r\n               </VBox.margin>\r\n            </PasswordField>\r\n            <HBox alignment=\"CENTER\" nodeOrientation=\"LEFT_TO_RIGHT\" onDragDetected=\"#onCadastrarClick\" prefHeight=\"26.0\" prefWidth=\"281.0\" spacing=\"26.0\">\r\n               <children>\r\n                  <Button alignment=\"CENTER\" mnemonicParsing=\"false\" onAction=\"#onVoltarClick\" styleClass=\"btn-azul\" text=\"Voltar\" textFill=\"#e4e4e4\" />\r\n                  <Button mnemonicParsing=\"false\" onAction=\"#onCadastrarClick\" prefHeight=\"27.0\" prefWidth=\"91.0\" styleClass=\"btn-cinza\" text=\"Cadastrar\" />\r\n               </children>\r\n               <VBox.margin>\r\n                  <Insets top=\"6.0\" />\r\n               </VBox.margin>\r\n            </HBox>\r\n         </children>\r\n         <BorderPane.margin>\r\n            <Insets />\r\n         </BorderPane.margin>\r\n      </VBox>\r\n   </center>\r\n   <top>\r\n      <AnchorPane prefHeight=\"70.0\" prefWidth=\"600.0\" style=\"-fx-background-color: #faf7f8;\" BorderPane.alignment=\"CENTER\">\r\n         <children>\r\n            <ImageView fitHeight=\"52.0\" fitWidth=\"83.0\" layoutX=\"14.0\" layoutY=\"14.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               <image>\r\n                  <Image url=\"@Imagens/Senac_logo.png\" />\r\n               </image>\r\n            </ImageView>\r\n         </children></AnchorPane>\r\n   </top>\r\n   <bottom>\r\n      <AnchorPane prefHeight=\"70.0\" prefWidth=\"600.0\" style=\"-fx-background-color: #faf7f8;\" BorderPane.alignment=\"CENTER\" />\r\n   </bottom>\r\n   <right>\r\n      <AnchorPane prefHeight=\"200.0\" prefWidth=\"140.0\" style=\"-fx-background-color: #faf7f8;\" BorderPane.alignment=\"CENTER\" />\r\n   </right>\r\n   <left>\r\n      <AnchorPane prefHeight=\"400.0\" prefWidth=\"140.0\" style=\"-fx-background-color: #faf7f8;\" BorderPane.alignment=\"CENTER\" />\r\n   </left>\r\n</BorderPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml b/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml
+--- a/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml	(revision e6b8fc3fd5176be21f267f7332bb66c7fdb032f6)
++++ b/src/main/resources/org/githubio/desktop_beleza/cadastro.fxml	(date 1793040806997)
+@@ -1,72 +1,89 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
++<?import java.net.*?>
+ <?import javafx.geometry.*?>
+ <?import javafx.scene.control.*?>
+ <?import javafx.scene.image.*?>
+ <?import javafx.scene.layout.*?>
+ <?import javafx.scene.text.*?>
+ 
+-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
++<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="tela-atualizar-senha" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
+    <center>
+-      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="341.0" spacing="10.0" style="-fx-background-color: #0000;" BorderPane.alignment="CENTER">
++      <HBox BorderPane.alignment="CENTER">
+          <children>
+-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="230.0" text="Cadastro" textFill="#004587">
+-               <font>
+-                  <Font name="Verdana Bold" size="28.0" />
+-               </font>
+-            </Label>
+-            <TextField fx:id="campoNome" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Nome" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+-               <VBox.margin>
+-                  <Insets left="86.0" right="86.0" />
+-               </VBox.margin>
+-            </TextField>
+-            <TextField fx:id="campoEmail" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="E-mail" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;" styleClass="rounded">
+-               <VBox.margin>
+-                  <Insets left="86.0" right="86.0" />
+-               </VBox.margin>
+-            </TextField>
+-            <PasswordField fx:id="campoSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+-               <VBox.margin>
+-                  <Insets left="90.0" right="90.0" />
+-               </VBox.margin>
+-            </PasswordField>
+-            <PasswordField fx:id="campoConfirmarSenha" maxHeight="500.0" maxWidth="500.0" prefHeight="24.0" prefWidth="202.0" promptText="Confirmar senha" style="-fx-background-color: transparency; -fx-border-style: hidden hidden solid hidden;">
+-               <VBox.margin>
+-                  <Insets left="90.0" right="90.0" />
+-               </VBox.margin>
+-            </PasswordField>
+-            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onDragDetected="#onCadastrarClick" prefHeight="26.0" prefWidth="281.0" spacing="26.0">
+-               <children>
+-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onVoltarClick" styleClass="btn-azul" text="Voltar" textFill="#e4e4e4" />
+-                  <Button mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="27.0" prefWidth="91.0" styleClass="btn-cinza" text="Cadastrar" />
+-               </children>
+-               <VBox.margin>
+-                  <Insets top="6.0" />
+-               </VBox.margin>
+-            </HBox>
+-         </children>
+-         <BorderPane.margin>
+-            <Insets />
+-         </BorderPane.margin>
+-      </VBox>
+-   </center>
+-   <top>
+-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER">
+-         <children>
+-            <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+-               <image>
+-                  <Image url="@Imagens/Senac_logo.png" />
+-               </image>
+-            </ImageView>
+-         </children></AnchorPane>
+-   </top>
+-   <bottom>
+-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
+-   </bottom>
+-   <right>
+-      <AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
+-   </right>
+-   <left>
+-      <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #faf7f8;" BorderPane.alignment="CENTER" />
+-   </left>
++            <VBox alignment="CENTER" spacing="15.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
++               <padding>
++                  <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
++               </padding>
++               <children>
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="titulo-formulario" text="Cadastro">
++                           <font>
++                              <Font name="System Bold" size="28.0" />
++                           </font>
++                        </Label>
++                        <Label styleClass="descricao-formulario" text="Preencha os dados para criar sua conta de instrutor" />
++                     </children>
++                     <VBox.margin>
++                        <Insets bottom="4.0" />
++                     </VBox.margin>
++                  </VBox>
++                  
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="Nome completo" />
++                        <TextField fx:id="campoNome" prefHeight="40.0" promptText="Digite seu nome" styleClass="campo-formulario" />
++                     </children>
++                  </VBox>
++                  
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="E-mail institucional" />
++                        <TextField fx:id="campoEmail" prefHeight="40.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
++                     </children>
++                  </VBox>
++                  
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="Senha" />
++                        <PasswordField fx:id="campoSenha" prefHeight="40.0" promptText="Digite sua senha" styleClass="campo-formulario" />
++                     </children>
++                  </VBox>
++                  
++                  <VBox spacing="6.0">
++                     <children>
++                        <Label styleClass="rotulo-formulario" text="Confirmar Senha" />
++                        <PasswordField fx:id="campoConfirmarSenha" prefHeight="40.0" promptText="Repita sua senha" styleClass="campo-formulario" />
++                     </children>
++                  </VBox>
++                  
++                  <VBox spacing="10.0" styleClass="acoes-formulario">
++                     <children>
++                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="45.0" styleClass="botao-principal" text="Cadastrar" />
++                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVoltarClick" prefHeight="40.0" styleClass="botao-secundario" text="Voltar" />
++                     </children>
++                     <VBox.margin>
++                        <Insets top="10.0" />
++                     </VBox.margin>
++                  </VBox>
++               </children>
++            </VBox>
++            
++            <VBox alignment="CENTER" prefWidth="350.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
++               <padding>
++                  <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
++               </padding>
++               <children>
++                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@Imagens/Senac_logo.png" />
++                     </image>
++                  </ImageView>
++                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="Educação Profissional de Qualidade. Faça parte do nosso time." textAlignment="CENTER" wrapText="true" />
++               </children>
++            </VBox>
++         </children>
++      </HBox>
++   </center>
+ </BorderPane>
