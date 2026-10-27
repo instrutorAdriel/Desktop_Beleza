@@ -21,7 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.githubio.desktop_beleza.model.Servico;
-import org.githubio.desktop_beleza.model.ServicosDAO;
+import org.githubio.desktop_beleza.model.dao.ServicosDAO;
 
 import java.net.URL;
 import java.util.ResourceBundle;

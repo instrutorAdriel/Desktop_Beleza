@@ -9,11 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Modelo;
-import org.githubio.desktop_beleza.model.ModeloDAO;
+import org.githubio.desktop_beleza.model.dao.ModeloDAO;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;

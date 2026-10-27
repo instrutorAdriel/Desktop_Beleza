@@ -1,13 +1,13 @@
 
 .editar{
-    -fx-background-image: url("../Imagens/editar.png");
+    -fx-background-image: url("../images/editar.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
 .editar:hover{
-    -fx-background-image: url("../Imagens/editar-blue.png");
+    -fx-background-image: url("../images/editar-blue.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
@@ -15,14 +15,14 @@
 
 
 .excluir{
-    -fx-background-image: url("../Imagens/lixo.png");
+    -fx-background-image: url("../images/lixo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
 .excluir:hover{
-    -fx-background-image: url("../Imagens/lixo-red.png");
+    -fx-background-image: url("../images/lixo-red.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
@@ -101,62 +101,66 @@
     -fx-background-color: #dddddd;
 }
 
-/* Tema exclusivo da tela de atualização de senha */
-.tela-atualizar-senha {
+/*
+A PARTIR DAQUI PODE UTILIZAR E O QUE ESTÁ ACIMA REMOVER QUANDO COLOCAR TODAS AS TELAS DO DESKTOP REMADE
+NO PROJETO PRINCIPAL
+ */
+.tela-base {
     -fx-background-color: #ffffff;
     -fx-font-family: "System";
 }
 
-.tela-atualizar-senha .formulario-atualizar-senha {
+.formulario-atualizar-senha {
     -fx-background-color: #ffffff;
 }
 
-.tela-atualizar-senha .titulo-formulario {
+.titulo-formulario {
     -fx-text-fill: #004a8d;
+    -fx-font-size: 28px;
 }
 
-.tela-atualizar-senha .descricao-formulario {
+.descricao-formulario {
     -fx-font-size: 14px;
     -fx-text-fill: #687586;
 }
 
-.tela-atualizar-senha .rotulo-formulario {
+.rotulo-formulario {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: #344054;
 }
 
-.tela-atualizar-senha .campo-formulario {
+.campo-formulario {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
     -fx-border-color: #cbd5e1;
     -fx-border-radius: 8;
     -fx-border-width: 1;
     -fx-font-size: 14px;
-    -fx-padding: 0 42 0 12;
+    -fx-padding: 0 12 0 12;
     -fx-prompt-text-fill: #8994a3;
 }
 
-.tela-atualizar-senha .campo-formulario:focused {
+.campo-formulario:focused {
     -fx-border-color: #004a8d;
     -fx-border-width: 1.5;
 }
 
-.tela-atualizar-senha .botao-olho {
+.botao-olho {
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-padding: 0 12 0 8;
 }
 
-.tela-atualizar-senha .validacoes-senha {
+.validacoes-senha {
     -fx-padding: 0 0 0 2;
 }
 
-.tela-atualizar-senha .validacao-senha {
+.validacao-senha {
     -fx-font-size: 12px;
 }
 
-.tela-atualizar-senha .botao-principal {
+.botao-principal {
     -fx-background-color: #004a8d;
     -fx-background-radius: 8;
     -fx-cursor: hand;
@@ -165,15 +169,15 @@
     -fx-text-fill: #ffffff;
 }
 
-.tela-atualizar-senha .botao-principal:hover {
+.botao-principal:hover {
     -fx-background-color: #003666;
 }
 
-.tela-atualizar-senha .botao-principal:pressed {
+.botao-principal:pressed {
     -fx-background-color: #002b52;
 }
 
-.tela-atualizar-senha .botao-secundario {
+.botao-secundario {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
     -fx-border-color: #cbd5e1;
@@ -183,21 +187,93 @@
     -fx-text-fill: #004a8d;
 }
 
-.tela-atualizar-senha .botao-secundario:hover {
+.botao-secundario:hover {
     -fx-background-color: #e5f0fa;
     -fx-border-color: #004a8d;
 }
 
-.tela-atualizar-senha .painel-decorativo-atualizar {
-    -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
+.painel-decorativo {
+    -fx-background-color: #004786;
 }
 
-.tela-atualizar-senha .titulo-decorativo {
+.titulo-decorativo {
     -fx-text-fill: #ffffff;
 }
 
-.tela-atualizar-senha .texto-decorativo {
+.texto-decorativo {
     -fx-font-size: 28px;
     -fx-text-alignment: center;
+    -fx-text-fill: #ffffff;
+}
+
+.texto-link {
+    -color-link-fg: #004a8d;
+    -color-link-visited: #004a8d;
+}
+
+/*
+TEMA DO SENAC pego do DEKSTOP REMADE
+ */
+.root {
+    -color-accent-emphasis: #004a8d;
+    -color-accent-muted: #004a8d;
+    -color-accent-subtle: #e5f0fa;
+    -color-accent-fg: #ffffff;
+    -color-warning-emphasis: #f7941d;
+    -color-warning-muted: #f7941d;
+    -color-warning-subtle: #fef4e8;
+    -color-warning-fg: #ffffff;
+    -color-accent-subtle-hover: #fdc180;
+    -color-cell-border-selected: #004a8d;
+    -color-accent-border-focused: #004a8d;
+}
+
+.sidebar {
+    -fx-background-color: #004a8d;
+    -fx-border-color: #003666;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-titulo {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-subtitulo {
+    -fx-font-size: 12px;
+    -fx-text-fill: #fdc180;
+}
+
+.sidebar .button {
+    -fx-background-color: #f7941d;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: BASELINE_LEFT;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: #fdc180;
+    -fx-text-fill: #004a8d;
+}
+
+.sidebar .button:pressed,
+.sidebar .button.active {
+    -fx-background-color: #e07f0c;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar .button.danger-senac {
+    -fx-background-color: transparent;
+    -fx-border-color: #fdc180;
+    -fx-border-radius: 8;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar .button.danger-senac:hover {
+    -fx-background-color: #d9383a;
+    -fx-border-color: #d9383a;
     -fx-text-fill: #ffffff;
 }
