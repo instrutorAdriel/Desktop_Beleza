@@ -20,7 +20,7 @@
    <children>
       <HBox>
          <children>
-            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
                </padding>
@@ -102,17 +102,17 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="38.0" styleClass="painel-decorativo">
                <padding>
                   <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
                </padding>
                <children>
-                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #ffffff;">
+                  <ImageView fx:id="logoDecorativa" fitHeight="152.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Senac_logo.png" />
+                        <Image url="@../images/senaclogo-branco.png" />
                      </image>
                   </ImageView>
-                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="Beleza e Bem-estar. Sua gestão profissional." textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
          </children>

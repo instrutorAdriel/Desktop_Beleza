@@ -63,7 +63,7 @@
             <children>
                 <ImageView fitHeight="52.0" fitWidth="83.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/Senac_logo.png" />
+                        <Image url="@../images/senaclogo.png" />
                     </image></ImageView>
             </children></AnchorPane>
     </top>

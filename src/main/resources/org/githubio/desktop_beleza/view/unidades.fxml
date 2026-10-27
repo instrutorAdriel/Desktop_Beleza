@@ -26,7 +26,7 @@
                     preserveRatio="true">
 
                 <image>
-                    <Image url="@../images/Senac_logo.png"/>
+                    <Image url="@../images/senaclogo.png"/>
                 </image>
 
             </ImageView>

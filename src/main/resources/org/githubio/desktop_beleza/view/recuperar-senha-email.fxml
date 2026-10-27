@@ -12,7 +12,7 @@
 
 <StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-base" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
     <children>
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+        <HBox>
             <children>
                 <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
                     <padding>
@@ -24,7 +24,7 @@
                               <Label styleClass="titulo-formulario" text="E-mail de Recuperacão" />
                      </children>
                   </VBox>
-                        <VBox>
+                        <VBox spacing="6.0">
                             <children>
                         <Label styleClass="rotulo-formulario" text="Insira seu e-mail" />
                                 <TextField fx:id="txtEmail" prefHeight="45.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
@@ -41,18 +41,19 @@
                   </VBox>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefWidth="380.0" spacing="38.0" styleClass="painel-decorativo" HBox.hgrow="ALWAYS">
-               <children>
-                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Senac_logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
-               </children>
+            <VBox alignment="CENTER" spacing="38.0" styleClass="painel-decorativo">
                <padding>
                   <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
-               </padding></VBox>
+               </padding>
+               <children>
+                  <ImageView fx:id="logoDecorativa" fitHeight="152.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/senaclogo-branco.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="Beleza e Bem-estar. Sua gestão profissional." textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
             </children>
         </HBox>
     </children>

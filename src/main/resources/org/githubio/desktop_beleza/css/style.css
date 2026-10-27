@@ -193,7 +193,7 @@ NO PROJETO PRINCIPAL
 }
 
 .painel-decorativo {
-    -fx-background-color: #003c72;
+    -fx-background-color: #004786;
 }
 
 .titulo-decorativo {
@@ -204,6 +204,11 @@ NO PROJETO PRINCIPAL
     -fx-font-size: 28px;
     -fx-text-alignment: center;
     -fx-text-fill: #ffffff;
+}
+
+.texto-link {
+    -color-link-fg: #004a8d;
+    -color-link-visited: #004a8d;
 }
 
 /*
