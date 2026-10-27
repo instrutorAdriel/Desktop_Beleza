@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
@@ -14,6 +15,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import org.githubio.desktop_beleza.MainApplication;
@@ -26,18 +30,59 @@ public class LoginController {
 
     @FXML
     private TextField Email;
+
     @FXML
     private PasswordField Senha;
 
     // Trava para impedir que o login seja disparado mais de uma vez enquanto autentica
     private boolean autenticando = false;
+
+    @FXML
+    private TextField SenhaVisivel;
+
+    @FXML
+    private Button btnToggleSenha;
+
+    @FXML
+    private ImageView imgOlho;
+
+    @FXML
+    private ImageView logoDecorativa;
+
+    private boolean senhaEstaVisivel = false;
+
+    @FXML
+    private void initialize() {
+        SenhaVisivel.textProperty().bindBidirectional(Senha.textProperty());
+
+
+    }
+
     @FXML
     protected void irParaCadastro()throws IOException {
         MainApplication.setRoot("cadastro");
     }
+
     @FXML
-    protected void onLoginButtonClick() throws IOException{
-        String emailDigitado = Email.getText();
+    protected void alternarVisibilidadeSenha() {
+        senhaEstaVisivel = !senhaEstaVisivel;
+
+        Senha.setVisible(!senhaEstaVisivel);
+        Senha.setManaged(!senhaEstaVisivel);
+
+        SenhaVisivel.setVisible(senhaEstaVisivel);
+        SenhaVisivel.setManaged(senhaEstaVisivel);
+
+        String imagemOlho = senhaEstaVisivel
+                ? "/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png"
+                : "/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png";
+
+        imgOlho.setImage(new Image(getClass().getResourceAsStream(imagemOlho)));
+    }
+
+    @FXML
+    protected void onLoginButtonClick() throws IOException {
+        String emailDigitado = Email.getText().trim();
         String senhaDigitada = Senha.getText();
 
         // Alerta do tipo ERRO
@@ -125,6 +170,16 @@ public class LoginController {
         Thread threadLogin = new Thread(tarefaLogin);
         threadLogin.setDaemon(true);
         threadLogin.start();
+        if (logado) {
+            MainApplication.setUsuario(emailDigitado);
+            MainApplication.setRoot("Telaagenda");
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("As informações inseridas não estão corretas");
+            alerta.setHeaderText(null);
+            alerta.setContentText("E-mail ou senha incorreto.");
+            alerta.showAndWait();
+        }
     }
 
     // Popup modal de "Autenticando...": bloqueia a tela de login até a resposta chegar
@@ -158,3 +213,6 @@ public class LoginController {
         MainApplication.setRoot("atualizarsenha");
     }
 }
+
+
+
