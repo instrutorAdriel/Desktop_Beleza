@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ModeloController implements Initializable {
@@ -38,6 +39,15 @@ public class ModeloController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         // CORRIGIDO: o nome da propriedade é "data" (getData()), não "data_nascimento"
         colDataNascimento.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colDataNascimento.setCellFactory(column -> new TableCell<>() {
+            private final DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            @Override
+            protected void updateItem(Date data, boolean empty) {
+                super.updateItem(data, empty);
+                setText(empty || data == null ? null : data.toLocalDate().format(formatoBrasileiro));
+            }
+        });
 
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
