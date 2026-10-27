@@ -74,7 +74,7 @@
                   </VBox>
                   <VBox spacing="10.0">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" onAction="#onAlterarSenha" prefHeight="45.0" styleClass="botao-principal" text="Alterar Senha" />
+                        <Button fx:id="btnAlterarSenha" maxWidth="1.7976931348623157E308" onAction="#onAlterarSenha" prefHeight="45.0" styleClass="botao-principal" text="Alterar Senha" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#voltarParaLogin" prefHeight="45.0" styleClass="botao-secundario" text="Voltar ao Login" />
                      </children>
                      <VBox.margin>

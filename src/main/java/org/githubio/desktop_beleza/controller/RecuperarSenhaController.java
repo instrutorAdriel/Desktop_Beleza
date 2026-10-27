@@ -25,6 +25,7 @@ public class RecuperarSenhaController {
     @FXML private Button btnEnviarCodigo;
 
     @FXML private TextField txtCodigo;
+    @FXML private Button btnConfirmarCodigo;
 
     @FXML private PasswordField campoNovaSenha;
     @FXML private TextField campoNovaSenhaVisivel;
@@ -35,6 +36,8 @@ public class RecuperarSenhaController {
     @FXML private TextField campoConfirmarSenhaVisivel;
     @FXML private Button btnToggleConfirmarSenha;
     @FXML private ImageView imgOlhoConfirmar;
+
+    @FXML private Button btnAlterarSenha;
 
     @FXML private VBox vboxValidacoes;
     @FXML private Label lblMaiuscula;

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="feature: implementação do design padrão das telas de recuperar senha">
+    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-email.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +81,15 @@
       <updated>1793121367145</updated>
       <workItem from="1793121374621" duration="5413000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
+      <option name="closed" value="true" />
+      <created>1793132877617</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1793132877617</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,14 +120,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature: implementação do design padrão das telas de recuperar senha" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: implementação do design padrão das telas de recuperar senha" />
+    <MESSAGE value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
-          <line>131</line>
+          <line>134</line>
           <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController" method="onConfirmarCodigo">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -128,7 +137,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
-          <line>139</line>
+          <line>142</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
