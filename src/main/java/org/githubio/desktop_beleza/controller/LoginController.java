@@ -17,7 +17,6 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.effect.ColorAdjust;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import org.githubio.desktop_beleza.MainApplication;
@@ -81,7 +80,7 @@ public class LoginController {
     }
 
     @FXML
-    protected void onLoginButtonClick() throws IOException {
+    protected void onLoginButtonClick() {
         String emailDigitado = Email.getText().trim();
         String senhaDigitada = Senha.getText();
 
@@ -106,15 +105,6 @@ public class LoginController {
             erro.setHeaderText(null);
             erro.setContentText("O e-mail precisa ser do domínio @df.senac.br.");
             erro.showAndWait();
-            return;
-        }
-
-        if (!emailDigitado.trim().toLowerCase().endsWith("@df.senac.br")) {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("E-mail fora do padrão");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Para entrar nesse sistema é necessário utilizar um e-mail '@df.senac.br'");
-            alerta.showAndWait();
             return;
         }
 
@@ -158,6 +148,7 @@ public class LoginController {
         tarefaLogin.setOnFailed(evento -> {
             popupLoading.close();
             autenticando = false;
+            tarefaLogin.getException().printStackTrace();
 
             Alert falha = new Alert(Alert.AlertType.ERROR);
             falha.setTitle("Erro ao autenticar");
@@ -170,16 +161,6 @@ public class LoginController {
         Thread threadLogin = new Thread(tarefaLogin);
         threadLogin.setDaemon(true);
         threadLogin.start();
-        if (logado) {
-            MainApplication.setUsuario(emailDigitado);
-            MainApplication.setRoot("Telaagenda");
-        } else {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("As informações inseridas não estão corretas");
-            alerta.setHeaderText(null);
-            alerta.setContentText("E-mail ou senha incorreto.");
-            alerta.showAndWait();
-        }
     }
 
     // Popup modal de "Autenticando...": bloqueia a tela de login até a resposta chegar
@@ -213,6 +194,3 @@ public class LoginController {
         MainApplication.setRoot("atualizarsenha");
     }
 }
-
-
-
