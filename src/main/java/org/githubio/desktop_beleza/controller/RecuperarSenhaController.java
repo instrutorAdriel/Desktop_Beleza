@@ -1,5 +1,7 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -20,6 +22,7 @@ import java.io.IOException;
 public class RecuperarSenhaController {
 
     @FXML private TextField txtEmail;
+    @FXML private Button btnEnviarCodigo;
 
     @FXML private TextField txtCodigo;
 
@@ -40,7 +43,7 @@ public class RecuperarSenhaController {
     @FXML private Label lblEspecial;
 
     private String emailEmRecuperacao;
-    private int idUsuarioEmRecuperacao;
+    private static int idUsuarioEmRecuperacao;
 
     private boolean novaSenhaVisivel = false;
     private boolean confirmarSenhaVisivel = false;
@@ -74,34 +77,55 @@ public class RecuperarSenhaController {
             return;
         }
 
-        if (!atualizarSenhaDAO.instrutorExiste(email)) {
-            mostrarAlerta(Alert.AlertType.INFORMATION,"Solicitação Enviada",
-                    "Se o e-mail informado estiver cadastrado, o código de verificação será enviado.");
-            return;
-        }
+        txtEmail.setDisable(true);
+        btnEnviarCodigo.setDisable(true);
+        btnEnviarCodigo.setText("Enviando...");
 
-        try {
-            this.emailEmRecuperacao = email;
-            this.idUsuarioEmRecuperacao = atualizarSenhaDAO.buscarIdUsuarioPorEmail(email);
 
-            String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
-
-            passwordResetTokenDAO.salvarCodigoOtp(this.idUsuarioEmRecuperacao, codigoOtp);
-
-            new Thread(() -> {
-                try {
-                    emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        Task<Void> tarefaEnvio = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                if (!atualizarSenhaDAO.instrutorExiste(email)) {
+                    Platform.runLater(() -> {
+                        mostrarAlerta(Alert.AlertType.INFORMATION,"Solicitação Enviada",
+                                "Se o e-mail informado estiver cadastrado, o código de verificação será enviado.");
+                        restaurarEstadoBotao();
+                    });
+                    return null;
                 }
-            }).start();
 
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
-            MainApplication.setRoot("recuperar-senha-codigo");
-        } catch (Exception e) {
-            e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro no Envio", "Não foi possível gerar o código de recuperação.");
-        }
+                emailEmRecuperacao = email;
+                idUsuarioEmRecuperacao = atualizarSenhaDAO.buscarIdUsuarioPorEmail(email);
+
+                String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
+                passwordResetTokenDAO.salvarCodigoOtp(idUsuarioEmRecuperacao, codigoOtp);
+
+                emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
+
+                Platform.runLater(() -> {
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
+                    try {
+                        MainApplication.setRoot("recuperar-senha-codigo");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+
+        tarefaEnvio.setOnFailed(event -> {
+            Throwable e = tarefaEnvio.getException();
+            if (e != null) e.printStackTrace();
+
+            restaurarEstadoBotao();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro no Envio", "Não foi possível enviar o código de recuperação.");
+        });
+
+        Thread thread = new Thread(tarefaEnvio);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @FXML
@@ -113,7 +137,7 @@ public class RecuperarSenhaController {
             return;
         }
 
-        boolean valido = passwordResetTokenDAO.validarCodigoOtp(this.idUsuarioEmRecuperacao, codigoDigitado);
+        boolean valido = passwordResetTokenDAO.validarCodigoOtp(idUsuarioEmRecuperacao, codigoDigitado);
 
         if (!valido) {
             mostrarAlerta(Alert.AlertType.ERROR, "Código Inválido", "O código digitado é incorreto ou já expirou.");
@@ -217,6 +241,12 @@ public class RecuperarSenhaController {
 
         lblEspecial.setText(senha.matches(".*[^a-zA-Z0-9].*") ? "✔ Caractere especial" : "❌ Caractere especial");
         lblEspecial.setTextFill(senha.matches(".*[^a-zA-Z0-9].*") ? javafx.scene.paint.Color.web("#5cb85c") : javafx.scene.paint.Color.web("#d9534f"));
+    }
+
+    private void restaurarEstadoBotao() {
+        txtEmail.setDisable(false);
+        btnEnviarCodigo.setDisable(false);
+        btnEnviarCodigo.setText("Enviar Código");
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
