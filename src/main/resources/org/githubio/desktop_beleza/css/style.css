@@ -352,6 +352,14 @@
     -fx-padding: 0 8;
 }
 
+.date-picker-popup .day-cell:today {
+    -fx-text-fill: #000000;
+}
+
+.date-picker-popup .day-cell:today:selected {
+    -fx-text-fill: #000000;
+}
+
 .sidebar {
     -fx-background-color: #004a8d;
     -fx-border-color: #003666;

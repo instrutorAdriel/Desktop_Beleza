@@ -113,6 +113,16 @@ public class ModeloController implements Initializable {
         dpNascimento.getStyleClass().add("model-dialog-field");
         dpNascimento.setMaxWidth(Double.MAX_VALUE);
 
+        dpNascimento.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate data, boolean vazio) {
+                super.updateItem(data, vazio);
+                setStyle(!vazio && LocalDate.now().equals(data)
+                        ? "-fx-text-fill: #000000;"
+                        : "");
+            }
+        });
+
         // CORRIGIDO: preenche o DatePicker com a data já salva (edição)
         if (modelo.getData() != null) {
             dpNascimento.setValue(modelo.getData().toLocalDate());
