@@ -11,9 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.ServicosDAO;
+import org.githubio.desktop_beleza.model.dao.ServicosDAO;
 import org.githubio.desktop_beleza.model.Unidade;
-import org.githubio.desktop_beleza.model.UnidadeDAO;
+import org.githubio.desktop_beleza.model.dao.UnidadeDAO;
 
 import java.io.IOException;
 import java.net.URL;

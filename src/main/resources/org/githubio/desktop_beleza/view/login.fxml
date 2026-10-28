@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tela-atualizar-senha" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
-   <center>
-      <HBox BorderPane.alignment="CENTER">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-base" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.LoginController">
+   <children>
+      <HBox>
          <children>
-            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
                </padding>
@@ -22,7 +29,7 @@
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Label styleClass="descricao-formulario" text="Acesse sua conta para gerenciar os serviços " />
+                        <Label styleClass="descricao-formulario" text="Acesse sua conta para gerenciar seus serviços" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="4.0" />
@@ -40,50 +47,48 @@
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
                            <children>
                               <PasswordField fx:id="Senha" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" />
-                              <TextField fx:id="SenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" visible="false" />
-                              <Button fx:id="btnToggleSenha" mnemonicParsing="false" onAction="#alternarVisibilidadeSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                              <TextField fx:id="SenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
+                              <Button fx:id="btnToggleNovaSenha" onAction="#alternarVisibilidadeSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                                  <graphic>
                                     <ImageView fx:id="imgOlho" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@Imagens/eyeOpen 1.png" />
+                                          <Image url="@../images/eye-open.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
                            </children>
                         </StackPane>
-                        <Hyperlink onAction="#irParaAtualizarSenha" style="-fx-padding: 0;" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Hyperlink onAction="#irParaAtualizarSenha" styleClass="texto-link" text="Esqueceu a senha?" textFill="#004a8d" underline="true">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Hyperlink>
-                     </children>
-                  </VBox>
-                  <VBox spacing="10.0" styleClass="acoes-formulario">
-                     <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="45.0" styleClass="botao-principal" text="Login" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="40.0" styleClass="botao-secundario" text="Registre-se" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaCadastro" prefHeight="45.0" styleClass="botao-secundario" text="Registre-se" />
                      </children>
                   </VBox>
                </children>
             </VBox>
-
-            <!-- AQUI ESTÁ A PARTE APLICADA COM O FUNDO AZUL -->
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" style="-fx-background-color: #004786;" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="38.0" styleClass="painel-decorativo">
                <padding>
                   <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
                </padding>
                <children>
-                  <ImageView fx:id="logoDecorativa" fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logoDecorativa" fitHeight="152.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagens/senaclogo.png" />
+                        <Image url="@../images/senaclogo-branco.png" />
                      </image>
                   </ImageView>
                   <Label maxWidth="460.0" styleClass="texto-decorativo" text="Beleza e Bem-estar. Sua gestão profissional." textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
 
-         </children>
+               </children>
       </HBox>
-   </center>
-</BorderPane>
+   </children>
+</StackPane>

@@ -1,5 +1,6 @@
 package org.githubio.desktop_beleza;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.image.Image;
 
-public class    MainApplication extends Application {
+public class MainApplication extends Application {
     private static Scene scene;
     private static final int MinWidth = 1366;
     private static final int MinHeight = 768;
@@ -21,8 +22,13 @@ public class    MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+
+        String cssSenac = MainApplication.class.getResource("css/style.css").toExternalForm();
+        scene.getStylesheets().add(cssSenac);
+
         // Adição do logo como icone
-        Image appIcon = new Image(MainApplication.class.getResource("Imagens/icon.png").toString());
+        Image appIcon = new Image(MainApplication.class.getResource("images/icon.png").toString());
         stage.getIcons().add(appIcon);
         
         stage.setTitle("Desktop Beleza");
@@ -37,7 +43,7 @@ public class    MainApplication extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

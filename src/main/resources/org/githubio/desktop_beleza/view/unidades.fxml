@@ -9,15 +9,42 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="700.0" prefWidth="1050.0"
             xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.githubio.desktop_beleza.controller.UnidadeController"
-            stylesheets="@css/style.css"
+            stylesheets="@../css/style.css"
             style="-fx-background-color: #ffffff;">
+
+    <top>
+
+        <Pane prefHeight="70"
+              style="-fx-background-color: #faf8f7;">
+
+            <ImageView
+                    fitHeight="52"
+                    fitWidth="83"
+                    layoutX="14"
+                    layoutY="14"
+                    preserveRatio="true">
+
+                <image>
+                    <Image url="@../images/senaclogo.png"/>
+                </image>
+
+            </ImageView>
+
+        </Pane>
+
+    </top>
+
+
     <left>
         <VBox prefWidth="230.0" spacing="10.0" styleClass="sidebar">
             <padding>

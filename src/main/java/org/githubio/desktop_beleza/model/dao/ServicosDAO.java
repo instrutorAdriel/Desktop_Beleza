@@ -1,6 +1,7 @@
-package org.githubio.desktop_beleza.model;
+package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
+import org.githubio.desktop_beleza.model.Servico;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

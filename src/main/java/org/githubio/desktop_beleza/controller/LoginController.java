@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.LoginDAO;
+import org.githubio.desktop_beleza.model.dao.LoginDAO;
 
 public class LoginController {
     // Mesmo padrão usado no cadastro: apenas e-mails institucionais acessam o Desktop.
@@ -45,16 +45,11 @@ public class LoginController {
     @FXML
     private ImageView imgOlho;
 
-    @FXML
-    private ImageView logoDecorativa;
-
     private boolean senhaEstaVisivel = false;
 
     @FXML
     private void initialize() {
         SenhaVisivel.textProperty().bindBidirectional(Senha.textProperty());
-
-
     }
 
     @FXML
@@ -73,8 +68,8 @@ public class LoginController {
         SenhaVisivel.setManaged(senhaEstaVisivel);
 
         String imagemOlho = senhaEstaVisivel
-                ? "/org/githubio/desktop_beleza/Imagens/eyeClosed 1.png"
-                : "/org/githubio/desktop_beleza/Imagens/eyeOpen 1.png";
+                ? "/org/githubio/desktop_beleza/images/eye-closed.png"
+                : "/org/githubio/desktop_beleza/images/eye-open.png";
 
         imgOlho.setImage(new Image(getClass().getResourceAsStream(imagemOlho)));
     }
@@ -191,6 +186,6 @@ public class LoginController {
 
     @FXML
     protected void irParaAtualizarSenha() throws IOException {
-        MainApplication.setRoot("atualizarsenha");
+        MainApplication.setRoot("recuperar-senha-email");
     }
 }

@@ -27,9 +27,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
-import org.githubio.desktop_beleza.model.AgendaDAO;
+import org.githubio.desktop_beleza.model.dao.AgendaDAO;
 
-import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
