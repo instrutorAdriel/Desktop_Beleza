@@ -158,6 +158,15 @@ public class ModeloController implements Initializable {
             LocalDate dataEscolhida = dpNascimento.getValue();
             Date dataN = (dataEscolhida != null) ? Date.valueOf(dataEscolhida) : null;
 
+            if (txtNome.getText().isBlank()
+                    || telRaw.isBlank()
+                    || email.isBlank()
+                    || dataN == null) {
+                mostrarAlerta("Campos obrigatórios", "Preencha todos os campos antes de salvar.");
+                event.consume();
+                return;
+            }
+
             if (telRaw.length() < 11) {
                 mostrarAlerta("Erro no Telefone", "O telefone deve conter 11 dígitos.");
                 event.consume();
@@ -181,12 +190,25 @@ public class ModeloController implements Initializable {
             modelo.setEmail(email);
             modelo.setData(dataN);
 
-            if (isNovo) {
-                dao.cadastrar(modelo);
-            } else {
-                dao.atualizar(modelo);
+            try {
+                if (isNovo) {
+                    dao.cadastrar(modelo);
+                } else {
+                    dao.atualizar(modelo);
+                }
+                atualizarTabela();
+            } catch (RuntimeException ex) {
+                event.consume();
+                Throwable causa = ex;
+                while (causa.getCause() != null) {
+                    causa = causa.getCause();
+                }
+                String detalhe = causa.getMessage();
+                mostrarAlerta("Erro ao salvar modelo",
+                        detalhe == null || detalhe.isBlank()
+                                ? "Não foi possível salvar o modelo. Confira os dados e a conexão com o banco."
+                                : detalhe);
             }
-            atualizarTabela();
         });
 
         dialog.showAndWait();
@@ -200,6 +222,14 @@ public class ModeloController implements Initializable {
 
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        javafx.stage.Window owner = javafx.stage.Window.getWindows().stream()
+                .filter(javafx.stage.Window::isFocused)
+                .findFirst()
+                .orElse(null);
+        if (owner != null) {
+            alert.initOwner(owner);
+            alert.initModality(javafx.stage.Modality.WINDOW_MODAL);
+        }
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);

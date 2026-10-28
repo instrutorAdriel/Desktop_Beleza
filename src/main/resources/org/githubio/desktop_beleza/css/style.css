@@ -332,6 +332,26 @@
     -fx-background-radius: 4;
 }
 
+.model-dialog-field.date-picker {
+    -fx-padding: 0;
+}
+
+.model-dialog-field.date-picker > .text-field {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4 0 0 4;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0 8;
+}
+
+.model-dialog-field.date-picker > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 4 4 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0 8;
+}
+
 .sidebar {
     -fx-background-color: #004a8d;
     -fx-border-color: #003666;

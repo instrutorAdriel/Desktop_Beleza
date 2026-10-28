@@ -1,6 +1,7 @@
 module org.githubio.desktop_beleza {
     requires javafx.controls;
     requires javafx.fxml;
+    requires atlantafx.base;
 
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;

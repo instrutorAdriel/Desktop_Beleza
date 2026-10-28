@@ -1,5 +1,6 @@
 package org.githubio.desktop_beleza;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class    MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
         // Adição do logo como icone
