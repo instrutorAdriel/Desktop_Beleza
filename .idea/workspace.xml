@@ -4,163 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro" />
+    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/recuperar-senha-codigo.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;yuripetra&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,
-    &quot;accountId&quot;: &quot;c71a6ab5-9acc-4313-92c2-abc9fd938fa8&quot;
-  }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="4.249934202068248E-9" />
-      <entry key="MS500" value="0.03373815308678621" />
-      <entry key="S2" value="2.53944649830248" />
-      <entry key="S5" value="12.1174051380757" />
-      <entry key="S10" value="26.352613574344137" />
-      <entry key="S30" value="54.789586673417716" />
-      <entry key="S60" value="79.66670739622263" />
-      <entry key="M2" value="143.15264107406608" />
-      <entry key="M5" value="352.428212969401" />
-      <entry key="M10" value="569.7057402483873" />
-      <entry key="M15" value="686.566885537003" />
-      <entry key="M30" value="840.0211707003929" />
-      <entry key="H1" value="935.0793507904409" />
-      <entry key="H2" value="988.3346180833212" />
-      <entry key="H4" value="1016.5835946832531" />
-      <entry key="D1" value="1041.0131690435726" />
-      <entry key="W1" value="1045.2854945602671" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000000000232674" />
-      <entry key="S10" value="1.000006806786208" />
-      <entry key="S30" value="1.0300692801624518" />
-      <entry key="S60" value="1.2452167398813097" />
-      <entry key="M2" value="1.700298916757336" />
-      <entry key="M5" value="2.314547459444377" />
-      <entry key="M10" value="2.633220938341228" />
-      <entry key="M15" value="2.790860808018378" />
-      <entry key="M30" value="3.0929118805398317" />
-      <entry key="H1" value="3.4087954819851314" />
-      <entry key="H2" value="3.6563713024759297" />
-      <entry key="H4" value="3.8138787571360466" />
-      <entry key="D1" value="3.96676088888469" />
-      <entry key="W1" value="3.995193908189552" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="0.0011217758058169008" />
-      <entry key="MS500" value="0.2785266810792895" />
-      <entry key="S2" value="3.168008707482095" />
-      <entry key="S5" value="12.919823804725555" />
-      <entry key="S10" value="27.23797739077753" />
-      <entry key="S30" value="55.772078751969445" />
-      <entry key="S60" value="80.88092203615577" />
-      <entry key="M2" value="144.83028661397418" />
-      <entry key="M5" value="354.7281099039604" />
-      <entry key="M10" value="572.3292754629919" />
-      <entry key="M15" value="689.3503798401725" />
-      <entry key="M30" value="843.109617263112" />
-      <entry key="H1" value="938.4855600551926" />
-      <entry key="H2" value="991.9895672372443" />
-      <entry key="H4" value="1020.3967225724472" />
-      <entry key="D1" value="1044.9797984594757" />
-      <entry key="W1" value="1049.280669519859" />
-    </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="3KhU27Aj8IO0KKFvKMWb7hbWHlU" />
+  <component name="ProjectId" id="3LHqVZ8fv89wEX0V2N1s3LZKH0c" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
+    "Application.Launcher.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "remade/Dashboard",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/arthur59318636/Music/Desktop_Beleza",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\images" />
+      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\view" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Launcher" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.githubio.desktop_beleza.Launcher" />
       <module name="Desktop_Beleza" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.githubio.desktop_beleza.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -171,24 +65,31 @@
     </attachedChunks>
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="" />
-      <created>1792009083187</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1792009083187</updated>
-      <workItem from="1792604073754" duration="4000" />
-      <workItem from="1792695645045" duration="306000" />
-    </task>
-    <task id="LOCAL-00001" summary="mudanca do visual da tela de cadastro">
+    <task id="LOCAL-00001" summary="feature: implementação do design padrão das telas de recuperar senha">
       <option name="closed" value="true" />
-      <created>1792694549713</created>
+      <created>1793039122048</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1792694549713</updated>
+      <updated>1793039122048</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="feature: implementação do design padrão das telas de recuperar senha" />
+      <created>1793121367145</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793121367145</updated>
+      <workItem from="1793121374621" duration="5413000" />
+    </task>
+    <task id="LOCAL-00002" summary="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
+      <option name="closed" value="true" />
+      <created>1793132877617</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1793132877617</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,14 +100,47 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/remade/login" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mudanca do visual da tela de cadastro" />
-    <option name="LAST_COMMIT_MESSAGE" value="mudanca do visual da tela de cadastro" />
+    <MESSAGE value="feature: implementação do design padrão das telas de recuperar senha" />
+    <MESSAGE value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <line>134</line>
+          <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController" method="onConfirmarCodigo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

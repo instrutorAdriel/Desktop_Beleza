@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
-import org.githubio.desktop_beleza.model.AgendaDAO;
+import org.githubio.desktop_beleza.model.dao.AgendaDAO;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -130,7 +130,6 @@ public class AgendaController {
         atualizarTabela();
     }
 
-    // ---------- Horário (usado só no popup de edição) ----------
     private TextFormatter<String> criarFormatadorHorario() {
         return new TextFormatter<>(change -> {
             String novo = change.getControlNewText();

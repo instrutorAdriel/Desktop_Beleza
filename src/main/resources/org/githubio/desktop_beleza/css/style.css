@@ -53,197 +53,30 @@
     -fx-max-height: 40px;
 }
 
-.sidebar .button:hover {
-    -fx-background-color: #fdc180;
-    -fx-text-fill: #004a8d;
-    -fx-font-family: "Verdana";
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 8 6 8 6;
-    -fx-border-width: 0;
-    -fx-min-height: 40px;
-    -fx-pref-height: 40px;
-    -fx-max-height: 40px;
-}
-
-.sidebar .button:pressed,
-.sidebar .button.active {
-    -fx-background-color: #e07f0c;
-    -fx-text-fill: #ffffff;
-    -fx-font-family: "Verdana";
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-.sidebar .button.danger-senac {
-    -fx-background-color: transparent;
-    -fx-border-color: #fdc180;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8;
-    -fx-text-fill: #ffffff;
-    -fx-alignment: CENTER;
-    -fx-padding: 8 6 8 6;
-    -fx-min-height: 38px;
-    -fx-pref-height: 38px;
-    -fx-max-height: 38px;
-}
-
-.sidebar .button.danger-senac:hover {
-    -fx-background-color: #d9383a;
-    -fx-border-color: #fdc180;
-    -fx-text-fill: #ffffff;
-    -fx-font-family: "Verdana";
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 8 6 8 6;
-    -fx-min-height: 38px;
-    -fx-pref-height: 38px;
-    -fx-max-height: 38px;
-}
-
-.login-panel-decorativo {
-    -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
-    -fx-background-radius: 0 0 0 0;
-}
-
-/* ============================================
-   CARDS DE MÉTRICAS (Práticas, Vagas, Turmas)
-   ============================================ */
-.card-metrica {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0.2, 0, 2);
-}
-
-.card-metrica:hover {
-    -fx-border-color: #004a8d;
-    -fx-effect: dropshadow(gaussian, rgba(0,74,141,0.12), 10, 0.3, 0, 3);
-}
-
-/* ============================================
-   CARD PRINCIPAL (tabela + filtros)
-   ============================================ */
-.card-principal {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0.2, 0, 2);
-}
-
-/* ============================================
-   BOTÕES
-   ============================================ */
-
-/* Botão azul principal */
-.btn-azul {
-    -fx-background-color: #004a8d;
-    -fx-text-fill: #ffffff;
-    -fx-font-family: "Verdana";
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-padding: 8 18;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 3);
-}
-
-.btn-azul:hover {
-    -fx-background-color: #003666;
-}
-
-.btn-azul:pressed {
-    -fx-background-color: #002a4d;
-}
-
-/* Botão cinza secundário */
-.btn-cinza {
-    -fx-background-color: #efefef;
-    -fx-text-fill: #004a8d;
-    -fx-font-family: "Verdana";
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-padding: 8 18;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 4, 0.2, 0, 2);
-}
-
-.btn-cinza:hover {
-    -fx-background-color: #dddddd;
-}
-
-/* Botão link (Limpar Filtros) */
-.btn-link {
-    -fx-background-color: transparent;
-    -fx-text-fill: #004a8d;
-    -fx-font-family: "Verdana";
-    -fx-font-size: 12px;
-    -fx-cursor: hand;
-    -fx-underline: true;
-    -fx-padding: 8 6;
-}
-
-.btn-link:hover {
-    -fx-text-fill: #f7941d;
-}
-
-/* Botão sair */
-.btn-sair {
-    -fx-min-width: 70px;
-    -fx-min-height: 30px;
-    -fx-padding: 5 2;
-    -fx-font-family: "Verdana";
-    -fx-font-weight: bold;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-border-width: 2;
-    -fx-border-color: transparent;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
-}
-
-/* ============================================
-   BOTÕES DE AÇÃO (Editar / Excluir na tabela)
-   ============================================ */
-.editar {
-    -fx-background-image: url("../Imagens/editar.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-size: 17px 18px;
-    -fx-background-color: transparent;
-    -fx-min-width: 28px;
-    -fx-min-height: 28px;
-    -fx-cursor: hand;
-}
-
-.editar:hover {
-    -fx-background-image: url("../Imagens/editar-blue.png");
+.editar{
+    -fx-background-image: url("../images/editar.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
 }
+.editar:hover{
+    -fx-background-image: url("../images/editar-blue.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 17px 18px;
+    -fx-background-color: transparent;}
 
-.excluir {
-    -fx-background-image: url("../Imagens/lixo.png");
+
+.excluir{
+    -fx-background-image: url("../images/lixo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;
-    -fx-min-width: 28px;
-    -fx-min-height: 28px;
-    -fx-cursor: hand;
 }
-
-.excluir:hover {
-    -fx-background-image: url("../Imagens/lixo-red.png");
+.excluir:hover{
+    -fx-background-image: url("../images/lixo-red.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 17px 18px;
@@ -454,101 +287,138 @@
    NAV CONTAINER (genérico)
    ============================================ */
 .nav-container {
-    -fx-padding: 20;
+    -fx-padding: 20px;
     -fx-alignment: center;
-    -fx-hgap: 15;
-    -fx-vgap: 15;
+    -fx-hgap: 15px;
+    -fx-vgap: 15px;
 }
-/* ============================================
-   BOTAO FLAT (Filtros e acoes secundarias)
-   ============================================ */
-.flat,
-.button.flat {
-    -fx-background-color: transparent;
-    -fx-text-fill: -color-accent-emphasis;
-    -fx-font-family: 'Verdana';
-    -fx-font-size: 12px;
+
+
+/* Estilo dos botões */
+.btn {
+    -fx-min-width: 150px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 12px;
+    -fx-font-family: "Verdana";
     -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
     -fx-cursor: hand;
-    -fx-padding: 8 14;
-    -fx-background-radius: 6;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
 }
 
-.flat:hover,
-.button.flat:hover {
-    -fx-background-color: -color-accent-subtle;
-    -fx-text-fill: -color-accent-emphasis;
-}
-.btn-limpar {
-    -fx-background-color: white;
-    -fx-text-fill: #004a8f;
-    -fx-border-color: #004a8f;
-    -fx-border-radius: 6;
-    -fx-background-radius: 6;
+
+/* EStilo do botão de sair*/
+.btn-sair{
+    -fx-min-width:70px;
+    -fx-min-height: 30px;
+    -fx-padding: 5px 2px;
+    -fx-font-family: "Verdana";
     -fx-font-weight: bold;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+
     -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 0, 4);
+
 }
 
-.btn-limpar:hover {
-    -fx-background-color: #eaf2fb;
+
+/* Botões azuis */
+.btn-azul {
+    -fx-background-color: #004587;
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
 }
 
-/* Tema exclusivo da tela de atualização de senha */
-.tela-atualizar-senha {
+/* Hover dos botões azuis */
+.btn-azul:hover {
+    -fx-background-color: #003466;
+}
+
+/* Botões cinzas */
+.btn-cinza {
+    -fx-background-color: #efefef;
+    -fx-text-fill: #004587;
+    -fx-font-family: Verdana;
+}
+
+/* Hover dos botões cinzas */
+.btn-cinza:hover{
+    -fx-background-color: #dddddd;
+}
+
+/*
+A PARTIR DAQUI PODE UTILIZAR E O QUE ESTÁ ACIMA REMOVER QUANDO COLOCAR TODAS AS TELAS DO DESKTOP REMADE
+NO PROJETO PRINCIPAL
+ */
+.tela-base {
     -fx-background-color: #ffffff;
     -fx-font-family: "System";
 }
 
-.tela-atualizar-senha .formulario-atualizar-senha {
+.formulario-atualizar-senha {
     -fx-background-color: #ffffff;
 }
 
-.tela-atualizar-senha .titulo-formulario {
+.titulo-formulario {
     -fx-text-fill: #004a8d;
+    -fx-font-size: 28px;
 }
 
-.tela-atualizar-senha .descricao-formulario {
+.descricao-formulario {
     -fx-font-size: 14px;
     -fx-text-fill: #687586;
 }
 
-.tela-atualizar-senha .rotulo-formulario {
+.rotulo-formulario {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: #344054;
 }
 
-.tela-atualizar-senha .campo-formulario {
+.campo-formulario {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
     -fx-border-color: #cbd5e1;
     -fx-border-radius: 8;
     -fx-border-width: 1;
     -fx-font-size: 14px;
-    -fx-padding: 0 42 0 12;
+    -fx-padding: 0 12 0 12;
     -fx-prompt-text-fill: #8994a3;
 }
 
-.tela-atualizar-senha .campo-formulario:focused {
+.campo-formulario:focused {
     -fx-border-color: #004a8d;
     -fx-border-width: 1.5;
 }
 
-.tela-atualizar-senha .botao-olho {
+.botao-olho {
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-padding: 0 12 0 8;
 }
 
-.tela-atualizar-senha .validacoes-senha {
+.validacoes-senha {
     -fx-padding: 0 0 0 2;
 }
 
-.tela-atualizar-senha .validacao-senha {
+.validacao-senha {
     -fx-font-size: 12px;
 }
 
-.tela-atualizar-senha .botao-principal {
+.botao-principal {
     -fx-background-color: #004a8d;
     -fx-background-radius: 8;
     -fx-cursor: hand;
@@ -557,15 +427,15 @@
     -fx-text-fill: #ffffff;
 }
 
-.tela-atualizar-senha .botao-principal:hover {
+.botao-principal:hover {
     -fx-background-color: #003666;
 }
 
-.tela-atualizar-senha .botao-principal:pressed {
+.botao-principal:pressed {
     -fx-background-color: #002b52;
 }
 
-.tela-atualizar-senha .botao-secundario {
+.botao-secundario {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
     -fx-border-color: #cbd5e1;
@@ -575,21 +445,93 @@
     -fx-text-fill: #004a8d;
 }
 
-.tela-atualizar-senha .botao-secundario:hover {
+.botao-secundario:hover {
     -fx-background-color: #e5f0fa;
     -fx-border-color: #004a8d;
 }
 
-.tela-atualizar-senha .painel-decorativo-atualizar {
-    -fx-background-color: linear-gradient(to bottom right, #004a8d, #f7941d);
+.painel-decorativo {
+    -fx-background-color: #004786;
 }
 
-.tela-atualizar-senha .titulo-decorativo {
+.titulo-decorativo {
     -fx-text-fill: #ffffff;
 }
 
-.tela-atualizar-senha .texto-decorativo {
+.texto-decorativo {
     -fx-font-size: 28px;
     -fx-text-alignment: center;
+    -fx-text-fill: #ffffff;
+}
+
+.texto-link {
+    -color-link-fg: #004a8d;
+    -color-link-visited: #004a8d;
+}
+
+/*
+TEMA DO SENAC pego do DEKSTOP REMADE
+ */
+.root {
+    -color-accent-emphasis: #004a8d;
+    -color-accent-muted: #004a8d;
+    -color-accent-subtle: #e5f0fa;
+    -color-accent-fg: #ffffff;
+    -color-warning-emphasis: #f7941d;
+    -color-warning-muted: #f7941d;
+    -color-warning-subtle: #fef4e8;
+    -color-warning-fg: #ffffff;
+    -color-accent-subtle-hover: #fdc180;
+    -color-cell-border-selected: #004a8d;
+    -color-accent-border-focused: #004a8d;
+}
+
+.sidebar {
+    -fx-background-color: #004a8d;
+    -fx-border-color: #003666;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-titulo {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-subtitulo {
+    -fx-font-size: 12px;
+    -fx-text-fill: #fdc180;
+}
+
+.sidebar .button {
+    -fx-background-color: #f7941d;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: BASELINE_LEFT;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: #fdc180;
+    -fx-text-fill: #004a8d;
+}
+
+.sidebar .button:pressed,
+.sidebar .button.active {
+    -fx-background-color: #e07f0c;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar .button.danger-senac {
+    -fx-background-color: transparent;
+    -fx-border-color: #fdc180;
+    -fx-border-radius: 8;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar .button.danger-senac:hover {
+    -fx-background-color: #d9383a;
+    -fx-border-color: #d9383a;
     -fx-text-fill: #ffffff;
 }

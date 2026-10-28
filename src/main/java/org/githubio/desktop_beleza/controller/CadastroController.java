@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.CadastroDAO;
+import org.githubio.desktop_beleza.model.dao.CadastroDAO;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
