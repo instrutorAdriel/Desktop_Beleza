@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +32,65 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.8476844125507874" />
+      <entry key="MS500" value="4.571717710696551" />
+      <entry key="S2" value="11.50795278081752" />
+      <entry key="S5" value="21.319305689402164" />
+      <entry key="S10" value="32.076076930530775" />
+      <entry key="S30" value="48.053900717889796" />
+      <entry key="S60" value="54.32558877070172" />
+      <entry key="M2" value="57.96669024671254" />
+      <entry key="M5" value="60.86110664859771" />
+      <entry key="M10" value="70.03273096576936" />
+      <entry key="M15" value="85.71601526604607" />
+      <entry key="M30" value="130.92476957543545" />
+      <entry key="H1" value="180.61350742620448" />
+      <entry key="H2" value="218.1266762667177" />
+      <entry key="H4" value="241.28305126358197" />
+      <entry key="D1" value="263.27691631412875" />
+      <entry key="W1" value="267.31833235434505" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="6.603218838078369E-184" />
+      <entry key="S10" value="2.5696729048807595E-92" />
+      <entry key="S30" value="2.9509325424388977E-31" />
+      <entry key="S60" value="5.432248652665758E-16" />
+      <entry key="M2" value="2.3307184842159114E-8" />
+      <entry key="M5" value="8.851073112710765E-4" />
+      <entry key="M10" value="0.029750753121073704" />
+      <entry key="M15" value="0.09601342807213852" />
+      <entry key="M30" value="0.30986033639712346" />
+      <entry key="H1" value="0.556651000535456" />
+      <entry key="H2" value="0.7460904774459027" />
+      <entry key="H4" value="0.8637652907161187" />
+      <entry key="D1" value="0.9758864577999509" />
+      <entry key="W1" value="0.9965190677468787" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.7826922978339808" />
+      <entry key="MS500" value="4.5402639507339355" />
+      <entry key="S2" value="11.487677032245232" />
+      <entry key="S5" value="21.303642597502098" />
+      <entry key="S10" value="32.06384442861308" />
+      <entry key="S30" value="48.04756615595441" />
+      <entry key="S60" value="54.32197182383548" />
+      <entry key="M2" value="57.9647506928028" />
+      <entry key="M5" value="60.861169833167644" />
+      <entry key="M10" value="70.06192057774372" />
+      <entry key="M15" value="85.81144336617989" />
+      <entry key="M30" value="131.23400105515836" />
+      <entry key="H1" value="181.16964967874264" />
+      <entry key="H2" value="218.8724374838802" />
+      <entry key="H4" value="242.14662859894443" />
+      <entry key="D1" value="264.25276773443056" />
+      <entry key="W1" value="268.31484631905124" />
+    </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5

@@ -155,7 +155,7 @@ public class AgendaController {
 
             {
                 String[] statusPermitidos = {
-                        "Confirmado", "Pendente", "Realizado", "Cancelado", "Não Compareceu"
+                        "Confirmado", "Realizado", "Cancelado", "Não Compareceu"
                 };
                 for (String status : statusPermitidos) {
                     MenuItem item = new MenuItem(status);
