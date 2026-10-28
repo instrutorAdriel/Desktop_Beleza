@@ -9,10 +9,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="700.0" prefWidth="1050.0"
@@ -22,40 +20,14 @@
             stylesheets="@../css/style.css"
             style="-fx-background-color: #ffffff;">
 
-    <top>
-
-        <Pane prefHeight="70"
-              style="-fx-background-color: #faf8f7;">
-
-            <ImageView
-                    fitHeight="52"
-                    fitWidth="83"
-                    layoutX="14"
-                    layoutY="14"
-                    preserveRatio="true">
-
-                <image>
-                    <Image url="@../images/senaclogo.png"/>
-                </image>
-
-            </ImageView>
-
-        </Pane>
-
-    </top>
-
-
     <left>
         <VBox prefWidth="230.0" spacing="10.0" styleClass="sidebar">
             <padding>
                 <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
             </padding>
             <children>
-                <VBox minHeight="46.0" prefHeight="46.0" maxHeight="46.0" />
+                <Region minHeight="62.0" prefHeight="62.0" maxHeight="62.0" />
                 <VBox spacing="10.0" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
                     <children>
                         <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" styleClass="sidebar-nav-button" text="Página inicial" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaModelos" prefHeight="40.0" styleClass="sidebar-nav-button" text="Modelos" />

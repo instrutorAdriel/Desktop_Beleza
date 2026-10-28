@@ -330,6 +330,7 @@ TEMA DO SENAC pego do DEKSTOP REMADE
     -fx-border-color: #fdc180;
     -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
+    -fx-alignment: CENTER;
 }
 
 .sidebar .button.danger-senac:hover {
