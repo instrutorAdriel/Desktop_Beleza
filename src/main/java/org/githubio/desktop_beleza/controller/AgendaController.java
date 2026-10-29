@@ -58,11 +58,15 @@ public class AgendaController {
 
     @FXML
     public void initialize() {
-        txtServico.getItems().setAll(dao.listarServicos());
         txtModelo.getItems().setAll(dao.listarModelos());
         cbUnidade.getItems().setAll(dao.listarUnidades());
+        cbUnidade.valueProperty().addListener((observable, unidadeAnterior, unidadeSelecionada) ->
+                atualizarServicosDaUnidade(unidadeSelecionada)
+        );
         if (!cbUnidade.getItems().isEmpty()) {
             cbUnidade.getSelectionModel().selectFirst();
+        } else {
+            atualizarServicosDaUnidade(null);
         }
 
         btnVerTodos.setText("Ver todos");
@@ -299,6 +303,31 @@ public class AgendaController {
         txtHorario.clear();
         dpData.setValue(null);
         txtServico.setValue(null);
+    }
+
+    private void atualizarServicosDaUnidade(String unidade) {
+        txtServico.getItems().clear();
+        txtServico.setValue(null);
+
+        if (unidade == null) {
+            txtServico.setPromptText("Selecione uma unidade primeiro");
+            return;
+        }
+
+        try {
+            List<String> servicos = dao.listarServicosPorUnidade(unidade);
+            txtServico.getItems().setAll(servicos);
+            txtServico.setPromptText(
+                    servicos.isEmpty()
+                            ? "Nenhum serviço vinculado"
+                            : "Tipo de Serviço"
+            );
+        } catch (RuntimeException e) {
+            mostrarErro(
+                    "Não foi possível carregar os serviços",
+                    e.getMessage()
+            );
+        }
     }
 
     public void atualizarTabela() {

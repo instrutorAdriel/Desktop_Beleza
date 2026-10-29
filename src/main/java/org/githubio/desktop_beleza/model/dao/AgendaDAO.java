@@ -49,6 +49,31 @@ public class AgendaDAO {
         return lista;
     }
 
+    public List<String> listarServicosPorUnidade(String nomeUnidade) {
+        List<String> lista = new ArrayList<>();
+        String sql = """
+                SELECT DISTINCT p.nome_produto
+                FROM produto_unidade pu
+                INNER JOIN produto p ON p.id_produto = pu.id_produto
+                INNER JOIN unidade u ON u.id_unidade = pu.id_unidade
+                WHERE u.nome_unidade = ?
+                  AND u.situacao = 'A'
+                ORDER BY p.nome_produto
+                """;
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nomeUnidade);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(rs.getString("nome_produto"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar serviços da unidade", e);
+        }
+        return lista;
+    }
+
     public List<String> listarModelos() {
         if (cacheModelos != null && !cacheModelos.isEmpty()) {
             return cacheModelos;
@@ -107,7 +132,7 @@ public class AgendaDAO {
                 int idModelo = buscarIdModelo(conn, nomeModelo);
                 int idProduto = buscarIdProduto(conn, nomeServico);
                 int idUnidade = buscarIdUnidade(conn, nomeUnidade);
-                int idProdutoUnidade = buscarOuCriarProdutoUnidade(conn, idUnidade, idProduto);
+                int idProdutoUnidade = buscarProdutoUnidade(conn, idUnidade, idProduto);
 
                 LocalDate localDate = LocalDate.parse(data);
                 LocalTime localTime = LocalTime.parse(horario);
@@ -218,7 +243,7 @@ public class AgendaDAO {
 
                 int idModelo = buscarIdModelo(conn, agenda.getModelo());
                 int idProduto = buscarIdProduto(conn, agenda.getServico());
-                int idProdutoUnidade = buscarOuCriarProdutoUnidade(conn, idUnidade, idProduto);
+                int idProdutoUnidade = buscarProdutoUnidade(conn, idUnidade, idProduto);
                 LocalDate data = LocalDate.parse(agenda.getData());
                 LocalTime horario = LocalTime.parse(agenda.getHorario());
                 int idDisponibilidade = buscarOuCriarDisponibilidade(conn, data, horario, idProdutoUnidade);
@@ -314,8 +339,14 @@ public class AgendaDAO {
         throw new SQLException("Unidade não encontrada: " + nomeUnidade);
     }
 
-    private int buscarOuCriarProdutoUnidade(Connection conn, int idUnidade, int idProduto) throws SQLException {
-        String buscar = "SELECT id_produto_unidade FROM produto_unidade WHERE id_unidade = ? AND id_produto = ? LIMIT 1";
+    private int buscarProdutoUnidade(Connection conn, int idUnidade, int idProduto) throws SQLException {
+        String buscar = """
+                SELECT id_produto_unidade
+                FROM produto_unidade
+                WHERE id_unidade = ?
+                  AND id_produto = ?
+                LIMIT 1
+                """;
         try (PreparedStatement stmt = conn.prepareStatement(buscar)) {
             stmt.setInt(1, idUnidade);
             stmt.setInt(2, idProduto);
@@ -323,18 +354,7 @@ public class AgendaDAO {
                 if (rs.next()) return rs.getInt("id_produto_unidade");
             }
         }
-
-        String inserir = "INSERT INTO produto_unidade (id_unidade, id_produto, produto_utilizado) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(inserir, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, idUnidade);
-            stmt.setInt(2, idProduto);
-            stmt.setInt(3, 0); // ajuste conforme o tipo/regra da coluna
-            stmt.executeUpdate();
-            try (ResultSet rs = stmt.getGeneratedKeys()) {
-                if (rs.next()) return rs.getInt(1);
-            }
-        }
-        throw new SQLException("Não foi possível criar o vínculo produto/unidade.");
+        throw new SQLException("Este serviço não está vinculado à unidade selecionada. Faça o vínculo na tela Unidades.");
     }
 
     private int buscarOuCriarDisponibilidade(Connection conn, LocalDate data, LocalTime horario,
