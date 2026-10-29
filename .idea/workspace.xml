@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ModeloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ModeloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,130 +22,79 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JoaoAlexandre705"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JoaoAlexandre705&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/instrutorAdriel/Desktop_Beleza",
-    "accountId": "e6ab017c-1879-4fa5-97ff-5b9d5130bf8c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza&quot;,
+    &quot;accountId&quot;: &quot;e6ab017c-1879-4fa5-97ff-5b9d5130bf8c&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8476844125507874" />
-      <entry key="MS500" value="4.571717710696551" />
-      <entry key="S2" value="11.50795278081752" />
-      <entry key="S5" value="21.319305689402164" />
-      <entry key="S10" value="32.076076930530775" />
-      <entry key="S30" value="48.053900717889796" />
-      <entry key="S60" value="54.32558877070172" />
-      <entry key="M2" value="57.96669024671254" />
-      <entry key="M5" value="60.86110664859771" />
-      <entry key="M10" value="70.03273096576936" />
-      <entry key="M15" value="85.71601526604607" />
-      <entry key="M30" value="130.92476957543545" />
-      <entry key="H1" value="180.61350742620448" />
-      <entry key="H2" value="218.1266762667177" />
-      <entry key="H4" value="241.28305126358197" />
-      <entry key="D1" value="263.27691631412875" />
-      <entry key="W1" value="267.31833235434505" />
-      <entry key="MS100" value="1.000000188361028" />
-      <entry key="MS500" value="1.0492852585292032" />
-      <entry key="S2" value="2.0243066849190265" />
-      <entry key="S5" value="3.848507007592271" />
-      <entry key="S10" value="5.879788239983299" />
-      <entry key="S30" value="11.413457132945735" />
-      <entry key="S60" value="17.37567370270344" />
-      <entry key="M2" value="28.215451332961173" />
-      <entry key="M5" value="54.73321969834445" />
-      <entry key="M10" value="78.27548356699104" />
-      <entry key="M15" value="94.61855532320726" />
-      <entry key="M30" value="179.2347401194179" />
-      <entry key="H1" value="401.04107279964364" />
-      <entry key="H2" value="682.9168836103266" />
-      <entry key="H4" value="912.218868479925" />
-      <entry key="D1" value="1171.7710985965468" />
-      <entry key="W1" value="1224.0411473159807" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000023485286689" />
+      <entry key="S2" value="1.0964674279705697" />
+      <entry key="S5" value="2.138124813866283" />
+      <entry key="S10" value="3.9511982427210266" />
+      <entry key="S30" value="8.3526427136003" />
+      <entry key="S60" value="12.256087157284812" />
+      <entry key="M2" value="16.282415237251833" />
+      <entry key="M5" value="21.15607043501563" />
+      <entry key="M10" value="32.08359475573175" />
+      <entry key="M15" value="46.783112500328954" />
+      <entry key="M30" value="113.86512028665362" />
+      <entry key="H1" value="308.7267202681369" />
+      <entry key="H2" value="599.6047409161135" />
+      <entry key="H4" value="861.5261610788408" />
+      <entry key="D1" value="1179.2114027502696" />
+      <entry key="W1" value="1245.5549725651902" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="1.1836055143710575E-195" />
-      <entry key="S30" value="1.0896017111572025E-65" />
-      <entry key="S60" value="4.049912321258686E-33" />
-      <entry key="M2" value="9.696736929399315E-17" />
-      <entry key="M5" value="7.360481483118747E-7" />
-      <entry key="M10" value="0.0014849347371356197" />
-      <entry key="M15" value="0.019049557340198534" />
-      <entry key="M30" value="0.255529416046535" />
-      <entry key="H1" value="0.9798004248243728" />
-      <entry key="H2" value="1.9602823543191705" />
-      <entry key="H4" value="2.79255060701436" />
-      <entry key="D1" value="3.765954345746531" />
-      <entry key="W1" value="3.965654430499293" />
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="6.603218838078369E-184" />
-      <entry key="S10" value="2.5696729048807595E-92" />
-      <entry key="S30" value="2.9509325424388977E-31" />
-      <entry key="S60" value="5.432248652665758E-16" />
-      <entry key="M2" value="2.3307184842159114E-8" />
-      <entry key="M5" value="8.851073112710765E-4" />
-      <entry key="M10" value="0.029750753121073704" />
-      <entry key="M15" value="0.09601342807213852" />
-      <entry key="M30" value="0.30986033639712346" />
-      <entry key="H1" value="0.556651000535456" />
-      <entry key="H2" value="0.7460904774459027" />
-      <entry key="H4" value="0.8637652907161187" />
-      <entry key="D1" value="0.9758864577999509" />
-      <entry key="W1" value="0.9965190677468787" />
+      <entry key="S5" value="1.2723958021793784E-290" />
+      <entry key="S10" value="1.1280052314503548E-145" />
+      <entry key="S30" value="4.831741647865929E-49" />
+      <entry key="S60" value="6.9510730451247025E-25" />
+      <entry key="M2" value="8.33730954512584E-13" />
+      <entry key="M5" value="1.4737043670085903E-5" />
+      <entry key="M10" value="0.003838885732876912" />
+      <entry key="M15" value="0.024517157865998094" />
+      <entry key="M30" value="0.15657955762486392" />
+      <entry key="H1" value="0.39570134903088783" />
+      <entry key="H2" value="0.6290479703733941" />
+      <entry key="H4" value="0.7931254442857022" />
+      <entry key="D1" value="0.9621076040430349" />
+      <entry key="W1" value="0.9944967728185985" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.95926430001324" />
-      <entry key="MS500" value="1.040593599609921" />
-      <entry key="S2" value="2.0200746295960212" />
-      <entry key="S5" value="3.845311510410427" />
-      <entry key="S10" value="5.877376792150302" />
-      <entry key="S30" value="11.411901993285747" />
-      <entry key="S60" value="17.374478153365004" />
-      <entry key="M2" value="28.214467547659975" />
-      <entry key="M5" value="54.732444487177176" />
-      <entry key="M10" value="78.27640447429452" />
-      <entry key="M15" value="94.63712300436615" />
-      <entry key="M30" value="179.48963559452866" />
-      <entry key="H1" value="402.0199697404314" />
-      <entry key="H2" value="684.8763107079935" />
-      <entry key="H4" value="915.0108183527182" />
-      <entry key="D1" value="1175.5369188389363" />
-      <entry key="W1" value="1228.0067815893701" />
-      <entry key="MS100" value="1.7826922978339808" />
-      <entry key="MS500" value="4.5402639507339355" />
-      <entry key="S2" value="11.487677032245232" />
-      <entry key="S5" value="21.303642597502098" />
-      <entry key="S10" value="32.06384442861308" />
-      <entry key="S30" value="48.04756615595441" />
-      <entry key="S60" value="54.32197182383548" />
-      <entry key="M2" value="57.9647506928028" />
-      <entry key="M5" value="60.861169833167644" />
-      <entry key="M10" value="70.06192057774372" />
-      <entry key="M15" value="85.81144336617989" />
-      <entry key="M30" value="131.23400105515836" />
-      <entry key="H1" value="181.16964967874264" />
-      <entry key="H2" value="218.8724374838802" />
-      <entry key="H4" value="242.14662859894443" />
-      <entry key="D1" value="264.25276773443056" />
-      <entry key="W1" value="268.31484631905124" />
+      <entry key="MS100" value="0.9330329915368074" />
+      <entry key="MS500" value="0.9862350283474761" />
+      <entry key="S2" value="1.0927798074369934" />
+      <entry key="S5" value="2.1357205652579445" />
+      <entry key="S10" value="3.9492053328177668" />
+      <entry key="S30" value="8.351227106098998" />
+      <entry key="S60" value="12.25475885611967" />
+      <entry key="M2" value="16.282312606706647" />
+      <entry key="M5" value="21.25738174843102" />
+      <entry key="M10" value="31.02333713455324" />
+      <entry key="M15" value="44.53390812706624" />
+      <entry key="M30" value="89.60908575284168" />
+      <entry key="H1" value="152.42867449584193" />
+      <entry key="H2" value="208.35695491691007" />
+      <entry key="H4" value="246.2532780109035" />
+      <entry key="D1" value="284.50661069703887" />
+      <entry key="W1" value="291.7681828359015" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -163,42 +108,27 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Launcher.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "remade/Dashboard",
+    "git-widget-placeholder": "remade/modelos",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/arthur59318636/Music/Desktop_Beleza",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;remade/modelos&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arthur59318636/Music/Desktop_Beleza&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }]]></component>
   <component name="RecentsManager">
@@ -219,7 +149,9 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
         <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
         <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
       </set>
     </attachedChunks>
@@ -289,7 +221,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
           <line>134</line>
-          <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController" method="onConfirmarCodigo">
+          <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
