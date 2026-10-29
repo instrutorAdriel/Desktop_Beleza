@@ -1,6 +1,7 @@
-package org.githubio.desktop_beleza.model;
+package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
+import org.githubio.desktop_beleza.model.Agenda;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -90,6 +91,7 @@ public class AgendaDAO {
         }
         return lista;
     }
+
     public void cadastrarAgendamento(String data, String horario, String nomeModelo,
                                      String nomeServico, String nomeUnidade, String emailInstrutor) {
         String inserirAgendamento = """
@@ -375,5 +377,150 @@ public class AgendaDAO {
         }
 
         throw new SQLException("Não foi possível criar a disponibilidade.");
+    }
+    //Não mexa aqui otario
+    public int contarPraticasDoMes(String emailInstrutor) {
+        String sql = """
+            SELECT COUNT(*)
+            FROM agendamento a
+            INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
+            INNER JOIN instrutor i ON i.id_usuario = ui.id_usuario
+            WHERE ui.email = ?
+              AND a.data_hora_agendamento >= ?
+              AND a.data_hora_agendamento < ?
+            """;
+        LocalDate inicio = LocalDate.now().withDayOfMonth(1);
+        return executarContagem(sql, emailInstrutor,
+                Timestamp.valueOf(inicio.atStartOfDay()),
+                Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay()));
+    }
+
+    public int calcularPercentualVagasOcupadas(String emailInstrutor) {
+        String sql = """
+            SELECT COALESCE(SUM(d.total_vagas), 0) AS total_vagas,
+                   COALESCE(SUM(LEAST(x.ocupadas, d.total_vagas)), 0) AS vagas_ocupadas
+            FROM disponibilidade d
+            INNER JOIN (
+                SELECT a.id_disponibilidade, COUNT(*) AS ocupadas
+                FROM agendamento a
+                INNER JOIN usuario ui ON ui.id_usuario = a.id_usuario
+                WHERE ui.email = ?
+                  AND a.situacao NOT IN ('Cancelado', 'Não Compareceu')
+                  AND a.data_hora_agendamento >= ?
+                  AND a.data_hora_agendamento < ?
+                GROUP BY a.id_disponibilidade
+            ) x ON x.id_disponibilidade = d.id_disponibilidade
+            """;
+        LocalDate inicio = LocalDate.now().withDayOfMonth(1);
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailInstrutor);
+            stmt.setTimestamp(2, Timestamp.valueOf(inicio.atStartOfDay()));
+            stmt.setTimestamp(3, Timestamp.valueOf(inicio.plusMonths(1).atStartOfDay()));
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int total = rs.getInt("total_vagas");
+                    int ocupadas = rs.getInt("vagas_ocupadas");
+                    return total == 0 ? 0 : (int) Math.round(ocupadas * 100.0 / total);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular vagas ocupadas", e);
+        }
+        return 0;
+    }
+
+    private int executarContagem(String sql, String email, Timestamp de, Timestamp ate) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setTimestamp(2, de);
+            stmt.setTimestamp(3, ate);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao executar contagem", e);
+        }
+    }
+    public int contarTurmasAtivas(String emailInstrutor) {
+        String sql = """
+            SELECT COUNT(DISTINCT t.id_turma)
+            FROM turma t
+            INNER JOIN instrutor_gerencia_turma igt ON igt.id_turma = t.id_turma
+            INNER JOIN usuario u ON u.id_usuario = igt.id_usuario
+            WHERE u.email = ?
+              AND t.situacao = 'A'
+            """;
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailInstrutor);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao contar turmas ativas", e);
+        }
+
+    }
+    public List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico) {
+        StringBuilder sql = new StringBuilder("""
+        SELECT a.id_agendamento,
+               DATE_FORMAT(a.data_hora_agendamento, '%Y-%m-%d') AS data_agendamento,
+               DATE_FORMAT(a.data_hora_agendamento, '%H:%i')    AS horario_agendamento,
+               a.situacao,
+               um.nome_usuario AS nome_modelo,
+               p.nome_produto  AS nome_servico
+        FROM agendamento a
+        INNER JOIN modelo m             ON m.id_modelo = a.id_modelo
+        INNER JOIN usuario um           ON um.id_usuario = m.id_usuario
+        INNER JOIN disponibilidade d    ON d.id_disponibilidade = a.id_disponibilidade
+        INNER JOIN produto_unidade pu   ON pu.id_produto_unidade = d.id_produto_unidade
+        INNER JOIN produto p            ON p.id_produto = pu.id_produto
+        INNER JOIN unidade un           ON un.id_unidade = pu.id_unidade
+        WHERE 1 = 1
+        """);
+
+        List<Object> params = new ArrayList<>();
+
+        if (data != null) {
+            sql.append(" AND a.data_hora_agendamento >= ? AND a.data_hora_agendamento < ?");
+            params.add(Timestamp.valueOf(data.atStartOfDay()));
+            params.add(Timestamp.valueOf(data.plusDays(1).atStartOfDay()));
+        }
+        if (unidade != null) {
+            sql.append(" AND un.nome_unidade = ?");
+            params.add(unidade);
+        }
+        if (servico != null) {
+            sql.append(" AND p.nome_produto = ?");
+            params.add(servico);
+        }
+        sql.append(" ORDER BY a.data_hora_agendamento");
+
+        List<Agenda> lista = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Agenda(
+                            rs.getInt("id_agendamento"),
+                            rs.getString("data_agendamento"),
+                            rs.getString("horario_agendamento"),
+                            rs.getString("situacao"),
+                            rs.getString("nome_modelo"),
+                            rs.getString("nome_servico")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar agendamentos", e);
+        }
+        return lista;
     }
 }

@@ -8,7 +8,7 @@
 <VBox xmlns="http://javafx.com/javafx/17.0.12"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.githubio.desktop_beleza.controller.VinculoServicoUnidadeController"
-      stylesheets="@css/style.css"
+      stylesheets="@../css/style.css"
       spacing="15"
       prefWidth="380"
       style="-fx-background-color: #faf8f7;">

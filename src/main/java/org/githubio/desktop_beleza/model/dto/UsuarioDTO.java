@@ -1,4 +1,4 @@
-package org.githubio.desktop_beleza.model;
+package org.githubio.desktop_beleza.model.dto;
 
 public class UsuarioDTO {
     private int idTurma; // CAMPO NOVO

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PainelLateralComponent extends VBox {
 
     public PainelLateralComponent() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/githubio/desktop_beleza/painelateral.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/githubio/desktop_beleza/view/painelateral.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -1,47 +1,36 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.Agenda;
-import org.githubio.desktop_beleza.model.AgendaDAO;
+import org.githubio.desktop_beleza.model.dao.AgendaDAO;
 
-import java.io.IOException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.Locale;
 
 public class AgendaController {
 
+    private static final DateTimeFormatter FMT_BR = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final String TODAS_UNIDADES = "Todas as unidades";
+    private static final String TODOS_SERVICOS = "Todos os serviços";
+
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
-    @FXML private ComboBox<String> txtModelo;
-    @FXML private TextField txtHorario;
     @FXML private ComboBox<String> cbUnidade;
     @FXML private TableView<Agenda> tabelaAgenda;
     @FXML private TableColumn<Agenda, String> colData;
@@ -51,45 +40,27 @@ public class AgendaController {
     @FXML private TableColumn<Agenda, String> colStatus;
     @FXML private TableColumn<Agenda, String> colAcao;
     @FXML private Label lblSemanaAtual;
-    @FXML private Button btnVerTodos;
+    @FXML private Label lblPraticasDoMes;
+    @FXML private Label lblVagasOcupadas;
+    @FXML private Label lblTurmasAtivas;
 
     private final AgendaDAO dao = new AgendaDAO();
-    private LocalDate inicioSemanaAtual = LocalDate.now().with(DayOfWeek.MONDAY);
-    private boolean exibindoTodos = false;
 
     @FXML
     public void initialize() {
-        txtServico.getItems().setAll(dao.listarServicos());
-        txtModelo.getItems().setAll(dao.listarModelos());
-        cbUnidade.getItems().setAll(dao.listarUnidades());
-        if (!cbUnidade.getItems().isEmpty()) {
-            cbUnidade.getSelectionModel().selectFirst();
-        }
 
-        btnVerTodos.setText("Ver todos");
+        txtServico.getItems().add(TODOS_SERVICOS);
+        txtServico.getItems().addAll(dao.listarServicos());
+        txtServico.getSelectionModel().selectFirst();
 
-        dpData.setDayCellFactory(picker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                if (!empty && date.isBefore(LocalDate.now())) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #d3d3d3;");
-                }
-            }
-        });
+        cbUnidade.getItems().add(TODAS_UNIDADES);
+        cbUnidade.getItems().addAll(dao.listarUnidades());
+        cbUnidade.getSelectionModel().selectFirst();
 
-        dpData.valueProperty().addListener((obs, antiga, nova) -> {
-            if (nova != null && !exibindoTodos) {
-                inicioSemanaAtual = nova.with(DayOfWeek.MONDAY);
-                atualizarTabela();
-            }
-        });
+        dpData.setConverter(criarConversorData());
+        dpData.setPromptText("dd/mm/aaaa");
 
-        txtHorario.setTextFormatter(criarFormatadorHorario());
-        txtHorario.setPromptText("HH:mm");
-
-        colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colData.setCellValueFactory(c -> new SimpleStringProperty(paraDataBr(c.getValue().getData())));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
         colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
@@ -98,6 +69,64 @@ public class AgendaController {
         configurarStatus();
         configurarAcoes();
         tabelaAgenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        atualizarTabela();
+
+    }
+
+    private StringConverter<LocalDate> criarConversorData() {
+        return new StringConverter<>() {
+            @Override
+            public String toString(LocalDate d) {
+                return d == null ? "" : FMT_BR.format(d);
+            }
+
+            @Override
+            public LocalDate fromString(String s) {
+                if (s == null || s.isBlank()) return null;
+                try {
+                    return LocalDate.parse(s.trim(), FMT_BR);
+                } catch (DateTimeParseException e) {
+                    return null;
+                }
+            }
+        };
+    }
+
+    private String paraDataBr(String iso) {
+        try {
+            return LocalDate.parse(iso).format(FMT_BR);
+        } catch (Exception e) {
+            return iso;
+        }
+    }
+
+    // ---------- Busca ----------
+    @FXML
+    protected void onBuscarClick() {
+        atualizarTabela();
+    }
+
+    public void atualizarTabela() {
+        LocalDate data = dpData.getValue();
+        String unidade = TODAS_UNIDADES.equals(cbUnidade.getValue()) ? null : cbUnidade.getValue();
+        String servico = TODOS_SERVICOS.equals(txtServico.getValue()) ? null : txtServico.getValue();
+
+        List<Agenda> lista = dao.buscarAgendamentos(data, unidade, servico);
+        tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
+
+        if (lblSemanaAtual != null) {
+            lblSemanaAtual.setText(data == null
+                    ? "Todos os agendamentos"
+                    : "Agendamentos de " + data.format(FMT_BR));
+        }
+        atualizarVisaoGeral();
+    }
+    @FXML
+    protected void onLimparFiltroClick() {
+        dpData.setValue(null);
+        dpData.getEditor().clear();
+        txtServico.getSelectionModel().selectFirst(); // "Todos os serviços"
+        cbUnidade.getSelectionModel().selectFirst();  // "Todas as unidades"
         atualizarTabela();
     }
 
@@ -116,13 +145,17 @@ public class AgendaController {
         });
     }
 
+    private boolean horarioValido(String horario) {
+        return horario != null && horario.matches("([01][0-9]|2[0-3]):[0-5][0-9]");
+    }
+
     private void configurarStatus() {
         colStatus.setCellFactory(coluna -> new TableCell<>() {
             private final MenuButton menu = new MenuButton("Status");
 
             {
                 String[] statusPermitidos = {
-                        "Confirmado", "Pendente", "Realizado", "Cancelado", "Não Compareceu"
+                        "Confirmado", "Realizado", "Cancelado", "Não Compareceu"
                 };
                 for (String status : statusPermitidos) {
                     MenuItem item = new MenuItem(status);
@@ -193,17 +226,18 @@ public class AgendaController {
         popup.setTitle("Editar Agendamento");
 
         ComboBox<String> campoModelo = new ComboBox<>();
-        campoModelo.getItems().setAll(txtModelo.getItems());
+        campoModelo.getItems().setAll(dao.listarModelos());
         campoModelo.setValue(agenda.getModelo());
 
         ComboBox<String> campoServico = new ComboBox<>();
-        campoServico.getItems().setAll(txtServico.getItems());
+        campoServico.getItems().setAll(dao.listarServicos());
         campoServico.setValue(agenda.getServico());
 
         TextField campoHorario = new TextField(agenda.getHorario());
         campoHorario.setTextFormatter(criarFormatadorHorario());
 
         DatePicker campoData = new DatePicker(LocalDate.parse(agenda.getData()));
+        campoData.setConverter(criarConversorData());
         campoData.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -239,7 +273,7 @@ public class AgendaController {
 
             agenda.setModelo(campoModelo.getValue());
             agenda.setServico(campoServico.getValue());
-            agenda.setData(campoData.getValue().toString());
+            agenda.setData(campoData.getValue().toString()); // ISO internamente
             agenda.setHorario(campoHorario.getText());
             dao.editarAgendamento(agenda);
             popup.close();
@@ -256,70 +290,6 @@ public class AgendaController {
         popup.showAndWait();
     }
 
-    @FXML
-    protected void onVerTodosClick() {
-        exibindoTodos = !exibindoTodos;
-        btnVerTodos.setText(exibindoTodos ? "Ver semana" : "Ver todos");
-        atualizarTabela();
-    }
-
-    @FXML
-    protected void onSalvarButtonClick() {
-        if (txtServico.getValue() == null || dpData.getValue() == null ||
-                txtModelo.getValue() == null || cbUnidade.getValue() == null ||
-                !horarioValido(txtHorario.getText())) {
-            mostrarAviso("Preencha todos os campos. O horário deve estar no formato HH:mm.");
-            return;
-        }
-
-        try {
-            dao.cadastrarAgendamento(
-                    dpData.getValue().toString(),
-                    txtHorario.getText(),
-                    txtModelo.getValue(),
-                    txtServico.getValue(),
-                    cbUnidade.getValue(),
-                    MainApplication.getUsuario()
-            );
-            inicioSemanaAtual = dpData.getValue().with(DayOfWeek.MONDAY);
-            exibindoTodos = false;
-            btnVerTodos.setText("Ver todos");
-            limparCampos();
-            atualizarTabela();
-        } catch (RuntimeException e) {
-            mostrarErro("Não foi possível salvar o agendamento", e.getMessage());
-        }
-    }
-
-    private boolean horarioValido(String horario) {
-        return horario != null && horario.matches("([01][0-9]|2[0-3]):[0-5][0-9]");
-    }
-
-    private void limparCampos() {
-        txtModelo.setValue(null);
-        txtHorario.clear();
-        dpData.setValue(null);
-        txtServico.setValue(null);
-    }
-
-    public void atualizarTabela() {
-        List<Agenda> lista;
-        if (exibindoTodos) {
-            lista = dao.listarAgendamentos(MainApplication.getUsuario());
-            if (lblSemanaAtual != null) {
-                lblSemanaAtual.setText("Todos os agendamentos");
-            }
-        } else {
-            LocalDate fimSemana = inicioSemanaAtual.plusDays(6);
-            lista = dao.listarAgendamentosPorSemana(inicioSemanaAtual, fimSemana, MainApplication.getUsuario());
-            if (lblSemanaAtual != null) {
-                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy", new Locale("pt", "BR"));
-                lblSemanaAtual.setText("Semana: " + inicioSemanaAtual.format(fmt) + " a " + fimSemana.format(fmt));
-            }
-        }
-        tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
-    }
-
     private void mostrarAviso(String mensagem) {
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
@@ -327,11 +297,10 @@ public class AgendaController {
         alerta.showAndWait();
     }
 
-    private void mostrarErro(String titulo, String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
+    private void atualizarVisaoGeral() {
+        String usuario = MainApplication.getUsuario();
+        lblPraticasDoMes.setText(String.valueOf(dao.contarPraticasDoMes(usuario)));
+        lblVagasOcupadas.setText(dao.calcularPercentualVagasOcupadas(usuario) + "%");
+        lblTurmasAtivas.setText(String.valueOf(dao.contarTurmasAtivas(usuario)));
     }
 }

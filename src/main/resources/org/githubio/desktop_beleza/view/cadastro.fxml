@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-atualizar-senha" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.AtualizarSenhaController">
+<StackPane prefHeight="700.0" prefWidth="1100.0" styleClass="tela-base" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.CadastroController">
    <stylesheets>
-      <URL value="@css/style.css" />
+      <URL value="@../css/style.css" />
    </stylesheets>
    <children>
       <HBox>
          <children>
-            <VBox alignment="CENTER" spacing="18.0" styleClass="formulario-atualizar-senha" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="32.0" left="44.0" right="44.0" top="32.0" />
                </padding>
                <children>
                   <VBox spacing="6.0">
                      <children>
-                        <Label styleClass="titulo-formulario" text="Atualizar Senha">
+                        <Label styleClass="titulo-formulario" text="Cadastro">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Label styleClass="descricao-formulario" text="Crie uma nova senha para sua conta" />
+                        <Label styleClass="descricao-formulario" text="Inicie o seu cadastro." />
                      </children>
                      <VBox.margin>
                         <Insets bottom="4.0" />
                      </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label styleClass="rotulo-formulario" text="Nome" />
+                        <TextField fx:id="campoNome" prefHeight="45.0" promptText="Digite seu nome" styleClass="campo-formulario" />
+                     </children>
                   </VBox>
                   <VBox spacing="6.0">
                      <children>
@@ -40,15 +52,15 @@
                   </VBox>
                   <VBox spacing="6.0">
                      <children>
-                        <Label styleClass="rotulo-formulario" text="Nova Senha" />
+                        <Label styleClass="rotulo-formulario" text="Senha" />
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
-                           <PasswordField fx:id="campoNovaSenha" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" />
+                           <PasswordField fx:id="campoSenha" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" />
                            <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
                            <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                               <graphic>
                                  <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@Imagens/eyeOpen 1.png" />
+                                       <Image url="@../images/eye-open.png" />
                                     </image>
                                  </ImageView>
                               </graphic>
@@ -74,7 +86,7 @@
                               <graphic>
                                  <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@Imagens/eyeOpen 1.png" />
+                                       <Image url="@../images/eye-open.png" />
                                     </image>
                                  </ImageView>
                               </graphic>
@@ -82,25 +94,25 @@
                         </StackPane>
                      </children>
                   </VBox>
-                  <VBox spacing="10.0" styleClass="acoes-formulario">
+                  <VBox spacing="10.0">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAlterarSenha" prefHeight="45.0" styleClass="botao-principal" text="Alterar Senha" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#voltarParaLogin" prefHeight="40.0" styleClass="botao-secundario" text="Voltar para o login" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCadastrarClick" prefHeight="45.0" styleClass="botao-principal" text="Cadastrar-se" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVoltarClick" prefHeight="45.0" styleClass="botao-secundario" text="Voltar para o login" />
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="340.0" spacing="38.0" styleClass="painel-decorativo-atualizar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" spacing="38.0" styleClass="painel-decorativo">
                <padding>
                   <Insets bottom="36.0" left="30.0" right="30.0" top="36.0" />
                </padding>
                <children>
-                  <ImageView fitHeight="130.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logoDecorativa" fitHeight="152.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagens/Senac_logo.png" />
+                        <Image url="@../images/senaclogo-branco.png" />
                      </image>
                   </ImageView>
-                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="A educação transforma. Sua jornada começa aqui." textAlignment="CENTER" wrapText="true" />
+                  <Label maxWidth="460.0" styleClass="texto-decorativo" text="Beleza e Bem-estar. Sua gestão profissional." textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
          </children>
