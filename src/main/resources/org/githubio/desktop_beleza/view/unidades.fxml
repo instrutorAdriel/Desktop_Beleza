@@ -4,28 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import org.githubio.desktop_beleza.components.*?>
 
 <BorderPane prefHeight="700.0" prefWidth="1050.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.UnidadeController">
 
     <left>
-        <VBox prefWidth="230.0" spacing="10.0" styleClass="sidebar">
-            <padding>
-                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
-            </padding>
-            <children>
-                <Region maxHeight="62.0" minHeight="62.0" prefHeight="62.0" />
-                <VBox spacing="10.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaPaginaInicial" prefHeight="40.0" styleClass="sidebar-nav-button" text="Página inicial" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaModelos" prefHeight="40.0" styleClass="sidebar-nav-button" text="Modelos" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaServicos" prefHeight="40.0" styleClass="sidebar-nav-button" text="Serviços" />
-                        <Button maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="sidebar-nav-button" text="Unidades" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#trocarTelaParaTurmas" prefHeight="40.0" styleClass="sidebar-nav-button" text="Turmas" />
-                    </children>
-                </VBox>
-                <Button maxWidth="1.7976931348623157E308" onAction="#sairDoSistema" prefHeight="38.0" styleClass="danger-senac" text="Sair do Sistema" />
-            </children>
-        </VBox>
+        <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
 
     <center>
