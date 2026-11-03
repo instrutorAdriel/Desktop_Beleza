@@ -15,6 +15,7 @@ import org.githubio.desktop_beleza.model.dao.ModeloDAO;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ModeloController implements Initializable {
@@ -36,6 +37,15 @@ public class ModeloController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         // CORRIGIDO: o nome da propriedade é "data" (getData()), não "data_nascimento"
         colDataNascimento.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colDataNascimento.setCellFactory(column -> new TableCell<>() {
+            private final DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            @Override
+            protected void updateItem(Date data, boolean empty) {
+                super.updateItem(data, empty);
+                setText(empty || data == null ? null : data.toLocalDate().format(formatoBrasileiro));
+            }
+        });
 
         colAcoes.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(null));
         configurarColunaAcoes();
@@ -82,6 +92,11 @@ public class ModeloController implements Initializable {
         boolean isNovo = (modelo.getId() == 0);
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle(isNovo ? "Novo Modelo" : "Editar Modelo");
+        dialog.getDialogPane().getStyleClass().add("model-dialog");
+        var stylesheet = ModeloController.class.getResource("/org/githubio/desktop_beleza/css/style.css");
+        if (stylesheet != null) {
+            dialog.getDialogPane().getStylesheets().add(stylesheet.toExternalForm());
+        }
 
         ButtonType btnSalvarType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvarType, ButtonType.CANCEL);
@@ -90,6 +105,21 @@ public class ModeloController implements Initializable {
         TextField txtTel = new TextField(modelo.getTelefone());
         TextField txtEmail = new TextField(modelo.getEmail());
         DatePicker dpNascimento = new DatePicker();
+        txtNome.getStyleClass().add("model-dialog-field");
+        txtTel.getStyleClass().add("model-dialog-field");
+        txtEmail.getStyleClass().add("model-dialog-field");
+        dpNascimento.getStyleClass().add("model-dialog-field");
+        dpNascimento.setMaxWidth(Double.MAX_VALUE);
+
+        dpNascimento.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate data, boolean vazio) {
+                super.updateItem(data, vazio);
+                setStyle(!vazio && LocalDate.now().equals(data)
+                        ? "-fx-text-fill: #000000;"
+                        : "");
+            }
+        });
 
         // CORRIGIDO: preenche o DatePicker com a data já salva (edição)
         if (modelo.getData() != null) {
@@ -113,14 +143,20 @@ public class ModeloController implements Initializable {
         txtTel.setTextFormatter(telefoneFormatter);
         txtTel.setPromptText("Somente números (máx. 11)");
 
-        dialog.getDialogPane().setContent(new VBox(10,
-                new Label("Nome:"), txtNome,
-                new Label("Telefone:"), txtTel,
-                new Label("Email:"), txtEmail,
-                new Label("Data de nascimento:"), dpNascimento
-        ));
+        VBox formulario = new VBox(12,
+                criarCampoFormulario("Nome", txtNome),
+                criarCampoFormulario("Telefone", txtTel),
+                criarCampoFormulario("Email", txtEmail),
+                criarCampoFormulario("Data de nascimento", dpNascimento)
+        );
+        formulario.getStyleClass().add("model-dialog-form");
+        dialog.getDialogPane().setContent(formulario);
+        dialog.getDialogPane().setPrefWidth(430);
 
         final Button btnSalvar = (Button) dialog.getDialogPane().lookupButton(btnSalvarType);
+        btnSalvar.getStyleClass().add("panel-button-primary");
+        Button btnCancelar = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
+        btnCancelar.getStyleClass().add("panel-button-secondary");
 
         btnSalvar.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
             String telRaw = txtTel.getText();
@@ -129,6 +165,15 @@ public class ModeloController implements Initializable {
             // CORRIGIDO: pega o valor real do DatePicker e converte para java.sql.Date
             LocalDate dataEscolhida = dpNascimento.getValue();
             Date dataN = (dataEscolhida != null) ? Date.valueOf(dataEscolhida) : null;
+
+            if (txtNome.getText().isBlank()
+                    || telRaw.isBlank()
+                    || email.isBlank()
+                    || dataN == null) {
+                mostrarAlerta("Campos obrigatórios", "Preencha todos os campos antes de salvar.");
+                event.consume();
+                return;
+            }
 
             if (telRaw.length() < 11) {
                 mostrarAlerta("Erro no Telefone", "O telefone deve conter 11 dígitos.");
@@ -153,19 +198,46 @@ public class ModeloController implements Initializable {
             modelo.setEmail(email);
             modelo.setData(dataN);
 
-            if (isNovo) {
-                dao.cadastrar(modelo);
-            } else {
-                dao.atualizar(modelo);
+            try {
+                if (isNovo) {
+                    dao.cadastrar(modelo);
+                } else {
+                    dao.atualizar(modelo);
+                }
+                atualizarTabela();
+            } catch (RuntimeException ex) {
+                event.consume();
+                Throwable causa = ex;
+                while (causa.getCause() != null) {
+                    causa = causa.getCause();
+                }
+                String detalhe = causa.getMessage();
+                mostrarAlerta("Erro ao salvar modelo",
+                        detalhe == null || detalhe.isBlank()
+                                ? "Não foi possível salvar o modelo. Confira os dados e a conexão com o banco."
+                                : detalhe);
             }
-            atualizarTabela();
         });
 
         dialog.showAndWait();
     }
 
+    private VBox criarCampoFormulario(String titulo, Control campo) {
+        Label label = new Label(titulo);
+        label.getStyleClass().add("model-dialog-label");
+        return new VBox(5, label, campo);
+    }
+
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        javafx.stage.Window owner = javafx.stage.Window.getWindows().stream()
+                .filter(javafx.stage.Window::isFocused)
+                .findFirst()
+                .orElse(null);
+        if (owner != null) {
+            alert.initOwner(owner);
+            alert.initModality(javafx.stage.Modality.WINDOW_MODAL);
+        }
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
@@ -177,8 +249,15 @@ public class ModeloController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Excluir " + modelo.getNome() + "?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.YES) {
-                dao.excluir(modelo.getId());
-                atualizarTabela();
+                if (dao.excluir(modelo.getId())) {
+                    atualizarTabela();
+                } else {
+                    Alert aviso = new Alert(Alert.AlertType.WARNING);
+                    aviso.setTitle("Não foi possível excluir");
+                    aviso.setHeaderText(null);
+                    aviso.setContentText("Este modelo tem um agendamento e não será possível excluí-lo.");
+                    aviso.showAndWait();
+                }
             }
         });
     }

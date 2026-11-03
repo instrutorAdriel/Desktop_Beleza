@@ -2,6 +2,7 @@ module org.githubio.desktop_beleza {
     requires javafx.controls;
     requires javafx.fxml;
 
+
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires spring.security.crypto;

@@ -20,6 +20,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         scene = new Scene(loadFXML("login"), MinWidth, MinHeight); // A primeira tela a ser exibida é a de Login
 
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
@@ -30,7 +31,7 @@ public class MainApplication extends Application {
         // Adição do logo como icone
         Image appIcon = new Image(MainApplication.class.getResource("images/icon.png").toString());
         stage.getIcons().add(appIcon);
-        
+        scene.getStylesheets().add(cssSenac);
         stage.setTitle("Desktop Beleza");
         stage.setScene(scene);
         stage.setMinWidth(MinWidth);

@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.VBox" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #faf8f7; -fx-border-color: #E1E3E2; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefWidth="230.0" spacing="10.0" styleClass="sidebar" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets top="20.0" />
    </padding>
    <children>
-      <VBox spacing="8.0">
+      <VBox spacing="10.0">
          <padding>
             <Insets left="15.0" right="15.0" />
          </padding>
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="btn-cinza" text="Página inicial">
+            <Label styleClass="sidebar-titulo" text="SENAC" />
+            <Label styleClass="sidebar-subtitulo" text="Painel de Gestão">
+               <VBox.margin><Insets bottom="22.0" /></VBox.margin>
+            </Label>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaPaginaInicial" styleClass="sidebar-button" text="Dashboard">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="btn-cinza" text="Modelos">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" styleClass="sidebar-button" text="Unidades">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="btn-cinza" text="Serviços">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="sidebar-button" text="Turmas">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaUnidades" styleClass="btn-cinza" text="Unidades">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaModelos" styleClass="sidebar-button" text="Modelos">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaTurmas" styleClass="btn-cinza" text="Turmas">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaServicos" styleClass="sidebar-button" text="Serviços">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
          </children>
       </VBox>
-      <VBox style="-fx-background-color: #faf8f7;" VBox.vgrow="ALWAYS" />
-      <VBox alignment="CENTER" prefHeight="80.0">
+      <VBox style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS" />
+      <VBox alignment="CENTER" prefHeight="52.0">
+         <padding><Insets left="15.0" right="15.0" /></padding>
          <children>
-            <Button minWidth="100.0" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="btn-azul" text="Sair">
+            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairDoSistema" styleClass="danger-senac" text="Sair do Sistema">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
