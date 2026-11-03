@@ -182,7 +182,7 @@ public class    GerenciarTurmaController {
     void abrirTelaCadastroPopUp() {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("adicionarTurma.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("view/adicionarTurma.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
