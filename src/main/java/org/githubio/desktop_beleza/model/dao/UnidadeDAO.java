@@ -2,6 +2,7 @@ package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 import org.githubio.desktop_beleza.model.Unidade;
+import org.githubio.desktop_beleza.model.Servico;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,6 +99,36 @@ public class UnidadeDAO {
         }
     }
 
+    public List<Servico> listarServicosVinculados(int idUnidade) {
+        String sql = """
+                SELECT DISTINCT p.id_produto, p.nome_produto, p.descricao
+                FROM produto_unidade pu
+                INNER JOIN produto p ON p.id_produto = pu.id_produto
+                WHERE pu.id_unidade = ?
+                ORDER BY p.nome_produto
+                """;
+        List<Servico> servicos = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUnidade);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    servicos.add(new Servico(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome_produto"),
+                            rs.getString("descricao")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar serviços da unidade", e);
+        }
+
+        return servicos;
+    }
+
+
     /**
      * Cria o vínculo entre um serviço (produto) e a unidade que o oferece,
      * na tabela produto_unidade.
@@ -115,8 +146,8 @@ public class UnidadeDAO {
                 """;
 
         String inserir = """
-                INSERT INTO produto_unidade (id_unidade, id_produto)
-                VALUES (?, ?)
+                INSERT INTO produto_unidade (id_unidade, id_produto, produto_utilizado)
+                VALUES (?, ?, 0)
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -145,6 +176,36 @@ public class UnidadeDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao vincular serviço à unidade", e);
+        }
+    }
+
+    public void desvincularServico(int idUnidade, int idProduto) {
+        String sql = """
+                DELETE pu
+                FROM produto_unidade pu
+                WHERE pu.id_unidade = ?
+                  AND pu.id_produto = ?
+                  AND NOT EXISTS (
+                      SELECT 1
+                      FROM disponibilidade d
+                      WHERE d.id_produto_unidade = pu.id_produto_unidade
+                  )
+                """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUnidade);
+            stmt.setInt(2, idProduto);
+            if (stmt.executeUpdate() == 0) {
+                throw new IllegalStateException(
+                        "Este serviço possui disponibilidades associadas e não pode ser desvinculado."
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Não foi possível desvincular o serviço. Ele pode estar associado a disponibilidades ou agendamentos.",
+                    e
+            );
         }
     }
 }

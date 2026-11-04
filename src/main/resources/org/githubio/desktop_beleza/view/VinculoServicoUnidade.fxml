@@ -10,14 +10,14 @@
       fx:controller="org.githubio.desktop_beleza.controller.VinculoServicoUnidadeController"
       stylesheets="@../css/style.css"
       spacing="15"
-      prefWidth="380"
+      prefWidth="420"
       style="-fx-background-color: #faf8f7;">
 
     <padding>
         <Insets top="25" left="25" right="25" bottom="25"/>
     </padding>
 
-    <Label text="Adicionar serviço à unidade" textFill="#004587">
+    <Label text="Serviços oferecidos pela unidade" textFill="#004587">
         <font>
             <Font name="Verdana Bold" size="18"/>
         </font>
@@ -31,19 +31,33 @@
     </VBox>
 
     <VBox spacing="5">
-        <Label text="Serviço"/>
+        <Label text="Adicionar serviço"/>
         <ComboBox fx:id="cbServico"
                   maxWidth="Infinity"
-                  promptText="Selecione o serviço"/>
+                  promptText="Selecione um serviço disponível"/>
+    </VBox>
+
+    <Button text="Vincular serviço"
+            styleClass="btn-azul"
+            maxWidth="Infinity"
+            onAction="#vincular"/>
+
+    <VBox spacing="5">
+        <Label text="Serviços já vinculados"/>
+        <ListView fx:id="listaServicosVinculados" prefHeight="140">
+            <placeholder>
+                <Label text="Nenhum serviço vinculado a esta unidade"/>
+            </placeholder>
+        </ListView>
     </VBox>
 
     <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Desvincular selecionado"
+                styleClass="btn-cinza"
+                onAction="#desvincular"/>
         <Button text="Cancelar"
                 styleClass="btn-cinza"
                 onAction="#cancelar"/>
-        <Button text="Vincular"
-                styleClass="btn-azul"
-                onAction="#vincular"/>
     </HBox>
 
 </VBox>

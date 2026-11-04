@@ -3,7 +3,10 @@ package org.githubio.desktop_beleza.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.githubio.desktop_beleza.model.Servico;
@@ -11,6 +14,8 @@ import org.githubio.desktop_beleza.model.Unidade;
 import org.githubio.desktop_beleza.model.dao.UnidadeDAO;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class VinculoServicoUnidadeController {
 
@@ -20,7 +25,11 @@ public class VinculoServicoUnidadeController {
     @FXML
     private ComboBox<Servico> cbServico;
 
+    @FXML
+    private ListView<Servico> listaServicosVinculados;
+
     private final UnidadeDAO unidadeDAO = new UnidadeDAO();
+    private List<Servico> todosServicos = List.of();
 
 
     @FXML
@@ -50,6 +59,18 @@ public class VinculoServicoUnidadeController {
                 return null;
             }
         });
+
+        listaServicosVinculados.setCellFactory(list -> new ListCell<>() {
+            @Override
+            protected void updateItem(Servico servico, boolean vazio) {
+                super.updateItem(servico, vazio);
+                setText(vazio || servico == null ? null : servico.getNome());
+            }
+        });
+
+        cbUnidade.valueProperty().addListener((observable, anterior, atual) ->
+                atualizarServicosDaUnidade()
+        );
     }
 
 
@@ -59,7 +80,8 @@ public class VinculoServicoUnidadeController {
     }
 
     public void setServicos(List<Servico> servicos) {
-        cbServico.setItems(FXCollections.observableArrayList(servicos));
+        todosServicos = List.copyOf(servicos);
+        atualizarServicosDaUnidade();
     }
 
     public void selecionarUnidade(Unidade unidade) {
@@ -118,7 +140,8 @@ public class VinculoServicoUnidadeController {
                     "Serviço vinculado à unidade com sucesso!"
             );
 
-            fechar();
+            cbServico.getSelectionModel().clearSelection();
+            atualizarServicosDaUnidade();
 
         } catch (RuntimeException e) {
 
@@ -131,6 +154,75 @@ public class VinculoServicoUnidadeController {
             mostrarMensagem(
                     Alert.AlertType.ERROR,
                     "Não foi possível criar o vínculo.\n\n" + detalhe
+            );
+        }
+    }
+
+    @FXML
+    private void desvincular() {
+        Unidade unidade = cbUnidade.getValue();
+        Servico servico = listaServicosVinculados.getSelectionModel().getSelectedItem();
+
+        if (unidade == null || servico == null) {
+            mostrarMensagem(Alert.AlertType.WARNING, "Selecione um serviço vinculado para remover.");
+            return;
+        }
+
+        Alert confirmacao = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Desvincular \"" + servico.getNome() + "\" de \"" + unidade.getNome() + "\"?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+        confirmacao.setHeaderText(null);
+        if (confirmacao.showAndWait().orElse(ButtonType.NO) != ButtonType.YES) {
+            return;
+        }
+
+        try {
+            unidadeDAO.desvincularServico(unidade.getId(), servico.getId());
+            atualizarServicosDaUnidade();
+            mostrarMensagem(Alert.AlertType.INFORMATION, "Serviço desvinculado da unidade.");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            mostrarMensagem(
+                    Alert.AlertType.ERROR,
+                    e.getMessage() == null
+                            ? "Não foi possível desvincular o serviço."
+                            : e.getMessage()
+            );
+        }
+    }
+
+    private void atualizarServicosDaUnidade() {
+        Unidade unidade = cbUnidade.getValue();
+        if (unidade == null) {
+            listaServicosVinculados.getItems().clear();
+            cbServico.getItems().clear();
+            return;
+        }
+
+        try {
+            List<Servico> vinculados = unidadeDAO.listarServicosVinculados(unidade.getId());
+            listaServicosVinculados.setItems(FXCollections.observableArrayList(vinculados));
+
+            Set<Integer> idsVinculados = vinculados.stream()
+                    .map(Servico::getId)
+                    .collect(Collectors.toSet());
+            cbServico.setItems(FXCollections.observableArrayList(
+                    todosServicos.stream()
+                            .filter(servico -> !idsVinculados.contains(servico.getId()))
+                            .toList()
+            ));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            listaServicosVinculados.getItems().clear();
+            cbServico.getItems().clear();
+            mostrarMensagem(
+                    Alert.AlertType.ERROR,
+                    e.getMessage() == null
+                            ? "Não foi possível carregar os serviços desta unidade."
+                            : e.getMessage()
             );
         }
     }

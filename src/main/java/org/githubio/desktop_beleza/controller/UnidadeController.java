@@ -69,6 +69,11 @@ public class UnidadeController implements Initializable {
                 new PropertyValueFactory<>("status")
         );
 
+        tabelaUnidades.widthProperty().addListener((observable, larguraAnterior, novaLargura) ->
+                ajustarLarguraColunas(novaLargura.doubleValue())
+        );
+        ajustarLarguraColunas(tabelaUnidades.getWidth());
+
         carregarTabela();
 
 
@@ -94,6 +99,18 @@ public class UnidadeController implements Initializable {
                 }
             }
         });
+    }
+
+    private void ajustarLarguraColunas(double larguraTabela) {
+        double larguraUtil = larguraTabela - tabelaUnidades.getInsets().getLeft()
+                - tabelaUnidades.getInsets().getRight() - 2;
+        if (larguraUtil <= 0) {
+            return;
+        }
+
+        colNome.setPrefWidth(larguraUtil * 0.26);
+        colEndereco.setPrefWidth(larguraUtil * 0.55);
+        colSituacao.setPrefWidth(larguraUtil * 0.19);
     }
 
 
@@ -209,11 +226,14 @@ public class UnidadeController implements Initializable {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(
-                    MainApplication.class.getResource(
-                            "VinculoServicoUnidade.fxml"
-                    )
+            URL telaVinculo = MainApplication.class.getResource(
+                    "view/VinculoServicoUnidade.fxml"
             );
+            if (telaVinculo == null) {
+                throw new IOException("Arquivo da tela de vínculo não encontrado.");
+            }
+
+            FXMLLoader loader = new FXMLLoader(telaVinculo);
 
             Parent root = loader.load();
 
@@ -233,68 +253,24 @@ public class UnidadeController implements Initializable {
 
             stage.initOwner(tabelaUnidades.getScene().getWindow());
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.setTitle("Adicionar serviço à unidade");
+            stage.setTitle("Gerenciar serviços da unidade");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
 
             stage.showAndWait();
 
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
 
             e.printStackTrace();
 
+            String detalhe = e.getCause() != null
+                    ? e.getCause().getMessage()
+                    : e.getMessage();
             mostrarMensagem(
                     Alert.AlertType.ERROR,
                     "Não foi possível abrir a tela de vínculo."
+                            + (detalhe == null ? "" : "\n\n" + detalhe)
             );
         }
-    }
-
-
-    @FXML
-    public void trocarTelaParaPaginaInicial()
-            throws IOException {
-
-        MainApplication.setRoot("Telaagenda");
-    }
-
-
-    @FXML
-    public void trocarTelaParaModelos()
-            throws IOException {
-
-        MainApplication.setRoot(
-                "gerenciarmodelo"
-        );
-    }
-
-
-    @FXML
-    public void trocarTelaParaServicos()
-            throws IOException {
-
-        MainApplication.setRoot(
-                "servicos"
-        );
-    }
-
-
-    @FXML
-    public void trocarTelaParaTurmas()
-            throws IOException {
-
-        MainApplication.setRoot(
-                "GerenciarTurma"
-        );
-    }
-
-
-    @FXML
-    public void sairDoSistema()
-            throws IOException {
-
-        MainApplication.setUsuario("");
-
-        MainApplication.setRoot("login");
     }
 }

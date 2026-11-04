@@ -4,109 +4,112 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_52_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_52_[Changes]2/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_52__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_52__Changes_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_53_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_53__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_55_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_55__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_56_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_56__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_57_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2026_15_57__Changes_.xml" beforeDir="false" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="195" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;JoaoAlexandre705&quot;
+    &quot;assignee&quot;: &quot;yuripetra&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza&quot;,
-    &quot;accountId&quot;: &quot;f4d560c7-1d71-4271-9e01-f68ce3332558&quot;
+    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza.git&quot;,
+    &quot;accountId&quot;: &quot;0ac69af6-cf65-4042-b05f-d96a8065f933&quot;
   }
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8476844125507874" />
-      <entry key="MS500" value="4.571717710696551" />
-      <entry key="S2" value="11.50795278081752" />
-      <entry key="S5" value="21.319305689402164" />
-      <entry key="S10" value="32.076076930530775" />
-      <entry key="S30" value="48.053900717889796" />
-      <entry key="S60" value="54.32558877070172" />
-      <entry key="M2" value="57.96669024671254" />
-      <entry key="M5" value="60.86110664859771" />
-      <entry key="M10" value="70.03273096576936" />
-      <entry key="M15" value="85.71601526604607" />
-      <entry key="M30" value="130.92476957543545" />
-      <entry key="H1" value="180.61350742620448" />
-      <entry key="H2" value="218.1266762667177" />
-      <entry key="H4" value="241.28305126358197" />
-      <entry key="D1" value="263.27691631412875" />
-      <entry key="W1" value="267.31833235434505" />
+      <entry key="MS100" value="1.5431045331254336E-9" />
+      <entry key="MS500" value="0.04089030758506899" />
+      <entry key="S2" value="2.5030090713445996" />
+      <entry key="S5" value="9.100761803633906" />
+      <entry key="S10" value="18.790906004304237" />
+      <entry key="S30" value="46.792796535005465" />
+      <entry key="S60" value="81.97281111142031" />
+      <entry key="M2" value="139.10560326893594" />
+      <entry key="M5" value="288.64494353797835" />
+      <entry key="M10" value="519.4506681577949" />
+      <entry key="M15" value="694.6319971467366" />
+      <entry key="M30" value="1069.6867756315567" />
+      <entry key="H1" value="1608.3583440794357" />
+      <entry key="H2" value="2216.9193688568766" />
+      <entry key="H4" value="2711.609029700266" />
+      <entry key="D1" value="3282.3281887777807" />
+      <entry key="W1" value="3398.951581202459" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="6.603218838078369E-184" />
-      <entry key="S10" value="2.5696729048807595E-92" />
-      <entry key="S30" value="2.9509325424388977E-31" />
-      <entry key="S60" value="5.432248652665758E-16" />
-      <entry key="M2" value="2.3307184842159114E-8" />
-      <entry key="M5" value="8.851073112710765E-4" />
-      <entry key="M10" value="0.029750753121073704" />
-      <entry key="M15" value="0.09601342807213852" />
-      <entry key="M30" value="0.30986033639712346" />
-      <entry key="H1" value="0.556651000535456" />
-      <entry key="H2" value="0.7460904774459027" />
-      <entry key="H4" value="0.8637652907161187" />
-      <entry key="D1" value="0.9758864577999509" />
-      <entry key="W1" value="0.9965190677468787" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.000000056490785" />
+      <entry key="M10" value="1.000237853252918" />
+      <entry key="M15" value="1.0038683420199992" />
+      <entry key="M30" value="1.067541444650176" />
+      <entry key="H1" value="1.3237035996587592" />
+      <entry key="H2" value="1.7724139300606385" />
+      <entry key="H4" value="2.229318246129595" />
+      <entry key="D1" value="2.8413004888228466" />
+      <entry key="W1" value="2.9764416333668624" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.7826922978339808" />
-      <entry key="MS500" value="4.5402639507339355" />
-      <entry key="S2" value="11.487677032245232" />
-      <entry key="S5" value="21.303642597502098" />
-      <entry key="S10" value="32.06384442861308" />
-      <entry key="S30" value="48.04756615595441" />
-      <entry key="S60" value="54.32197182383548" />
-      <entry key="M2" value="57.9647506928028" />
-      <entry key="M5" value="60.861169833167644" />
-      <entry key="M10" value="70.06192057774372" />
-      <entry key="M15" value="85.81144336617989" />
-      <entry key="M30" value="131.23400105515836" />
-      <entry key="H1" value="181.16964967874264" />
-      <entry key="H2" value="218.8724374838802" />
-      <entry key="H4" value="242.14662859894443" />
-      <entry key="D1" value="264.25276773443056" />
-      <entry key="W1" value="268.31484631905124" />
+      <entry key="MS100" value="6.624421525441623E-8" />
+      <entry key="MS500" value="0.06857224088063944" />
+      <entry key="S2" value="2.832341686276821" />
+      <entry key="S5" value="9.718282966059984" />
+      <entry key="S10" value="19.56697693493194" />
+      <entry key="S30" value="47.70429392012221" />
+      <entry key="S60" value="82.92453185018357" />
+      <entry key="M2" value="140.07927069195995" />
+      <entry key="M5" value="289.63258211166897" />
+      <entry key="M10" value="520.4433758438186" />
+      <entry key="M15" value="695.6301496707445" />
+      <entry key="M30" value="1070.7505920311498" />
+      <entry key="H1" value="1609.6793597795038" />
+      <entry key="H2" value="2218.6898763005297" />
+      <entry key="H4" value="2713.8371405311523" />
+      <entry key="D1" value="3285.169235482282" />
+      <entry key="W1" value="3401.927984986459" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="3LHqVZ8fv89wEX0V2N1s3LZKH0c" />
+  <component name="ProjectId" id="3KhU27Aj8IO0KKFvKMWb7hbWHlU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -114,74 +117,85 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;remade/telaTurmas&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;remade/unidades&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yuri59073236/Music/Desktop_Beleza&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\images" />
-      <recent name="C:\Users\davi59126036\Documents\Desktop_Beleza\src\main\resources\org\githubio\desktop_beleza\view" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Launcher" type="Application" factoryName="Application">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.githubio.desktop_beleza.Launcher" />
       <module name="Desktop_Beleza" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.githubio.desktop_beleza.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
         <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
         <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="feature: implementação do design padrão das telas de recuperar senha">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="" />
+      <created>1792009083187</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792009083187</updated>
+      <workItem from="1792604073754" duration="4000" />
+      <workItem from="1792695645045" duration="306000" />
+    </task>
+    <task id="LOCAL-00001" summary="mudanca do visual da tela de cadastro">
       <option name="closed" value="true" />
-      <created>1793039122048</created>
+      <created>1792694549713</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1793039122048</updated>
+      <updated>1792694549713</updated>
     </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="423951aa-b36a-463e-9ef0-5d06f9472170" name="Changes" comment="feature: implementação do design padrão das telas de recuperar senha" />
-      <created>1793121367145</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1793121367145</updated>
-      <workItem from="1793121374621" duration="5413000" />
-      <workItem from="1793299320162" duration="569000" />
-      <workItem from="1793726574786" duration="95000" />
-    </task>
-    <task id="LOCAL-00002" summary="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código">
-      <option name="closed" value="true" />
-      <created>1793132877617</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1793132877617</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,47 +206,20 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/remade/login" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feature: implementação do design padrão das telas de recuperar senha" />
-    <MESSAGE value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: correção de não passar para tela de recuperar-senha.fxml após digitar código" />
+    <MESSAGE value="mudanca do visual da tela de cadastro" />
+    <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
+    <MESSAGE value="tela atualizada" />
+    <option name="LAST_COMMIT_MESSAGE" value="tela atualizada" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
-          <line>134</line>
-          <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController" method="onConfirmarCodigo">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
-          <line>142</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
