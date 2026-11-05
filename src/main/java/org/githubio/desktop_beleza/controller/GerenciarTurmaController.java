@@ -137,7 +137,7 @@ public class    GerenciarTurmaController {
 
     // Criamos um método para facilitar a atualização em vários pontos
     private void atualizarTabela() throws SQLException {
-        listaOriginal.setAll(dao.lerUsuariosParaTabela(MainApplication.getUsuario()));
+        listaOriginal.setAll(dao.lerUsuariosParaTabela());
     }
 
     private void abrirJanelaEdicao(UsuarioDTO usuario) {

@@ -2,7 +2,6 @@ package org.githubio.desktop_beleza.model.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 import org.githubio.desktop_beleza.model.dto.UsuarioDTO;
 
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class GerenciarTurmaDAO {
 
-    public ObservableList<UsuarioDTO> lerUsuariosParaTabela(String emailInstrutor) throws SQLException {
+    public ObservableList<UsuarioDTO> lerUsuariosParaTabela() throws SQLException {
         String sql = """
                 SELECT t.id_turma,
                        t.nome_turma,
@@ -26,10 +25,9 @@ public class GerenciarTurmaDAO {
                 INNER JOIN turma t ON t.id_turma = igt.id_turma
                 INNER JOIN instrutor i ON i.id_instrutor = igt.id_instrutor
                 INNER JOIN usuario u ON u.id_usuario = i.id_usuario
-                WHERE u.email = ?
                 ORDER BY t.nome_turma
                 """;
-        return executarConsulta(sql, emailInstrutor, null);
+        return executarConsulta(sql, null);
     }
 
     public ObservableList<UsuarioDTO> buscarTurmaPorNome(String turma) throws SQLException {
@@ -43,19 +41,18 @@ public class GerenciarTurmaDAO {
                 INNER JOIN turma t ON t.id_turma = igt.id_turma
                 INNER JOIN instrutor i ON i.id_instrutor = igt.id_instrutor
                 INNER JOIN usuario u ON u.id_usuario = i.id_usuario
-                WHERE u.email = ? AND t.nome_turma = ?
+                WHERE t.nome_turma = ?
                 ORDER BY t.nome_turma
                 """;
-        return executarConsulta(sql, MainApplication.getUsuario(), turma);
+        return executarConsulta(sql, turma);
     }
 
-    private ObservableList<UsuarioDTO> executarConsulta(String sql, String email, String nomeTurma) throws SQLException {
+    private ObservableList<UsuarioDTO> executarConsulta(String sql, String nomeTurma) throws SQLException {
         ObservableList<UsuarioDTO> lista = FXCollections.observableArrayList();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
             if (nomeTurma != null) {
-                stmt.setString(2, nomeTurma);
+                stmt.setString(1, nomeTurma);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
