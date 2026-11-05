@@ -3,7 +3,6 @@
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import org.githubio.desktop_beleza.components.*?>
@@ -38,13 +37,13 @@
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin></TextField>
-                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#btnPesquisarClick" text="Buscar">
+                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#btnPesquisarClick" style="-fx-background-color: #004a8d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 12;" text="Buscar">
                             <styleClass>
                                 <String fx:value="btn-cinza" />
                                 <String fx:value="btn-cinza" />
                             </styleClass>
                         </Button>
-                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" prefWidth="150.0" styleClass="btn-azul" text="Adicionar Turma">
+                        <Button minHeight="35.0" minWidth="125.0" mnemonicParsing="false" onAction="#abrirTelaCadastroPopUp" prefWidth="150.0" style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 10;" styleClass="btn-azul" text="Adicionar Turma">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Button>

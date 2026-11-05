@@ -82,8 +82,8 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                     <children>
-                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false" onAction="#finalizarESair" prefHeight="40.0" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
-                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false" onAction="#registrarOutra" prefHeight="35.0" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
+                        <Button fx:id="clicouFinalizar" minWidth="200.0" mnemonicParsing="false" onAction="#finalizarESair" prefHeight="40.0" style="-fx-background-color: #004a8d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 12;" styleClass="btn-azul" text="Finalizar e Sair" textFill="WHITE" />
+                        <Button fx:id="clicouRegistrarOutra" minWidth="200.0" mnemonicParsing="false" onAction="#registrarOutra" prefHeight="35.0" style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10 12;" styleClass="btn-cinza" text="Registrar outra turma" textFill="#004587" />
                     </children>
                 </VBox>
             </children>

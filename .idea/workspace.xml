@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/GerenciarTurmaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/GerenciarTurmaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/GerenciarTurmaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/GerenciarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/GerenciarTurma.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/adicionarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/adicionarTurma.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="remade/telaTurmas" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,12 +32,12 @@
     &quot;assignee&quot;: &quot;yuripetra&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/instrutorAdriel/Desktop_Beleza",
-    "accountId": "f4d560c7-1d71-4271-9e01-f68ce3332558"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/instrutorAdriel/Desktop_Beleza&quot;,
+    &quot;accountId&quot;: &quot;f4d560c7-1d71-4271-9e01-f68ce3332558&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -51,61 +51,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5285100254074953" />
-      <entry key="MS500" value="3.140190232323403" />
-      <entry key="S2" value="7.429690254007808" />
-      <entry key="S5" value="12.957128004862165" />
-      <entry key="S10" value="20.067553659242332" />
-      <entry key="S30" value="31.58386840918783" />
-      <entry key="S60" value="36.441289129903694" />
-      <entry key="M2" value="41.65796584528913" />
-      <entry key="M5" value="79.19840709289613" />
-      <entry key="M10" value="217.19632029014755" />
-      <entry key="M15" value="387.31704273074206" />
-      <entry key="M30" value="850.555616934655" />
-      <entry key="H1" value="1528.7183073704" />
-      <entry key="H2" value="2303.066984949214" />
-      <entry key="H4" value="2952.7272538565367" />
-      <entry key="D1" value="3726.827457974746" />
-      <entry key="W1" value="3888.1609794832084" />
+      <entry key="MS100" value="1.3468772072258606" />
+      <entry key="MS500" value="3.0068878631224076" />
+      <entry key="S2" value="6.596143537988727" />
+      <entry key="S5" value="12.352652164196199" />
+      <entry key="S10" value="17.675462542367033" />
+      <entry key="S30" value="23.73928640526226" />
+      <entry key="S60" value="25.74394047086573" />
+      <entry key="M2" value="26.84022537636529" />
+      <entry key="M5" value="28.862314024761094" />
+      <entry key="M10" value="41.790249352835694" />
+      <entry key="M15" value="68.48236162124144" />
+      <entry key="M30" value="245.5857109335005" />
+      <entry key="H1" value="778.2276464836949" />
+      <entry key="H2" value="1660.2024894795838" />
+      <entry key="H4" value="2565.4692795865512" />
+      <entry key="D1" value="3804.554356994924" />
+      <entry key="W1" value="4082.409706232842" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="4.654590307985181E-276" />
-      <entry key="S5" value="7.364658007939045E-111" />
-      <entry key="S10" value="8.581758565666437E-56" />
-      <entry key="S30" value="4.410881909049662E-19" />
-      <entry key="S60" value="6.641447062989873E-10" />
-      <entry key="M2" value="2.577100514723811E-5" />
-      <entry key="M5" value="0.014603352471170837" />
-      <entry key="M10" value="0.12087307136733873" />
-      <entry key="M15" value="0.24537347091166664" />
-      <entry key="M30" value="0.5277887979196757" />
-      <entry key="H1" value="0.9307401778822978" />
-      <entry key="H2" value="1.4862231118477074" />
-      <entry key="H4" value="2.0414159259206226" />
-      <entry key="D1" value="2.799907844926932" />
-      <entry key="W1" value="2.9702081187295692" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="2.456482937626394E-192" />
+      <entry key="S30" value="1.349287770194597E-64" />
+      <entry key="S60" value="1.1615884685182639E-32" />
+      <entry key="M2" value="1.0777701371434576E-16" />
+      <entry key="M5" value="4.102140045478215E-7" />
+      <entry key="M10" value="6.406318334595597E-4" />
+      <entry key="M15" value="0.007458993774470299" />
+      <entry key="M30" value="0.09202090232644972" />
+      <entry key="H1" value="0.3886347416924614" />
+      <entry key="H2" value="0.9603744343941597" />
+      <entry key="H4" value="1.6410045622428473" />
+      <entry key="D1" value="2.699853002707061" />
+      <entry key="W1" value="2.9548076931724774" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4630615187225688" />
-      <entry key="MS500" value="3.113515946523594" />
-      <entry key="S2" value="7.41428726583697" />
-      <entry key="S5" value="12.946680042998919" />
-      <entry key="S10" value="20.059642153237395" />
-      <entry key="S30" value="31.579786040631582" />
-      <entry key="S60" value="36.438812550740984" />
-      <entry key="M2" value="41.655997189046666" />
-      <entry key="M5" value="79.21079725354214" />
-      <entry key="M10" value="217.31439117158112" />
-      <entry key="M15" value="387.5593533512931" />
-      <entry key="M30" value="851.0804133873282" />
-      <entry key="H1" value="1529.6464688612582" />
-      <entry key="H2" value="2304.5512308668126" />
-      <entry key="H4" value="2954.767365458089" />
-      <entry key="D1" value="3729.6270812332236" />
-      <entry key="W1" value="3891.1311448683246" />
+      <entry key="MS100" value="1.2691337039072876" />
+      <entry key="MS500" value="2.9737047408184836" />
+      <entry key="S2" value="6.579826099445374" />
+      <entry key="S5" value="12.341219850287937" />
+      <entry key="S10" value="17.6675046144764" />
+      <entry key="S30" value="23.735788287314133" />
+      <entry key="S60" value="25.74205215856121" />
+      <entry key="M2" value="26.839243190342383" />
+      <entry key="M5" value="28.86189408648659" />
+      <entry key="M10" value="41.7905855562075" />
+      <entry key="M15" value="68.48946210446101" />
+      <entry key="M30" value="245.67698597975703" />
+      <entry key="H1" value="778.615044393492" />
+      <entry key="H2" value="1661.1614881538114" />
+      <entry key="H4" value="2567.109180987669" />
+      <entry key="D1" value="3807.253925576519" />
+      <entry key="W1" value="4085.364469961279" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -222,6 +222,26 @@
     <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
     <MESSAGE value="tela atualizada" />
     <option name="LAST_COMMIT_MESSAGE" value="tela atualizada" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$USER_HOME$/OneDrive - SENAC DF/Documentos/desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <line>134</line>
+          <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$USER_HOME$/OneDrive - SENAC DF/Documentos/desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
