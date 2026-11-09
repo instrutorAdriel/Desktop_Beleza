@@ -12,6 +12,33 @@
     -fx-background-size: 17px 18px;
     -fx-background-color: transparent;}
 
+/* Popup de edição de agendamento */
+.popup-edicao-agendamento {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "System";
+}
+
+.edicao-agendamento .label {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 13px;
+}
+
+.edicao-agendamento .text-field,
+.edicao-agendamento .combo-box,
+.edicao-agendamento .date-picker {
+    -fx-text-fill: #1f2937;
+    -fx-background-color: #ffffff;
+}
+
+.popup-edicao-agendamento .button {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #004a8d;
+}
+
+.popup-edicao-agendamento .button:hover {
+    -fx-background-color: #003466;
+}
+
 
 .excluir{
     -fx-background-image: url("../images/lixo.png");
