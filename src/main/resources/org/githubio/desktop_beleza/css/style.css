@@ -30,6 +30,28 @@
     -fx-background-color: #ffffff;
 }
 
+/* Mantém um único contorno nos controles compostos do formulário. */
+.edicao-agendamento .combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.edicao-agendamento .date-picker > .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 6 0 0 6;
+    -fx-padding: 6 10;
+}
+
+.edicao-agendamento .date-picker > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0 6 6 0;
+}
+
 .popup-edicao-agendamento .button {
     -fx-text-fill: #ffffff;
     -fx-background-color: #004a8d;
