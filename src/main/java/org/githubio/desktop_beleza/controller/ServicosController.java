@@ -11,8 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,9 +25,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.githubio.desktop_beleza.model.Servico;
+import org.githubio.desktop_beleza.model.Unidade;
+import org.githubio.desktop_beleza.model.dao.DisponibilidadeDAO;
 import org.githubio.desktop_beleza.model.dao.ServicosDAO;
+import org.githubio.desktop_beleza.model.dao.UnidadeDAO;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ServicosController implements Initializable {
@@ -33,8 +43,11 @@ public class ServicosController implements Initializable {
     @FXML private TableColumn<Servico, String> colDescricao;
     @FXML private TableColumn<Servico, Void> colAcoes;
     @FXML private TextField txtBuscar;
+    @FXML private Button btnDisponibilizar;
 
     private final ServicosDAO dao = new ServicosDAO();
+    private final UnidadeDAO unidadeDAO = new UnidadeDAO();
+    private final DisponibilidadeDAO disponibilidadeDAO = new DisponibilidadeDAO();
 
     // Cache local em memória
     private final ObservableList<Servico> listaServicosCache = FXCollections.observableArrayList();
@@ -48,6 +61,10 @@ public class ServicosController implements Initializable {
 
         // Associa a tabela diretamente ao cache
         tabelaServicos.setItems(listaServicosCache);
+
+        // O botão "Disponibilizar agendamento" só vale para um serviço selecionado
+        btnDisponibilizar.disableProperty().bind(
+                tabelaServicos.getSelectionModel().selectedItemProperty().isNull());
 
         // Carrega do banco de dados APENAS 1 VEZ
         carregarDadosDoBanco();
@@ -83,6 +100,170 @@ public class ServicosController implements Initializable {
                 listaServicosCache.add(novoServico);
             }
         });
+    }
+
+    @FXML
+    private void abrirDialogoDisponibilizar(ActionEvent event) {
+        Servico servico = tabelaServicos.getSelectionModel().getSelectedItem();
+        if (servico == null) {
+            mostrarAviso("Selecione um serviço na tabela para disponibilizar na agenda.");
+            return;
+        }
+
+        java.util.List<Unidade> unidadesAtivas;
+        try {
+            unidadesAtivas = unidadeDAO.listarTodas().stream()
+                    .filter(u -> "A".equalsIgnoreCase(u.getSituacao()))
+                    .toList();
+        } catch (RuntimeException e) {
+            mostrarErro("Não foi possível carregar as unidades", e);
+            return;
+        }
+        if (unidadesAtivas.isEmpty()) {
+            mostrarAviso("Não há unidades ativas cadastradas. Cadastre ou ative uma unidade primeiro.");
+            return;
+        }
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Disponibilizar na Agenda");
+        dialog.setHeaderText("Disponibilizar \"" + servico.getNome() + "\" na agenda");
+
+        ButtonType btnConfirmar = new ButtonType("Disponibilizar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnConfirmar, ButtonType.CANCEL);
+
+        ComboBox<Unidade> cbUnidade = new ComboBox<>(FXCollections.observableArrayList(unidadesAtivas));
+        cbUnidade.setPromptText("Selecione a unidade");
+        cbUnidade.setMaxWidth(Double.MAX_VALUE);
+        javafx.util.StringConverter<Unidade> conversorUnidade = new javafx.util.StringConverter<>() {
+            @Override public String toString(Unidade u) { return u == null ? "" : u.getNome(); }
+            @Override public Unidade fromString(String texto) { return null; }
+        };
+        cbUnidade.setConverter(conversorUnidade);
+
+        DatePicker dpData = new DatePicker();
+        dpData.setPromptText("dd/mm/aaaa");
+        dpData.setMaxWidth(Double.MAX_VALUE);
+        // Não permite datas passadas
+        dpData.setDayCellFactory(picker -> new javafx.scene.control.DateCell() {
+            @Override
+            public void updateItem(LocalDate dia, boolean empty) {
+                super.updateItem(dia, empty);
+                setDisable(empty || dia.isBefore(LocalDate.now()));
+            }
+        });
+
+        // Horários de 30 em 30 minutos, das 06:00 às 22:00
+        ObservableList<LocalTime> horarios = FXCollections.observableArrayList();
+        for (LocalTime h = LocalTime.of(6, 0); !h.isAfter(LocalTime.of(22, 0)); h = h.plusMinutes(30)) {
+            horarios.add(h);
+        }
+        DateTimeFormatter fmtHora = DateTimeFormatter.ofPattern("HH:mm");
+        javafx.util.StringConverter<LocalTime> conversorHora = new javafx.util.StringConverter<>() {
+            @Override public String toString(LocalTime h) { return h == null ? "" : h.format(fmtHora); }
+            @Override public LocalTime fromString(String texto) { return null; }
+        };
+        ComboBox<LocalTime> cbInicio = new ComboBox<>(horarios);
+        cbInicio.setConverter(conversorHora);
+        cbInicio.setPromptText("Início");
+        cbInicio.setMaxWidth(Double.MAX_VALUE);
+        ComboBox<LocalTime> cbFim = new ComboBox<>(horarios);
+        cbFim.setConverter(conversorHora);
+        cbFim.setPromptText("Término");
+        cbFim.setMaxWidth(Double.MAX_VALUE);
+
+        // Ao escolher o início, sugere o término uma hora depois
+        cbInicio.valueProperty().addListener((obs, antigo, novo) -> {
+            if (novo != null && (cbFim.getValue() == null || !cbFim.getValue().isAfter(novo))) {
+                LocalTime sugestao = novo.plusHours(1);
+                cbFim.setValue(horarios.contains(sugestao) ? sugestao : null);
+            }
+        });
+
+        Spinner<Integer> spVagas = new Spinner<>();
+        spVagas.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 999, 1));
+        spVagas.setEditable(true);
+        spVagas.setMaxWidth(Double.MAX_VALUE);
+
+        HBox linhaHorario = new HBox(10, cbInicio, cbFim);
+        HBox.setHgrow(cbInicio, javafx.scene.layout.Priority.ALWAYS);
+        HBox.setHgrow(cbFim, javafx.scene.layout.Priority.ALWAYS);
+
+        Label lblErro = new Label();
+        lblErro.setStyle("-fx-text-fill: #c0392b;");
+        lblErro.setWrapText(true);
+
+        VBox conteudo = new VBox(8,
+                new Label("Unidade:"), cbUnidade,
+                new Label("Data:"), dpData,
+                new Label("Horário (início e término):"), linhaHorario,
+                new Label("Quantidade de vagas:"), spVagas,
+                lblErro);
+        conteudo.setPrefWidth(360);
+        dialog.getDialogPane().setContent(conteudo);
+
+        // Valida sem fechar a janela: mostra o erro e mantém o diálogo aberto
+        Button botaoOk = (Button) dialog.getDialogPane().lookupButton(btnConfirmar);
+        botaoOk.addEventFilter(ActionEvent.ACTION, ev -> {
+            String erro = validarDisponibilidade(cbUnidade.getValue(), dpData.getValue(),
+                    cbInicio.getValue(), cbFim.getValue(), spVagas);
+            if (erro != null) {
+                lblErro.setText(erro);
+                ev.consume();
+            }
+        });
+
+        dialog.showAndWait().ifPresent(resposta -> {
+            if (resposta != btnConfirmar) return;
+            try {
+                boolean criada = disponibilidadeDAO.disponibilizar(
+                        servico.getId(), cbUnidade.getValue().getId(), dpData.getValue(),
+                        cbInicio.getValue(), cbFim.getValue(), spVagas.getValue());
+
+                Alert ok = new Alert(Alert.AlertType.INFORMATION);
+                ok.setHeaderText(criada ? "Serviço disponibilizado na agenda!"
+                        : "Vagas adicionadas à disponibilidade existente!");
+                ok.setContentText(servico.getNome() + "\n"
+                        + "Unidade: " + cbUnidade.getValue().getNome() + "\n"
+                        + "Data: " + dpData.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n"
+                        + "Horário: " + cbInicio.getValue().format(fmtHora) + " às " + cbFim.getValue().format(fmtHora) + "\n"
+                        + "Vagas: " + spVagas.getValue());
+                ok.showAndWait();
+            } catch (RuntimeException e) {
+                mostrarErro("Não foi possível disponibilizar o serviço", e);
+            }
+        });
+    }
+
+    private String validarDisponibilidade(Unidade unidade, LocalDate data, LocalTime inicio,
+                                          LocalTime fim, Spinner<Integer> spVagas) {
+        // Garante que o valor digitado no spinner foi confirmado
+        try {
+            spVagas.commitValue();
+        } catch (RuntimeException e) {
+            return "Informe uma quantidade de vagas válida.";
+        }
+        if (unidade == null) return "Selecione a unidade.";
+        if (data == null) return "Selecione a data.";
+        if (data.isBefore(LocalDate.now())) return "A data não pode estar no passado.";
+        if (inicio == null || fim == null) return "Selecione o horário de início e de término.";
+        if (!fim.isAfter(inicio)) return "O horário de término deve ser depois do início.";
+        if (data.equals(LocalDate.now()) && !inicio.isAfter(LocalTime.now())) {
+            return "O horário de início já passou para hoje.";
+        }
+        Integer vagas = spVagas.getValue();
+        if (vagas == null || vagas < 1) return "A quantidade de vagas deve ser de pelo menos 1.";
+        return null;
+    }
+
+    private void mostrarAviso(String mensagem) {
+        new Alert(Alert.AlertType.WARNING, mensagem, ButtonType.OK).showAndWait();
+    }
+
+    private void mostrarErro(String titulo, RuntimeException e) {
+        Alert erro = new Alert(Alert.AlertType.ERROR);
+        erro.setHeaderText(titulo);
+        erro.setContentText(e.getMessage());
+        erro.showAndWait();
     }
 
     private void configurarColunaAcoes() {

@@ -84,8 +84,8 @@
 
                                 <VBox spacing="3.0">
                                     <children>
-                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Tipo de Serviço" />
-                                        <ComboBox fx:id="txtServico" prefWidth="180.0" promptText="Tipo de Serviço" />
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: -color-fg-muted;" text="Tipo de Procedimento" />
+                                        <ComboBox fx:id="txtServico" prefWidth="180.0" promptText="Tipo de Procedimento" />
                                     </children>
                                 </VBox>
 
