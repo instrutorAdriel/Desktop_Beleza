@@ -122,7 +122,7 @@ public class UnidadeDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar serviços da unidade", e);
+            throw new RuntimeException("Erro ao listar procedimentos da unidade", e);
         }
 
         return servicos;
@@ -130,7 +130,7 @@ public class UnidadeDAO {
 
 
     /**
-     * Cria o vínculo entre um serviço (produto) e a unidade que o oferece,
+     * Cria o vínculo entre um procedimento (produto) e a unidade que o oferece,
      * na tabela produto_unidade.
      *
      * @return true se o vínculo foi criado; false se já existia.
@@ -175,7 +175,7 @@ public class UnidadeDAO {
             return true;
 
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao vincular serviço à unidade", e);
+            throw new RuntimeException("Erro ao vincular procedimento à unidade", e);
         }
     }
 
@@ -198,12 +198,12 @@ public class UnidadeDAO {
             stmt.setInt(2, idProduto);
             if (stmt.executeUpdate() == 0) {
                 throw new IllegalStateException(
-                        "Este serviço possui disponibilidades associadas e não pode ser desvinculado."
+                        "Este procedimento possui disponibilidades associadas e não pode ser desvinculado."
                 );
             }
         } catch (SQLException e) {
             throw new RuntimeException(
-                    "Não foi possível desvincular o serviço. Ele pode estar associado a disponibilidades ou agendamentos.",
+                    "Não foi possível desvincular o procedimento. Ele pode estar associado a disponibilidades ou agendamentos.",
                     e
             );
         }
