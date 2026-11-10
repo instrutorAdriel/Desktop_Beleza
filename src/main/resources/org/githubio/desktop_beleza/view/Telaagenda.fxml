@@ -20,7 +20,7 @@
                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
             </padding>
             <children>
-                <Label fx:id="welcomeText" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Visão Geral" />
+                <Label fx:id="welcomeText" styleClass="titulo-tela-selecionada" text="Visão Geral" />
 
                 <!-- CARDS DE MÉTRICAS -->
                 <HBox spacing="15.0">
