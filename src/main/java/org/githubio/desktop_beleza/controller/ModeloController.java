@@ -34,6 +34,16 @@ public class ModeloController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+
+        // Mostra o telefone com máscara na tabela (o banco continua só com números)
+        colTelefone.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String tel, boolean empty) {
+                super.updateItem(tel, empty);
+                setText(empty || tel == null ? null : formatarTelefone(somenteNumeros(tel)));
+            }
+        });
+
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         // CORRIGIDO: o nome da propriedade é "data" (getData()), não "data_nascimento"
         colDataNascimento.setCellValueFactory(new PropertyValueFactory<>("data"));
@@ -102,7 +112,7 @@ public class ModeloController implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvarType, ButtonType.CANCEL);
 
         TextField txtNome = new TextField(modelo.getNome());
-        TextField txtTel = new TextField(modelo.getTelefone());
+        TextField txtTel = new TextField(); // preenchido mais abaixo, já com a máscara
         TextField txtEmail = new TextField(modelo.getEmail());
         DatePicker dpNascimento = new DatePicker();
         txtNome.getStyleClass().add("model-dialog-field");
@@ -115,9 +125,21 @@ public class ModeloController implements Initializable {
             @Override
             public void updateItem(LocalDate data, boolean vazio) {
                 super.updateItem(data, vazio);
-                setStyle(!vazio && LocalDate.now().equals(data)
-                        ? "-fx-text-fill: #000000;"
-                        : "");
+
+                if (vazio || data == null) {
+                    setDisable(false);
+                    setStyle("");
+                    return;
+                }
+
+                if (data.isAfter(LocalDate.now())) {
+                    // dia futuro: fica desabilitado e não dá para clicar
+                    setDisable(true);
+                    setStyle("-fx-opacity: 0.4;");
+                } else {
+                    setDisable(false);
+                    setStyle(LocalDate.now().equals(data) ? "-fx-text-fill: #000000;" : "");
+                }
             }
         });
 
@@ -134,14 +156,30 @@ public class ModeloController implements Initializable {
         });
         txtNome.setTextFormatter(nomeFormatter);
 
+        // Máscara de telefone: (12) 9 1234-5678
         TextFormatter<String> telefoneFormatter = new TextFormatter<>(change -> {
-            if (change.getControlNewText().matches("\\d{0,11}")) {
+            if (!change.isContentChange()) {
                 return change;
             }
-            return null;
+
+            String digitos = change.getControlNewText().replaceAll("\\D", "");
+            if (digitos.length() > 11) {
+                digitos = digitos.substring(0, 11);
+            }
+
+            String formatado = formatarTelefone(digitos);
+
+            change.setRange(0, change.getControlText().length());
+            change.setText(formatado);
+            change.setCaretPosition(formatado.length());
+            change.setAnchor(formatado.length());
+            return change;
         });
         txtTel.setTextFormatter(telefoneFormatter);
-        txtTel.setPromptText("Somente números (máx. 11)");
+        txtTel.setPromptText("(12) 9 1234-5678");
+
+        // Mostra o telefone já salvo com a máscara (edição)
+        txtTel.setText(formatarTelefone(somenteNumeros(modelo.getTelefone())));
 
         VBox formulario = new VBox(12,
                 criarCampoFormulario("Nome", txtNome),
@@ -159,7 +197,8 @@ public class ModeloController implements Initializable {
         btnCancelar.getStyleClass().add("panel-button-secondary");
 
         btnSalvar.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-            String telRaw = txtTel.getText();
+            // Só os números, sem parênteses, espaços e hífen
+            String telRaw = somenteNumeros(txtTel.getText());
             String email = txtEmail.getText();
 
             // CORRIGIDO: pega o valor real do DatePicker e converte para java.sql.Date
@@ -187,8 +226,8 @@ public class ModeloController implements Initializable {
                 return;
             }
 
-            if (dataN == null) {
-                mostrarAlerta("Erro na Data", "Por favor, selecione a data de nascimento.");
+            if (dataEscolhida.isAfter(LocalDate.now())) {
+                mostrarAlerta("Erro na Data", "A data de nascimento não pode ser maior que a data de hoje.");
                 event.consume();
                 return;
             }
@@ -226,6 +265,23 @@ public class ModeloController implements Initializable {
         Label label = new Label(titulo);
         label.getStyleClass().add("model-dialog-label");
         return new VBox(5, label, campo);
+    }
+
+    // Recebe só dígitos (ex.: 12912345678) e devolve (12) 9 1234-5678
+    private String formatarTelefone(String d) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < d.length(); i++) {
+            if (i == 0) sb.append('(');
+            if (i == 2) sb.append(") ");
+            if (i == 3) sb.append(' ');
+            if (i == 7) sb.append('-');
+            sb.append(d.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    private String somenteNumeros(String s) {
+        return s == null ? "" : s.replaceAll("\\D", "");
     }
 
     private void mostrarAlerta(String titulo, String mensagem) {
