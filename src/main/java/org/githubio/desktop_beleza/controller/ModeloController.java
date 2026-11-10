@@ -176,7 +176,7 @@ public class ModeloController implements Initializable {
             return change;
         });
         txtTel.setTextFormatter(telefoneFormatter);
-        txtTel.setPromptText("(12) 9 1234-5678");
+        txtTel.setPromptText("(00) 0 0000-0000");
 
         // Mostra o telefone já salvo com a máscara (edição)
         txtTel.setText(formatarTelefone(somenteNumeros(modelo.getTelefone())));
