@@ -25,7 +25,7 @@ public class AgendaController {
 
     private static final DateTimeFormatter FMT_BR = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String TODAS_UNIDADES = "Todas as unidades";
-    private static final String TODOS_SERVICOS = "Todos os serviços";
+    private static final String TODOS_SERVICOS = "Todos os procedimentos";
 
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
@@ -123,7 +123,7 @@ public class AgendaController {
     protected void onLimparFiltroClick() {
         dpData.setValue(null);
         dpData.getEditor().clear();
-        txtServico.getSelectionModel().selectFirst(); // "Todos os serviços"
+        txtServico.getSelectionModel().selectFirst(); // "Todos os procedimentos"
         cbUnidade.getSelectionModel().selectFirst();  // "Todas as unidades"
         atualizarTabela();
     }
@@ -260,7 +260,7 @@ public class AgendaController {
         grid.getColumnConstraints().setAll(colunaRotulos, colunaCampos);
 
         Label rotuloModelo = new Label("Modelo:");
-        Label rotuloServico = new Label("Serviço:");
+        Label rotuloServico = new Label("Procedimento:");
         Label rotuloHorario = new Label("Horário:");
         Label rotuloData = new Label("Data:");
         for (Label rotulo : List.of(rotuloModelo, rotuloServico, rotuloHorario, rotuloData)) {
