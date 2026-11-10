@@ -15,7 +15,7 @@
         <VBox spacing="22.0" styleClass="content-area">
             <padding><Insets bottom="26.0" left="25.0" right="18.0" top="30.0" /></padding>
             <children>
-                <Label styleClass="page-title" text="Gerenciamento de Servi&#xE7;os">
+                <Label styleClass="page-title" text="Gerenciamento de Procedimentos">
                     <font><Font name="Verdana Bold" size="26.0" /></font>
                 </Label>
                 <TableView fx:id="tabelaServicos" styleClass="data-table" VBox.vgrow="ALWAYS">
@@ -35,10 +35,10 @@
                 <VBox spacing="12.0" styleClass="model-tools-panel" VBox.vgrow="ALWAYS">
                     <padding><Insets bottom="22.0" left="20.0" right="20.0" top="20.0" /></padding>
                     <children>
-                        <Label styleClass="tools-panel-title" text="Servi&#xE7;os" />
-                        <TextField fx:id="txtBuscar" promptText="Buscar servi&#xE7;o" />
+                        <Label styleClass="tools-panel-title" text="Procedimentos" />
+                        <TextField fx:id="txtBuscar" promptText="Buscar procedimento" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#buscar" styleClass="panel-button-primary" text="Buscar" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#abrirDialogoAdicionar" styleClass="panel-button-primary" text="Adicionar servi&#xE7;o" />
+                        <Button maxWidth="1.7976931348623157E308" onAction="#abrirDialogoAdicionar" styleClass="panel-button-primary" text="Adicionar procedimento" />
                     </children>
                 </VBox>
             </children>

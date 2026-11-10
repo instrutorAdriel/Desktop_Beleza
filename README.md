@@ -1,11 +1,11 @@
 # Desktop Beleza
 
-**Desktop Beleza** é um sistema de gestão desenvolvido para o salão de beleza do Senac DF - Unidade Taguatinga. Ele resolve o problema de agendamento de serviço para a comunidade. O objetivo é otimizar esse agendamento.
+**Desktop Beleza** é um sistema de gestão desenvolvido para o salão de beleza do Senac DF - Unidade Taguatinga. Ele resolve o problema de agendamento de procedimento para a comunidade. O objetivo é otimizar esse agendamento.
 
 ## Funcionalidades
 
 - Cadastro de clientes/modelos
-- Agendamento de serviços por horário
+- Agendamento de procedimentos por horário
 - Controle de turmas e instrutores
 
 ## Tecnologias

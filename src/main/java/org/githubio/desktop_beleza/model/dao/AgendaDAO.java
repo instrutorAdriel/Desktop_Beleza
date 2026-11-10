@@ -44,7 +44,7 @@ public class AgendaDAO {
             }
             cacheServicos = lista;
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar serviços", e);
+            throw new RuntimeException("Erro ao listar procedimentos", e);
         }
         return lista;
     }
@@ -69,7 +69,7 @@ public class AgendaDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar serviços da unidade", e);
+            throw new RuntimeException("Erro ao listar procedimentos da unidade", e);
         }
         return lista;
     }
@@ -326,7 +326,7 @@ public class AgendaDAO {
                 if (rs.next()) return rs.getInt("id_produto");
             }
         }
-        throw new SQLException("Produto/serviço não encontrado: " + nomeProduto);
+        throw new SQLException("Produto/procedimento não encontrado: " + nomeProduto);
     }
 
     private int buscarIdUnidade(Connection conn, String nomeUnidade) throws SQLException {
@@ -355,7 +355,7 @@ public class AgendaDAO {
                 if (rs.next()) return rs.getInt("id_produto_unidade");
             }
         }
-        throw new SQLException("Este serviço não está vinculado à unidade selecionada. Faça o vínculo na tela Unidades.");
+        throw new SQLException("Este procedimento não está vinculado à unidade selecionada. Faça o vínculo na tela Unidades.");
     }
 
     private int buscarOuCriarDisponibilidade(Connection conn, LocalDate data, LocalTime horario,
