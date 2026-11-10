@@ -29,18 +29,18 @@ public class AtualizarSenhaDAO {
         }
     }
 
-    public boolean atualizarSenha(String email, String senhaHash) {
+    public boolean atualizarSenha(int idUsuario, String senhaHash) {
         String sql = """
                 UPDATE usuario u
                 INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
                 SET u.senha = ?
-                WHERE u.email = ?
+                WHERE u.id_usuario = ?
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, senhaHash);
-            stmt.setString(2, email);
+            stmt.setInt(2, idUsuario);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar senha", e);
