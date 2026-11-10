@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Merge branch 'style/nome-procedimentos'">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +17,22 @@
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="195" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Adriel &lt;instrutor.adriel@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="remade/telaTurmas" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7413308368964056" />
-      <entry key="MS500" value="4.41022731017256" />
-      <entry key="S2" value="7.699288363095897" />
-      <entry key="S5" value="12.905003126825108" />
-      <entry key="S10" value="25.380215847572003" />
-      <entry key="S30" value="59.5882719525944" />
-      <entry key="S60" value="79.69784156913343" />
-      <entry key="M2" value="94.25887096802471" />
-      <entry key="M5" value="115.8551700113321" />
-      <entry key="M10" value="143.77470144767977" />
-      <entry key="M15" value="172.72148010320782" />
-      <entry key="M30" value="326.9185955460108" />
-      <entry key="H1" value="819.5357523727209" />
-      <entry key="H2" value="1693.108981832725" />
-      <entry key="H4" value="2627.152951184014" />
-      <entry key="D1" value="3942.2761860350943" />
-      <entry key="W1" value="4241.527712299999" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000190456841" />
+      <entry key="S2" value="1.0125967040157369" />
+      <entry key="S5" value="1.2321056969125321" />
+      <entry key="S10" value="1.7762143863403013" />
+      <entry key="S30" value="4.594659558874257" />
+      <entry key="S60" value="8.351821098886973" />
+      <entry key="M2" value="12.266172747893735" />
+      <entry key="M5" value="15.854347702285535" />
+      <entry key="M10" value="17.341626755916813" />
+      <entry key="M15" value="17.976787970417163" />
+      <entry key="M30" value="26.284613055159028" />
+      <entry key="H1" value="141.76281193877216" />
+      <entry key="H2" value="672.6017335622876" />
+      <entry key="H4" value="1660.8659182105587" />
+      <entry key="D1" value="3714.607299457879" />
+      <entry key="W1" value="4282.691193395603" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="5.468694955226802E-217" />
-      <entry key="S30" value="8.177638338411331E-73" />
-      <entry key="S60" value="9.04302954678984E-37" />
-      <entry key="M2" value="9.509484500639067E-19" />
-      <entry key="M5" value="6.18390507648853E-8" />
-      <entry key="M10" value="2.4873372913045903E-4" />
-      <entry key="M15" value="0.0039697609488712066" />
-      <entry key="M30" value="0.06713183875424064" />
-      <entry key="H1" value="0.3319423383554034" />
-      <entry key="H2" value="0.8875669132906027" />
-      <entry key="H4" value="1.5775751090725358" />
-      <entry key="D1" value="2.682173260168245" />
-      <entry key="W1" value="2.952035719685962" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="1.053661431793566E-176" />
+      <entry key="S60" value="1.0264801175831782E-88" />
+      <entry key="M2" value="1.0131535508416945E-44" />
+      <entry key="M5" value="2.5250508757072867E-18" />
+      <entry key="M10" value="1.5894187802398607E-9" />
+      <entry key="M15" value="1.366994586361217E-6" />
+      <entry key="M30" value="0.0012457467490377373" />
+      <entry key="H1" value="0.04521819880280123" />
+      <entry key="H2" value="0.32758681167535747" />
+      <entry key="H4" value="0.9584130042789505" />
+      <entry key="D1" value="2.4683909033418323" />
+      <entry key="W1" value="2.917214328173664" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6795907459962365" />
-      <entry key="MS500" value="4.37984885781074" />
-      <entry key="S2" value="7.6850614244401765" />
-      <entry key="S5" value="12.895337282239305" />
-      <entry key="S10" value="25.370689086957793" />
-      <entry key="S30" value="59.58067973387742" />
-      <entry key="S60" value="79.69271179013079" />
-      <entry key="M2" value="94.25580895551036" />
-      <entry key="M5" value="115.85360177424083" />
-      <entry key="M10" value="143.77393172217612" />
-      <entry key="M15" value="172.72460371933414" />
-      <entry key="M30" value="326.9848188736177" />
-      <entry key="H1" value="819.8664447170274" />
-      <entry key="H2" value="1693.995177312883" />
-      <entry key="H4" value="2628.7294149466256" />
-      <entry key="D1" value="3944.958068145037" />
-      <entry key="W1" value="4244.4797028658095" />
+      <entry key="MS100" value="0.9726549474122855" />
+      <entry key="MS500" value="0.9944701875611393" />
+      <entry key="S2" value="1.0111857907468722" />
+      <entry key="S5" value="1.2313749509463863" />
+      <entry key="S10" value="1.7754957118135852" />
+      <entry key="S30" value="4.588241703602607" />
+      <entry key="S60" value="8.341755690547865" />
+      <entry key="M2" value="12.257176960933956" />
+      <entry key="M5" value="15.849240661613377" />
+      <entry key="M10" value="17.338756473198387" />
+      <entry key="M15" value="17.974799129473094" />
+      <entry key="M30" value="26.28480148568154" />
+      <entry key="H1" value="141.80731327450968" />
+      <entry key="H2" value="672.9285237476555" />
+      <entry key="H4" value="1661.8235030687915" />
+      <entry key="D1" value="3717.0753953268004" />
+      <entry key="W1" value="4285.6083591843735" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -124,7 +138,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "style/editar-agendamento",
+    "git-widget-placeholder": "feature/disponibilizar-agendamento",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/joao57559566/OneDrive - SENAC DF/Documentos/Desktop_Beleza",
@@ -199,7 +213,10 @@
     <MESSAGE value="mudanca do visual da tela de cadastro" />
     <MESSAGE value="Criacao de botao para adicionar um servico a unidade" />
     <MESSAGE value="tela atualizada" />
-    <option name="LAST_COMMIT_MESSAGE" value="tela atualizada" />
+    <MESSAGE value="adicionei o campo de disponibilizar agendamento" />
+    <MESSAGE value="criei a aba disponibilizar agendamento" />
+    <MESSAGE value="Merge branch 'style/nome-procedimentos'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'style/nome-procedimentos'" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

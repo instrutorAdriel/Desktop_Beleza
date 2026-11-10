@@ -39,6 +39,7 @@
                         <TextField fx:id="txtBuscar" promptText="Buscar servi&#xE7;o" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#buscar" styleClass="panel-button-primary" text="Buscar" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#abrirDialogoAdicionar" styleClass="panel-button-primary" text="Adicionar servi&#xE7;o" />
+                        <Button fx:id="btnDisponibilizar" maxWidth="1.7976931348623157E308" onAction="#abrirDialogoDisponibilizar" styleClass="panel-button-secondary" text="Disponibilizar agendamento" />
                     </children>
                 </VBox>
             </children>
