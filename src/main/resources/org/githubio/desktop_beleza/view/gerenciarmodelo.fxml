@@ -22,7 +22,7 @@
                         <TableColumn fx:id="colNome" prefWidth="160.0" text="NOME" />
                         <TableColumn fx:id="colTelefone" prefWidth="160.0" text="TELEFONE" />
                         <TableColumn fx:id="colEmail" prefWidth="180.0" text="EMAIL" />
-                        <TableColumn fx:id="colDataNascimento" prefWidth="160.0" text="DATA DE NASCIMENTO" />
+                        <TableColumn fx:id="colDataNascimento" prefWidth="180.0" text="DATA DE NASCIMENTO" />
                         <TableColumn fx:id="colAcoes" prefWidth="120.0" text="AÇÕES" />
                     </columns>
                 </TableView>

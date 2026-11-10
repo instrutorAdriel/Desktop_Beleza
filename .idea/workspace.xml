@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,61 +50,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.3468772072258606" />
-      <entry key="MS500" value="3.0068878631224076" />
-      <entry key="S2" value="6.596143537988727" />
-      <entry key="S5" value="12.352652164196199" />
-      <entry key="S10" value="17.675462542367033" />
-      <entry key="S30" value="23.73928640526226" />
-      <entry key="S60" value="25.74394047086573" />
-      <entry key="M2" value="26.84022537636529" />
-      <entry key="M5" value="28.862314024761094" />
-      <entry key="M10" value="41.790249352835694" />
-      <entry key="M15" value="68.48236162124144" />
-      <entry key="M30" value="245.5857109335005" />
-      <entry key="H1" value="778.2276464836949" />
-      <entry key="H2" value="1660.2024894795838" />
-      <entry key="H4" value="2565.4692795865512" />
-      <entry key="D1" value="3804.554356994924" />
-      <entry key="W1" value="4082.409706232842" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000000261573" />
+      <entry key="S5" value="1.0000584886080346" />
+      <entry key="S10" value="1.0077184212269974" />
+      <entry key="S30" value="1.2572387880812488" />
+      <entry key="S60" value="1.8825298607404455" />
+      <entry key="M2" value="3.0438948358784925" />
+      <entry key="M5" value="4.781503940876307" />
+      <entry key="M10" value="5.94557786623167" />
+      <entry key="M15" value="8.099666763787862" />
+      <entry key="M30" value="47.52126532793504" />
+      <entry key="H1" value="323.244326636692" />
+      <entry key="H2" value="1065.3392806018642" />
+      <entry key="H4" value="2056.466037549252" />
+      <entry key="D1" value="3676.1507975712557" />
+      <entry key="W1" value="4073.3835472598275" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="2.456482937626394E-192" />
-      <entry key="S30" value="1.349287770194597E-64" />
-      <entry key="S60" value="1.1615884685182639E-32" />
-      <entry key="M2" value="1.0777701371434576E-16" />
-      <entry key="M5" value="4.102140045478215E-7" />
-      <entry key="M10" value="6.406318334595597E-4" />
-      <entry key="M15" value="0.007458993774470299" />
-      <entry key="M30" value="0.09202090232644972" />
-      <entry key="H1" value="0.3886347416924614" />
-      <entry key="H2" value="0.9603744343941597" />
-      <entry key="H4" value="1.6410045622428473" />
-      <entry key="D1" value="2.699853002707061" />
-      <entry key="W1" value="2.9548076931724774" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="6.853051968533314E-112" />
+      <entry key="S60" value="2.6178334493495477E-56" />
+      <entry key="M2" value="1.6179720174803605E-28" />
+      <entry key="M5" value="7.648714086766963E-12" />
+      <entry key="M10" value="2.7662886021258996E-6" />
+      <entry key="M15" value="1.9779086330535376E-4" />
+      <entry key="M30" value="0.014984749187438645" />
+      <entry key="H1" value="0.15682782404580695" />
+      <entry key="H2" value="0.6100723443298954" />
+      <entry key="H4" value="1.3079169326113704" />
+      <entry key="D1" value="2.599671749025537" />
+      <entry key="W1" value="2.9388896378159375" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2691337039072876" />
-      <entry key="MS500" value="2.9737047408184836" />
-      <entry key="S2" value="6.579826099445374" />
-      <entry key="S5" value="12.341219850287937" />
-      <entry key="S10" value="17.6675046144764" />
-      <entry key="S30" value="23.735788287314133" />
-      <entry key="S60" value="25.74205215856121" />
-      <entry key="M2" value="26.839243190342383" />
-      <entry key="M5" value="28.86189408648659" />
-      <entry key="M10" value="41.7905855562075" />
-      <entry key="M15" value="68.48946210446101" />
-      <entry key="M30" value="245.67698597975703" />
-      <entry key="H1" value="778.615044393492" />
-      <entry key="H2" value="1661.1614881538114" />
-      <entry key="H4" value="2567.109180987669" />
-      <entry key="D1" value="3807.253925576519" />
-      <entry key="W1" value="4085.364469961279" />
+      <entry key="MS100" value="0.9460576467255959" />
+      <entry key="MS500" value="0.9889709163809315" />
+      <entry key="S2" value="0.9972312513781181" />
+      <entry key="S5" value="0.998949970655627" />
+      <entry key="S10" value="1.0071576545643612" />
+      <entry key="S30" value="1.2569855240750998" />
+      <entry key="S60" value="1.8823152416029425" />
+      <entry key="M2" value="3.0436920551132514" />
+      <entry key="M5" value="4.781358629757501" />
+      <entry key="M10" value="5.945486464561825" />
+      <entry key="M15" value="8.099782968434578" />
+      <entry key="M30" value="47.5360743154997" />
+      <entry key="H1" value="323.4006139271836" />
+      <entry key="H2" value="1065.948451618446" />
+      <entry key="H4" value="2057.7730592422135" />
+      <entry key="D1" value="3678.750192395468" />
+      <entry key="W1" value="4076.322392722303" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -147,6 +148,7 @@
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
       <recent name="C:\Descktop\Desktop_Beleza" />
     </key>
   </component>

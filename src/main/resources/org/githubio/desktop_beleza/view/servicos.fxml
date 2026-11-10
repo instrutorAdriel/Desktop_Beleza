@@ -21,7 +21,7 @@
                 <TableView fx:id="tabelaServicos" styleClass="data-table" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colNome" prefWidth="180.0" text="NOME" />
-                        <TableColumn fx:id="colDescricao" prefWidth="460.0" text="DESCRI&#xC7;&#xC3;O" />
+                        <TableColumn fx:id="colDescricao" prefWidth="490.6" text="DESCRI&#xC7;&#xC3;O" />
                         <TableColumn fx:id="colAcoes" prefWidth="120.0" text="A&#xC7;&#xD5;ES" />
                     </columns>
                 </TableView>
