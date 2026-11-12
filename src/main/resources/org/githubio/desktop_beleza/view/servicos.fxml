@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
@@ -21,8 +20,8 @@
                 <TableView fx:id="tabelaServicos" styleClass="data-table" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colNome" prefWidth="180.0" text="NOME" />
-                        <TableColumn fx:id="colDescricao" prefWidth="490.6" text="DESCRI&#xC7;&#xC3;O" />
-                        <TableColumn fx:id="colAcoes" prefWidth="120.0" text="A&#xC7;&#xD5;ES" />
+                        <TableColumn fx:id="colDescricao" prefWidth="490.6" text="DESCRIÇÃO" />
+                        <TableColumn fx:id="colAcoes" prefWidth="120.0" text="AÇÕES" />
                     </columns>
                 </TableView>
             </children>
