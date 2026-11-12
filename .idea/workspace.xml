@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/GerenciarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/GerenciarTurma.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/Telaagenda.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/Telaagenda.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/unidades.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/unidades.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/adicionarTurma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/adicionarTurma.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,61 +51,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.3468772072258606" />
-      <entry key="MS500" value="3.0068878631224076" />
-      <entry key="S2" value="6.596143537988727" />
-      <entry key="S5" value="12.352652164196199" />
-      <entry key="S10" value="17.675462542367033" />
-      <entry key="S30" value="23.73928640526226" />
-      <entry key="S60" value="25.74394047086573" />
-      <entry key="M2" value="26.84022537636529" />
-      <entry key="M5" value="28.862314024761094" />
-      <entry key="M10" value="41.790249352835694" />
-      <entry key="M15" value="68.48236162124144" />
-      <entry key="M30" value="245.5857109335005" />
-      <entry key="H1" value="778.2276464836949" />
-      <entry key="H2" value="1660.2024894795838" />
-      <entry key="H4" value="2565.4692795865512" />
-      <entry key="D1" value="3804.554356994924" />
-      <entry key="W1" value="4082.409706232842" />
+      <entry key="MS100" value="1.0005570264157488" />
+      <entry key="MS500" value="1.2511350252172742" />
+      <entry key="S2" value="2.5242899922565885" />
+      <entry key="S5" value="4.703251161419149" />
+      <entry key="S10" value="7.8914116929171465" />
+      <entry key="S30" value="17.480795561109925" />
+      <entry key="S60" value="24.647562060579215" />
+      <entry key="M2" value="30.99826020055941" />
+      <entry key="M5" value="50.93810253845007" />
+      <entry key="M10" value="92.80730511498724" />
+      <entry key="M15" value="131.83507888556898" />
+      <entry key="M30" value="279.81846093600876" />
+      <entry key="H1" value="736.3894664426706" />
+      <entry key="H2" value="1599.8412568534163" />
+      <entry key="H4" value="2567.1779167606805" />
+      <entry key="D1" value="3976.2189688758663" />
+      <entry key="W1" value="4302.58530675162" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="2.456482937626394E-192" />
-      <entry key="S30" value="1.349287770194597E-64" />
-      <entry key="S60" value="1.1615884685182639E-32" />
-      <entry key="M2" value="1.0777701371434576E-16" />
-      <entry key="M5" value="4.102140045478215E-7" />
-      <entry key="M10" value="6.406318334595597E-4" />
-      <entry key="M15" value="0.007458993774470299" />
-      <entry key="M30" value="0.09202090232644972" />
-      <entry key="H1" value="0.3886347416924614" />
-      <entry key="H2" value="0.9603744343941597" />
-      <entry key="H4" value="1.6410045622428473" />
-      <entry key="D1" value="2.699853002707061" />
-      <entry key="W1" value="2.9548076931724774" />
+      <entry key="S10" value="1.8779249882249837E-247" />
+      <entry key="S30" value="5.726545911514644E-83" />
+      <entry key="S60" value="7.567394473340676E-42" />
+      <entry key="M2" value="2.750889760303083E-21" />
+      <entry key="M5" value="5.967457013124822E-9" />
+      <entry key="M10" value="7.726768905297088E-5" />
+      <entry key="M15" value="0.0018208458616984623" />
+      <entry key="M30" value="0.04546560315380597" />
+      <entry key="H1" value="0.27317431082770405" />
+      <entry key="H2" value="0.8051739354729857" />
+      <entry key="H4" value="1.502568732246604" />
+      <entry key="D1" value="2.6604853928152647" />
+      <entry key="W1" value="2.948613849413458" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2691337039072876" />
-      <entry key="MS500" value="2.9737047408184836" />
-      <entry key="S2" value="6.579826099445374" />
-      <entry key="S5" value="12.341219850287937" />
-      <entry key="S10" value="17.6675046144764" />
-      <entry key="S30" value="23.735788287314133" />
-      <entry key="S60" value="25.74205215856121" />
-      <entry key="M2" value="26.839243190342383" />
-      <entry key="M5" value="28.86189408648659" />
-      <entry key="M10" value="41.7905855562075" />
-      <entry key="M15" value="68.48946210446101" />
-      <entry key="M30" value="245.67698597975703" />
-      <entry key="H1" value="778.615044393492" />
-      <entry key="H2" value="1661.1614881538114" />
-      <entry key="H4" value="2567.109180987669" />
-      <entry key="D1" value="3807.253925576519" />
-      <entry key="W1" value="4085.364469961279" />
+      <entry key="MS100" value="0.9664781233374097" />
+      <entry key="MS500" value="1.2428017002985998" />
+      <entry key="S2" value="2.520068436122453" />
+      <entry key="S5" value="4.699833297188028" />
+      <entry key="S10" value="7.888394867128239" />
+      <entry key="S30" value="17.478419482707412" />
+      <entry key="S60" value="24.645838345781804" />
+      <entry key="M2" value="30.99715604673782" />
+      <entry key="M5" value="50.937365812974406" />
+      <entry key="M10" value="92.80670222911405" />
+      <entry key="M15" value="131.8362435956494" />
+      <entry key="M30" value="279.8631605919662" />
+      <entry key="H1" value="736.6615316476721" />
+      <entry key="H2" value="1600.64514504873" />
+      <entry key="H4" value="2568.679405805785" />
+      <entry key="D1" value="3978.87916188942" />
+      <entry key="W1" value="4305.533874986277" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -118,34 +116,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "style/titulos",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/yuri59073236/Music/Desktop_Beleza",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;remade/telaTurmas&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yuri59073236/Music/Desktop_Beleza&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
@@ -154,33 +152,11 @@
       <recent name="C:\Descktop\Desktop_Beleza" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.githubio.desktop_beleza.Launcher" />
-      <module name="Desktop_Beleza" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.githubio.desktop_beleza.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.Launcher" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+        <option value="bundled-jdk-30f59d01ecdd-2df11533d9fe-intellij.indexing.shared.core-IU-262.11879.100" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.11879.100" />
       </set>
     </attachedChunks>
   </component>
@@ -193,6 +169,7 @@
       <updated>1792009083187</updated>
       <workItem from="1792604073754" duration="4000" />
       <workItem from="1792695645045" duration="306000" />
+      <workItem from="1794254191970" duration="963000" />
     </task>
     <task id="LOCAL-00001" summary="mudanca do visual da tela de cadastro">
       <option name="closed" value="true" />
@@ -229,7 +206,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$USER_HOME$/OneDrive - SENAC DF/Documentos/desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <url>file://$PROJECT_DIR$/../desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
           <line>134</line>
           <properties class="org.githubio.desktop_beleza.controller.RecuperarSenhaController">
             <option name="EMULATED" value="true" />
@@ -238,9 +215,14 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$USER_HOME$/OneDrive - SENAC DF/Documentos/desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
+          <url>file://$PROJECT_DIR$/../desktop/Desktop_Beleza/src/main/java/org/githubio/desktop_beleza/controller/RecuperarSenhaController.java</url>
           <line>142</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -55,10 +55,10 @@
                         <Label styleClass="rotulo-formulario" text="Senha" />
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
                            <PasswordField fx:id="campoSenha" prefHeight="45.0" promptText="Digite sua senha" styleClass="campo-formulario" />
-                           <TextField fx:id="campoNovaSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
-                           <Button fx:id="btnToggleNovaSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                           <TextField fx:id="campoSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite sua nova senha" styleClass="campo-formulario" visible="false" />
+                           <Button fx:id="btnToggleOlhoSenha" onAction="#alternarVisibilidadeSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                               <graphic>
-                                 <ImageView fx:id="imgOlhoNova" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="imgOlhoSenha" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../images/eye-open.png" />
                                     </image>
@@ -82,9 +82,9 @@
                         <StackPane prefHeight="45.0" styleClass="campo-senha">
                            <PasswordField fx:id="campoConfirmarSenha" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" />
                            <TextField fx:id="campoConfirmarSenhaVisivel" managed="false" prefHeight="45.0" promptText="Digite novamente sua senha" styleClass="campo-formulario" visible="false" />
-                           <Button fx:id="btnToggleConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
+                           <Button fx:id="btnToggleOlhoConfirmarSenha" onAction="#alternarVisibilidadeConfirmarSenha" styleClass="botao-olho" StackPane.alignment="CENTER_RIGHT">
                               <graphic>
-                                 <ImageView fx:id="imgOlhoConfirmar" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="imgOlhoConfirmarSenha" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../images/eye-open.png" />
                                     </image>

@@ -8,9 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -27,7 +25,7 @@ public class AgendaController {
 
     private static final DateTimeFormatter FMT_BR = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String TODAS_UNIDADES = "Todas as unidades";
-    private static final String TODOS_SERVICOS = "Todos os serviços";
+    private static final String TODOS_SERVICOS = "Todos os procedimentos";
 
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
@@ -125,7 +123,7 @@ public class AgendaController {
     protected void onLimparFiltroClick() {
         dpData.setValue(null);
         dpData.getEditor().clear();
-        txtServico.getSelectionModel().selectFirst(); // "Todos os serviços"
+        txtServico.getSelectionModel().selectFirst(); // "Todos os procedimentos"
         cbUnidade.getSelectionModel().selectFirst();  // "Todas as unidades"
         atualizarTabela();
     }
@@ -249,16 +247,37 @@ public class AgendaController {
         });
 
         GridPane grid = new GridPane();
+        grid.getStyleClass().add("edicao-agendamento");
         grid.setHgap(10);
         grid.setVgap(12);
         grid.setPadding(new Insets(20));
-        grid.add(new Label("Modelo:"), 0, 0);
+        ColumnConstraints colunaRotulos = new ColumnConstraints();
+        colunaRotulos.setMinWidth(75);
+        colunaRotulos.setPrefWidth(75);
+        ColumnConstraints colunaCampos = new ColumnConstraints();
+        colunaCampos.setHgrow(Priority.ALWAYS);
+        colunaCampos.setFillWidth(true);
+        grid.getColumnConstraints().setAll(colunaRotulos, colunaCampos);
+
+        Label rotuloModelo = new Label("Modelo:");
+        Label rotuloServico = new Label("Procedimento:");
+        Label rotuloHorario = new Label("Horário:");
+        Label rotuloData = new Label("Data:");
+        for (Label rotulo : List.of(rotuloModelo, rotuloServico, rotuloHorario, rotuloData)) {
+            rotulo.setMinWidth(75);
+        }
+        campoModelo.setMaxWidth(Double.MAX_VALUE);
+        campoServico.setMaxWidth(Double.MAX_VALUE);
+        campoHorario.setMaxWidth(Double.MAX_VALUE);
+        campoData.setMaxWidth(Double.MAX_VALUE);
+
+        grid.add(rotuloModelo, 0, 0);
         grid.add(campoModelo, 1, 0);
-        grid.add(new Label("Serviço:"), 0, 1);
+        grid.add(rotuloServico, 0, 1);
         grid.add(campoServico, 1, 1);
-        grid.add(new Label("Horário:"), 0, 2);
+        grid.add(rotuloHorario, 0, 2);
         grid.add(campoHorario, 1, 2);
-        grid.add(new Label("Data:"), 0, 3);
+        grid.add(rotuloData, 0, 3);
         grid.add(campoData, 1, 3);
 
         Button btnSalvar = new Button("Salvar");
@@ -285,7 +304,12 @@ public class AgendaController {
         botoes.setAlignment(Pos.CENTER_RIGHT);
         botoes.setPadding(new Insets(0, 20, 15, 0));
 
-        popup.setScene(new Scene(new VBox(10, grid, botoes), 380, 280));
+        VBox conteudo = new VBox(10, grid, botoes);
+        conteudo.getStyleClass().add("popup-edicao-agendamento");
+        Scene cena = new Scene(conteudo, 440, 330);
+        cena.getStylesheets().add(MainApplication.class
+                .getResource("/org/githubio/desktop_beleza/css/style.css").toExternalForm());
+        popup.setScene(cena);
         popup.setResizable(false);
         popup.showAndWait();
     }
