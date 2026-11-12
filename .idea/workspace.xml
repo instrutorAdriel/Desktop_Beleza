@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Merge branch 'style/nome-procedimentos'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/desktop-beleza.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docs/desktop-beleza.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" afterDir="false" />
+    <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="Merge branch 'style/nome-procedimentos'">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" afterDir="false" />
     </list>
@@ -16,6 +20,13 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="195" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -103,6 +114,32 @@
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
+      <entry key="S10" value="1.8779249882249837E-247" />
+      <entry key="S30" value="5.726545911514644E-83" />
+      <entry key="S60" value="7.567394473340676E-42" />
+      <entry key="M2" value="2.750889760303083E-21" />
+      <entry key="M5" value="5.967457013124822E-9" />
+      <entry key="M10" value="7.726768905297088E-5" />
+      <entry key="M15" value="0.0018208458616984623" />
+      <entry key="M30" value="0.04546560315380597" />
+      <entry key="H1" value="0.27317431082770405" />
+      <entry key="H2" value="0.8051739354729857" />
+      <entry key="H4" value="1.502568732246604" />
+      <entry key="D1" value="2.6604853928152647" />
+      <entry key="W1" value="2.948613849413458" />
+      <entry key="S10" value="1.525256434326567E-251" />
+      <entry key="S30" value="2.479976822064088E-84" />
+      <entry key="S60" value="1.574794215783164E-42" />
+      <entry key="M2" value="1.2549080507284572E-21" />
+      <entry key="M5" value="4.35958135696609E-9" />
+      <entry key="M10" value="6.604282881908341E-5" />
+      <entry key="M15" value="0.0016399288744040074" />
+      <entry key="M30" value="0.04314782130619731" />
+      <entry key="H1" value="0.2661201829814575" />
+      <entry key="H2" value="0.7947100156355007" />
+      <entry key="H4" value="1.4927732238626117" />
+      <entry key="D1" value="2.657586814389034" />
+      <entry key="W1" value="2.948154707531221" />
       <entry key="S10" value="0.0" />
       <entry key="S30" value="1.053661431793566E-176" />
       <entry key="S60" value="1.0264801175831782E-88" />
@@ -131,6 +168,40 @@
       <entry key="W1" value="2.9486050868040996" />
     </decayedSelected>
     <decayedShown>
+      <entry key="MS100" value="1.4726556869593908" />
+      <entry key="MS500" value="3.004494335504068" />
+      <entry key="S2" value="5.2019461256963195" />
+      <entry key="S5" value="6.165877292293633" />
+      <entry key="S10" value="6.561948819614322" />
+      <entry key="S30" value="7.917671330035635" />
+      <entry key="S60" value="13.531120613548948" />
+      <entry key="M2" value="24.31924792272394" />
+      <entry key="M5" value="49.32661134019109" />
+      <entry key="M10" value="92.30879642967103" />
+      <entry key="M15" value="132.0427969966028" />
+      <entry key="M30" value="279.2399633266025" />
+      <entry key="H1" value="731.458516991177" />
+      <entry key="H2" value="1593.7526478952125" />
+      <entry key="H4" value="2565.888213183292" />
+      <entry key="D1" value="3988.536596166635" />
+      <entry key="W1" value="4318.862353732539" />
+      <entry key="MS100" value="0.9664781233374097" />
+      <entry key="MS500" value="1.2428017002985998" />
+      <entry key="S2" value="2.520068436122453" />
+      <entry key="S5" value="4.699833297188028" />
+      <entry key="S10" value="7.888394867128239" />
+      <entry key="S30" value="17.478419482707412" />
+      <entry key="S60" value="24.645838345781804" />
+      <entry key="M2" value="30.99715604673782" />
+      <entry key="M5" value="50.937365812974406" />
+      <entry key="M10" value="92.80670222911405" />
+      <entry key="M15" value="131.8362435956494" />
+      <entry key="M30" value="279.8631605919662" />
+      <entry key="H1" value="736.6615316476721" />
+      <entry key="H2" value="1600.64514504873" />
+      <entry key="H4" value="2568.679405805785" />
+      <entry key="D1" value="3978.87916188942" />
+      <entry key="W1" value="4305.533874986277" />
       <entry key="MS100" value="0.9726549474122855" />
       <entry key="MS500" value="0.9944701875611393" />
       <entry key="S2" value="1.0111857907468722" />
@@ -202,8 +273,35 @@
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/disponibilizar-agendamento&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/joao57559566/OneDrive - SENAC DF/Documentos/Desktop_Beleza&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arthur59318636\Music\Desktop_Beleza" />
