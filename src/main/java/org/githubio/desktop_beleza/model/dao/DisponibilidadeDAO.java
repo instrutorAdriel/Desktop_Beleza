@@ -95,7 +95,6 @@ public class DisponibilidadeDAO {
         throw new SQLException("Não foi possível vincular o serviço à unidade.");
     }
 
-    private boolean inserirOuSomarVagas(Connection conn, int idProdutoUnidade, int idTurma, LocalDate data,
                                         LocalTime inicio, LocalTime fim, int vagas) throws SQLException {
         String buscar = """
                 SELECT id_disponibilidade
@@ -131,6 +130,8 @@ public class DisponibilidadeDAO {
                 INSERT INTO disponibilidade
                     (total_vagas, hora_fim, data_disponibilidade, hora_inicio, id_produto_unidade, id_turma)
                 VALUES (?, ?, ?, ?, ?, ?)
+                    (total_vagas, hora_fim, data_disponibilidade, hora_inicio, id_produto_unidade)
+                VALUES (?, ?, ?, ?, ?)
                 """;
         try (PreparedStatement stmt = conn.prepareStatement(inserir)) {
             stmt.setInt(1, vagas);
