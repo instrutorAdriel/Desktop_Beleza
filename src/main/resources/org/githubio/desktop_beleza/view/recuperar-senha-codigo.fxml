@@ -22,7 +22,7 @@
                   <VBox spacing="14.0">
                      <children>
                               <Label styleClass="titulo-formulario" text="Código" />
-                        <Label styleClass="descricao-formulario" text="Insira abaixo o código de verificação enviado ao seu e-mail." />
+                        <Label styleClass="descricao-formulario" text="Insira o código de 6 dígitos enviado ao seu e-mail institucional. Confira também a caixa de spam do Outlook." wrapText="true" />
                      </children>
                   </VBox>
                         <VBox spacing="14.0">

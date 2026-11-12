@@ -9,32 +9,11 @@ import java.sql.SQLException;
 
 public class AtualizarSenhaDAO {
 
-    public boolean instrutorExiste(String email) {
-        String sql = """
-                SELECT 1
-                FROM usuario u
-                INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
-                WHERE u.email = ?
-                LIMIT 1
-                """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao validar e-mail", e);
-        }
-    }
-
     public boolean atualizarSenha(int idUsuario, String senhaHash) {
         String sql = """
-                UPDATE usuario u
-                INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
-                SET u.senha = ?
-                WHERE u.id_usuario = ?
+                UPDATE usuario
+                SET senha = ?
+                WHERE id_usuario = ?
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -47,12 +26,11 @@ public class AtualizarSenhaDAO {
         }
     }
 
-    public int buscarIdUsuarioPorEmail(String email) {
+    public Integer buscarIdUsuarioPorEmail(String email) {
         String sql = """
                 SELECT u.id_usuario
                 FROM usuario u
-                INNER JOIN instrutor i ON i.id_usuario = u.id_usuario
-                WHERE u.email = ?
+                WHERE LOWER(TRIM(u.email)) = LOWER(TRIM(?))
                 LIMIT 1
                 """;
 
@@ -60,11 +38,11 @@ public class AtualizarSenhaDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next())
+                if (rs.next()) {
                     return rs.getInt("id_usuario");
+                }
             }
-
-            throw new RuntimeException("Usuário não encontrado para o e-mail informado: " + email);
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar ID do usuário pelo e-mail", e);
         }

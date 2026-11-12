@@ -27,7 +27,7 @@
                         <VBox spacing="6.0">
                             <children>
                         <Label styleClass="rotulo-formulario" text="Insira seu e-mail" />
-                                <TextField fx:id="txtEmail" prefHeight="45.0" promptText="seu.email@df.senac.br" styleClass="campo-formulario" />
+                                <TextField fx:id="txtEmail" prefHeight="45.0" promptText="seu.email@exemplo.com" styleClass="campo-formulario" />
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0" />

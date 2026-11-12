@@ -1,6 +1,5 @@
 package org.githubio.desktop_beleza.controller;
 
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,8 +17,14 @@ import org.githubio.desktop_beleza.service.EmailService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
+import java.security.SecureRandom;
+import java.util.regex.Pattern;
 
 public class RecuperarSenhaController {
+
+    private static final Pattern EMAIL_VALIDO =
+            Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final SecureRandom GERADOR_CODIGO = new SecureRandom();
 
     @FXML private TextField txtEmail;
     @FXML private Button btnEnviarCodigo;
@@ -45,7 +50,7 @@ public class RecuperarSenhaController {
     @FXML private Label lblNumero;
     @FXML private Label lblEspecial;
 
-    private static int idUsuarioEmRecuperacao;
+    private static volatile int idUsuarioEmRecuperacao;
 
     private boolean novaSenhaVisivel = false;
     private boolean confirmarSenhaVisivel = false;
@@ -55,8 +60,6 @@ public class RecuperarSenhaController {
 
     private final AtualizarSenhaDAO atualizarSenhaDAO = new AtualizarSenhaDAO();
     private final PasswordResetTokenDAO passwordResetTokenDAO = new PasswordResetTokenDAO();
-    private final EmailService emailService = new EmailService();
-
     @FXML
     public void initialize() {
         if (campoNovaSenha != null) {
@@ -74,8 +77,8 @@ public class RecuperarSenhaController {
             return;
         }
 
-        if (!email.contains("@df.senac.br")) {
-            mostrarAlerta(Alert.AlertType.ERROR, "E-mail inválido", "Utilize o e-mail institucional.");
+        if (!EMAIL_VALIDO.matcher(email).matches()) {
+            mostrarAlerta(Alert.AlertType.ERROR, "E-mail inválido", "Informe um endereço de e-mail válido.");
             return;
         }
 
@@ -84,42 +87,39 @@ public class RecuperarSenhaController {
         btnEnviarCodigo.setText("Enviando...");
 
 
-        Task<Void> tarefaEnvio = new Task<Void>() {
+        idUsuarioEmRecuperacao = 0;
+        Task<Void> tarefaEnvio = new Task<>() {
             @Override
-            protected Void call() throws Exception {
-                if (!atualizarSenhaDAO.instrutorExiste(email)) {
-                    Platform.runLater(() -> {
-                        mostrarAlerta(Alert.AlertType.INFORMATION,"Solicitação Enviada",
-                                "Se o e-mail informado estiver cadastrado, o código de verificação será enviado.");
-                        restaurarEstadoBotao();
-                    });
-                    return null;
+            protected Void call() {
+                Integer idUsuario = atualizarSenhaDAO.buscarIdUsuarioPorEmail(email);
+                idUsuarioEmRecuperacao = idUsuario != null ? idUsuario : 0;
+
+                if (idUsuario != null) {
+                    String codigoOtp = String.format("%06d", GERADOR_CODIGO.nextInt(1_000_000));
+                    passwordResetTokenDAO.salvarCodigoOtp(idUsuario, codigoOtp);
+                    new EmailService().enviarCodigoRecuperacao(email, codigoOtp);
                 }
-
-                idUsuarioEmRecuperacao = atualizarSenhaDAO.buscarIdUsuarioPorEmail(email);
-
-                String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
-                passwordResetTokenDAO.salvarCodigoOtp(idUsuarioEmRecuperacao, codigoOtp);
-
-                emailService.enviarCodigoRecuperacao(email, codigoOtp);
-
-                Platform.runLater(() -> {
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
-                    try {
-                        MainApplication.setRoot("recuperar-senha-codigo");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
 
                 return null;
             }
         };
 
+        tarefaEnvio.setOnSucceeded(event -> {
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Solicitação Enviada",
+                    "Se o e-mail informado estiver cadastrado, o código de verificação será enviado.");
+            try {
+                MainApplication.setRoot("recuperar-senha-codigo");
+            } catch (IOException e) {
+                restaurarEstadoBotao();
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível abrir a tela de verificação.");
+            }
+        });
+
         tarefaEnvio.setOnFailed(event -> {
             Throwable e = tarefaEnvio.getException();
             if (e != null) e.printStackTrace();
 
+            idUsuarioEmRecuperacao = 0;
             restaurarEstadoBotao();
             mostrarAlerta(Alert.AlertType.ERROR, "Erro no Envio", "Não foi possível enviar o código de recuperação.");
         });
@@ -133,12 +133,19 @@ public class RecuperarSenhaController {
     public void onConfirmarCodigo() throws IOException {
         String codigoDigitado = txtCodigo.getText() != null ? txtCodigo.getText().trim() : "";
 
-        if (codigoDigitado.isBlank()) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Campo Obrigatório", "Por favor, informe o código recebido.");
+        if (!codigoDigitado.matches("\\d{6}")) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Código inválido", "Informe o código de 6 dígitos recebido por e-mail.");
             return;
         }
 
-        boolean valido = passwordResetTokenDAO.validarCodigoOtp(idUsuarioEmRecuperacao, codigoDigitado);
+        boolean valido;
+        try {
+            valido = idUsuarioEmRecuperacao > 0
+                    && passwordResetTokenDAO.validarEConsumirCodigoOtp(idUsuarioEmRecuperacao, codigoDigitado);
+        } catch (RuntimeException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível validar o código. Tente novamente.");
+            return;
+        }
 
         if (!valido) {
             mostrarAlerta(Alert.AlertType.ERROR, "Código Inválido", "O código digitado é incorreto ou já expirou.");
@@ -149,7 +156,13 @@ public class RecuperarSenhaController {
     }
 
     @FXML
-    public void onAlterarSenha() throws IOException{
+    public void onAlterarSenha() {
+        if (idUsuarioEmRecuperacao <= 0) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Sessão inválida", "Solicite um novo código de recuperação.");
+            voltarParaLogin();
+            return;
+        }
+
         String novaSenha = campoNovaSenha.getText();
         String confirmarSenha = campoConfirmarSenha.getText();
 
@@ -177,6 +190,7 @@ public class RecuperarSenhaController {
 
         if (atualizarSenhaDAO.atualizarSenha(idUsuarioEmRecuperacao, senhaHash)) {
             passwordResetTokenDAO.inativarTokensDoUsuario(idUsuarioEmRecuperacao);
+            idUsuarioEmRecuperacao = 0;
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Sua senha foi alterada com sucesso.");
             voltarParaLogin();
@@ -187,6 +201,7 @@ public class RecuperarSenhaController {
 
     @FXML
     public void voltarParaLogin() {
+        idUsuarioEmRecuperacao = 0;
         try {
             MainApplication.setRoot("login");
         } catch (IOException e) {

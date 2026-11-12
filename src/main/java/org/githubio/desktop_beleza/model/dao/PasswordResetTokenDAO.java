@@ -26,29 +26,21 @@ public class PasswordResetTokenDAO {
         }
     }
 
-    public boolean validarCodigoOtp(int idUsuario, String codigoOtpDigitado) {
+    public boolean validarEConsumirCodigoOtp(int idUsuario, String codigoOtpDigitado) {
         String sql = """
-                SELECT COUNT(*)
-                FROM passwordresettoken
+                DELETE FROM passwordresettoken
                 WHERE id_usuario = ? AND token = ? AND data_expiracao > ?
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idUsuario);
             stmt.setString(2, codigoOtpDigitado);
             stmt.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
-            }
+            return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao validar o código OTP.", e);
         }
-
-        return false;
     }
 
     public void inativarTokensDoUsuario(int idUsuario) {
