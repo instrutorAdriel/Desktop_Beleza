@@ -370,6 +370,14 @@ NO PROJETO PRINCIPAL
     -fx-font-size: 28px;
 }
 
+.titulo-tela-selecionada {
+    -fx-text-fill: #16324f;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
 .descricao-formulario {
     -fx-font-size: 14px;
     -fx-text-fill: #687586;

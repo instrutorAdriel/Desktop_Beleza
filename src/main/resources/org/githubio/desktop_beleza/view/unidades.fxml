@@ -18,11 +18,7 @@
                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
             </padding>
             <children>
-                <Label style="-fx-text-fill: #1f2937; -fx-font-weight: bold;" text="Unidades SENAC">
-                    <font>
-                        <Font name="Verdana Bold" size="24.0" />
-                    </font>
-                </Label>
+                <Label styleClass="titulo-tela-selecionada" text="Unidades SENAC" />
                 <HBox spacing="20.0" VBox.vgrow="ALWAYS">
                     <children>
                         <TableView fx:id="tabelaUnidades" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-background-radius: 4;" styleClass="unidades-table" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
