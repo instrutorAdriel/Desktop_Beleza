@@ -39,6 +39,11 @@ public class PainelLateralComponent extends VBox {
     }
 
     @FXML
+    public void trocarTelaParaHistorico() throws IOException {
+        MainApplication.setRoot("historico");
+    }
+
+    @FXML
     public void trocarTelaParaUnidades() throws IOException {
         MainApplication.setRoot("unidades");
     }

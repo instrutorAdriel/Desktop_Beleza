@@ -44,6 +44,11 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarTelaParaHistorico" styleClass="sidebar-button" text="Histórico">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <VBox style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS" />

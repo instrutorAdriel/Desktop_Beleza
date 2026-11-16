@@ -5,38 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6b6d75-1515-4f39-bf12-5fe62f4f23f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/DisponibilidadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/components/PainelLateralComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/components/PainelLateralComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AgendaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AgendaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JoaoAlexandre705"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/instrutorAdriel/Desktop_Beleza",
+    "accountId": "e6ab017c-1879-4fa5-97ff-5b9d5130bf8c"
+  }
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000043351099044" />
-      <entry key="S5" value="1.0071581376391556" />
-      <entry key="S10" value="1.0846057914658178" />
-      <entry key="S30" value="1.4507923723627187" />
-      <entry key="S60" value="2.0225783387705576" />
-      <entry key="M2" value="3.8038075862297767" />
-      <entry key="M5" value="7.47173224700085" />
-      <entry key="M10" value="9.773631185426607" />
-      <entry key="M15" value="10.73038711634989" />
-      <entry key="M30" value="11.801256436918264" />
-      <entry key="H1" value="12.383721218185094" />
-      <entry key="H2" value="12.68751268497964" />
-      <entry key="H4" value="12.84265383430276" />
-      <entry key="D1" value="12.973621176943196" />
-      <entry key="W1" value="12.996227796416692" />
+      <entry key="MS100" value="1.5728387012588145" />
+      <entry key="MS500" value="4.12555013452236" />
+      <entry key="S2" value="9.86400012267987" />
+      <entry key="S5" value="17.212083590116013" />
+      <entry key="S10" value="26.53077171426728" />
+      <entry key="S30" value="58.60987715696366" />
+      <entry key="S60" value="83.15810005095766" />
+      <entry key="M2" value="102.96669394845676" />
+      <entry key="M5" value="120.58963744006496" />
+      <entry key="M10" value="128.45415283317723" />
+      <entry key="M15" value="131.41903376458038" />
+      <entry key="M30" value="134.59205144053175" />
+      <entry key="H1" value="136.26483556070076" />
+      <entry key="H2" value="137.12437816892955" />
+      <entry key="H4" value="137.5601479940083" />
+      <entry key="D1" value="137.92640515607837" />
+      <entry key="W1" value="137.98947940707112" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -58,33 +73,73 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8408964152537145" />
-      <entry key="MS500" value="0.9659363289248456" />
-      <entry key="S2" value="0.9913770243858624" />
-      <entry key="S5" value="1.0034277813081411" />
-      <entry key="S10" value="1.0812597209386725" />
-      <entry key="S30" value="1.447399528389876" />
-      <entry key="S60" value="2.020093149110782" />
-      <entry key="M2" value="3.8021569223570832" />
-      <entry key="M5" value="7.470858739059064" />
-      <entry key="M10" value="9.773135988323679" />
-      <entry key="M15" value="10.730041348255394" />
-      <entry key="M30" value="11.801074939357859" />
-      <entry key="H1" value="12.38362815241106" />
-      <entry key="H2" value="12.687465551018645" />
-      <entry key="H4" value="12.842630114235051" />
-      <entry key="D1" value="12.973617202092894" />
-      <entry key="W1" value="12.996227228051064" />
+      <entry key="MS100" value="1.5221005048942735" />
+      <entry key="MS500" value="4.093338940364778" />
+      <entry key="S2" value="9.843824566106049" />
+      <entry key="S5" value="17.197979581072786" />
+      <entry key="S10" value="26.519587172997095" />
+      <entry key="S30" value="58.59956939983518" />
+      <entry key="S60" value="83.14951583763411" />
+      <entry key="M2" value="102.96075651796586" />
+      <entry key="M5" value="120.58660915343765" />
+      <entry key="M10" value="128.45248540438058" />
+      <entry key="M15" value="131.41788304082513" />
+      <entry key="M30" value="134.59145500773593" />
+      <entry key="H1" value="136.2645317627934" />
+      <entry key="H2" value="137.12422483258896" />
+      <entry key="H4" value="137.56007096105446" />
+      <entry key="D1" value="137.92639226611794" />
+      <entry key="W1" value="137.98947756438963" />
     </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="3MChe0rruutjnFajX5UeyPqzLpJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Launcher.executor": "Run",
-    "git-widget-placeholder": "feature/disponibilizar-agendamento",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "Application.MainApplication.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feature/historico",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef6b6d75-1515-4f39-bf12-5fe62f4f23f9" name="Changes" comment="" />
+      <created>1794860552771</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1794860552771</updated>
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
