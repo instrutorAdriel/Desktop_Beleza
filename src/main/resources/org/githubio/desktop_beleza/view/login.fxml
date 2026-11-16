@@ -29,7 +29,7 @@
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Label styleClass="descricao-formulario" text="Acesse sua conta para gerenciar seus serviços" />
+                        <Label styleClass="descricao-formulario" text="Acesse sua conta para gerenciar seus procedimentos" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="4.0" />

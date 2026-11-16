@@ -6,6 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="7f54a0a6-f64f-4337-9e9f-d999838302be" name="Changes" comment="mudanca do visual da tela de cadastro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/desktop-beleza.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docs/desktop-beleza.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/AgendaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/ServicosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/UnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/UnidadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/VinculoServicoUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/controller/VinculoServicoUnidadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AgendaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/AgendaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/ServicosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/ServicosDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/UnidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/githubio/desktop_beleza/model/dao/UnidadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/painelateral.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/Telaagenda.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/Telaagenda.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/VinculoServicoUnidade.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/VinculoServicoUnidade.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/painelateral.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/servicos.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/unidades.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/githubio/desktop_beleza/view/unidades.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,61 +65,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5665030947137701" />
-      <entry key="MS500" value="2.3790434208795066" />
-      <entry key="S2" value="7.332142369595248" />
-      <entry key="S5" value="12.92951405267291" />
-      <entry key="S10" value="16.31330910906906" />
-      <entry key="S30" value="21.383669879716802" />
-      <entry key="S60" value="28.357452353151867" />
-      <entry key="M2" value="43.07884342637802" />
-      <entry key="M5" value="108.13566520963357" />
-      <entry key="M10" value="201.6040235983926" />
-      <entry key="M15" value="270.9926266529189" />
-      <entry key="M30" value="447.7019783393753" />
-      <entry key="H1" value="887.3981165189347" />
-      <entry key="H2" value="1745.9430765585716" />
-      <entry key="H4" value="2754.822174383037" />
-      <entry key="D1" value="4282.7778738601855" />
-      <entry key="W1" value="4644.172970296065" />
+      <entry key="MS100" value="1.0005570264157488" />
+      <entry key="MS500" value="1.2511350252172742" />
+      <entry key="S2" value="2.5242899922565885" />
+      <entry key="S5" value="4.703251161419149" />
+      <entry key="S10" value="7.8914116929171465" />
+      <entry key="S30" value="17.480795561109925" />
+      <entry key="S60" value="24.647562060579215" />
+      <entry key="M2" value="30.99826020055941" />
+      <entry key="M5" value="50.93810253845007" />
+      <entry key="M10" value="92.80730511498724" />
+      <entry key="M15" value="131.83507888556898" />
+      <entry key="M30" value="279.81846093600876" />
+      <entry key="H1" value="736.3894664426706" />
+      <entry key="H2" value="1599.8412568534163" />
+      <entry key="H4" value="2567.1779167606805" />
+      <entry key="D1" value="3976.2189688758663" />
+      <entry key="W1" value="4302.58530675162" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="7.8613549E-316" />
-      <entry key="S5" value="9.082365214488413E-127" />
-      <entry key="S10" value="9.530144392656538E-64" />
-      <entry key="S30" value="9.840862421057129E-22" />
-      <entry key="S60" value="3.137014890155457E-11" />
-      <entry key="M2" value="5.600906078622836E-6" />
-      <entry key="M5" value="0.00793055048685109" />
-      <entry key="M10" value="0.08907187920734763" />
-      <entry key="M15" value="0.2001151304105699" />
-      <entry key="M30" value="0.47466469736119765" />
-      <entry key="H1" value="0.8830156302755391" />
-      <entry key="H2" value="1.53138509548686" />
-      <entry key="H4" value="2.3189989208673674" />
-      <entry key="D1" value="3.6172940205920363" />
-      <entry key="W1" value="3.941997868966999" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="1.8779249882249837E-247" />
+      <entry key="S30" value="5.726545911514644E-83" />
+      <entry key="S60" value="7.567394473340676E-42" />
+      <entry key="M2" value="2.750889760303083E-21" />
+      <entry key="M5" value="5.967457013124822E-9" />
+      <entry key="M10" value="7.726768905297088E-5" />
+      <entry key="M15" value="0.0018208458616984623" />
+      <entry key="M30" value="0.04546560315380597" />
+      <entry key="H1" value="0.27317431082770405" />
+      <entry key="H2" value="0.8051739354729857" />
+      <entry key="H4" value="1.502568732246604" />
+      <entry key="D1" value="2.6604853928152647" />
+      <entry key="W1" value="2.948613849413458" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.5304326391910066" />
-      <entry key="MS500" value="2.363535131894776" />
-      <entry key="S2" value="7.294549073312539" />
-      <entry key="S5" value="12.897812361919154" />
-      <entry key="S10" value="16.292460182901387" />
-      <entry key="S30" value="21.374326312170265" />
-      <entry key="S60" value="28.351180578690023" />
-      <entry key="M2" value="43.07448249227234" />
-      <entry key="M5" value="108.14065702080423" />
-      <entry key="M10" value="201.6907850153197" />
-      <entry key="M15" value="271.1907225760418" />
-      <entry key="M30" value="448.17499733143916" />
-      <entry key="H1" value="888.279561470851" />
-      <entry key="H2" value="1747.4729364040684" />
-      <entry key="H4" value="2757.139953856021" />
-      <entry key="D1" value="4286.394843092603" />
-      <entry key="W1" value="4648.114917530075" />
+      <entry key="MS100" value="0.9664781233374097" />
+      <entry key="MS500" value="1.2428017002985998" />
+      <entry key="S2" value="2.520068436122453" />
+      <entry key="S5" value="4.699833297188028" />
+      <entry key="S10" value="7.888394867128239" />
+      <entry key="S30" value="17.478419482707412" />
+      <entry key="S60" value="24.645838345781804" />
+      <entry key="M2" value="30.99715604673782" />
+      <entry key="M5" value="50.937365812974406" />
+      <entry key="M10" value="92.80670222911405" />
+      <entry key="M15" value="131.8362435956494" />
+      <entry key="M30" value="279.8631605919662" />
+      <entry key="H1" value="736.6615316476721" />
+      <entry key="H2" value="1600.64514504873" />
+      <entry key="H4" value="2568.679405805785" />
+      <entry key="D1" value="3978.87916188942" />
+      <entry key="W1" value="4305.533874986277" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -117,7 +133,6 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Launcher.executor": "Run",
-    "Application.MainApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -125,7 +140,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "f592a15e",
+    "git-widget-placeholder": "style/nome-procedimentos",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/joao57559566/OneDrive - SENAC DF/Documentos/Desktop_Beleza",

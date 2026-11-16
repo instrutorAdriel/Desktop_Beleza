@@ -74,6 +74,6 @@ INSERT INTO tb_status_turma(id_status_turma, status_turma) VALUES
 (1, "Em Andamento"),
 (2, "Finalizado");
 
-# Serviços pré-definidos no banco de dados
+# Procedimentos pré-definidos no banco de dados
 INSERT INTO tb_servicos(nome_servico, duracao) VALUES
 ("Cabeleireiro", "12:00"),("Barbeiro", "12:00"),("Maquiador", "12:00"),("Design de Sobrancelhas", "12:00");

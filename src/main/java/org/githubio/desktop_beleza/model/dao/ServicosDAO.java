@@ -27,7 +27,7 @@ public class ServicosDAO {
                 ));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar produtos/serviços", e);
+            throw new RuntimeException("Erro ao listar produtos/procedimentos", e);
         }
         return lista;
     }
@@ -50,7 +50,7 @@ public class ServicosDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao inserir produto/serviço", e);
+            throw new RuntimeException("Erro ao inserir produto/procedimento", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class ServicosDAO {
             stmt.setInt(3, servico.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar produto/serviço", e);
+            throw new RuntimeException("Erro ao atualizar produto/procedimento", e);
         }
     }
 
@@ -74,7 +74,7 @@ public class ServicosDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao excluir produto/serviço. Verifique os vínculos com unidades e disponibilidades.", e);
+            throw new RuntimeException("Erro ao excluir produto/procedimento. Verifique os vínculos com unidades e disponibilidades.", e);
         }
     }
 }

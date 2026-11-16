@@ -253,7 +253,7 @@ public class UnidadeController implements Initializable {
 
             stage.initOwner(tabelaUnidades.getScene().getWindow());
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.setTitle("Gerenciar serviços da unidade");
+            stage.setTitle("Gerenciar procedimentos da unidade");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
 

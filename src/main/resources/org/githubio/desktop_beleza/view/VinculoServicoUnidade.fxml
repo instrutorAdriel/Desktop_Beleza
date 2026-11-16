@@ -17,9 +17,9 @@
         <Insets top="25" left="25" right="25" bottom="25"/>
     </padding>
 
-    <Label text="Serviços oferecidos pela unidade" textFill="#004587">
+    <Label text="Procedimentos oferecidos pela unidade" textFill="#004587">
         <font>
-            <Font name="Verdana Bold" size="18"/>
+            <Font name="Verdana Bold" size="15"/>
         </font>
     </Label>
 
@@ -31,22 +31,22 @@
     </VBox>
 
     <VBox spacing="5">
-        <Label text="Adicionar serviço"/>
+        <Label text="Adicionar procedimento"/>
         <ComboBox fx:id="cbServico"
                   maxWidth="Infinity"
-                  promptText="Selecione um serviço disponível"/>
+                  promptText="Selecione um procedimento disponível"/>
     </VBox>
 
-    <Button text="Vincular serviço"
+    <Button text="Vincular procedimento"
             styleClass="btn-azul"
             maxWidth="Infinity"
             onAction="#vincular"/>
 
     <VBox spacing="5">
-        <Label text="Serviços já vinculados"/>
+        <Label text="Procedimentos já vinculados"/>
         <ListView fx:id="listaServicosVinculados" prefHeight="140">
             <placeholder>
-                <Label text="Nenhum serviço vinculado a esta unidade"/>
+                <Label text="Nenhum procedimento vinculado a esta unidade"/>
             </placeholder>
         </ListView>
     </VBox>

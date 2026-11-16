@@ -110,7 +110,7 @@ public class VinculoServicoUnidadeController {
 
             mostrarMensagem(
                     Alert.AlertType.WARNING,
-                    "Selecione a unidade e o serviço."
+                    "Selecione a unidade e o procedimento."
             );
 
             return;
@@ -127,7 +127,7 @@ public class VinculoServicoUnidadeController {
 
                 mostrarMensagem(
                         Alert.AlertType.INFORMATION,
-                        "O serviço \"" + servico.getNome()
+                        "O procedimento \"" + servico.getNome()
                                 + "\" já está vinculado à unidade \""
                                 + unidade.getNome() + "\"."
                 );
@@ -137,7 +137,7 @@ public class VinculoServicoUnidadeController {
 
             mostrarMensagem(
                     Alert.AlertType.INFORMATION,
-                    "Serviço vinculado à unidade com sucesso!"
+                    "Procedimento vinculado à unidade com sucesso!"
             );
 
             cbServico.getSelectionModel().clearSelection();
@@ -164,7 +164,7 @@ public class VinculoServicoUnidadeController {
         Servico servico = listaServicosVinculados.getSelectionModel().getSelectedItem();
 
         if (unidade == null || servico == null) {
-            mostrarMensagem(Alert.AlertType.WARNING, "Selecione um serviço vinculado para remover.");
+            mostrarMensagem(Alert.AlertType.WARNING, "Selecione um procedimento vinculado para remover.");
             return;
         }
 
@@ -182,13 +182,13 @@ public class VinculoServicoUnidadeController {
         try {
             unidadeDAO.desvincularServico(unidade.getId(), servico.getId());
             atualizarServicosDaUnidade();
-            mostrarMensagem(Alert.AlertType.INFORMATION, "Serviço desvinculado da unidade.");
+            mostrarMensagem(Alert.AlertType.INFORMATION, "Procedimento desvinculado da unidade.");
         } catch (RuntimeException e) {
             e.printStackTrace();
             mostrarMensagem(
                     Alert.AlertType.ERROR,
                     e.getMessage() == null
-                            ? "Não foi possível desvincular o serviço."
+                            ? "Não foi possível desvincular o procedimento."
                             : e.getMessage()
             );
         }
@@ -221,7 +221,7 @@ public class VinculoServicoUnidadeController {
             mostrarMensagem(
                     Alert.AlertType.ERROR,
                     e.getMessage() == null
-                            ? "Não foi possível carregar os serviços desta unidade."
+                            ? "Não foi possível carregar os procedimentos desta unidade."
                             : e.getMessage()
             );
         }

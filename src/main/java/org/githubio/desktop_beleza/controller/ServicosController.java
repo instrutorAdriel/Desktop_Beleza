@@ -60,8 +60,8 @@ public class ServicosController implements Initializable {
     @FXML
     private void abrirDialogoAdicionar(ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Novo Serviço");
-        dialog.setHeaderText("Preencha os dados do serviço/produto");
+        dialog.setTitle("Novo Procedimento");
+        dialog.setHeaderText("Preencha os dados do procedimento/produto");
 
         ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
@@ -116,7 +116,7 @@ public class ServicosController implements Initializable {
 
     private void abrirDialogoEdicao(Servico servico) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Editar Serviço");
+        dialog.setTitle("Editar Procedimento");
         ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
@@ -153,7 +153,7 @@ public class ServicosController implements Initializable {
                     listaServicosCache.remove(servico);
                 } catch (RuntimeException e) {
                     Alert erro = new Alert(Alert.AlertType.ERROR);
-                    erro.setHeaderText("Não foi possível excluir o serviço");
+                    erro.setHeaderText("Não foi possível excluir o procedimento");
                     erro.setContentText(e.getMessage());
                     erro.showAndWait();
                 }
