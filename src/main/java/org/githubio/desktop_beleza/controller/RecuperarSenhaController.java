@@ -1,5 +1,7 @@
 package org.githubio.desktop_beleza.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.githubio.desktop_beleza.MainApplication;
 import org.githubio.desktop_beleza.model.dao.AtualizarSenhaDAO;
 import org.githubio.desktop_beleza.model.dao.PasswordResetTokenDAO;
@@ -26,6 +29,7 @@ public class RecuperarSenhaController {
 
     @FXML private TextField txtCodigo;
     @FXML private Button btnConfirmarCodigo;
+    @FXML private Button btnReenviarCodigo;
 
     @FXML private PasswordField campoNovaSenha;
     @FXML private TextField campoNovaSenhaVisivel;
@@ -45,7 +49,10 @@ public class RecuperarSenhaController {
     @FXML private Label lblNumero;
     @FXML private Label lblEspecial;
 
-    private String emailEmRecuperacao;
+    private static String emailEmRecuperacao;
+    private static long ultimoEnvioMillis;
+    private static final long INTERVALO_REENVIO_MILLIS = 3 * 60 * 1000L;
+    private Timeline contadorReenvio;
     private static int idUsuarioEmRecuperacao;
 
     private boolean novaSenhaVisivel = false;
@@ -60,6 +67,9 @@ public class RecuperarSenhaController {
 
     @FXML
     public void initialize() {
+        if (btnReenviarCodigo != null) {
+            iniciarContadorReenvio();
+        }
         if (campoNovaSenha != null) {
             configurarMecanismoOlhoSenha();
             configurarValidacoesSenhaTempoReal();
@@ -104,6 +114,7 @@ public class RecuperarSenhaController {
                 passwordResetTokenDAO.salvarCodigoOtp(idUsuarioEmRecuperacao, codigoOtp);
 
                 emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
+                ultimoEnvioMillis = System.currentTimeMillis();
 
                 Platform.runLater(() -> {
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
@@ -129,6 +140,70 @@ public class RecuperarSenhaController {
         Thread thread = new Thread(tarefaEnvio);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    @FXML
+    public void onReenviarCodigo() {
+        if (emailEmRecuperacao == null || System.currentTimeMillis() - ultimoEnvioMillis < INTERVALO_REENVIO_MILLIS) {
+            return;
+        }
+
+        btnReenviarCodigo.setDisable(true);
+        btnReenviarCodigo.setText("Reenviando...");
+
+        Task<Void> tarefaReenvio = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
+                passwordResetTokenDAO.salvarCodigoOtp(idUsuarioEmRecuperacao, codigoOtp);
+                emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
+                ultimoEnvioMillis = System.currentTimeMillis();
+                return null;
+            }
+        };
+
+        tarefaReenvio.setOnSucceeded(event -> {
+            iniciarContadorReenvio();
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Código Reenviado", "Enviamos um novo código para o seu e-mail.");
+        });
+
+        tarefaReenvio.setOnFailed(event -> {
+            Throwable e = tarefaReenvio.getException();
+            if (e != null) e.printStackTrace();
+
+            iniciarContadorReenvio();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro no Envio", "Não foi possível reenviar o código de recuperação.");
+        });
+
+        Thread thread = new Thread(tarefaReenvio);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    private void iniciarContadorReenvio() {
+        if (contadorReenvio != null) {
+            contadorReenvio.stop();
+        }
+
+        atualizarBotaoReenvio();
+        contadorReenvio = new Timeline(new KeyFrame(Duration.seconds(1), e -> atualizarBotaoReenvio()));
+        contadorReenvio.setCycleCount(Timeline.INDEFINITE);
+        contadorReenvio.play();
+    }
+
+    private void atualizarBotaoReenvio() {
+        long restanteSegundos = (INTERVALO_REENVIO_MILLIS - (System.currentTimeMillis() - ultimoEnvioMillis) + 999) / 1000;
+
+        if (restanteSegundos <= 0) {
+            btnReenviarCodigo.setDisable(false);
+            btnReenviarCodigo.setText("Reenviar código");
+            if (contadorReenvio != null) {
+                contadorReenvio.stop();
+            }
+        } else {
+            btnReenviarCodigo.setDisable(true);
+            btnReenviarCodigo.setText(String.format("Reenviar código (%d:%02d)", restanteSegundos / 60, restanteSegundos % 60));
+        }
     }
 
     @FXML
