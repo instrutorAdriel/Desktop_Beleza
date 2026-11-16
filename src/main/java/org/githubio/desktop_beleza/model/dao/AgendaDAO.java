@@ -504,6 +504,9 @@ public class AgendaDAO {
 
         List<Object> params = new ArrayList<>();
 
+        sql.append(" AND a.data_hora_agendamento >= ?");
+        params.add(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
+
         if (data != null) {
             sql.append(" AND a.data_hora_agendamento >= ? AND a.data_hora_agendamento < ?");
             params.add(Timestamp.valueOf(data.atStartOfDay()));
