@@ -45,7 +45,6 @@ public class RecuperarSenhaController {
     @FXML private Label lblNumero;
     @FXML private Label lblEspecial;
 
-    private String emailEmRecuperacao;
     private static int idUsuarioEmRecuperacao;
 
     private boolean novaSenhaVisivel = false;
@@ -97,13 +96,12 @@ public class RecuperarSenhaController {
                     return null;
                 }
 
-                emailEmRecuperacao = email;
                 idUsuarioEmRecuperacao = atualizarSenhaDAO.buscarIdUsuarioPorEmail(email);
 
                 String codigoOtp = String.format("%06d", new java.util.Random().nextInt(999999));
                 passwordResetTokenDAO.salvarCodigoOtp(idUsuarioEmRecuperacao, codigoOtp);
 
-                emailService.enviarCodigoRecuperacao(emailEmRecuperacao, codigoOtp);
+                emailService.enviarCodigoRecuperacao(email, codigoOtp);
 
                 Platform.runLater(() -> {
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
@@ -177,7 +175,7 @@ public class RecuperarSenhaController {
 
         String senhaHash = new BCryptPasswordEncoder().encode(novaSenha);
 
-        if (atualizarSenhaDAO.atualizarSenha(emailEmRecuperacao, senhaHash)) {
+        if (atualizarSenhaDAO.atualizarSenha(idUsuarioEmRecuperacao, senhaHash)) {
             passwordResetTokenDAO.inativarTokensDoUsuario(idUsuarioEmRecuperacao);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Sua senha foi alterada com sucesso.");

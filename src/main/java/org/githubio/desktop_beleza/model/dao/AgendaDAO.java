@@ -485,6 +485,15 @@ public class AgendaDAO {
 
     }
     public List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico) {
+        return buscarAgendamentos(data, unidade, servico, false);
+    }
+
+    public List<Agenda> buscarHistorico(LocalDate data, String unidade, String servico) {
+        return buscarAgendamentos(data, unidade, servico, true);
+    }
+
+    private List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico,
+                                             boolean historico) {
         StringBuilder sql = new StringBuilder("""
         SELECT a.id_agendamento,
                DATE_FORMAT(a.data_hora_agendamento, '%Y-%m-%d') AS data_agendamento,
@@ -504,6 +513,12 @@ public class AgendaDAO {
 
         List<Object> params = new ArrayList<>();
 
+        if (historico) {
+            sql.append("""
+                 AND (a.data_hora_agendamento < CURRENT_TIMESTAMP
+                      OR a.situacao IN ('Realizado', 'Cancelado', 'Não Compareceu'))
+                """);
+        }
         sql.append(" AND a.data_hora_agendamento >= ?");
         params.add(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
 
@@ -520,7 +535,9 @@ public class AgendaDAO {
             sql.append(" AND p.nome_produto = ?");
             params.add(servico);
         }
-        sql.append(" ORDER BY a.data_hora_agendamento");
+        sql.append(historico
+                ? " ORDER BY a.data_hora_agendamento DESC"
+                : " ORDER BY a.data_hora_agendamento");
 
         List<Agenda> lista = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
