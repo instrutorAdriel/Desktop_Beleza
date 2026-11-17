@@ -513,14 +513,14 @@ public class AgendaDAO {
 
         List<Object> params = new ArrayList<>();
 
+        LocalDate hoje = LocalDate.now();
         if (historico) {
-            sql.append("""
-                 AND (a.data_hora_agendamento < CURRENT_TIMESTAMP
-                      OR a.situacao IN ('Realizado', 'Cancelado', 'Não Compareceu'))
-                """);
+            sql.append(" AND a.data_hora_agendamento < ?");
+            params.add(Timestamp.valueOf(hoje.atStartOfDay()));
+        } else {
+            sql.append(" AND a.data_hora_agendamento >= ?");
+            params.add(Timestamp.valueOf(hoje.atStartOfDay()));
         }
-        sql.append(" AND a.data_hora_agendamento >= ?");
-        params.add(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
 
         if (data != null) {
             sql.append(" AND a.data_hora_agendamento >= ? AND a.data_hora_agendamento < ?");
