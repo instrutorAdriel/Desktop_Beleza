@@ -6,42 +6,97 @@
 <?import javafx.scene.text.*?>
 <?import org.githubio.desktop_beleza.components.PainelLateralComponent?>
 
-<BorderPane prefHeight="730.0" prefWidth="1360.0" styleClass="app-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+<BorderPane prefHeight="700.0" prefWidth="1050.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.githubio.desktop_beleza.controller.ServicosController">
+
+    <!-- Menu lateral reutilizável -->
     <left>
         <PainelLateralComponent BorderPane.alignment="CENTER" />
     </left>
+
     <center>
-        <VBox spacing="22.0" styleClass="content-area">
-            <padding><Insets bottom="26.0" left="25.0" right="18.0" top="30.0" /></padding>
+        <VBox spacing="12.0" style="-fx-background-color: #ffffff;">
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            </padding>
             <children>
-                <Label styleClass="page-title" text="Gerenciamento de Servi&#xE7;os">
-                    <font><Font name="Verdana Bold" size="26.0" /></font>
-                </Label>
-                <TableView fx:id="tabelaServicos" styleClass="data-table" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colNome" prefWidth="180.0" text="NOME" />
-                        <TableColumn fx:id="colDescricao" prefWidth="490.6" text="DESCRIÇÃO" />
-                        <TableColumn fx:id="colAcoes" prefWidth="120.0" text="AÇÕES" />
-                    </columns>
-                </TableView>
+
+                <!-- Cabeçalho: título à esquerda e seletor de unidade à direita (acima da tabela) -->
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <padding>
+                        <!-- 285 = largura do painel lateral direito (265) + espaçamento (20) -->
+                        <Insets right="285.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-text-fill: #14325c; -fx-font-weight: bold;" text="Gerenciamento de Serviços">
+                            <font>
+                                <Font name="Verdana Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label style="-fx-text-fill: #14325c; -fx-font-weight: bold;" text="Unidade:">
+                            <font>
+                                <Font name="Verdana Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbUnidade" minWidth="230.0" prefWidth="230.0" promptText="Selecione a unidade" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <!-- Tabela de serviços -->
+                        <TableView fx:id="tabelaServicos" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-background-radius: 4;" HBox.hgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colNome" prefWidth="180.0" text="NOME" />
+                                <TableColumn fx:id="colDescricao" prefWidth="490.0" text="DESCRIÇÃO" />
+                                <TableColumn fx:id="colAcoes" prefWidth="120.0" text="AÇÕES" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+
+                        <!-- Painel lateral direito -->
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" minWidth="245.0" prefWidth="265.0" spacing="14.0" style="-fx-background-color: #ffffff; -fx-border-color: #cbd5e1; -fx-border-radius: 9; -fx-background-radius: 9;">
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                            <children>
+                                <Label maxWidth="Infinity" style="-fx-text-fill: #14325c; -fx-font-weight: bold;" text="Serviços">
+                                    <font>
+                                        <Font name="Verdana Bold" size="17.0" />
+                                    </font>
+                                </Label>
+
+                                <TextField fx:id="txtBuscar" promptText="Buscar serviço" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e1;">
+                                    <font>
+                                        <Font name="Verdana" size="12.0" />
+                                    </font>
+                                </TextField>
+
+                                <Button maxWidth="Infinity" minHeight="36.0" mnemonicParsing="false" onAction="#buscar" styleClass="btn-azul" text="Buscar">
+                                    <font>
+                                        <Font name="Verdana Bold" size="12.0" />
+                                    </font>
+                                </Button>
+
+                                <Button maxWidth="Infinity" minHeight="36.0" mnemonicParsing="false" onAction="#abrirDialogoAdicionar" styleClass="btn-azul" text="Adicionar serviço">
+                                    <font>
+                                        <Font name="Verdana Bold" size="12.0" />
+                                    </font>
+                                </Button>
+
+                                <Button maxWidth="Infinity" minHeight="36.0" mnemonicParsing="false" onAction="#disponibilizarAgendamento" style="-fx-background-color: #f7941d; -fx-text-fill: white; -fx-cursor: hand;" text="Disponibilizar agendamento">
+                                    <font>
+                                        <Font name="Verdana Bold" size="12.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
             </children>
         </VBox>
     </center>
-    <right>
-        <VBox prefWidth="300.0" styleClass="tools-panel-wrap" BorderPane.alignment="CENTER">
-            <padding><Insets bottom="26.0" left="12.0" right="22.0" top="86.0" /></padding>
-            <children>
-                <VBox spacing="12.0" styleClass="model-tools-panel" VBox.vgrow="ALWAYS">
-                    <padding><Insets bottom="22.0" left="20.0" right="20.0" top="20.0" /></padding>
-                    <children>
-                        <Label styleClass="tools-panel-title" text="Servi&#xE7;os" />
-                        <TextField fx:id="txtBuscar" promptText="Buscar servi&#xE7;o" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#buscar" styleClass="panel-button-primary" text="Buscar" />
-                        <Button maxWidth="1.7976931348623157E308" onAction="#abrirDialogoAdicionar" styleClass="panel-button-primary" text="Adicionar servi&#xE7;o" />
-                        <Button fx:id="btnDisponibilizar" maxWidth="1.7976931348623157E308" onAction="#abrirDialogoDisponibilizar" styleClass="panel-button-secondary" text="Disponibilizar agendamento" />
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
-    </right>
 </BorderPane>

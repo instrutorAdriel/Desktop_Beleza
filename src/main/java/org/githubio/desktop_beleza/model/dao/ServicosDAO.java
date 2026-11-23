@@ -27,7 +27,38 @@ public class ServicosDAO {
                 ));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar produtos/procedimentos", e);
+            throw new RuntimeException("Erro ao listar produtos/serviços", e);
+        }
+        return lista;
+    }
+
+    /**
+     * Lista apenas os serviços vinculados à unidade informada (tabela produto_unidade).
+     */
+    public List<Servico> lerPorUnidade(int idUnidade) {
+        String sql = """
+                SELECT DISTINCT p.id_produto, p.nome_produto, p.descricao
+                FROM produto p
+                INNER JOIN produto_unidade pu ON pu.id_produto = p.id_produto
+                WHERE pu.id_unidade = ?
+                ORDER BY p.nome_produto
+                """;
+        List<Servico> lista = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUnidade);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Servico(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome_produto"),
+                            rs.getString("descricao")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar serviços da unidade", e);
         }
         return lista;
     }
@@ -50,7 +81,7 @@ public class ServicosDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao inserir produto/procedimento", e);
+            throw new RuntimeException("Erro ao inserir produto/serviço", e);
         }
     }
 
@@ -63,7 +94,7 @@ public class ServicosDAO {
             stmt.setInt(3, servico.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar produto/procedimento", e);
+            throw new RuntimeException("Erro ao atualizar produto/serviço", e);
         }
     }
 
@@ -74,7 +105,7 @@ public class ServicosDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao excluir produto/procedimento. Verifique os vínculos com unidades e disponibilidades.", e);
+            throw new RuntimeException("Erro ao excluir produto/serviço. Verifique os vínculos com unidades e disponibilidades.", e);
         }
     }
 }
