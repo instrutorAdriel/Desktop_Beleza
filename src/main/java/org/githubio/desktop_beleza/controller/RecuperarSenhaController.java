@@ -252,7 +252,7 @@ public class RecuperarSenhaController {
 
         String senhaHash = new BCryptPasswordEncoder().encode(novaSenha);
 
-        if (atualizarSenhaDAO.atualizarSenha(emailEmRecuperacao, senhaHash)) {
+        if (atualizarSenhaDAO.atualizarSenha(idUsuarioEmRecuperacao, senhaHash)) {
             passwordResetTokenDAO.inativarTokensDoUsuario(idUsuarioEmRecuperacao);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Sua senha foi alterada com sucesso.");
