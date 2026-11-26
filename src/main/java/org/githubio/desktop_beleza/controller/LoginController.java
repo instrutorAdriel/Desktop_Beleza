@@ -35,7 +35,7 @@ public class LoginController {
             Pattern.compile("^[a-zA-Z0-9._%+-]+@df\\.senac\\.br$", Pattern.CASE_INSENSITIVE);
 
     // =====================================================================
-    // 2) COMPONENTES DO FXML (os nomes precisam bater com os fx:id do login.fxml)
+    // 2) COMPONENTES DO FXML (os nomes precisam bater com os fx:id do LoginView.fxml)
     // =====================================================================
 
     @FXML private TextField Email;

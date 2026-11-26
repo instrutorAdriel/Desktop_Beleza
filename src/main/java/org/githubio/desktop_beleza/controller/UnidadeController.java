@@ -227,7 +227,7 @@ public class UnidadeController implements Initializable {
         try {
 
             URL telaVinculo = MainApplication.class.getResource(
-                    "view/VinculoServicoUnidade.fxml"
+                    "view/VinculoServicoUnidadeView.fxml"
             );
             if (telaVinculo == null) {
                 throw new IOException("Arquivo da tela de vínculo não encontrado.");

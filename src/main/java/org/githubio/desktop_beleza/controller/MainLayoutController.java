@@ -13,6 +13,6 @@ public class MainLayoutController {
     public void initialize() {
         ViewNavigator.setContentArea(mainContentArea);
         // Define a tela inicial padrão do layout
-        ViewNavigator.loadView("Telaagenda.fxml");
+        ViewNavigator.loadView("VisaoGeralAgendamentoView.fxml");
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 public class SidebarController {
 
     @FXML public void navegarAgenda() {
-        ViewNavigator.loadView("Telaagenda.fxml");
+        ViewNavigator.loadView("VisaoGeralAgendamentoView.fxml");
     }
 
     @FXML public void navegarTurmas() {
