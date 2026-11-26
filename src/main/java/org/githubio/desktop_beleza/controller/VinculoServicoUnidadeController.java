@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import org.githubio.desktop_beleza.model.Servico;
+import org.githubio.desktop_beleza.model.Produto;
 import org.githubio.desktop_beleza.model.Unidade;
 import org.githubio.desktop_beleza.model.dao.UnidadeDAO;
 
@@ -23,13 +23,13 @@ public class VinculoServicoUnidadeController {
     private ComboBox<Unidade> cbUnidade;
 
     @FXML
-    private ComboBox<Servico> cbServico;
+    private ComboBox<Produto> cbServico;
 
     @FXML
-    private ListView<Servico> listaServicosVinculados;
+    private ListView<Produto> listaServicosVinculados;
 
     private final UnidadeDAO unidadeDAO = new UnidadeDAO();
-    private List<Servico> todosServicos = List.of();
+    private List<Produto> todosProdutos = List.of();
 
 
     @FXML
@@ -50,21 +50,21 @@ public class VinculoServicoUnidadeController {
 
         cbServico.setConverter(new StringConverter<>() {
             @Override
-            public String toString(Servico servico) {
-                return servico == null ? "" : servico.getNome();
+            public String toString(Produto produto) {
+                return produto == null ? "" : produto.getNome();
             }
 
             @Override
-            public Servico fromString(String texto) {
+            public Produto fromString(String texto) {
                 return null;
             }
         });
 
         listaServicosVinculados.setCellFactory(list -> new ListCell<>() {
             @Override
-            protected void updateItem(Servico servico, boolean vazio) {
-                super.updateItem(servico, vazio);
-                setText(vazio || servico == null ? null : servico.getNome());
+            protected void updateItem(Produto produto, boolean vazio) {
+                super.updateItem(produto, vazio);
+                setText(vazio || produto == null ? null : produto.getNome());
             }
         });
 
@@ -79,8 +79,8 @@ public class VinculoServicoUnidadeController {
         cbUnidade.setItems(FXCollections.observableArrayList(unidades));
     }
 
-    public void setServicos(List<Servico> servicos) {
-        todosServicos = List.copyOf(servicos);
+    public void setServicos(List<Produto> produtos) {
+        todosProdutos = List.copyOf(produtos);
         atualizarServicosDaUnidade();
     }
 
@@ -104,9 +104,9 @@ public class VinculoServicoUnidadeController {
     private void vincular() {
 
         Unidade unidade = cbUnidade.getValue();
-        Servico servico = cbServico.getValue();
+        Produto produto = cbServico.getValue();
 
-        if (unidade == null || servico == null) {
+        if (unidade == null || produto == null) {
 
             mostrarMensagem(
                     Alert.AlertType.WARNING,
@@ -120,14 +120,14 @@ public class VinculoServicoUnidadeController {
 
             boolean criado = unidadeDAO.vincularServico(
                     unidade.getId(),
-                    servico.getId()
+                    produto.getId()
             );
 
             if (!criado) {
 
                 mostrarMensagem(
                         Alert.AlertType.INFORMATION,
-                        "O procedimento \"" + servico.getNome()
+                        "O procedimento \"" + produto.getNome()
                                 + "\" já está vinculado à unidade \""
                                 + unidade.getNome() + "\"."
                 );
@@ -161,16 +161,16 @@ public class VinculoServicoUnidadeController {
     @FXML
     private void desvincular() {
         Unidade unidade = cbUnidade.getValue();
-        Servico servico = listaServicosVinculados.getSelectionModel().getSelectedItem();
+        Produto produto = listaServicosVinculados.getSelectionModel().getSelectedItem();
 
-        if (unidade == null || servico == null) {
+        if (unidade == null || produto == null) {
             mostrarMensagem(Alert.AlertType.WARNING, "Selecione um procedimento vinculado para remover.");
             return;
         }
 
         Alert confirmacao = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                "Desvincular \"" + servico.getNome() + "\" de \"" + unidade.getNome() + "\"?",
+                "Desvincular \"" + produto.getNome() + "\" de \"" + unidade.getNome() + "\"?",
                 ButtonType.YES,
                 ButtonType.NO
         );
@@ -180,7 +180,7 @@ public class VinculoServicoUnidadeController {
         }
 
         try {
-            unidadeDAO.desvincularServico(unidade.getId(), servico.getId());
+            unidadeDAO.desvincularServico(unidade.getId(), produto.getId());
             atualizarServicosDaUnidade();
             mostrarMensagem(Alert.AlertType.INFORMATION, "Procedimento desvinculado da unidade.");
         } catch (RuntimeException e) {
@@ -203,15 +203,15 @@ public class VinculoServicoUnidadeController {
         }
 
         try {
-            List<Servico> vinculados = unidadeDAO.listarServicosVinculados(unidade.getId());
+            List<Produto> vinculados = unidadeDAO.listarServicosVinculados(unidade.getId());
             listaServicosVinculados.setItems(FXCollections.observableArrayList(vinculados));
 
             Set<Integer> idsVinculados = vinculados.stream()
-                    .map(Servico::getId)
+                    .map(Produto::getId)
                     .collect(Collectors.toSet());
             cbServico.setItems(FXCollections.observableArrayList(
-                    todosServicos.stream()
-                            .filter(servico -> !idsVinculados.contains(servico.getId()))
+                    todosProdutos.stream()
+                            .filter(produto -> !idsVinculados.contains(produto.getId()))
                             .toList()
             ));
         } catch (RuntimeException e) {

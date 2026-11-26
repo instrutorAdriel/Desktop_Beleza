@@ -2,7 +2,7 @@ package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
 import org.githubio.desktop_beleza.model.Unidade;
-import org.githubio.desktop_beleza.model.Servico;
+import org.githubio.desktop_beleza.model.Produto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -99,7 +99,7 @@ public class UnidadeDAO {
         }
     }
 
-    public List<Servico> listarServicosVinculados(int idUnidade) {
+    public List<Produto> listarServicosVinculados(int idUnidade) {
         String sql = """
                 SELECT DISTINCT p.id_produto, p.nome_produto, p.descricao
                 FROM produto_unidade pu
@@ -107,14 +107,14 @@ public class UnidadeDAO {
                 WHERE pu.id_unidade = ?
                 ORDER BY p.nome_produto
                 """;
-        List<Servico> servicos = new ArrayList<>();
+        List<Produto> produtos = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idUnidade);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    servicos.add(new Servico(
+                    produtos.add(new Produto(
                             rs.getInt("id_produto"),
                             rs.getString("nome_produto"),
                             rs.getString("descricao")
@@ -125,7 +125,7 @@ public class UnidadeDAO {
             throw new RuntimeException("Erro ao listar procedimentos da unidade", e);
         }
 
-        return servicos;
+        return produtos;
     }
 
 

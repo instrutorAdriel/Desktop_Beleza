@@ -8,7 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
-import org.githubio.desktop_beleza.model.Agenda;
+import org.githubio.desktop_beleza.model.Agendamento;
 import org.githubio.desktop_beleza.model.dao.AgendaDAO;
 
 import java.time.LocalDate;
@@ -24,19 +24,19 @@ public class HistoricoController {
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
     @FXML private ComboBox<String> cbUnidade;
-    @FXML private TableView<Agenda> tabelaAgenda;
-    @FXML private TableColumn<Agenda, String> colData;
-    @FXML private TableColumn<Agenda, String> colServico;
-    @FXML private TableColumn<Agenda, String> colModelo;
-    @FXML private TableColumn<Agenda, String> colHorario;
-    @FXML private TableColumn<Agenda, String> colStatus;
+    @FXML private TableView<Agendamento> tabelaAgenda;
+    @FXML private TableColumn<Agendamento, String> colData;
+    @FXML private TableColumn<Agendamento, String> colServico;
+    @FXML private TableColumn<Agendamento, String> colModelo;
+    @FXML private TableColumn<Agendamento, String> colHorario;
+    @FXML private TableColumn<Agendamento, String> colStatus;
 
     private final AgendaDAO dao = new AgendaDAO();
 
     @FXML
     public void initialize() {
         txtServico.getItems().add(TODOS_SERVICOS);
-        txtServico.getItems().addAll(dao.listarServicos());
+        txtServico.getItems().addAll(dao.listarProdutos());
         txtServico.getSelectionModel().selectFirst();
 
         cbUnidade.getItems().add(TODAS_UNIDADES);
@@ -61,8 +61,7 @@ public class HistoricoController {
         });
         dpData.setPromptText("dd/mm/aaaa");
 
-        colData.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(
-                paraDataBr(c.getValue().getData())));
+        colData.setCellValueFactory(new PropertyValueFactory<>("dataHoraAgendamentoFormatada"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
         colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));

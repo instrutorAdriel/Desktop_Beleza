@@ -7,30 +7,24 @@ public class Modelo {
     private String nome;
     private String telefone;
     private String email;
-    private Date data;
+    private Date data_nascimento;
 
-    // 1. Construtor vazio (Importante para o JavaFX e instâncias novas)
     public Modelo() {}
 
-    // 2. NOVO Construtor: Usado pela sua nova DAO (sem o ID no início)
-    public Modelo(String nome, String telefone, String email, Date data) {
+    public Modelo(String nome, String telefone, String email, Date data_nascimento) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.data = data;
+        this.data_nascimento = data_nascimento;
     }
 
-    // 3. Construtor completo: Útil se precisar criar um objeto com tudo de uma vez
-    public Modelo(int id, String nome, String telefone, String email, Date data) {
+    public Modelo(int id, String nome, String telefone, String email, Date data_nascimento) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.data= data;
+        this.data_nascimento = data_nascimento;
     }
-
-    // --- Getters e Setters ---
-    // Importante: O PropertyValueFactory("nome") procura o método getNome()
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -44,6 +38,6 @@ public class Modelo {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public Date getData() {return data;}
-    public void setData(Date data) {this.data =data;}
+    public Date getData_nascimento() {return data_nascimento;}
+    public void setData_nascimento(Date data_nascimento) {this.data_nascimento = data_nascimento;}
 }

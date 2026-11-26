@@ -1,6 +1,5 @@
 package org.githubio.desktop_beleza.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -13,7 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.githubio.desktop_beleza.MainApplication;
-import org.githubio.desktop_beleza.model.Agenda;
+import org.githubio.desktop_beleza.model.Agendamento;
+import org.githubio.desktop_beleza.model.Modelo;
+import org.githubio.desktop_beleza.model.Produto;
 import org.githubio.desktop_beleza.model.dao.AgendaDAO;
 
 import java.time.LocalDate;
@@ -30,13 +31,13 @@ public class AgendaController {
     @FXML private ComboBox<String> txtServico;
     @FXML private DatePicker dpData;
     @FXML private ComboBox<String> cbUnidade;
-    @FXML private TableView<Agenda> tabelaAgenda;
-    @FXML private TableColumn<Agenda, String> colData;
-    @FXML private TableColumn<Agenda, String> colServico;
-    @FXML private TableColumn<Agenda, String> colModelo;
-    @FXML private TableColumn<Agenda, String> colHorario;
-    @FXML private TableColumn<Agenda, String> colStatus;
-    @FXML private TableColumn<Agenda, String> colAcao;
+    @FXML private TableView<Agendamento> tabelaAgenda;
+    @FXML private TableColumn<Agendamento, String> colData;
+    @FXML private TableColumn<Agendamento, String> colServico;
+    @FXML private TableColumn<Agendamento, String> colModelo;
+    @FXML private TableColumn<Agendamento, String> colHorario;
+    @FXML private TableColumn<Agendamento, String> colStatus;
+    @FXML private TableColumn<Agendamento, String> colAcao;
     @FXML private Label lblSemanaAtual;
     @FXML private Label lblPraticasDoMes;
     @FXML private Label lblVagasOcupadas;
@@ -48,7 +49,7 @@ public class AgendaController {
     public void initialize() {
 
         txtServico.getItems().add(TODOS_SERVICOS);
-        txtServico.getItems().addAll(dao.listarServicos());
+        txtServico.getItems().addAll(dao.listarProdutos());
         txtServico.getSelectionModel().selectFirst();
 
         cbUnidade.getItems().add(TODAS_UNIDADES);
@@ -58,7 +59,7 @@ public class AgendaController {
         dpData.setConverter(criarConversorData());
         dpData.setPromptText("dd/mm/aaaa");
 
-        colData.setCellValueFactory(c -> new SimpleStringProperty(paraDataBr(c.getValue().getData())));
+        colData.setCellValueFactory(new PropertyValueFactory<>("dataHoraAgendamentoFormatada"));
         colServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
         colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
@@ -109,7 +110,7 @@ public class AgendaController {
         String unidade = TODAS_UNIDADES.equals(cbUnidade.getValue()) ? null : cbUnidade.getValue();
         String servico = TODOS_SERVICOS.equals(txtServico.getValue()) ? null : txtServico.getValue();
 
-        List<Agenda> lista = dao.buscarAgendamentos(data, unidade, servico);
+        List<Agendamento> lista = dao.buscarAgendamentos(data, unidade, servico);
         tabelaAgenda.setItems(FXCollections.observableArrayList(lista));
 
         if (lblSemanaAtual != null) {
@@ -158,9 +159,9 @@ public class AgendaController {
                 for (String status : statusPermitidos) {
                     MenuItem item = new MenuItem(status);
                     item.setOnAction(e -> {
-                        Agenda agenda = getTableView().getItems().get(getIndex());
-                        dao.atualizarStatus(agenda.getId(), status);
-                        agenda.setStatus(status);
+                        Agendamento agendamento = getTableView().getItems().get(getIndex());
+                        dao.atualizarStatus(agendamento.getId(), status);
+                        agendamento.setStatus(status);
                         menu.setText(status);
                     });
                     menu.getItems().add(item);
@@ -192,18 +193,18 @@ public class AgendaController {
                 caixa.setAlignment(Pos.CENTER);
 
                 btnEditar.setOnAction(e -> {
-                    Agenda agenda = getTableView().getItems().get(getIndex());
-                    abrirPopupEdicao(agenda);
+                    Agendamento agendamento = getTableView().getItems().get(getIndex());
+                    abrirPopupEdicao(agendamento);
                 });
 
                 btnExcluir.setOnAction(e -> {
-                    Agenda agenda = getTableView().getItems().get(getIndex());
+                    Agendamento agendamento = getTableView().getItems().get(getIndex());
                     Alert alerta = new Alert(Alert.AlertType.CONFIRMATION,
-                            "Excluir o agendamento de " + agenda.getModelo() + "?",
+                            "Excluir o agendamento de " + agendamento.getModelo() + "?",
                             ButtonType.YES, ButtonType.NO);
                     alerta.showAndWait().ifPresent(resposta -> {
                         if (resposta == ButtonType.YES) {
-                            dao.excluirAgendamento(agenda.getId());
+                            dao.excluirAgendamento(agendamento.getId());
                             atualizarTabela();
                         }
                     });
@@ -218,23 +219,23 @@ public class AgendaController {
         });
     }
 
-    private void abrirPopupEdicao(Agenda agenda) {
+    private void abrirPopupEdicao(Agendamento agendamento) {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.setTitle("Editar Agendamento");
 
-        ComboBox<String> campoModelo = new ComboBox<>();
+        ComboBox<Modelo> campoModelo = new ComboBox<>();
         campoModelo.getItems().setAll(dao.listarModelos());
-        campoModelo.setValue(agenda.getModelo());
+        campoModelo.setValue(agendamento.getModelo());
 
-        ComboBox<String> campoServico = new ComboBox<>();
-        campoServico.getItems().setAll(dao.listarServicos());
-        campoServico.setValue(agenda.getServico());
+        ComboBox<Produto> campoProduto = new ComboBox<>();
+        campoProduto.getItems().setAll(dao.listarProdutos());
+        campoProduto.setValue(agendamento.getProduto());
 
-        TextField campoHorario = new TextField(agenda.getHorario());
+        TextField campoHorario = new TextField(agendamento.getHorario());
         campoHorario.setTextFormatter(criarFormatadorHorario());
 
-        DatePicker campoData = new DatePicker(LocalDate.parse(agenda.getData()));
+        DatePicker campoData = new DatePicker(LocalDate.parse(agendamento.getData_hora_agendamento()));
         campoData.setConverter(criarConversorData());
         campoData.setDayCellFactory(picker -> new DateCell() {
             @Override
@@ -267,14 +268,14 @@ public class AgendaController {
             rotulo.setMinWidth(75);
         }
         campoModelo.setMaxWidth(Double.MAX_VALUE);
-        campoServico.setMaxWidth(Double.MAX_VALUE);
+        campoProduto.setMaxWidth(Double.MAX_VALUE);
         campoHorario.setMaxWidth(Double.MAX_VALUE);
         campoData.setMaxWidth(Double.MAX_VALUE);
 
         grid.add(rotuloModelo, 0, 0);
         grid.add(campoModelo, 1, 0);
         grid.add(rotuloServico, 0, 1);
-        grid.add(campoServico, 1, 1);
+        grid.add(campoProduto, 1, 1);
         grid.add(rotuloHorario, 0, 2);
         grid.add(campoHorario, 1, 2);
         grid.add(rotuloData, 0, 3);
@@ -284,17 +285,17 @@ public class AgendaController {
         Button btnCancelar = new Button("Cancelar");
 
         btnSalvar.setOnAction(e -> {
-            if (campoModelo.getValue() == null || campoServico.getValue() == null ||
+            if (campoModelo.getValue() == null || campoProduto.getValue() == null ||
                     campoData.getValue() == null || !horarioValido(campoHorario.getText())) {
                 mostrarAviso("Preencha os campos e informe o horário no formato HH:mm.");
                 return;
             }
 
-            agenda.setModelo(campoModelo.getValue());
-            agenda.setServico(campoServico.getValue());
-            agenda.setData(campoData.getValue().toString()); // ISO internamente
-            agenda.setHorario(campoHorario.getText());
-            dao.editarAgendamento(agenda);
+            agendamento.setModelo(campoModelo.getValue());
+            agendamento.setProduto(campoProduto.getValue());
+            agendamento.setData_hora_agendamento(campoData.getValue().toString()); // ISO internamente
+            agendamento.setHorario(campoHorario.getText());
+            dao.editarAgendamento(agendamento);
             popup.close();
             atualizarTabela();
         });

@@ -55,8 +55,8 @@ public class ModeloDAO {
 
                 try (PreparedStatement stmtModelo = conn.prepareStatement(inserirModelo)) {
                     stmtModelo.setString(1, modelo.getTelefone());
-                    if (modelo.getData() != null) {
-                        stmtModelo.setDate(2, modelo.getData());
+                    if (modelo.getData_nascimento() != null) {
+                        stmtModelo.setDate(2, modelo.getData_nascimento());
                     } else {
                         stmtModelo.setNull(2, Types.DATE);
                     }
@@ -131,8 +131,8 @@ public class ModeloDAO {
                     stmtUsuario.executeUpdate();
 
                     stmtModelo.setString(1, modelo.getTelefone());
-                    if (modelo.getData() != null) {
-                        stmtModelo.setDate(2, modelo.getData());
+                    if (modelo.getData_nascimento() != null) {
+                        stmtModelo.setDate(2, modelo.getData_nascimento());
                     } else {
                         stmtModelo.setNull(2, Types.DATE);
                     }

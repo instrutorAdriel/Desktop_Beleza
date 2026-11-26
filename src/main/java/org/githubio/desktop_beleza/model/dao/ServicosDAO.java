@@ -1,7 +1,7 @@
 package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.githubio.desktop_beleza.model.Servico;
+import org.githubio.desktop_beleza.model.Produto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,15 +12,15 @@ import java.util.List;
 
 public class ServicosDAO {
 
-    public List<Servico> lerTodos() {
+    public List<Produto> lerTodos() {
         String sql = "SELECT id_produto, nome_produto, descricao FROM produto ORDER BY nome_produto";
-        List<Servico> lista = new ArrayList<>();
+        List<Produto> lista = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                lista.add(new Servico(
+                lista.add(new Produto(
                         rs.getInt("id_produto"),
                         rs.getString("nome_produto"),
                         rs.getString("descricao")
@@ -32,21 +32,21 @@ public class ServicosDAO {
         return lista;
     }
 
-    public void inserir(Servico servico) {
+    public void inserir(Produto produto) {
         String sql = "INSERT INTO produto (nome_produto, descricao, imagem_anexo) VALUES (?, ?, NULL)";
 
         // Adicionado Statement.RETURN_GENERATED_KEYS no prepareStatement
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, servico.getNome());
-            stmt.setString(2, servico.getDescricao());
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getDescricao());
             stmt.executeUpdate();
 
             // Recupera o id_produto auto-incrementado pelo MySQL
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
-                    servico.setId(rs.getInt(1)); // Atribui o ID gerado de volta ao DTO
+                    produto.setId(rs.getInt(1)); // Atribui o ID gerado de volta ao DTO
                 }
             }
         } catch (SQLException e) {
@@ -54,13 +54,13 @@ public class ServicosDAO {
         }
     }
 
-    public void atualizar(Servico servico) {
+    public void atualizar(Produto produto) {
         String sql = "UPDATE produto SET nome_produto = ?, descricao = ? WHERE id_produto = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, servico.getNome());
-            stmt.setString(2, servico.getDescricao());
-            stmt.setInt(3, servico.getId());
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getDescricao());
+            stmt.setInt(3, produto.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar produto/procedimento", e);

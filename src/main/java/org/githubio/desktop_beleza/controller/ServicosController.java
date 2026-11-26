@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.githubio.desktop_beleza.model.Servico;
+import org.githubio.desktop_beleza.model.Produto;
 import org.githubio.desktop_beleza.model.Unidade;
 import org.githubio.desktop_beleza.model.dao.DisponibilidadeDAO;
 import org.githubio.desktop_beleza.model.dao.ServicosDAO;
@@ -38,10 +38,10 @@ import java.util.ResourceBundle;
 
 public class ServicosController implements Initializable {
 
-    @FXML private TableView<Servico> tabelaServicos;
-    @FXML private TableColumn<Servico, String> colNome;
-    @FXML private TableColumn<Servico, String> colDescricao;
-    @FXML private TableColumn<Servico, Void> colAcoes;
+    @FXML private TableView<Produto> tabelaServicos;
+    @FXML private TableColumn<Produto, String> colNome;
+    @FXML private TableColumn<Produto, String> colDescricao;
+    @FXML private TableColumn<Produto, Void> colAcoes;
     @FXML private TextField txtBuscar;
     @FXML private Button btnDisponibilizar;
 
@@ -50,7 +50,7 @@ public class ServicosController implements Initializable {
     private final DisponibilidadeDAO disponibilidadeDAO = new DisponibilidadeDAO();
 
     // Cache local em memória
-    private final ObservableList<Servico> listaServicosCache = FXCollections.observableArrayList();
+    private final ObservableList<Produto> listaServicosCache = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,21 +91,21 @@ public class ServicosController implements Initializable {
 
         dialog.showAndWait().ifPresent(resposta -> {
             if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
-                Servico novoServico = new Servico(txtNome.getText().trim(), txtDesc.getText().trim());
+                Produto novoProduto = new Produto(txtNome.getText().trim(), txtDesc.getText().trim());
 
                 // Insere no Banco
-                dao.inserir(novoServico);
+                dao.inserir(novoProduto);
 
                 // Adiciona direto no Cache da memória (sem ler todos do banco)
-                listaServicosCache.add(novoServico);
+                listaServicosCache.add(novoProduto);
             }
         });
     }
 
     @FXML
     private void abrirDialogoDisponibilizar(ActionEvent event) {
-        Servico servico = tabelaServicos.getSelectionModel().getSelectedItem();
-        if (servico == null) {
+        Produto produto = tabelaServicos.getSelectionModel().getSelectedItem();
+        if (produto == null) {
             mostrarAviso("Selecione um serviço na tabela para disponibilizar na agenda.");
             return;
         }
@@ -138,7 +138,7 @@ public class ServicosController implements Initializable {
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Disponibilizar na Agenda");
-        dialog.setHeaderText("Disponibilizar \"" + servico.getNome() + "\" na agenda");
+        dialog.setHeaderText("Disponibilizar \"" + produto.getNome() + "\" na agenda");
 
         ButtonType btnConfirmar = new ButtonType("Disponibilizar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnConfirmar, ButtonType.CANCEL);
@@ -233,13 +233,13 @@ public class ServicosController implements Initializable {
             if (resposta != btnConfirmar) return;
             try {
                 boolean criada = disponibilidadeDAO.disponibilizar(
-                        servico.getId(), cbUnidade.getValue().getId(), cbTurma.getValue().id(), dpData.getValue(),
+                        produto.getId(), cbUnidade.getValue().getId(), cbTurma.getValue().id(), dpData.getValue(),
                         cbInicio.getValue(), cbFim.getValue(), spVagas.getValue());
 
                 Alert ok = new Alert(Alert.AlertType.INFORMATION);
                 ok.setHeaderText(criada ? "Serviço disponibilizado na agenda!"
                         : "Vagas adicionadas à disponibilidade existente!");
-                ok.setContentText(servico.getNome() + "\n"
+                ok.setContentText(produto.getNome() + "\n"
                         + "Unidade: " + cbUnidade.getValue().getNome() + "\n"
                         + "Turma: " + cbTurma.getValue().nome() + "\n"
                         + "Data: " + dpData.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n"
@@ -297,12 +297,12 @@ public class ServicosController implements Initializable {
                 container.setAlignment(Pos.CENTER);
 
                 btnEditar.setOnAction(e -> {
-                    Servico servico = getTableRow().getItem();
-                    if (servico != null) abrirDialogoEdicao(servico);
+                    Produto produto = getTableRow().getItem();
+                    if (produto != null) abrirDialogoEdicao(produto);
                 });
                 btnExcluir.setOnAction(e -> {
-                    Servico servico = getTableRow().getItem();
-                    if (servico != null) confirmarExclusao(servico);
+                    Produto produto = getTableRow().getItem();
+                    if (produto != null) confirmarExclusao(produto);
                 });
             }
 
@@ -314,25 +314,25 @@ public class ServicosController implements Initializable {
         });
     }
 
-    private void abrirDialogoEdicao(Servico servico) {
+    private void abrirDialogoEdicao(Produto produto) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Editar Serviço");
         ButtonType btnSalvar = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(btnSalvar, ButtonType.CANCEL);
 
-        TextField txtNome = new TextField(servico.getNome());
-        TextField txtDesc = new TextField(servico.getDescricao());
+        TextField txtNome = new TextField(produto.getNome());
+        TextField txtDesc = new TextField(produto.getDescricao());
         dialog.getDialogPane().setContent(new VBox(10,
                 new Label("Nome:"), txtNome,
                 new Label("Descrição:"), txtDesc));
 
         dialog.showAndWait().ifPresent(resposta -> {
             if (resposta == btnSalvar && !txtNome.getText().isBlank()) {
-                servico.setNome(txtNome.getText().trim());
-                servico.setDescricao(txtDesc.getText().trim());
+                produto.setNome(txtNome.getText().trim());
+                produto.setDescricao(txtDesc.getText().trim());
 
                 // Atualiza no Banco
-                dao.atualizar(servico);
+                dao.atualizar(produto);
 
                 // Atualiza na Tabela/Cache
                 tabelaServicos.refresh();
@@ -340,17 +340,17 @@ public class ServicosController implements Initializable {
         });
     }
 
-    private void confirmarExclusao(Servico servico) {
+    private void confirmarExclusao(Produto produto) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Excluir " + servico.getNome() + "?", ButtonType.YES, ButtonType.NO);
+                "Excluir " + produto.getNome() + "?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait().ifPresent(resposta -> {
             if (resposta == ButtonType.YES) {
                 try {
                     // Exclui do Banco
-                    dao.excluir(servico.getId());
+                    dao.excluir(produto.getId());
 
                     // Remove direto do Cache
-                    listaServicosCache.remove(servico);
+                    listaServicosCache.remove(produto);
                 } catch (RuntimeException e) {
                     Alert erro = new Alert(Alert.AlertType.ERROR);
                     erro.setHeaderText("Não foi possível excluir o serviço");
@@ -372,7 +372,7 @@ public class ServicosController implements Initializable {
         String filtro = termo.toLowerCase();
 
         // Filtra a partir do CACHE EM MEMÓRIA (sem ir ao banco)
-        ObservableList<Servico> listaFiltrada = FXCollections.observableArrayList(
+        ObservableList<Produto> listaFiltrada = FXCollections.observableArrayList(
                 listaServicosCache.stream()
                         .filter(s -> (s.getNome() != null && s.getNome().toLowerCase().contains(filtro))
                                 || (s.getDescricao() != null && s.getDescricao().toLowerCase().contains(filtro)))

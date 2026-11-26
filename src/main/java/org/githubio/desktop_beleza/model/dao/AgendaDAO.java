@@ -1,7 +1,10 @@
 package org.githubio.desktop_beleza.model.dao;
 
 import org.githubio.desktop_beleza.config.DatabaseConnection;
-import org.githubio.desktop_beleza.model.Agenda;
+import org.githubio.desktop_beleza.model.Agendamento;
+import org.githubio.desktop_beleza.model.Modelo;
+import org.githubio.desktop_beleza.model.Produto;
+import org.githubio.desktop_beleza.model.Unidade;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,39 +23,44 @@ import java.util.List;
 public class AgendaDAO {
 
     // CACHE EM MEMÓRIA PARA EVITAR CONSULTAS REPETIDAS AO BANCO
-    private static List<String> cacheServicos = null;
-    private static List<String> cacheModelos = null;
-    private static List<String> cacheUnidades = null;
+    private static List<Produto> cacheProdutos = null;
+    private static List<Modelo> cacheModelos = null;
+    private static List<Unidade> cacheUnidades = null;
 
     public static void limparCacheCombos() {
-        cacheServicos = null;
+        cacheProdutos = null;
         cacheModelos = null;
         cacheUnidades = null;
     }
 
-    public List<String> listarServicos() {
-        if (cacheServicos != null && !cacheServicos.isEmpty()) {
-            return cacheServicos;
+    public List<Produto> listarProdutos() {
+        if (cacheProdutos != null && !cacheProdutos.isEmpty()) {
+            return cacheProdutos;
         }
-        List<String> lista = new ArrayList<>();
-        String sql = "SELECT nome_produto FROM produto ORDER BY nome_produto";
+        List<Produto> lista = new ArrayList<>();
+        String sql = "SELECT id_produto, nome_produto, descricao FROM produto ORDER BY id_produto ASC";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                lista.add(rs.getString("nome_produto"));
+                Produto produto = new Produto(
+                        rs.getInt("id_produto"),
+                        rs.getString("nome_produto"),
+                        rs.getString("descricao")
+                );
+                lista.add(produto);
             }
-            cacheServicos = lista;
+            cacheProdutos = lista;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar procedimentos", e);
         }
         return lista;
     }
 
-    public List<String> listarServicosPorUnidade(String nomeUnidade) {
-        List<String> lista = new ArrayList<>();
+    public List<Produto> listarProdutosPorUnidade(String nomeUnidade) {
+        List<Produto> lista = new ArrayList<>();
         String sql = """
-                SELECT DISTINCT p.nome_produto
+                SELECT DISTINCT p.id_produto, p.nome_produto, p.descricao
                 FROM produto_unidade pu
                 INNER JOIN produto p ON p.id_produto = pu.id_produto
                 INNER JOIN unidade u ON u.id_unidade = pu.id_unidade
@@ -65,7 +73,12 @@ public class AgendaDAO {
             stmt.setString(1, nomeUnidade);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    lista.add(rs.getString("nome_produto"));
+                    Produto produto = new Produto(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome_produto"),
+                            rs.getString("descricao")
+                    );
+                    lista.add(produto);
                 }
             }
         } catch (SQLException e) {
@@ -74,22 +87,29 @@ public class AgendaDAO {
         return lista;
     }
 
-    public List<String> listarModelos() {
+    public List<Modelo> listarModelos() {
         if (cacheModelos != null && !cacheModelos.isEmpty()) {
             return cacheModelos;
         }
-        List<String> lista = new ArrayList<>();
+        List<Modelo> lista = new ArrayList<>();
         String sql = """
-                SELECT u.nome_usuario
+                SELECT u.id_usuario, u.nome_usuario, u.email, m.id_modelo, m.data_nascimento, m.telefone
                 FROM modelo m
                 INNER JOIN usuario u ON u.id_usuario = m.id_usuario
-                ORDER BY u.nome_usuario
+                ORDER BY u.id_usuario
                 """;
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                lista.add(rs.getString("nome_usuario"));
+                Modelo modelo = new Modelo(
+                        rs.getInt("id_modelo"),
+                        rs.getString("nome_usuario"),
+                        rs.getString("telefone"),
+                        rs.getString("email"),
+                        rs.getDate("data_nascimento")
+                );
+                lista.add(modelo);
             }
             cacheModelos = lista;
         } catch (SQLException e) {
@@ -98,17 +118,23 @@ public class AgendaDAO {
         return lista;
     }
 
-    public List<String> listarUnidades() {
+    public List<Unidade> listarUnidades() {
         if (cacheUnidades != null && !cacheUnidades.isEmpty()) {
             return cacheUnidades;
         }
-        List<String> lista = new ArrayList<>();
-        String sql = "SELECT nome_unidade FROM unidade WHERE situacao = 'A' ORDER BY nome_unidade";
+        List<Unidade> lista = new ArrayList<>();
+        String sql = "SELECT id_unidade, nome_unidade, situacao, endereco FROM unidade WHERE situacao = 'A' ORDER BY id_unidade";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                lista.add(rs.getString("nome_unidade"));
+                Unidade unidade = new Unidade(
+                        rs.getInt("id_unidade"),
+                        rs.getString("nome_unidade"),
+                        rs.getString("endereco"),
+                        rs.getString("situacao")
+                );
+                lista.add(unidade);
             }
             cacheUnidades = lista;
         } catch (SQLException e) {
@@ -163,12 +189,12 @@ public class AgendaDAO {
             throw new RuntimeException("Erro ao cadastrar agendamento" + e.getMessage(), e);
         }
     }
-    public List<Agenda> listarAgendamentos(String emailInstrutor) {
+    public List<Agendamento> listarAgendamentos(String emailInstrutor) {
         String sql = consultaBase() + " ORDER BY data_hora_agendamento";
         return executarLista(sql, null, null);
     }
 
-    public List<Agenda> listarAgendamentosPorSemana(LocalDate inicio, LocalDate fim, String emailInstrutor) {
+    public List<Agendamento> listarAgendamentosPorSemana(LocalDate inicio, LocalDate fim, String emailInstrutor) {
         String sql = consultaBase() + " WHERE data_hora_agendamento >= ? AND data_hora_agendamento < ? ORDER BY data_hora_agendamento";
         return executarLista(sql, inicio, fim);
     }
@@ -177,8 +203,8 @@ public class AgendaDAO {
         return "SELECT id_agendamento, data_agendamento, horario_agendamento, situacao, nome_modelo, nome_servico FROM vw_agendamentos_detalhados";
     }
 
-    private List<Agenda> executarLista(String sql, LocalDate inicio, LocalDate fim) {
-        List<Agenda> lista = new ArrayList<>();
+    private List<Agendamento> executarLista(String sql, LocalDate inicio, LocalDate fim) {
+        List<Agendamento> lista = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -189,13 +215,15 @@ public class AgendaDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    lista.add(new Agenda(
+                    LocalDate data = rs.getDate("data_agendamento").toLocalDate();
+                    LocalTime horario = rs.getTime("horario_agendamento").toLocalTime();
+                    lista.add(new Agendamento(
                             rs.getInt("id_agendamento"),
-                            rs.getString("data_agendamento"),
-                            rs.getString("horario_agendamento"),
+                            new LocalDateTime(data, horario),
                             rs.getString("situacao"),
-                            rs.getString("nome_modelo"),
-                            rs.getString("nome_servico")));
+                            new Produto(rs.getString("nome_servico"), null),
+                            new Modelo(rs.getString("nome_modelo"), null, null, null)
+                    ));
                 }
             }
         } catch (SQLException e) {
@@ -203,6 +231,7 @@ public class AgendaDAO {
         }
         return lista;
     }
+
     public void excluirAgendamento(int idAgendamento) {
         String sql = "DELETE FROM agendamento WHERE id_agendamento = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -214,7 +243,7 @@ public class AgendaDAO {
         }
     }
 
-    public void editarAgendamento(Agenda agenda) {
+    public void editarAgendamento(Agendamento agendamento) {
         String buscarContexto = """
                 SELECT pu.id_unidade
                 FROM agendamento a
@@ -233,7 +262,7 @@ public class AgendaDAO {
             try {
                 int idUnidade;
                 try (PreparedStatement stmtContexto = conn.prepareStatement(buscarContexto)) {
-                    stmtContexto.setInt(1, agenda.getId());
+                    stmtContexto.setInt(1, agendamento.getId());
                     try (ResultSet rs = stmtContexto.executeQuery()) {
                         if (!rs.next()) {
                             throw new SQLException("Agendamento não encontrado.");
@@ -242,18 +271,17 @@ public class AgendaDAO {
                     }
                 }
 
-                int idModelo = buscarIdModelo(conn, agenda.getModelo());
-                int idProduto = buscarIdProduto(conn, agenda.getServico());
+                int idModelo = buscarIdModelo(conn, agendamento.getModelo().getNome());
+                int idProduto = buscarIdProduto(conn, agendamento.getProduto().getNome());
                 int idProdutoUnidade = buscarProdutoUnidade(conn, idUnidade, idProduto);
-                LocalDate data = LocalDate.parse(agenda.getData());
-                LocalTime horario = LocalTime.parse(agenda.getHorario());
-                int idDisponibilidade = buscarOuCriarDisponibilidade(conn, data, horario, idProdutoUnidade);
+                LocalDateTime data_hora_agendamento = agendamento.getData_hora_agendamento();
+                int idDisponibilidade = buscarOuCriarDisponibilidade(conn, data_hora_agendamento.toLocalDate(), data_hora_agendamento.toLocalTime(), idProdutoUnidade);
 
                 try (PreparedStatement stmt = conn.prepareStatement(atualizar)) {
-                    stmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.of(data, horario)));
+                    stmt.setTimestamp(1, Timestamp.valueOf(data_hora_agendamento));
                     stmt.setInt(2, idDisponibilidade);
                     stmt.setInt(3, idModelo);
-                    stmt.setInt(4, agenda.getId());
+                    stmt.setInt(4, agendamento.getId());
                     stmt.executeUpdate();
                 }
 
@@ -484,16 +512,16 @@ public class AgendaDAO {
         }
 
     }
-    public List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico) {
+    public List<Agendamento> buscarAgendamentos(LocalDate data, String unidade, String servico) {
         return buscarAgendamentos(data, unidade, servico, false);
     }
 
-    public List<Agenda> buscarHistorico(LocalDate data, String unidade, String servico) {
+    public List<Agendamento> buscarHistorico(LocalDate data, String unidade, String servico) {
         return buscarAgendamentos(data, unidade, servico, true);
     }
 
-    private List<Agenda> buscarAgendamentos(LocalDate data, String unidade, String servico,
-                                             boolean historico) {
+    private List<Agendamento> buscarAgendamentos(LocalDate data, String unidade, String servico,
+                                                 boolean historico) {
         StringBuilder sql = new StringBuilder("""
         SELECT a.id_agendamento,
                DATE_FORMAT(a.data_hora_agendamento, '%Y-%m-%d') AS data_agendamento,
@@ -539,7 +567,7 @@ public class AgendaDAO {
                 ? " ORDER BY a.data_hora_agendamento DESC"
                 : " ORDER BY a.data_hora_agendamento");
 
-        List<Agenda> lista = new ArrayList<>();
+        List<Agendamento> lista = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
 
@@ -549,7 +577,7 @@ public class AgendaDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    lista.add(new Agenda(
+                    lista.add(new Agendamento(
                             rs.getInt("id_agendamento"),
                             rs.getString("data_agendamento"),
                             rs.getString("horario_agendamento"),

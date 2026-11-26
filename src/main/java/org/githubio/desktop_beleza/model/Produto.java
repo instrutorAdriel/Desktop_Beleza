@@ -1,20 +1,20 @@
 package org.githubio.desktop_beleza.model;
 
-public class Servico {
+public class Produto {
     private int id;
     private String nome;
     private String descricao;
 
-    public Servico() {
+    public Produto() {
     }
 
-    public Servico(int id, String nome, String descricao) {
+    public Produto(int id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public Servico(String nome, String descricao) {
+    public Produto(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }

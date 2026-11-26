@@ -144,8 +144,8 @@ public class ModeloController implements Initializable {
         });
 
         // CORRIGIDO: preenche o DatePicker com a data já salva (edição)
-        if (modelo.getData() != null) {
-            dpNascimento.setValue(modelo.getData().toLocalDate());
+        if (modelo.getData_nascimento() != null) {
+            dpNascimento.setValue(modelo.getData_nascimento().toLocalDate());
         }
 
         TextFormatter<String> nomeFormatter = new TextFormatter<>(change -> {
@@ -235,7 +235,7 @@ public class ModeloController implements Initializable {
             modelo.setNome(txtNome.getText());
             modelo.setTelefone(telRaw);
             modelo.setEmail(email);
-            modelo.setData(dataN);
+            modelo.setData_nascimento(dataN);
 
             try {
                 if (isNovo) {
