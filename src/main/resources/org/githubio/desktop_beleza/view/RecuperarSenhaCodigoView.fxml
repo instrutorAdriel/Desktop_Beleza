@@ -36,6 +36,7 @@
                   <VBox spacing="10.0">
                      <children>
                               <Button fx:id="btnConfirmarCodigo" maxWidth="1.7976931348623157E308" onAction="#onConfirmarCodigo" prefHeight="45.0" styleClass="botao-principal" text="Confirmar" />
+                        <Button fx:id="btnReenviarCodigo" disable="true" maxWidth="1.7976931348623157E308" onAction="#onReenviarCodigo" prefHeight="45.0" styleClass="botao-secundario" text="Reenviar código" />
                         <Button maxWidth="1.7976931348623157E308" onAction="#voltarParaLogin" prefHeight="45.0" styleClass="botao-secundario" text="Cancelar" />
                      </children>
                   </VBox>
