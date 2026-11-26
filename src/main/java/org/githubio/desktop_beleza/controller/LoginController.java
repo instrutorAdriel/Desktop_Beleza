@@ -69,12 +69,12 @@ public class LoginController {
 
     @FXML
     protected void irParaCadastro() throws IOException {
-        MainApplication.setRoot("cadastro");
+        MainApplication.setRoot("CadastroView");
     }
 
     @FXML
     protected void irParaAtualizarSenha() throws IOException {
-        MainApplication.setRoot("recuperar-senha-email");
+        MainApplication.setRoot("RecuperarSenhaEmailView");
     }
 
     // =====================================================================
@@ -151,7 +151,7 @@ public class LoginController {
                 // O popup continua aberto e só fecha quando a agenda estiver pronta.
                 MainApplication.setUsuario(emailDigitado);
                 MainApplication.setRootAsync(
-                        "Telaagenda",
+                        "VisaoGeralAgendamentoView",
                         popupLoading::close,              // sucesso: fecha o popup
                         erroCarga -> {                    // falha ao carregar a agenda
                             popupLoading.close();

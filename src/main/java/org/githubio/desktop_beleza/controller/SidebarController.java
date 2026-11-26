@@ -13,22 +13,22 @@ public class SidebarController {
     }
 
     @FXML public void navegarTurmas() {
-        ViewNavigator.loadView("gerenciarTurma.fxml");
+        ViewNavigator.loadView("GerenciamentoTurmasView.fxml");
     }
 
     @FXML public void navegarServicos() {
-        ViewNavigator.loadView("servicos.fxml");
+        ViewNavigator.loadView("ServicosView.fxml");
     }
 
     @FXML public void navegarModelos() {
-        ViewNavigator.loadView("modelo.fxml");
+        ViewNavigator.loadView("GerenciamentoModeloView.fxml");
     }
 
     @FXML public void logout() {
         ViewNavigator.clearCache();
         MainApplication.setUsuario(null); // ADICIONAR ESTA LINHA
         try {
-            MainApplication.setRoot("login");
+            MainApplication.setRoot("LoginView");
         } catch (IOException e) {
             e.printStackTrace();
         }

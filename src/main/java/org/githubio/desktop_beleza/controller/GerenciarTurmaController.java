@@ -22,7 +22,7 @@ import org.githubio.desktop_beleza.model.dto.UsuarioDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class    GerenciarTurmaController {
+public class GerenciarTurmaController {
     @FXML private TableView<UsuarioDTO> tabelaUsuarios;
     @FXML private TableColumn<UsuarioDTO, String> colTurma;
     @FXML private TableColumn<UsuarioDTO, String> colTurno;

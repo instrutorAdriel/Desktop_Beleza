@@ -25,32 +25,32 @@ public class PainelLateralComponent extends VBox {
 
     @FXML
     public void trocarTelaParaPaginaInicial() throws IOException {
-        MainApplication.setRoot("Telaagenda");
+        MainApplication.setRoot("VisaoGeralAgendamentoView");
     }
 
     @FXML
     public void trocarTelaParaModelos() throws IOException {
-        MainApplication.setRoot("gerenciarmodelo");
+        MainApplication.setRoot("GerenciamentoModeloView");
     }
 
     @FXML
     public void trocarTelaParaServicos() throws IOException {
-        MainApplication.setRoot("servicos");
+        MainApplication.setRoot("ServicosView");
     }
 
     @FXML
     public void trocarTelaParaHistorico() throws IOException {
-        MainApplication.setRoot("historico");
+        MainApplication.setRoot("HistoricoView");
     }
 
     @FXML
     public void trocarTelaParaUnidades() throws IOException {
-        MainApplication.setRoot("unidades");
+        MainApplication.setRoot("UnidadesView");
     }
 
     @FXML
     public void trocarTelaParaTurmas() throws IOException {
-        MainApplication.setRoot("GerenciarTurma");
+        MainApplication.setRoot("GerenciamentoTurmaView");
     }
 
     @FXML
@@ -59,7 +59,7 @@ public class PainelLateralComponent extends VBox {
                 "Deseja sair do sistema?", ButtonType.YES, ButtonType.NO);
         if (alerta.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
             MainApplication.setUsuario("");
-            MainApplication.setRoot("login");
+            MainApplication.setRoot("LoginView");
         }
     }
 }

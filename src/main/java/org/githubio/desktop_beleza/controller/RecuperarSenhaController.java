@@ -106,7 +106,7 @@ public class RecuperarSenhaController {
                 Platform.runLater(() -> {
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Código Enviado", "Enviamos um código de recuperação para o seu e-mail.");
                     try {
-                        MainApplication.setRoot("recuperar-senha-codigo");
+                        MainApplication.setRoot("RecuperarSenhaCodigoView");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -145,7 +145,7 @@ public class RecuperarSenhaController {
             return;
         }
 
-        MainApplication.setRoot("recuperar-senha");
+        MainApplication.setRoot("RedefinirSenhaView");
     }
 
     @FXML
@@ -188,7 +188,7 @@ public class RecuperarSenhaController {
     @FXML
     public void voltarParaLogin() {
         try {
-            MainApplication.setRoot("login");
+            MainApplication.setRoot("LoginView");
         } catch (IOException e) {
             e.printStackTrace();
         }

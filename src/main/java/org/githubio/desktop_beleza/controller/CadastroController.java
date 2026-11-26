@@ -38,7 +38,7 @@ public class CadastroController {
 
     @FXML
     protected void onVoltarClick() throws IOException {
-        MainApplication.setRoot("login");
+        MainApplication.setRoot("LoginView");
     }
 
     @FXML
@@ -81,7 +81,7 @@ public class CadastroController {
         sucesso.setHeaderText(null);
         sucesso.setContentText("Instrutor cadastrado com sucesso!");
         sucesso.showAndWait();
-        MainApplication.setRoot("login");
+        MainApplication.setRoot("LoginView");
     }
 
     @FXML

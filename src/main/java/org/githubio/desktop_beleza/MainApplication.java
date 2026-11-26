@@ -35,7 +35,7 @@ public class MainApplication extends Application {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
         // A primeira tela exibida é a de Login
-        scene = new Scene(loadFXML("login"), MinWidth, MinHeight);
+        scene = new Scene(loadFXML("LoginView"), MinWidth, MinHeight);
 
         // CSS do Senac (antes estava sendo adicionado duas vezes)
         String cssSenac = MainApplication.class.getResource("css/style.css").toExternalForm();
