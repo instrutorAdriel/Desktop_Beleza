@@ -5,11 +5,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -67,12 +63,20 @@ public class RecuperarSenhaController {
 
     @FXML
     public void initialize() {
+        if (txtEmail != null) {
+            aplicarLimiteCaracteres(txtEmail, 255);
+        }
         if (btnReenviarCodigo != null) {
             iniciarContadorReenvio();
         }
         if (campoNovaSenha != null) {
             configurarMecanismoOlhoSenha();
             configurarValidacoesSenhaTempoReal();
+
+            aplicarLimiteCaracteres(campoNovaSenha, 150);
+            aplicarLimiteCaracteres(campoNovaSenhaVisivel, 150);
+            aplicarLimiteCaracteres(campoConfirmarSenha, 150);
+            aplicarLimiteCaracteres(campoConfirmarSenhaVisivel, 150);
         }
     }
 
@@ -234,6 +238,10 @@ public class RecuperarSenhaController {
             mostrarAlerta(Alert.AlertType.ERROR, "Campos Obrigatórios", "Preencha a nova senha e a confirmação.");
             return;
         }
+        if (novaSenha.length() > 150) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Senha muito longa", "A senha deve ter no máximo 150 caracteres.");
+            return;
+        }
 
         boolean senhaForte = novaSenha.matches(".*[A-Z].*") &&
                 novaSenha.matches(".*[a-z].*") &&
@@ -333,5 +341,11 @@ public class RecuperarSenhaController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+    private void aplicarLimiteCaracteres(TextInputControl campo, int limite) {
+        if (campo == null) return;
+        campo.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= limite ? change : null
+        ));
     }
 }

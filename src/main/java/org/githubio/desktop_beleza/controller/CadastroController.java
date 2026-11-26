@@ -1,10 +1,7 @@
 package org.githubio.desktop_beleza.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.githubio.desktop_beleza.MainApplication;
@@ -31,9 +28,17 @@ public class CadastroController {
     private boolean senhaEstaVisivel = false;
     private boolean confirmarSenhaEstaVisivel = false;
 
+    @FXML
     public void initialize() {
         campoSenhaVisivel.textProperty().bindBidirectional(campoSenha.textProperty());
         campoConfirmarSenhaVisivel.textProperty().bindBidirectional(campoConfirmarSenha.textProperty());
+
+        aplicarLimiteCaracteres(campoNome, 255);
+        aplicarLimiteCaracteres(campoEmail, 76);
+        aplicarLimiteCaracteres(campoSenha, 150);
+        aplicarLimiteCaracteres(campoSenhaVisivel, 150);
+        aplicarLimiteCaracteres(campoConfirmarSenha, 150);
+        aplicarLimiteCaracteres(campoConfirmarSenhaVisivel, 150);
     }
 
     @FXML
@@ -50,6 +55,16 @@ public class CadastroController {
 
         if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirma.isBlank()) {
             mostrarErro("Campos obrigatórios", "Preencha todos os campos.");
+            return;
+        }
+
+        if (nome.length() > 255) {
+            mostrarErro("Nome muito longo", "O nome deve ter no máximo 255 caracteres.");
+            return;
+        }
+
+        if (senha.length() > 150) {
+            mostrarErro("Senha muito longa", "A senha deve ter no máximo 150 caracteres.");
             return;
         }
 
@@ -125,5 +140,12 @@ public class CadastroController {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    private void aplicarLimiteCaracteres(TextInputControl campo, int limite) {
+        if (campo == null) return;
+        campo.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= limite ? change : null
+        ));
     }
 }

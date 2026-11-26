@@ -4,12 +4,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -59,10 +54,12 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        // Os dois campos de senha ficam sempre com o mesmo texto
         SenhaVisivel.textProperty().bindBidirectional(Senha.textProperty());
-    }
 
+        aplicarLimiteCaracteres(Email, 76);
+        aplicarLimiteCaracteres(Senha, 150);
+        aplicarLimiteCaracteres(SenhaVisivel, 150);
+    }
     // =====================================================================
     // 5) NAVEGAÇÃO ENTRE TELAS
     // =====================================================================
@@ -223,5 +220,11 @@ public class LoginController {
             popup.setY(janelaLogin.getY() + (janelaLogin.getHeight() - popup.getHeight()) / 2);
         });
         return popup;
+    }
+    private void aplicarLimiteCaracteres(TextInputControl campo, int limite) {
+        if (campo == null) return;
+        campo.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= limite ? change : null
+        ));
     }
 }
